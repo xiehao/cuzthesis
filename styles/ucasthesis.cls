@@ -69,7 +69,7 @@
 %---------------------------------------------------------------------------%
 \AtEndOfPackage{% class cfg loaded after package to make preamble commands take effect
     \makeatletter
-    \InputIfFileExists{Style/ucasthesis.cfg}{}{}
+    \InputIfFileExists{styles/ucasthesis.cfg}{}{}
     \makeatother
 }
 %---------------------------------------------------------------------------%

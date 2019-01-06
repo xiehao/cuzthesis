@@ -251,11 +251,11 @@
         \else
             \RequirePackage[square,comma,numbers,sort&compress]{natbib}% square bracket
         \fi
-        \bibliographystyle{Biblio/gbt7714-unsrt}% numbered scheme
+        \bibliographystyle{bibliography/gbt7714-unsrt}% numbered scheme
     \fi
     \ifartx@authoryear% enable author year citation style
         \RequirePackage{natbib}% author year citation mode
-        \bibliographystyle{Biblio/gbt7714-plain}% author year scheme
+        \bibliographystyle{bibliography/gbt7714-plain}% author year scheme
     \fi
     \ifartx@alpha% enable alpha citation style
         \RequirePackage[square,comma,numbers]{natbib}% square bracket
@@ -406,7 +406,7 @@
 \else% <pdflatex> or <lualatex>
     \DeclareGraphicsExtensions{.pdf,.png,.jpg}%
 \fi
-\graphicspath{{Img/}}% search path for figures
+\graphicspath{{images/}}% search path for figures
 %-
 %-> Layout, space, and style
 %-
