@@ -19,29 +19,29 @@
 %-
 %-> Layout
 %-
-\newif\ifucas@singlesided \ucas@singlesidedfalse
+\newif\ifcuz@singlesided \cuz@singlesidedfalse
 \DeclareOption{singlesided}{% enable single-sided printing
-    \ucas@singlesidedtrue%
+    \cuz@singlesidedtrue%
 }
-\newif\ifucas@doublesided \ucas@doublesidedfalse
+\newif\ifcuz@doublesided \cuz@doublesidedfalse
 \DeclareOption{doublesided}{% enable double-sided printing
-    \ucas@doublesidedtrue%
+    \cuz@doublesidedtrue%
 }
 \newif\ifcuz@hdr \cuz@hdrfalse
 \DeclareOption{cuzhdr}{% enable cuz-styled header and footer
     \cuz@hdrtrue%
 }
-\newif\ifucas@printcopy \ucas@printcopyfalse
+\newif\ifcuz@printcopy \cuz@printcopyfalse
 \DeclareOption{printcopy}{% enable print copy layout
-    \ucas@doublesidedtrue% auto enable double-sided style
-    \ucas@printcopytrue%
+    \cuz@doublesidedtrue% auto enable double-sided style
+    \cuz@printcopytrue%
 }
 %-
 %-> Draft version info
 %-
-\newif\ifucas@versioninfo \ucas@versioninfofalse
+\newif\ifcuz@versioninfo \cuz@versioninfofalse
 \DeclareOption{draftversion}{%
-    \ucas@versioninfotrue%
+    \cuz@versioninfotrue%
 }
 %-
 %-> Handle non-implemented options
@@ -56,7 +56,7 @@
 %---------------------------------------------------------------------------%
 %->> Load class information
 %---------------------------------------------------------------------------%
-\ifucas@doublesided% if double-sided printing enabled
+\ifcuz@doublesided% if double-sided printing enabled
     \LoadClass[UTF8,a4paper,twoside,zihao=-4]{ctexbook}
 \else% if double-sided printing isn't enabled
     \LoadClass[UTF8,a4paper,oneside,zihao=-4]{ctexbook}
@@ -66,16 +66,100 @@
 %---------------------------------------------------------------------------%
 \RequirePackage{ifxetex}% LaTeX engine detection
 \RequirePackage{etoolbox}% a toolbox of programming facilities
-\newcommand{\ucasifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
-\newcommand{\ucasifstrbk}{\expandafter\ifblank\expandafter}% expansion control
+\newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
+\newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% expansion control
 %---------------------------------------------------------------------------%
 %->> Load class configuration
 %---------------------------------------------------------------------------%
 \AtEndOfPackage{% class cfg loaded after package to make preamble commands take effect
     \makeatletter
-    \InputIfFileExists{styles/ucasthesis.cfg}{}{}
+    \InputIfFileExists{styles/cuzthesis.cfg}{}{}
     \makeatother
 }
+%---------------------------------------------------------------------------%
+%->> Page headers and footers
+%---------------------------------------------------------------------------%
+\ifcuz@hdr% user defined header and footer style
+    \RequirePackage{fancyhdr}
+    \RequirePackage{lastpage}
+    \pagestyle{fancy}%
+    \providecommand{\chaptermark}{}% compatibility for non-book classes
+    \providecommand{\thechapter}{}% compatibility for non-book classes
+    \providecommand{\CTEXthechapter}{\thechapter.}% compatibility for non ctex classes
+    %- reset style of chapter and section mark to actual name
+    \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}%
+    \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}%
+    %- deactivate uppercase effect
+    \renewcommand{\MakeUppercase}[1]{#1}%
+    %- Define different kinds of header and footer for different parts
+    \fancypagestyle{frontmatterstyle}{% style for frontmatter
+        \fancyhf{}% clear fields
+        \fancyhead[CE]{\footnotesize \@title}% structure elements
+        \fancyhead[CO]{\footnotesize \leftmark}% structure elements
+        \fancyfoot[CE]{\footnotesize \thepage}% page number
+        \fancyfoot[CO]{\footnotesize \thepage}% page number
+        \renewcommand{\headrulewidth}{0.8pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    \fancypagestyle{mainmatterstyle}{% style for mainmatter
+        \fancyhf{}% clear fields
+        \fancyhead[LEO]{\footnotesize \cuz@label@header@bacthesis}% structure elements
+        \fancyhead[REO]{\footnotesize \@title}% structure elements
+        \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
+        \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
+        \renewcommand{\headrulewidth}{0.8pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    \fancypagestyle{backmatterstyle}{% header and footer style for backmatter
+        \fancyhf{}% clear fields
+        \fancyhead[CE]{\footnotesize \@title}% structure elements
+        \fancyhead[CO]{\footnotesize \leftmark}% structure elements
+        \fancyfoot[LE]{\footnotesize \thepage}% page number
+        \fancyfoot[RO]{\footnotesize \thepage}% page number
+        \renewcommand{\headrulewidth}{0.8pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    %- Redefine \frontmatter to include the change
+    \providecommand{\frontmatter}{}% compatibility for non-book classes
+    \let\cuzfrontmatter\frontmatter%
+    \renewcommand{\frontmatter}{%
+        \cuzfrontmatter%
+        \pagestyle{frontmatterstyle}%
+    }
+    %- Redefine \mainmatter to include the change
+    \providecommand{\mainmatter}{}% compatibility for non-book classes
+    \let\cuzmainmatter\mainmatter%
+    \renewcommand{\mainmatter}{%
+        \cuzmainmatter%
+        \pagestyle{mainmatterstyle}%
+    }
+    %- Redefine \backmatter to include the change
+    \providecommand{\backmatter}{}% compatibility for non-book classes
+    \let\cuzbackmatter\backmatter%
+    \renewcommand{\backmatter}{%
+        \cuzbackmatter%
+        \pagestyle{backmatterstyle}%
+    }
+    %- Some Latex commands, like \chapter, use the \thispagestyle command
+    %- to automatically switch to the plain page style, thus ignoring the
+    %- page style currently in effect. To customize such pages you must
+    %- redefine the plain pagestyle. If you want the plain style inherits
+    %- the current style, comment all the lines in plain style definition.
+    \fancypagestyle{plain}{%
+        %\fancyhf{}% clear fields
+        %\renewcommand{\headrulewidth}{0pt}% header rule
+        %\renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    \fancypagestyle{noheaderstyle}{% header and footer style for no header
+        \fancyhf{}% clear fields
+        %\fancyhead[CE]{\footnotesize \@title}% structure elements
+        %\fancyhead[CO]{\footnotesize \leftmark}% structure elements
+        \fancyfoot[LE]{\footnotesize \thepage}% page number
+        \fancyfoot[RO]{\footnotesize \thepage}% page number
+        \renewcommand{\headrulewidth}{0pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+\fi
 %---------------------------------------------------------------------------%
 %->> Page layout
 %---------------------------------------------------------------------------%
@@ -87,7 +171,7 @@
 %- assuming A4 paper (210mm x 297mm)
 \setlength{\textwidth}{146.6mm}% set required text width first
 \setlength{\hoffset}{0mm}% set horizontal offset
-\ifucas@printcopy% if print copy layout enabled
+\ifcuz@printcopy% if print copy layout enabled
     \setlength{\oddsidemargin}{12.6mm}% binding side margin
     \setlength{\evensidemargin}{0mm}% ensure uniform binding side width for printing
 \else
@@ -140,50 +224,50 @@
 %-
 %-> Chinese item commands
 %-
-\def\ucas@value@confidential{}
-\newcommand{\confidential}[1]{\def\ucas@value@confidential{#1}}
-\def\ucas@value@schoollogo{}
-\newcommand{\schoollogo}[2]{\def\ucas@value@schoollogo{\includegraphics[#1]{#2}}}
-\def\ucas@value@title{}
-\def\ucas@value@titlemark{}
-\renewcommand{\title}[2][\ucas@value@title]{%
-    \def\ucas@value@title{#2}
-    %\def\ucas@value@titlemark{\MakeUppercase{#1}}}
-    \def\ucas@value@titlemark{#1}}
-\renewcommand{\@title}{\ucas@value@titlemark}
-\def\ucas@value@author{}
-\renewcommand{\author}[1]{\def\ucas@value@author{#1}}
-\def\ucas@value@advisor{}
-\newcommand{\advisor}[1]{\def\ucas@value@advisor{#1}}
-\def\ucas@value@advisorsec{}
-\newcommand{\advisorsec}[1]{\def\ucas@value@advisorsec{#1}}
-\def\ucas@value@degree{}
-\newcommand{\degree}[1]{\def\ucas@value@degree{#1}}
-\def\ucas@value@degreetype{}
-\newcommand{\degreetype}[1]{\def\ucas@value@degreetype{#1}}
-\def\ucas@value@major{}
-\newcommand{\major}[1]{\def\ucas@value@major{#1}}
-\def\ucas@value@institute{}
-\newcommand{\institute}[1]{\def\ucas@value@institute{#1}}
-\def\ucas@value@chinesedate{}
-\newcommand{\chinesedate}[1]{\def\ucas@value@chinesedate{#1}}
+\def\cuz@value@confidential{}
+\newcommand{\confidential}[1]{\def\cuz@value@confidential{#1}}
+\def\cuz@value@schoollogo{}
+\newcommand{\schoollogo}[2]{\def\cuz@value@schoollogo{\includegraphics[#1]{#2}}}
+\def\cuz@value@title{}
+\def\cuz@value@titlemark{}
+\renewcommand{\title}[2][\cuz@value@title]{%
+    \def\cuz@value@title{#2}
+    %\def\cuz@value@titlemark{\MakeUppercase{#1}}}
+    \def\cuz@value@titlemark{#1}}
+\renewcommand{\@title}{\cuz@value@titlemark}
+\def\cuz@value@author{}
+\renewcommand{\author}[1]{\def\cuz@value@author{#1}}
+\def\cuz@value@advisor{}
+\newcommand{\advisor}[1]{\def\cuz@value@advisor{#1}}
+\def\cuz@value@advisorsec{}
+\newcommand{\advisorsec}[1]{\def\cuz@value@advisorsec{#1}}
+\def\cuz@value@degree{}
+\newcommand{\degree}[1]{\def\cuz@value@degree{#1}}
+\def\cuz@value@degreetype{}
+\newcommand{\degreetype}[1]{\def\cuz@value@degreetype{#1}}
+\def\cuz@value@major{}
+\newcommand{\major}[1]{\def\cuz@value@major{#1}}
+\def\cuz@value@institute{}
+\newcommand{\institute}[1]{\def\cuz@value@institute{#1}}
+\def\cuz@value@chinesedate{}
+\newcommand{\chinesedate}[1]{\def\cuz@value@chinesedate{#1}}
 %-
 %-> Redefine Chinese style
 %-
 \renewcommand{\maketitle}{%
-    \ucasifstreq{\ucas@value@englishdegree}{Bachelor}{%
-        \def\ucas@label@thesis{\ucas@label@bacthesis}%
-        \def\ucas@label@major{\ucas@label@ungradmajor}%
-        \def\ucas@label@institute{\ucas@label@ungradinstitute}%
+    \cuzifstreq{\cuz@value@englishdegree}{Bachelor}{%
+        \def\cuz@label@thesis{\cuz@label@bacthesis}%
+        \def\cuz@label@major{\cuz@label@ungradmajor}%
+        \def\cuz@label@institute{\cuz@label@ungradinstitute}%
     }{%
-    \ucasifstreq{\ucas@value@englishdegree}{Master}{%
-        \def\ucas@label@thesis{\ucas@label@masthesis}%
-        \def\ucas@label@major{\ucas@label@gradmajor}%
-        \def\ucas@label@institute{\ucas@label@gradinstitute}%
+    \cuzifstreq{\cuz@value@englishdegree}{Master}{%
+        \def\cuz@label@thesis{\cuz@label@masthesis}%
+        \def\cuz@label@major{\cuz@label@gradmajor}%
+        \def\cuz@label@institute{\cuz@label@gradinstitute}%
     }{%
-        \def\ucas@label@thesis{\ucas@label@docthesis}%
-        \def\ucas@label@major{\ucas@label@gradmajor}%
-        \def\ucas@label@institute{\ucas@label@gradinstitute}%
+        \def\cuz@label@thesis{\cuz@label@docthesis}%
+        \def\cuz@label@major{\cuz@label@gradmajor}%
+        \def\cuz@label@institute{\cuz@label@gradinstitute}%
     }}%
     \cleardoublepage
     \thispagestyle{empty}
@@ -191,43 +275,43 @@
         \linespread{1.5}
         \zihao{4}\bfseries
 
-        \hfill{} \ucasifstrbk{\ucas@value@confidential}{}{\ucas@label@confidential \ulenhance{\ulextend[50pt]{\hspace*{-\ulhshift}\zihao{5}\ucas@value@confidential}}}
+        \hfill{} \cuzifstrbk{\cuz@value@confidential}{}{\cuz@label@confidential \ulenhance{\ulextend[50pt]{\hspace*{-\ulhshift}\zihao{5}\cuz@value@confidential}}}
 
         \vspace*{\stretch{4}}
 
-        {\ucas@value@schoollogo}
+        {\cuz@value@schoollogo}
 
         \vspace*{\stretch{2}}
 
-        {\zihao{1}\bfseries\sffamily {\ucas@label@thesis}}
+        {\zihao{1}\bfseries\sffamily {\cuz@label@thesis}}
 
         \vspace*{\stretch{3}}
 
-        {\zihao{-3}\bfseries\sffamily \ulenhance[1.5pt]{\ \ucas@value@title\ }}
+        {\zihao{-3}\bfseries\sffamily \ulenhance[1.5pt]{\ \cuz@value@title\ }}
 
         \vspace*{\stretch{3}}
 
         \def\tabcolsep{1pt}
         \def\arraystretch{1.3}
         \begin{tabular}{lc}
-            \ucas@label@author & \ulenhance[1.2pt]{\ulextend{\ucas@value@author}}\\
-            \ucas@label@advisor & \ulenhance[1.2pt]{\ulextend{\ucas@value@advisor}}\\
-            & \ulenhance[1.2pt]{\ulextend{\ucas@value@advisorsec}}\\
-            \ucas@label@degree & \ulenhance[1.2pt]{\ulextend{\ucas@value@degreetype\ucas@value@degree}}\\
-            \ucas@label@major & \ulenhance[1.2pt]{\ulextend{\ucas@value@major}}\\
-            \ucas@label@institute & \ulenhance[1.2pt]{\ulextend{\ucas@value@institute}}\\
+            \cuz@label@author & \ulenhance[1.2pt]{\ulextend{\cuz@value@author}}\\
+            \cuz@label@advisor & \ulenhance[1.2pt]{\ulextend{\cuz@value@advisor}}\\
+            & \ulenhance[1.2pt]{\ulextend{\cuz@value@advisorsec}}\\
+            \cuz@label@degree & \ulenhance[1.2pt]{\ulextend{\cuz@value@degreetype\cuz@value@degree}}\\
+            \cuz@label@major & \ulenhance[1.2pt]{\ulextend{\cuz@value@major}}\\
+            \cuz@label@institute & \ulenhance[1.2pt]{\ulextend{\cuz@value@institute}}\\
         \end{tabular}
 
         \vspace*{\stretch{4.5}}
 
-        {\ucas@value@chinesedate}
+        {\cuz@value@chinesedate}
 
         \vspace*{\stretch{3.5}}
     \end{center}
     \clearpage
     \if@twoside
         \thispagestyle{empty}
-        \ifucas@versioninfo
+        \ifcuz@versioninfo
             \vspace*{\stretch{1}}
             \begin{footnotesize}
                 \noindent
@@ -236,7 +320,7 @@
         \fi
         \cleardoublepage[empty]
     \else
-        \ifucas@versioninfo
+        \ifcuz@versioninfo
             \thispagestyle{empty}
             \vspace*{\stretch{1}}
             \begin{footnotesize}
@@ -250,24 +334,24 @@
 %-
 %-> English item commands
 %-
-\def\ucas@value@englishtitle{}
-\newcommand{\englishtitle}[1]{\def\ucas@value@englishtitle{#1}}
-\def\ucas@value@englishauthor{}
-\newcommand{\englishauthor}[1]{\def\ucas@value@englishauthor{#1}}
-\def\ucas@value@englishadvisor{}
-\newcommand{\englishadvisor}[1]{\def\ucas@value@englishadvisor{#1}}
-\def\ucas@value@englishdegree{}
-\newcommand{\englishdegree}[1]{\edef\ucas@value@englishdegree{\zap@space#1 \@empty}}% expand and remove space
-\def\ucas@value@englishdegreetype{}
-\newcommand{\englishdegreetype}[1]{\def\ucas@value@englishdegreetype{#1}}
-\def\ucas@value@englishthesistype{}
-\newcommand{\englishthesistype}[1]{\def\ucas@value@englishthesistype{#1}}
-\def\ucas@value@englishmajor{}
-\newcommand{\englishmajor}[1]{\def\ucas@value@englishmajor{#1}}
-\def\ucas@value@englishinstitute{}
-\newcommand{\englishinstitute}[1]{\def\ucas@value@englishinstitute{#1}}
-\def\ucas@value@englishdate{}
-\newcommand{\englishdate}[1]{\def\ucas@value@englishdate{#1}}
+\def\cuz@value@englishtitle{}
+\newcommand{\englishtitle}[1]{\def\cuz@value@englishtitle{#1}}
+\def\cuz@value@englishauthor{}
+\newcommand{\englishauthor}[1]{\def\cuz@value@englishauthor{#1}}
+\def\cuz@value@englishadvisor{}
+\newcommand{\englishadvisor}[1]{\def\cuz@value@englishadvisor{#1}}
+\def\cuz@value@englishdegree{}
+\newcommand{\englishdegree}[1]{\edef\cuz@value@englishdegree{\zap@space#1 \@empty}}% expand and remove space
+\def\cuz@value@englishdegreetype{}
+\newcommand{\englishdegreetype}[1]{\def\cuz@value@englishdegreetype{#1}}
+\def\cuz@value@englishthesistype{}
+\newcommand{\englishthesistype}[1]{\def\cuz@value@englishthesistype{#1}}
+\def\cuz@value@englishmajor{}
+\newcommand{\englishmajor}[1]{\def\cuz@value@englishmajor{#1}}
+\def\cuz@value@englishinstitute{}
+\newcommand{\englishinstitute}[1]{\def\cuz@value@englishinstitute{#1}}
+\def\cuz@value@englishdate{}
+\newcommand{\englishdate}[1]{\def\cuz@value@englishdate{#1}}
 %-
 %-> Redefine English style
 %-
@@ -280,25 +364,25 @@
 
         \vspace*{50pt}
 
-        {\zihao{-3}\bfseries \ulenhance[1.5pt]{\ \ucas@value@englishtitle\ }}
+        {\zihao{-3}\bfseries \ulenhance[1.5pt]{\ \cuz@value@englishtitle\ }}
 
         \vspace*{\stretch{2}}
 
-        {\ucas@label@englishstatement}
+        {\cuz@label@englishstatement}
 
         {By}
 
-        {\ucas@value@englishauthor}
+        {\cuz@value@englishauthor}
 
-        {\ucas@value@englishadvisor}
+        {\cuz@value@englishadvisor}
 
         \vspace*{\stretch{3}}
 
-        {\ucas@value@englishinstitute}
+        {\cuz@value@englishinstitute}
 
         \vspace*{\stretch{1}}
 
-        {\ucas@value@englishdate}
+        {\cuz@value@englishdate}
 
         \vspace*{\stretch{3}}
     \end{center}
@@ -321,32 +405,32 @@
         \vspace*{2ex}
 
         \begin{center}
-            {\zihao{4}\bfseries\sffamily \ucas@value@declare@create}
+            {\zihao{4}\bfseries\sffamily \cuz@value@declare@create}
         \end{center}
 
-        {\ucas@value@declare@creativity}
+        {\cuz@value@declare@creativity}
 
         \vspace*{3ex}
 
-        {\hfill{} {\ucas@value@declare@s \hspace*{14em}}}
+        {\hfill{} {\cuz@value@declare@s \hspace*{14em}}}
 
-        {\hfill{} {\ucas@value@declare@d \hspace*{14em}}}
+        {\hfill{} {\cuz@value@declare@d \hspace*{14em}}}
 
         \vspace*{6ex}
 
         \begin{center}
-            {\zihao{4}\bfseries\sffamily \ucas@value@declare@right}
+            {\zihao{4}\bfseries\sffamily \cuz@value@declare@right}
         \end{center}
 
-        {\ucas@value@declare@rights}
+        {\cuz@value@declare@rights}
 
-        {\ucas@value@declare@rule}
+        {\cuz@value@declare@rule}
 
         \vspace*{3ex}
 
-        {\hfill{} {\ucas@value@declare@s \hspace*{10em} \ucas@value@declare@t \hspace*{9em}}}
+        {\hfill{} {\cuz@value@declare@s \hspace*{10em} \cuz@value@declare@t \hspace*{9em}}}
 
-        {\hfill{} {\ucas@value@declare@d \hspace*{10em} \ucas@value@declare@d \hspace*{9em}}}
+        {\hfill{} {\cuz@value@declare@d \hspace*{10em} \cuz@value@declare@d \hspace*{9em}}}
 
         \vspace*{3ex}
     }
@@ -362,11 +446,11 @@
 %- define chinese keywords
 \newcommand{\keywords}[1]{%
     \vspace{\baselineskip}
-    \noindent {\bfseries \ucas@label@keywords} #1}
+    \noindent {\bfseries \cuz@label@keywords} #1}
 %- define engish keywords
 \newcommand{\englishkeywords}[1]{%
     \vspace{\baselineskip}
-    \noindent {\bfseries \ucas@label@englishkeywords} #1}
+    \noindent {\bfseries \cuz@label@englishkeywords} #1}
 %---------------------------------------------------------------------------%
 %->> Configure table of contents
 %---------------------------------------------------------------------------%
