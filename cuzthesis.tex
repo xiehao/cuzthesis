@@ -51,18 +51,19 @@
 %-
 %-> Frontmatter: title page, abstract, content list, symbol list, preface
 %-
-\frontmatter% initialize the environment
+\plainmatter% initialize the environment
 \input{contents/Frontpages}% title page, abstract, dedication
 {% content list region
-\linespread{1.2}% local line space
+\nofootermatter
+% \linespread{1.2}% local line space
 %\intotoc{\contentsname}% add link to contents table and bookmark
 \tableofcontents% contents catalog
 %\intotoc{\listfigurename}% add link to contents table and bookmark
-\listoffigures% figures catalog
+% \listoffigures% figures catalog
 %\intotoc{\listtablename}% add link to contents table and bookmark
-\listoftables% tables catalog
+% \listoftables% tables catalog
 }
-\input{contents/Prematter}% list of symbols, preface content
+% \input{contents/Prematter}% list of symbols, preface content
 %-
 %-> Mainmatter
 %-
@@ -77,7 +78,7 @@
 %-
 %-> Backmatter: bibliography, glossary, index
 %-
-\backmatter% initialize the environment
+% \backmatter% initialize the environment
 \intotoc{\bibname}% add link to contents table and bookmark
 \bibliography{bibliography/ref}% bibliography
 \input{contents/Backmatter}% other information

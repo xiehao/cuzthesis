@@ -131,28 +131,10 @@
     %- Define different kinds of header and footer for different parts
     \fancypagestyle{frontmatterstyle}{% style for frontmatter
         \fancyhf{}% clear fields
-        \fancyhead[CE]{\footnotesize \@title}% structure elements
-        \fancyhead[CO]{\footnotesize \leftmark}% structure elements
-        \fancyfoot[CE]{\footnotesize \thepage}% page number
-        \fancyfoot[CO]{\footnotesize \thepage}% page number
-        \renewcommand{\headrulewidth}{0.8pt}% header rule
-        \renewcommand{\footrulewidth}{0pt}% footer rule
-    }
-    \fancypagestyle{mainmatterstyle}{% style for mainmatter
-        \fancyhf{}% clear fields
         \fancyhead[LEO]{\footnotesize \cuz@label@header@bacthesis}% structure elements
         \fancyhead[REO]{\footnotesize \@title}% structure elements
         \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
         \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
-        \renewcommand{\headrulewidth}{0.5pt}% header rule
-        \renewcommand{\footrulewidth}{0pt}% footer rule
-    }
-    \fancypagestyle{backmatterstyle}{% header and footer style for backmatter
-        \fancyhf{}% clear fields
-        \fancyhead[CE]{\footnotesize \@title}% structure elements
-        \fancyhead[CO]{\footnotesize \leftmark}% structure elements
-        \fancyfoot[LE]{\footnotesize \thepage}% page number
-        \fancyfoot[RO]{\footnotesize \thepage}% page number
         \renewcommand{\headrulewidth}{0.8pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
@@ -163,12 +145,30 @@
         \cuzfrontmatter%
         \pagestyle{frontmatterstyle}%
     }
+    \fancypagestyle{mainmatterstyle}{% style for mainmatter
+        \fancyhf{}% clear fields
+        \fancyhead[LEO]{\footnotesize \cuz@label@header@bacthesis}% structure elements
+        \fancyhead[REO]{\footnotesize \@title}% structure elements
+        \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
+        \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
+        \renewcommand{\headrulewidth}{0.5pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
     %- Redefine \mainmatter to include the change
     \providecommand{\mainmatter}{}% compatibility for non-book classes
     \let\cuzmainmatter\mainmatter%
     \renewcommand{\mainmatter}{%
         \cuzmainmatter%
         \pagestyle{mainmatterstyle}%
+    }
+    \fancypagestyle{backmatterstyle}{% header and footer style for backmatter
+        \fancyhf{}% clear fields
+        \fancyhead[LEO]{\footnotesize \cuz@label@header@bacthesis}% structure elements
+        \fancyhead[REO]{\footnotesize \@title}% structure elements
+        \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
+        \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
+        \renewcommand{\headrulewidth}{0.5pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
     }
     %- Redefine \backmatter to include the change
     \providecommand{\backmatter}{}% compatibility for non-book classes
@@ -187,14 +187,28 @@
         %\renewcommand{\headrulewidth}{0pt}% header rule
         %\renewcommand{\footrulewidth}{0pt}% footer rule
     }
+    %- Redefine \plainmatter to include the change
+    \providecommand{\plainmatter}{}% compatibility for non-book classes
+    \let\cuzplainmatter\plainmatter%
+    \renewcommand{\plainmatter}{%
+        \cuzplainmatter%
+        \pagestyle{plain}%
+    }
     \fancypagestyle{noheaderstyle}{% header and footer style for no header
         \fancyhf{}% clear fields
-        %\fancyhead[CE]{\footnotesize \@title}% structure elements
-        %\fancyhead[CO]{\footnotesize \leftmark}% structure elements
-        \fancyfoot[LE]{\footnotesize \thepage}% page number
-        \fancyfoot[RO]{\footnotesize \thepage}% page number
+        %\fancyhead[LEO]{\footnotesize \cuz@label@header@bacthesis}% structure elements
+        %\fancyhead[REO]{\footnotesize \@title}% structure elements
+        \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
+        \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
         \renewcommand{\headrulewidth}{0pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    %- Redefine \noheadermatter to include the change
+    \providecommand{\noheadermatter}{}% compatibility for non-book classes
+    \let\cuznoheadermatter\noheadermatter%
+    \renewcommand{\noheadermatter}{%
+        \cuznoheadermatter%
+        \pagestyle{noheaderstyle}%
     }
     \fancypagestyle{nofooterstyle}{% header and footer style for no footer
         \fancyhf{}% clear fields
@@ -204,6 +218,13 @@
         % \fancyfoot[REO]{\footnotesize \thepage}% page number
         \renewcommand{\headrulewidth}{0.5pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    %- Redefine \nofootermatter to include the change
+    \providecommand{\nofootermatter}{}% compatibility for non-book classes
+    \let\cuznofootermatter\nofootermatter%
+    \renewcommand{\nofootermatter}{%
+        \cuznofootermatter%
+        \pagestyle{nofooterstyle}%
     }
 \fi
 %---------------------------------------------------------------------------%
