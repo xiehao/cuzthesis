@@ -486,9 +486,9 @@
 %->> Configure table of contents
 %---------------------------------------------------------------------------%
 %- define spacing and length
-\def\@dotsep{1.5mu}% spacing for dots
-\def\@pnumwidth{2em}% spacing between titles and page numbers
-\def\@tocrmarg{2em}% right margin indentation
+\def\@dotsep{1mu}% spacing for dots
+\def\@pnumwidth{1em}% spacing between titles and page numbers
+\def\@tocrmarg{1em}% right margin indentation
 \def\@chaptervspace{1ex}% spacing between chapter titles
 %- redefine dottedtocline from classes.dtx and latex.ltx
 \renewcommand*{\@dottedtocline}[5]{% [<level>,<indent>,<numwidth>,<title>,<page>]
@@ -497,11 +497,13 @@
         {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
         \parindent #2\relax\@afterindenttrue
         \interlinepenalty\@M
-        \leavevmode \zihao{-4}\sffamily
+        \leavevmode \zihao{-4}%\sffamily
         \@tempdima #3\relax
         \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
         {#4}\nobreak
-        \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}\hfill
+        % \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}
+        \leaders\hbox{$\m@th\mkern \@dotsep \hbox{.}\mkern \@dotsep$}
+        \hfill
         \nobreak
         \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
         \par\penalty\@highpenalty}%
@@ -516,10 +518,13 @@
         \begingroup
             \parindent \z@ \rightskip \@pnumwidth
             \parfillskip -\@pnumwidth
-            {\leavevmode
-            \zihao{4}\sffamily #1
-            \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}% add dotted toc line
-            \hfil \hb@xt@\@pnumwidth{\hss #2}}\par
+            {
+                \leavevmode\zihao{-4}%\sffamily 
+                #1
+                % \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}% add dotted toc line
+                \leaders\hbox{$\m@th\mkern \@dotsep \hbox{.}\mkern \@dotsep$}
+                \hfil \hb@xt@\@pnumwidth{\hss #2}
+            }\par
             \nobreak
             \global\@nobreaktrue
             \everypar{\global\@nobreakfalse\everypar{}}%
@@ -530,21 +535,25 @@
 \renewcommand*{\l@chapter}[2]{% [<title>,<page>]
     \ifnum \c@tocdepth >\m@ne
         \addpenalty{-\@highpenalty}%
-        \vskip \@chaptervspace \@plus\p@
+        % \vskip \@chaptervspace \@plus\p@
         \setlength\@tempdima{1.5em}%
         \begingroup
             \parindent \z@ \rightskip \@pnumwidth
             \parfillskip -\@pnumwidth
-            \leavevmode \zihao{4}\sffamily
+            \leavevmode \zihao{-4}%\sffamily
             \advance\leftskip\@tempdima
             \hskip -\leftskip
             #1\nobreak
-            \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}% add dotted toc line
+            % \leaders\hbox{$\m@th\mkern \@dotsep \cdots\mkern \@dotsep$}% add dotted toc line
+            \leaders\hbox{$\m@th\mkern \@dotsep \hbox{.}\mkern \@dotsep$}
             \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
             \penalty\@highpenalty
         \endgroup
     \fi
 }
+\renewcommand*\l@section{\@dottedtocline{1}{2em}{2.1em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{4em}{3em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{6em}{3.8em}}
 %---------------------------------------------------------------------------%
 \endinput
 
