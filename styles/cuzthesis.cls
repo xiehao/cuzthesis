@@ -555,5 +555,64 @@
 \renewcommand*\l@subsection{\@dottedtocline{2}{4em}{3em}}
 \renewcommand*\l@subsubsection{\@dottedtocline{3}{6em}{3.8em}}
 %---------------------------------------------------------------------------%
+%->> Redefine Chapter styles
+%---------------------------------------------------------------------------%
+\renewcommand\chapter{%
+	\ifcuz@doublesided\cleardoublepage\else\clearpage\fi%
+	\phantomsection	% hyperref宏包的命令，超链接用。
+    % 软件学院和计算机学院规定每章的第一页也要有页眉
+    % 可是为什么？为什么一定要这样呢？一点都不美观的说(￣^￣)
+	% \thispagestyle{CUZ@plain}
+	\global\@topnum\z@%
+	\@afterindenttrue % 本章第一段缩进true
+	\secdef\@chapter\@schapter}
+\def\@chapter[#1]#2{%
+	\ifnum \c@secnumdepth >\m@ne
+		\if@mainmatter
+			\refstepcounter{chapter}%
+			\addcontentsline{toc}{chapter}{\protect\numberline{\CTEXthechapter}#1}
+		\else
+			\addcontentsline{toc}{chapter}{#1}%
+		\fi
+	\else
+		\addcontentsline{toc}{chapter}{#1}%
+	\fi
+	\chaptermark{#1}%
+	% 在图目录和表目录中相应章节位置加垂直10pt的空白。
+	%\addtocontents{lof}{\protect\addvspace{10\p@}}%
+	%\addtocontents{lot}{\protect\addvspace{10\p@}}%
+	\@makechapterhead{#2}
+    \@afterheading
+}
+\def\@makechapterhead#1{%
+	\vspace{1.5ex} %\vspace*{20\p@}%
+	{
+        \parindent \z@ % \centering
+        \songti\zihao{4}\bfseries
+        \ifnum \c@secnumdepth >\m@ne
+            \if@mainmatter
+                \CTEXthechapter \hskip 0.5em%
+            \fi
+        \fi
+        \interlinepenalty\@M
+        #1\par\nobreak
+	}
+    \vspace{1.5ex}
+}
+\def\@schapter#1{%
+	\@makeschapterhead{#1}
+    \@afterheading
+}
+\def\@makeschapterhead#1{%
+    \vspace*{1.5ex} % \vspace*{20\p@}%
+	{
+        \parindent \z@ \centering
+        \heiti \zihao{3} \bfseries
+        \interlinepenalty\@M
+        #1\par\nobreak
+    }
+    \vspace{1.5ex} % \vskip 24\p@
+}
+%---------------------------------------------------------------------------%
 \endinput
 
