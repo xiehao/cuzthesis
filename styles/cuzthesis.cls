@@ -430,40 +430,31 @@
     \cleardoublepage
     \thispagestyle{empty}
     {
-        \linespread{1.5}
-        \zihao{-4}
-
-        \vspace*{2ex}
+        \linespread{2}
+        \songti\zihao{4}
+        \vspace*{3ex}
 
         \begin{center}
-            {\zihao{4}\bfseries\sffamily \cuz@value@declare@create}
+            {\zihao{-2}\heiti\bfseries\sffamily
+            \makebox[6em][s]{\cuz@value@declare@create}}
         \end{center}
+        \vspace{3ex}
 
         {\cuz@value@declare@creativity}
 
-        \vspace*{3ex}
-
-        {\hfill{} {\cuz@value@declare@s \hspace*{14em}}}
-
-        {\hfill{} {\cuz@value@declare@d \hspace*{14em}}}
-
-        \vspace*{6ex}
-
-        \begin{center}
-            {\zihao{4}\bfseries\sffamily \cuz@value@declare@right}
-        \end{center}
-
-        {\cuz@value@declare@rights}
-
-        {\cuz@value@declare@rule}
-
-        \vspace*{3ex}
-
-        {\hfill{} {\cuz@value@declare@s \hspace*{10em} \cuz@value@declare@t \hspace*{9em}}}
-
-        {\hfill{} {\cuz@value@declare@d \hspace*{10em} \cuz@value@declare@d \hspace*{9em}}}
-
-        \vspace*{3ex}
+        \vspace{4ex}
+        {
+            \heiti\zihao{-3}\bfseries\sffamily
+            % \hfill{} {\cuz@value@declare@s \hspace*{8em}}
+            % \vspace{1ex}
+            
+            % \hfill{} {\cuz@value@declare@d \hspace*{8em}}
+            \renewcommand\arraystretch{1.3}
+            \begin{tabular}{@{} p{0.5\linewidth} p{0.5\linewidth} @{}}
+                & \cuz@value@declare@s \\
+                & \cuz@value@declare@d \\
+           \end{tabular} \par
+        }
     }
     \clearpage
     \if@twoside
@@ -559,12 +550,9 @@
 %---------------------------------------------------------------------------%
 \renewcommand\chapter{%
 	\ifcuz@doublesided\cleardoublepage\else\clearpage\fi%
-	\phantomsection	% hyperref宏包的命令，超链接用。
-    % 软件学院和计算机学院规定每章的第一页也要有页眉
-    % 可是为什么？为什么一定要这样呢？一点都不美观的说(￣^￣)
-	% \thispagestyle{CUZ@plain}
-	\global\@topnum\z@%
-	\@afterindenttrue % 本章第一段缩进true
+	\phantomsection	%
+	\global\@topnum\z@ %
+	\@afterindenttrue % indentation of the first paragraph
 	\secdef\@chapter\@schapter}
 \def\@chapter[#1]#2{%
 	\ifnum \c@secnumdepth >\m@ne
@@ -577,8 +565,8 @@
 	\else
 		\addcontentsline{toc}{chapter}{#1}%
 	\fi
-	\chaptermark{#1}%
-	% 在图目录和表目录中相应章节位置加垂直10pt的空白。
+    \chaptermark{#1}%
+    % add 10pt space at the corresponding position of figure list and table list
 	%\addtocontents{lof}{\protect\addvspace{10\p@}}%
 	%\addtocontents{lot}{\protect\addvspace{10\p@}}%
 	\@makechapterhead{#2}
