@@ -435,8 +435,9 @@
         \vspace*{3ex}
 
         \begin{center}
-            {\zihao{-2}\heiti\bfseries\sffamily
-            \makebox[6em][s]{\cuz@value@declare@create}}
+            {
+                \heiti\zihao{-2}\bfseries\sffamily\makebox[6em][s]{\cuz@value@declare@create}
+            }
         \end{center}
         \vspace{3ex}
 
@@ -450,7 +451,7 @@
             
             % \hfill{} {\cuz@value@declare@d \hspace*{8em}}
             \renewcommand\arraystretch{1.3}
-            \begin{tabular}{@{} p{0.5\linewidth} p{0.5\linewidth} @{}}
+            \begin{tabular}{@{}p{0.4\linewidth}l@{}}
                 & \cuz@value@declare@s \\
                 & \cuz@value@declare@d \\
            \end{tabular} \par
@@ -576,7 +577,7 @@
 	\vspace{1.5ex} %\vspace*{20\p@}%
 	{
         \parindent \z@ % \centering
-        \songti\zihao{4}\bfseries
+        \songti\zihao{4}\bfseries\rmfamily
         \ifnum \c@secnumdepth >\m@ne
             \if@mainmatter
                 \CTEXthechapter \hskip 0.5em%
@@ -595,7 +596,7 @@
     \vspace*{1.5ex} % \vspace*{20\p@}%
 	{
         \parindent \z@ \centering
-        \heiti \zihao{3} \bfseries
+        \heiti\zihao{3}\bfseries%\sffamily
         \interlinepenalty\@M
         #1\par\nobreak
     }
