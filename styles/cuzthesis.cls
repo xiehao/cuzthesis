@@ -256,7 +256,6 @@
 %-
 %-> Chinese item commands
 %-
-\renewcommand\ULthickness{0.8pt}			% 重新定义下划线的厚度
 \newcommand\cuzunderline[2][90pt]{\uline{\hbox to #1{\hss#2\hss}}\hskip3pt}
 \newcommand{\confidential}[1]{\gdef\cuz@value@confidential{#1}}
 \newcommand{\schoollogo}[2]{\gdef\cuz@value@schoollogo{\includegraphics[width=#1\textwidth]{#2}}}
@@ -312,20 +311,20 @@
 	\begin{center}
 		\begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
 			论文题目 &
-			{\begin{minipage}[t][60pt][t]{\titleulwidth@cover}
+			{\begin{minipage}[t][][t]{\titleulwidth@cover}
 				\zihao{-2} \heiti
-                \uline{\cuz@value@title\hfill}
+                \ulenhance[0.8pt]{\hfill\cuz@value@title\hfill}\par
 			\end{minipage}} \\%[20pt]
 			\rule{0pt}{10mm} &
-			{\begin{minipage}[t][60pt][t]{\titleulwidth@cover}
+			{\begin{minipage}[t][160pt][t]{\titleulwidth@cover}
 				\newlength{\etitlelength}
-				\fontsize{16}{23}\bfseries
+				\zihao{-2} \rmfamily
 				\settowidth{\etitlelength}{\cuz@value@englishtitle}
 % 使封面英文标题下划线数量能够适应因英文标题内容长短变化而引起的英文标题行数变化
 % 而引起的下划线行数变化，下划线行数就是英文标题行数。目前最大的支持行数为3行，
 % 不过行数可以根据需要扩展，只要符合页面格式的美观即可。不过论文编写规则中提到：
 % 英文标题翻译应简短准确，一般不应超过150个字母，学校规定不可以加副标题。
-				\MakeTextUppercase{\cuz@value@englishtitle}\\*
+				\centering\MakeTextUppercase{\cuz@value@englishtitle}\\*
 				\ifdim\etitlelength<\titleulwidth@cover
 					\raisebox{31pt}[0pt][0pt]{\parbox[t][][t]{\titleulwidth@cover}{
 					\rule{\titleulwidth@cover}{\ULthickness}}}
