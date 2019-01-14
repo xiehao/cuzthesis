@@ -66,6 +66,7 @@
 %---------------------------------------------------------------------------%
 \RequirePackage{ifxetex}% LaTeX engine detection
 \RequirePackage{etoolbox}% a toolbox of programming facilities
+\RequirePackage{textcase}
 \newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 \newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% expansion control
 %---------------------------------------------------------------------------%
@@ -255,33 +256,27 @@
 %-
 %-> Chinese item commands
 %-
-\def\cuz@value@confidential{}
-\newcommand{\confidential}[1]{\def\cuz@value@confidential{#1}}
-\def\cuz@value@schoollogo{}
-\newcommand{\schoollogo}[2]{\def\cuz@value@schoollogo{\includegraphics[#1]{#2}}}
-\def\cuz@value@title{}
-\def\cuz@value@titlemark{}
+\renewcommand\ULthickness{0.8pt}			% 重新定义下划线的厚度
+\newcommand\cuzunderline[2][90pt]{\uline{\hbox to #1{\hss#2\hss}}\hskip3pt}
+\newcommand{\confidential}[1]{\gdef\cuz@value@confidential{#1}}
+\newcommand{\schoollogo}[2]{\gdef\cuz@value@schoollogo{\includegraphics[width=#1\textwidth]{#2}}}
 \renewcommand{\title}[2][\cuz@value@title]{%
-    \def\cuz@value@title{#2}
+    \gdef\cuz@value@title{#2}
     %\def\cuz@value@titlemark{\MakeUppercase{#1}}}
-    \def\cuz@value@titlemark{#1}}
+    \gdef\cuz@value@titlemark{#1}
+}
 \renewcommand{\@title}{\cuz@value@titlemark}
-\def\cuz@value@author{}
-\renewcommand{\author}[1]{\def\cuz@value@author{#1}}
-\def\cuz@value@advisor{}
-\newcommand{\advisor}[1]{\def\cuz@value@advisor{#1}}
-\def\cuz@value@advisorsec{}
-\newcommand{\advisorsec}[1]{\def\cuz@value@advisorsec{#1}}
-\def\cuz@value@degree{}
-\newcommand{\degree}[1]{\def\cuz@value@degree{#1}}
-\def\cuz@value@degreetype{}
-\newcommand{\degreetype}[1]{\def\cuz@value@degreetype{#1}}
-\def\cuz@value@major{}
-\newcommand{\major}[1]{\def\cuz@value@major{#1}}
-\def\cuz@value@institute{}
-\newcommand{\institute}[1]{\def\cuz@value@institute{#1}}
-\def\cuz@value@chinesedate{}
-\newcommand{\chinesedate}[1]{\def\cuz@value@chinesedate{#1}}
+\renewcommand{\author}[1]{\gdef\cuz@value@author{#1}}
+\newcommand{\authorid}[1]{\gdef\cuz@value@authorid{#1}}
+\newcommand{\advisor}[1]{\gdef\cuz@value@advisor{#1}}
+\newcommand{\advisorsec}[1]{\gdef\cuz@value@advisorsec{#1}}
+\newcommand{\advisortitle}[1]{\gdef\cuz@value@advisortitle{#1}}
+\newcommand{\degree}[1]{\gdef\cuz@value@degree{#1}}
+\newcommand{\degreetype}[1]{\gdef\cuz@value@degreetype{#1}}
+\newcommand{\major}[1]{\gdef\cuz@value@major{#1}}
+\newcommand{\institute}[1]{\gdef\cuz@value@institute{#1}}
+\newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
+\newcommand{\chinesedate}[1]{\gdef\cuz@value@chinesedate{#1}}
 %-
 %-> Redefine Chinese style
 %-
@@ -303,64 +298,62 @@
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
-        \linespread{1.5}
-        \zihao{4}\bfseries
-
-        \hfill{} \cuzifstrbk{\cuz@value@confidential}{}{\cuz@label@confidential \ulenhance{\ulextend[50pt]{\hspace*{-\ulhshift}\zihao{5}\cuz@value@confidential}}}
-
-        \vspace*{\stretch{4}}
-
-        {\cuz@value@schoollogo}
-
-        \vspace*{\stretch{2}}
-
-        {\zihao{1}\bfseries\sffamily {\cuz@label@thesis}}
-
-        \vspace*{\stretch{3}}
-
-        {\zihao{-3}\bfseries\sffamily \ulenhance[1.5pt]{\ \cuz@value@title\ }}
-
-        \vspace*{\stretch{3}}
-
-        \def\tabcolsep{1pt}
-        \def\arraystretch{1.3}
-        \begin{tabular}{lc}
-            \cuz@label@author & \ulenhance[1.2pt]{\ulextend{\cuz@value@author}}\\
-            \cuz@label@advisor & \ulenhance[1.2pt]{\ulextend{\cuz@value@advisor}}\\
-            & \ulenhance[1.2pt]{\ulextend{\cuz@value@advisorsec}}\\
-            \cuz@label@degree & \ulenhance[1.2pt]{\ulextend{\cuz@value@degreetype\cuz@value@degree}}\\
-            \cuz@label@major & \ulenhance[1.2pt]{\ulextend{\cuz@value@major}}\\
-            \cuz@label@institute & \ulenhance[1.2pt]{\ulextend{\cuz@value@institute}}\\
-        \end{tabular}
-
-        \vspace*{\stretch{4.5}}
-
-        {\cuz@value@chinesedate}
-
-        \vspace*{\stretch{3.5}}
-    \end{center}
-    \clearpage
-    \if@twoside
-        \thispagestyle{empty}
-        \ifcuz@versioninfo
-            \vspace*{\stretch{1}}
-            \begin{footnotesize}
-                \noindent
-                Draft Version (\today)
-            \end{footnotesize}
-        \fi
-        \cleardoublepage[empty]
-    \else
-        \ifcuz@versioninfo
-            \thispagestyle{empty}
-            \vspace*{\stretch{1}}
-            \begin{footnotesize}
-                \noindent
-                Draft Version (\today)
-            \end{footnotesize}
-            \cleardoublepage[empty]
-        \fi
-    \fi
+		{\cuz@value@schoollogo}\par
+		\vspace{20mm}
+		{
+		    {\lishu \zihao{-0} \bfseries \cuz@label@thesis} \par
+		    \vspace{5mm}
+		    {\heiti \zihao{-2} (\;\cuz@value@graduateyear 届\;)}
+		}\par
+	\end{center}
+    \vspace{10mm}
+    \newlength{\titleulwidth@cover}
+	\addtolength{\titleulwidth@cover}{300pt}
+	\begin{center}
+		\begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
+			论文题目 &
+			{\begin{minipage}[t][60pt][t]{\titleulwidth@cover}
+				\zihao{-2} \heiti
+				\uline{\cuz@value@title\hfill}
+			\end{minipage}} \\%[20pt]
+			\rule{0pt}{10mm} &
+			{\begin{minipage}[t][60pt][t]{\titleulwidth@cover}
+				\newlength{\etitlelength}
+				\fontsize{16}{23}\bfseries
+				\settowidth{\etitlelength}{\cuz@value@englishtitle}
+% 使封面英文标题下划线数量能够适应因英文标题内容长短变化而引起的英文标题行数变化
+% 而引起的下划线行数变化，下划线行数就是英文标题行数。目前最大的支持行数为3行，
+% 不过行数可以根据需要扩展，只要符合页面格式的美观即可。不过论文编写规则中提到：
+% 英文标题翻译应简短准确，一般不应超过150个字母，学校规定不可以加副标题。
+				\MakeTextUppercase{\cuz@value@englishtitle}\\*
+				\ifdim\etitlelength<\titleulwidth@cover
+					\raisebox{31pt}[0pt][0pt]{\parbox[t][][t]{\titleulwidth@cover}{
+					\rule{\titleulwidth@cover}{\ULthickness}}}
+				\else\ifdim\etitlelength<2\titleulwidth@cover
+						\raisebox{67pt}[0pt][0pt]{\parbox[t][][t]{\titleulwidth@cover}{
+						\rule{\titleulwidth@cover}{\ULthickness}\\*
+						\rule{\titleulwidth@cover}{\ULthickness}}}
+				\else\ifdim\etitlelength<3\titleulwidth@cover
+						\raisebox{103pt}[0pt][0pt]{\parbox[t][][t]{\titleulwidth@cover}{
+						\rule{\titleulwidth@cover}{\ULthickness}\\*
+						\rule{\titleulwidth@cover}{\ULthickness}\\*
+						\rule{\titleulwidth@cover}{\ULthickness}}}
+				\fi\fi\fi
+			\end{minipage}}\\*
+		\end{tabular}
+		\vfill
+%		\vskip 9mm
+		\begin{tabular}{>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c}
+			\makebox[6em][s]{\cuz@label@author}： & \cuzunderline[120pt]{\cuz@value@author} &
+			\makebox[3em][s]{\cuz@label@authorid}： & \cuzunderline[120pt]{\cuz@value@authorid} \\
+            \rule{0pt}{10mm}
+            \makebox[6em][s]{\cuz@label@institute}： & \cuzunderline[120pt]{\cuz@value@institute} &
+			\makebox[3em][s]{\cuz@label@major}： & \cuzunderline[120pt]{\cuz@value@major} \\
+            \rule{0pt}{10mm}
+            \makebox[6em][s]{\cuz@label@advisor}： & \cuzunderline[120pt]{\cuz@value@advisor} &
+			\makebox[3em][s]{\cuz@label@advisortitle}： & \cuzunderline[120pt]{\cuz@value@advisortitle}
+		\end{tabular}
+	\end{center}
 }
 %-
 %-> English item commands
