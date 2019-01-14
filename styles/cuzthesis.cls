@@ -281,12 +281,12 @@
 %-> Redefine Chinese style
 %-
 \renewcommand{\maketitle}{%
-    \cuzifstreq{\cuz@value@englishdegree}{Bachelor}{%
+    \cuzifstreq{\cuz@value@degree}{学士}{%
         \def\cuz@label@thesis{\cuz@label@bacthesis}%
         \def\cuz@label@major{\cuz@label@ungradmajor}%
         \def\cuz@label@institute{\cuz@label@ungradinstitute}%
     }{%
-    \cuzifstreq{\cuz@value@englishdegree}{Master}{%
+    \cuzifstreq{\cuz@value@degree}{硕士}{%
         \def\cuz@label@thesis{\cuz@label@masthesis}%
         \def\cuz@label@major{\cuz@label@gradmajor}%
         \def\cuz@label@institute{\cuz@label@gradinstitute}%
@@ -314,7 +314,7 @@
 			论文题目 &
 			{\begin{minipage}[t][60pt][t]{\titleulwidth@cover}
 				\zihao{-2} \heiti
-				\uline{\cuz@value@title\hfill}
+                \uline{\cuz@value@title\hfill}
 			\end{minipage}} \\%[20pt]
 			\rule{0pt}{10mm} &
 			{\begin{minipage}[t][60pt][t]{\titleulwidth@cover}
@@ -358,24 +358,15 @@
 %-
 %-> English item commands
 %-
-\def\cuz@value@englishtitle{}
-\newcommand{\englishtitle}[1]{\def\cuz@value@englishtitle{#1}}
-\def\cuz@value@englishauthor{}
-\newcommand{\englishauthor}[1]{\def\cuz@value@englishauthor{#1}}
-\def\cuz@value@englishadvisor{}
-\newcommand{\englishadvisor}[1]{\def\cuz@value@englishadvisor{#1}}
-\def\cuz@value@englishdegree{}
-\newcommand{\englishdegree}[1]{\edef\cuz@value@englishdegree{\zap@space#1 \@empty}}% expand and remove space
-\def\cuz@value@englishdegreetype{}
-\newcommand{\englishdegreetype}[1]{\def\cuz@value@englishdegreetype{#1}}
-\def\cuz@value@englishthesistype{}
-\newcommand{\englishthesistype}[1]{\def\cuz@value@englishthesistype{#1}}
-\def\cuz@value@englishmajor{}
-\newcommand{\englishmajor}[1]{\def\cuz@value@englishmajor{#1}}
-\def\cuz@value@englishinstitute{}
-\newcommand{\englishinstitute}[1]{\def\cuz@value@englishinstitute{#1}}
-\def\cuz@value@englishdate{}
-\newcommand{\englishdate}[1]{\def\cuz@value@englishdate{#1}}
+\newcommand{\englishtitle}[1]{\gdef\cuz@value@englishtitle{#1}}
+\newcommand{\englishauthor}[1]{\gdef\cuz@value@englishauthor{#1}}
+\newcommand{\englishadvisor}[1]{\gdef\cuz@value@englishadvisor{#1}}
+\newcommand{\englishdegree}[1]{\xdef\cuz@value@englishdegree{\zap@space#1 \@empty}}% expand and remove space
+\newcommand{\englishdegreetype}[1]{\gdef\cuz@value@englishdegreetype{#1}}
+\newcommand{\englishthesistype}[1]{\gdef\cuz@value@englishthesistype{#1}}
+\newcommand{\englishmajor}[1]{\gdef\cuz@value@englishmajor{#1}}
+\newcommand{\englishinstitute}[1]{\gdef\cuz@value@englishinstitute{#1}}
+\newcommand{\englishdate}[1]{\gdef\cuz@value@englishdate{#1}}
 %-
 %-> Redefine English style
 %-
