@@ -256,7 +256,10 @@
 %-
 %-> Chinese item commands
 %-
-\newcommand\cuzunderline[2][90pt]{\uline{\hbox to #1{\hss#2\hss}}\hskip3pt}
+
+\newcommand{\cuzunderline}[2][\cuz@length@otherinfowidth]{
+    \uline{\hbox to #1{\hss#2\hss}}\hskip3pt
+}
 \newcommand{\confidential}[1]{\gdef\cuz@value@confidential{#1}}
 \newcommand{\schoollogo}[2]{\gdef\cuz@value@schoollogo{\includegraphics[width=#1\textwidth]{#2}}}
 \renewcommand{\title}[2][\cuz@value@title]{%
@@ -306,17 +309,19 @@
 		}\par
 	\end{center}
     \vspace{10mm}
-    \newlength{\titleulwidth@cover}
-	\addtolength{\titleulwidth@cover}{300pt}
+    \newlength{\cuz@length@titlelinewidth}
+    \addtolength{\cuz@length@titlelinewidth}{300pt}
+    \newlength{\cuz@length@otherinfowidth}
+    \addtolength{\cuz@length@otherinfowidth}{120pt}
 	\begin{center}
 		\begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
-			论文题目 &
-			{\begin{minipage}[t][][t]{\titleulwidth@cover}
+			\cuz@label@thesistitle &
+			{\begin{minipage}[t][][t]{\cuz@length@titlelinewidth}
 				\zihao{-2} \heiti
-                \ulenhance[0.8pt]{\hfill\cuz@value@title\hfill}\par
+                \ulenhance[0.8pt]{\hfill\cuz@value@title\hfill}
 			\end{minipage}} \\%[20pt]
 			\rule{0pt}{10mm} &
-			{\begin{minipage}[t][160pt][t]{\titleulwidth@cover}
+			{\begin{minipage}[t][160pt][t]{\cuz@length@titlelinewidth}
 				\newlength{\etitlelength}
 				\zihao{-2} \rmfamily
 				\settowidth{\etitlelength}{\cuz@value@englishtitle}
@@ -325,32 +330,32 @@
 % 不过行数可以根据需要扩展，只要符合页面格式的美观即可。不过论文编写规则中提到：
 % 英文标题翻译应简短准确，一般不应超过150个字母，学校规定不可以加副标题。
 				\centering\MakeTextUppercase{\cuz@value@englishtitle}\\*
-				\ifdim\etitlelength<\titleulwidth@cover
-					\raisebox{31pt}[0pt][0pt]{\parbox[t][][t]{\titleulwidth@cover}{
-					\rule{\titleulwidth@cover}{\ULthickness}}}
-				\else\ifdim\etitlelength<2\titleulwidth@cover
-						\raisebox{67pt}[0pt][0pt]{\parbox[t][][t]{\titleulwidth@cover}{
-						\rule{\titleulwidth@cover}{\ULthickness}\\*
-						\rule{\titleulwidth@cover}{\ULthickness}}}
-				\else\ifdim\etitlelength<3\titleulwidth@cover
-						\raisebox{103pt}[0pt][0pt]{\parbox[t][][t]{\titleulwidth@cover}{
-						\rule{\titleulwidth@cover}{\ULthickness}\\*
-						\rule{\titleulwidth@cover}{\ULthickness}\\*
-						\rule{\titleulwidth@cover}{\ULthickness}}}
+				\ifdim\etitlelength<\cuz@length@titlelinewidth
+					\raisebox{31pt}[0pt][0pt]{\parbox[t][][t]{\cuz@length@titlelinewidth}{
+					\rule{\cuz@length@titlelinewidth}{\ULthickness}}}
+				\else\ifdim\etitlelength<2\cuz@length@titlelinewidth
+						\raisebox{67pt}[0pt][0pt]{\parbox[t][][t]{\cuz@length@titlelinewidth}{
+						\rule{\cuz@length@titlelinewidth}{\ULthickness}\\*
+						\rule{\cuz@length@titlelinewidth}{\ULthickness}}}
+				\else\ifdim\etitlelength<3\cuz@length@titlelinewidth
+						\raisebox{103pt}[0pt][0pt]{\parbox[t][][t]{\cuz@length@titlelinewidth}{
+						\rule{\cuz@length@titlelinewidth}{\ULthickness}\\*
+						\rule{\cuz@length@titlelinewidth}{\ULthickness}\\*
+						\rule{\cuz@length@titlelinewidth}{\ULthickness}}}
 				\fi\fi\fi
 			\end{minipage}}\\*
 		\end{tabular}
 		\vfill
 %		\vskip 9mm
 		\begin{tabular}{>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c}
-			\makebox[6em][s]{\cuz@label@author}： & \cuzunderline[120pt]{\cuz@value@author} &
-			\makebox[3em][s]{\cuz@label@authorid}： & \cuzunderline[120pt]{\cuz@value@authorid} \\
+			\makebox[6em][s]{\cuz@label@author}： & \cuzunderline{\cuz@value@author} &
+			\makebox[3em][s]{\cuz@label@authorid}： & \cuzunderline{\cuz@value@authorid} \\
             \rule{0pt}{10mm}
-            \makebox[6em][s]{\cuz@label@institute}： & \cuzunderline[120pt]{\cuz@value@institute} &
-			\makebox[3em][s]{\cuz@label@major}： & \cuzunderline[120pt]{\cuz@value@major} \\
+            \makebox[6em][s]{\cuz@label@institute}： & \cuzunderline{\cuz@value@institute} &
+			\makebox[3em][s]{\cuz@label@major}： & \cuzunderline{\cuz@value@major} \\
             \rule{0pt}{10mm}
-            \makebox[6em][s]{\cuz@label@advisor}： & \cuzunderline[120pt]{\cuz@value@advisor} &
-			\makebox[3em][s]{\cuz@label@advisortitle}： & \cuzunderline[120pt]{\cuz@value@advisortitle}
+            \makebox[6em][s]{\cuz@label@advisor}： & \cuzunderline{\cuz@value@advisor} &
+			\makebox[3em][s]{\cuz@label@advisortitle}： & \cuzunderline{\cuz@value@advisortitle}
 		\end{tabular}
 	\end{center}
 }
