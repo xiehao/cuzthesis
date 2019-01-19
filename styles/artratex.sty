@@ -223,19 +223,22 @@
         \setCJKmainfont[AutoFakeBold=2,ItalicFont=KaiTi]{SimSun}%
         \setCJKsansfont[AutoFakeBold=2]{SimHei}%
         \setCJKmonofont{FangSong}%
-    \else\ifartx@mac%
-        \setCJKmainfont[ItalicFont=Kaiti SC,BoldItalicFont=Kaiti SC Bold]{Songti SC Light}%
-        \setCJKsansfont{Heiti SC}%
-        \setCJKmonofont{STFangsong}%
+    \else%
         \setCJKfamilyfont{zhli}{LiSu}%
-        \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on mac.
+        \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on Mac and Linux.
         \setCJKfamilyfont{zhyou}{YouYuan}%
-        \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on mac.
-    \else\ifartx@adobe%
-        \setCJKmainfont[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}%
-        \setCJKsansfont[AutoFakeBold]{AdobeHeitiStd-Regular}%
-        \setCJKmonofont{AdobeFangsongStd-Regular}%
-    \fi\fi\fi
+        \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on Mac and Linux.
+        \ifartx@mac%
+            \setCJKmainfont[ItalicFont=Kaiti SC,BoldItalicFont=Kaiti SC Bold]{Songti SC Light}%
+            \setCJKsansfont{Heiti SC}%
+            \setCJKmonofont{STFangsong}%
+        \else\ifartx@adobe%
+            \setCJKmainfont[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}%
+            \setCJKsansfont[AutoFakeBold]{AdobeHeitiStd-Regular}%
+            \setCJKmonofont{AdobeFangsongStd-Regular}%
+            \fi
+        \fi
+    \fi
     \ifartx@times%
         \setmainfont[NFSSFamily=entextrm]{Times New Roman}%
         \setsansfont[NFSSFamily=entextsf]{Times New Roman}%
