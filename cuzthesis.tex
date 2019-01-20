@@ -70,18 +70,22 @@
 \mainmatter% initialize the environment
 \input{contents/Mainmatter}% main content
 %-
+%-> Acknowledgement
+%-
+\input{contents/acknowledgement}
+%-
 %-> Appendix
 %-
-\cleardoublepage%
-\appendix% initialize the environment
-\input{contents/Appendix}% appendix content
+% \cleardoublepage%
+% \appendix% initialize the environment
+% \input{contents/Appendix}% appendix content
 %-
 %-> Backmatter: bibliography, glossary, index
 %-
 % \backmatter% initialize the environment
 \intotoc{\bibname}% add link to contents table and bookmark
 \bibliography{bibliography/ref}% bibliography
-\input{contents/Backmatter}% other information
+% \input{contents/Backmatter}% other information
 \end{document}
 %---------------------------------------------------------------------------%
 

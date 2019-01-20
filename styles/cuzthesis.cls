@@ -637,5 +637,15 @@
     \vspace{1.5ex} % \vskip 24\p@
 }
 %---------------------------------------------------------------------------%
+%->> Define some useful environments
+%---------------------------------------------------------------------------%
+\newenvironment{acknowledgement}{
+    \vspace{3ex}
+    \chapter*{\cuz@label@acknowledgement}
+    \chaptermark{\cuz@label@acknowledgement}
+    \addcontentsline{toc}{chapter}{\cuz@label@acknowledgement}
+    \vspace{3ex}
+}{}
+%---------------------------------------------------------------------------%
 \endinput
 
