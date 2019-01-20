@@ -372,10 +372,10 @@
 		}\par
 	\end{center}
     \vspace{4mm}
-    \zihao{-2}
-    \cuz@macro@numbertitlelines{\cuz@length@titlelinewidth}{\cuz@value@title}
-    \cuz@macro@titleheight{numbertitlelines}{3.5ex}{4ex}
 	\begin{center}
+        \zihao{-2}
+        \cuz@macro@numbertitlelines{\cuz@length@titlelinewidth}{\cuz@value@title}
+        \cuz@macro@titleheight{numbertitlelines}{3.5ex}{4ex}
 		\begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
 			\cuz@label@thesistitle & {
                 \begin{minipage}[t][\titleheight][t]{\cuz@length@titlelinewidth}
