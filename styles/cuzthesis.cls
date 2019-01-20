@@ -282,6 +282,68 @@
 %-
 %-> Redefine Chinese style
 %-
+\newcounter{iline}
+\newcounter{numbertitlelines}
+% Define a macro to calculate the number of title lines
+% #1: The length of title line (set by paper)
+% #2: The text of title (set by user)
+\newlength{\titlelength}
+\def\cuz@macro@numbertitlelines#1#2{
+    \settowidth{\titlelength}{#2}
+    \setcounter{numbertitlelines}{0}
+    \loop{
+        \stepcounter{numbertitlelines}
+    }\ifdim\titlelength>\value{numbertitlelines}#1\repeat
+}
+% Define a macro to calculate the lift of title rules
+% #1: The number of title lines (calculated by \cuz@macro@numbertitlelines)
+% #2: The base height (set by user)
+% #2: The height of one line (set by user)
+\newlength{\titlerulelift}
+\def\cuz@macro@titlerulelift#1#2#3{
+    \setlength{\titlerulelift}{#2}
+    \setcounter{iline}{1}
+    \@whilenum\value{iline}<\value{#1}\do{
+        \stepcounter{iline}
+        \addtolength{\titlerulelift}{#3}
+    }
+}
+% Define a macro to calculate the total title height
+% #1: The number of title lines (calculated by \cuz@macro@numbertitlelines)
+% #2: The base height (set by user)
+% #2: The height of one line (set by user)
+\newlength{\titleheight}
+\def\cuz@macro@titleheight#1#2#3{
+    \setlength{\titleheight}{#2}
+    \setcounter{iline}{1}
+    \@whilenum\value{iline}<\value{#1}\do{
+        \stepcounter{iline}
+        \addtolength{\titleheight}{#3}
+    }
+}
+% Define a macro for underlined title with adaptive multilines
+% #1: The length of title line (set by paper)
+% #2: The thickness of title line (set by paper)
+% #3: The text of title (set by user)
+\def\cuz@macro@multiunderline#1#2#3{
+    \cuz@macro@numbertitlelines{#1}{#3}
+    \cuz@macro@titlerulelift{numbertitlelines}{3.5ex}{4.0ex}
+    \def\ULthickness{#2}
+    \centering #3 \\
+    \raisebox{\titlerulelift}[0pt][0pt]{
+        \parbox[t][][t]{#1}{
+            \setcounter{iline}{0}
+            \@whilenum\value{iline}<\value{numbertitlelines}\do{
+                \stepcounter{iline}
+                \rule{#1}{\ULthickness}\\
+            }
+        }
+    }
+}
+\newlength{\cuz@length@titlelinewidth}
+\addtolength{\cuz@length@titlelinewidth}{300pt}
+\newlength{\cuz@length@otherinfowidth}
+\addtolength{\cuz@length@otherinfowidth}{130pt}
 \renewcommand{\maketitle}{%
     \cuzifstreq{\cuz@value@degree}{学士}{%
         \def\cuz@label@thesis{\cuz@label@bacthesis}%
@@ -299,52 +361,36 @@
     }}%
     \cleardoublepage
     \thispagestyle{empty}
+    \par
     \begin{center}
 		{\cuz@value@schoollogo}\par
-		\vspace{20mm}
+		\vspace{24mm}
 		{
 		    {\lishu \zihao{-0} \bfseries \cuz@label@thesis} \par
 		    \vspace{5mm}
 		    {\heiti \zihao{-2} (\;\cuz@value@graduateyear 届\;)}
 		}\par
 	\end{center}
-    \vspace{10mm}
-    \newlength{\cuz@length@titlelinewidth}
-    \addtolength{\cuz@length@titlelinewidth}{300pt}
-    \newlength{\cuz@length@otherinfowidth}
-    \addtolength{\cuz@length@otherinfowidth}{120pt}
+    \vspace{4mm}
+    \zihao{-2}
+    \cuz@macro@numbertitlelines{\cuz@length@titlelinewidth}{\cuz@value@title}
+    \cuz@macro@titleheight{numbertitlelines}{3.5ex}{4ex}
 	\begin{center}
 		\begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
-			\cuz@label@thesistitle &
-			{\begin{minipage}[t][][t]{\cuz@length@titlelinewidth}
-				\zihao{-2} \heiti
-                \ulenhance[0.8pt]{\hfill\cuz@value@title\hfill}
-			\end{minipage}} \\%[20pt]
-			\rule{0pt}{10mm} &
-			{\begin{minipage}[t][160pt][t]{\cuz@length@titlelinewidth}
-				\newlength{\etitlelength}
-				\zihao{-2} \rmfamily
-				\settowidth{\etitlelength}{\cuz@value@englishtitle}
-% 使封面英文标题下划线数量能够适应因英文标题内容长短变化而引起的英文标题行数变化
-% 而引起的下划线行数变化，下划线行数就是英文标题行数。目前最大的支持行数为3行，
-% 不过行数可以根据需要扩展，只要符合页面格式的美观即可。不过论文编写规则中提到：
-% 英文标题翻译应简短准确，一般不应超过150个字母，学校规定不可以加副标题。
-				\centering\MakeTextUppercase{\cuz@value@englishtitle}\\*
-				\ifdim\etitlelength<\cuz@length@titlelinewidth
-					\raisebox{31pt}[0pt][0pt]{\parbox[t][][t]{\cuz@length@titlelinewidth}{
-					\rule{\cuz@length@titlelinewidth}{\ULthickness}}}
-				\else\ifdim\etitlelength<2\cuz@length@titlelinewidth
-						\raisebox{67pt}[0pt][0pt]{\parbox[t][][t]{\cuz@length@titlelinewidth}{
-						\rule{\cuz@length@titlelinewidth}{\ULthickness}\\*
-						\rule{\cuz@length@titlelinewidth}{\ULthickness}}}
-				\else\ifdim\etitlelength<3\cuz@length@titlelinewidth
-						\raisebox{103pt}[0pt][0pt]{\parbox[t][][t]{\cuz@length@titlelinewidth}{
-						\rule{\cuz@length@titlelinewidth}{\ULthickness}\\*
-						\rule{\cuz@length@titlelinewidth}{\ULthickness}\\*
-						\rule{\cuz@length@titlelinewidth}{\ULthickness}}}
-				\fi\fi\fi
-			\end{minipage}}\\*
-		\end{tabular}
+			\cuz@label@thesistitle & {
+                \begin{minipage}[t][\titleheight][t]{\cuz@length@titlelinewidth}
+				    \zihao{-2} \heiti
+                    % \ulenhance[0.8pt]{\hfill\cuz@value@title\hfill}
+                    \cuz@macro@multiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
+                \end{minipage}
+            } \\%[20pt]
+			\rule{0pt}{3ex} & {
+                \begin{minipage}[t][][t]{\cuz@length@titlelinewidth}
+                    \zihao{-2} \rmfamily
+                    \cuz@macro@multiunderline{\cuz@length@titlelinewidth}{0.8pt}{\MakeTextUppercase{\cuz@value@englishtitle}}
+                \end{minipage}
+            } \\
+        \end{tabular}
 		\vfill
 %		\vskip 9mm
 		\begin{tabular}{>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c}
