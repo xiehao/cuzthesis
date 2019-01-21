@@ -75,18 +75,16 @@
 %-
 \input{contents/acknowledgement}
 %-
-%-> Appendix
-%-
-% \cleardoublepage%
-% \appendix% initialize the environment
-% \input{contents/Appendix}% appendix content
-%-
-%-> Backmatter: bibliography, glossary, index
+%-> Bibliography
 %-
 % \backmatter% initialize the environment
 \intotoc{\bibname}% add link to contents table and bookmark
 \bibliography{bibliography/ref}% bibliography
-% \input{contents/Backmatter}% other information
+%-
+%-> Appendix
+%-
+\appendix% initialize the environment
+\input{contents/appendices}% appendix content, if no appendix, comment this line.
 \end{document}
 %---------------------------------------------------------------------------%
 

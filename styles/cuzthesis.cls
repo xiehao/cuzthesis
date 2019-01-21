@@ -641,9 +641,9 @@
     \end{center}
     \par\vspace{2ex}
     {\bfseries\cuz@label@chineseabstract：}\hspace{-1em}
-    \def\ck{\chinesekeywords{#1}}
+    \def\temp{\chinesekeywords{#1}}
 }{
-    \par\ck\par
+    \par\temp\par
 }
 %- define Engish keywords
 \newcommand{\englishkeywords}[1]{%
@@ -658,9 +658,9 @@
     \end{center}
     \par\vspace{2ex}
     {\bfseries\cuz@label@englishabstract:}\hspace{-1em}
-    \def\ck{\englishkeywords{#1}}
+    \def\temp{\englishkeywords{#1}}
 }{
-    \par\ck\par
+    \par\temp\par
 }
 %- define acknowledgement
 \newenvironment{acknowledgement}{
@@ -669,6 +669,12 @@
     \chaptermark{\cuz@label@acknowledgement}
     \addcontentsline{toc}{chapter}{\cuz@label@acknowledgement}
     \vspace{3ex}
+}{}
+%- define appendices
+\newenvironment{appendices}{
+    \chapter*{\cuz@label@appendices}
+    \chaptermark{\cuz@label@appendices}
+    \addcontentsline{toc}{chapter}{\cuz@label@appendices}
 }{}
 %---------------------------------------------------------------------------%
 \endinput
