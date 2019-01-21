@@ -675,7 +675,15 @@
     \chapter*{\cuz@label@appendices}
     \chaptermark{\cuz@label@appendices}
     \addcontentsline{toc}{chapter}{\cuz@label@appendices}
+    \setcounter{equation}{0}
 }{}
+%-
+%-> Equation style
+%-
+\@addtoreset{equation}{chapter}
+\renewcommand\theequation{\arabic{chapter}-\arabic{equation}}
+% \newtagform{cuzequation}{()}{)}
+% \usetagform{cuzequation}
 %---------------------------------------------------------------------------%
 \endinput
 
