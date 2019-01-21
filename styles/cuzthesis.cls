@@ -631,7 +631,7 @@
 %- define Chinese keywords
 \newcommand{\chinesekeywords}[1]{%
     \vspace{\baselineskip}
-    \noindent{\bfseries\cuz@label@chinesekeywords} #1
+    {\bfseries\cuz@label@chinesekeywords} #1
 }
 %- define Chinese abstract
 \newenvironment{chineseabstract}[1]{%
@@ -640,7 +640,7 @@
         \zihao{3}\heiti\cuz@value@title
     \end{center}
     \par\vspace{2ex}
-    {\bfseries\cuz@label@chineseabstract}：
+    {\bfseries\cuz@label@chineseabstract：}\hspace{-1em}
     \def\ck{\chinesekeywords{#1}}
 }{
     \par\ck\par
@@ -648,7 +648,7 @@
 %- define Engish keywords
 \newcommand{\englishkeywords}[1]{%
     \vspace{\baselineskip}
-    \noindent {\bfseries \cuz@label@englishkeywords} #1
+    {\bfseries\cuz@label@englishkeywords} #1
 }
 %- define English abstract
 \newenvironment{englishabstract}[1]{%
@@ -657,7 +657,7 @@
         \zihao{3}\bfseries\MakeTextUppercase{\cuz@value@englishtitle}
     \end{center}
     \par\vspace{2ex}
-    {\bfseries\cuz@label@englishabstract}:
+    {\bfseries\cuz@label@englishabstract:}\hspace{-1em}
     \def\ck{\englishkeywords{#1}}
 }{
     \par\ck\par
