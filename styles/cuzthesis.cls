@@ -678,12 +678,14 @@
     \setcounter{equation}{0}
 }{}
 %-
-%-> Equation style
+%-> Equation, table and figure style
 %-
 \@addtoreset{equation}{chapter}
-\renewcommand\theequation{\arabic{chapter}-\arabic{equation}}
+\renewcommand\theequation{\arabic{chapter}\cuz@label@equationhyphen\arabic{equation}}
 % \newtagform{cuzequation}{()}{)}
 % \usetagform{cuzequation}
+\renewcommand{\thetable}{\arabic{chapter}\cuz@label@equationhyphen\arabic{table}}
+\renewcommand{\thefigure}{\arabic{chapter}\cuz@label@equationhyphen\arabic{figure}}
 %---------------------------------------------------------------------------%
 \endinput
 
