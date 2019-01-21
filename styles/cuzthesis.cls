@@ -261,7 +261,9 @@
     \uline{\hbox to #1{\hss#2\hss}}\hskip3pt
 }
 \newcommand{\confidential}[1]{\gdef\cuz@value@confidential{#1}}
-\newcommand{\schoollogo}[2]{\gdef\cuz@value@schoollogo{\includegraphics[width=#1\textwidth]{#2}}}
+\newcommand{\schoollogo}[2]{\gdef\cuz@value@schoollogo{
+    \includegraphics[width=#1\textwidth]{#2}}
+}
 \renewcommand{\title}[2][\cuz@value@title]{%
     \gdef\cuz@value@title{#2}
     %\def\cuz@value@titlemark{\MakeUppercase{#1}}}
@@ -271,14 +273,12 @@
 \renewcommand{\author}[1]{\gdef\cuz@value@author{#1}}
 \newcommand{\authorid}[1]{\gdef\cuz@value@authorid{#1}}
 \newcommand{\advisor}[1]{\gdef\cuz@value@advisor{#1}}
-\newcommand{\advisorsec}[1]{\gdef\cuz@value@advisorsec{#1}}
 \newcommand{\advisortitle}[1]{\gdef\cuz@value@advisortitle{#1}}
 \newcommand{\degree}[1]{\gdef\cuz@value@degree{#1}}
 \newcommand{\degreetype}[1]{\gdef\cuz@value@degreetype{#1}}
 \newcommand{\major}[1]{\gdef\cuz@value@major{#1}}
 \newcommand{\institute}[1]{\gdef\cuz@value@institute{#1}}
 \newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
-\newcommand{\chinesedate}[1]{\gdef\cuz@value@chinesedate{#1}}
 %-
 %-> Redefine Chinese style
 %-
@@ -498,17 +498,6 @@
     \fi
 }
 %---------------------------------------------------------------------------%
-%->> New environments
-%---------------------------------------------------------------------------%
-%- define chinese keywords
-\newcommand{\keywords}[1]{%
-    \vspace{\baselineskip}
-    \noindent {\bfseries \cuz@label@keywords} #1}
-%- define engish keywords
-\newcommand{\englishkeywords}[1]{%
-    \vspace{\baselineskip}
-    \noindent {\bfseries \cuz@label@englishkeywords} #1}
-%---------------------------------------------------------------------------%
 %->> Configure table of contents
 %---------------------------------------------------------------------------%
 %- define spacing and length
@@ -639,6 +628,41 @@
 %---------------------------------------------------------------------------%
 %->> Define some useful environments
 %---------------------------------------------------------------------------%
+%- define Chinese keywords
+\newcommand{\chinesekeywords}[1]{%
+    \vspace{\baselineskip}
+    \noindent{\bfseries\cuz@label@chinesekeywords} #1
+}
+%- define Chinese abstract
+\newenvironment{chineseabstract}[1]{%
+    \clearpage
+    \begin{center}
+        \zihao{3}\heiti\cuz@value@title
+    \end{center}
+    \par\vspace{2ex}
+    {\bfseries\cuz@label@chineseabstract}：
+    \def\ck{\chinesekeywords{#1}}
+}{
+    \par\ck\par
+}
+%- define Engish keywords
+\newcommand{\englishkeywords}[1]{%
+    \vspace{\baselineskip}
+    \noindent {\bfseries \cuz@label@englishkeywords} #1
+}
+%- define English abstract
+\newenvironment{englishabstract}[1]{%
+    \vspace{8ex} % no clear page, right after the Chinese abstract, a wired style.
+    \begin{center}
+        \zihao{3}\bfseries\MakeTextUppercase{\cuz@value@englishtitle}
+    \end{center}
+    \par\vspace{2ex}
+    {\bfseries\cuz@label@englishabstract}:
+    \def\ck{\englishkeywords{#1}}
+}{
+    \par\ck\par
+}
+%- define acknowledgement
 \newenvironment{acknowledgement}{
     \vspace{3ex}
     \chapter*{\cuz@label@acknowledgement}

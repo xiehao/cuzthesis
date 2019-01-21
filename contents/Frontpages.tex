@@ -1,8 +1,8 @@
 %---------------------------------------------------------------------------%
-%->> 封面信息及生成
+%-> 封面及声明页
 %---------------------------------------------------------------------------%
 %-
-%-> 中文封面信息
+%-> 填入个人信息
 %-
 \confidential{}% 密级：只有涉密论文才填写
 \schoollogo{0.8}{cuz_logo}% 校徽
@@ -20,28 +20,8 @@
 %-> 生成封面
 %-
 \maketitle% 生成中文封面
-% \makeenglishtitle% 生成英文封面
 %-
 %-> 作者声明
 %-
 \makedeclaration% 生成声明页
-\nofootermatter
-%-
-%-> 英文摘要
-%-
-\chapter*{摘要}%\chaptermark{Abstract}% 摘要标题
-
-This paper is a help documentation for the \LaTeX{} class ucasthesis, which is  a thesis template for the University of Chinese Academy of Sciences. The main content is about how to use the ucasthesis, as well as how to write thesis efficiently by using \LaTeX{}.
-
-\englishkeywords{University of Chinese Academy of Sciences (UCAS), Thesis, \LaTeX{} Template}% 英文关键词
-%-
-%-> 中文摘要
-%-
-\chapter*{摘要}%\chaptermark{摘\quad 要}% 摘要标题
-% \setcounter{page}{1}% 开始页码
-% \pagenumbering{Roman}% 页码符号
-
-本文是中国科学院大学学位论文模板ucasthesis的使用说明文档。主要内容为介绍\LaTeX{}文档类ucasthesis的用法，以及如何使用\LaTeX{}快速高效地撰写学位论文。
-
-\keywords{中国科学院大学，学位论文，\LaTeX{}模板}% 中文关键词
 %---------------------------------------------------------------------------%

@@ -52,9 +52,10 @@
 %-> Frontmatter: title page, abstract, content list, symbol list, preface
 %-
 \plainmatter% initialize the environment
-\input{contents/Frontpages}% title page, abstract, dedication
+\input{contents/frontpages}% title page, abstract, dedication
 % {% content list region
 \nofootermatter
+\input{contents/abstracts}
 % \linespread{1.5}% local line space
 %\intotoc{\contentsname}% add link to contents table and bookmark
 \tableofcontents% contents catalog
