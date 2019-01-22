@@ -664,17 +664,16 @@
 }
 %- define acknowledgement
 \newenvironment{acknowledgement}{
-    \vspace{3ex}
+    \intotoc{\cuz@label@acknowledgement}% should be placed first
     \chapter*{\cuz@label@acknowledgement}
     \chaptermark{\cuz@label@acknowledgement}
-    \addcontentsline{toc}{chapter}{\cuz@label@acknowledgement}
     \vspace{3ex}
 }{}
 %- define appendices
 \newenvironment{appendices}{
+    \intotoc{\cuz@label@appendices}% should be placed first
     \chapter*{\cuz@label@appendices}
     \chaptermark{\cuz@label@appendices}
-    \addcontentsline{toc}{chapter}{\cuz@label@appendices}
     \setcounter{equation}{0}
 }{}
 %-
