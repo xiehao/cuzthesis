@@ -41,50 +41,39 @@
 %- [math]% enable some extra math packages
 \usepackage{styles/artracom}% user defined commands
 %---------------------------------------------------------------------------%
-%->> Document inclusion
-%---------------------------------------------------------------------------%
-%\includeonly{contents/Chap_1,...,contents/Chap_N}% selected files compilation
-%---------------------------------------------------------------------------%
 %->> Document content
 %---------------------------------------------------------------------------%
 \begin{document}
+%-> Initialization
+\input{contents/initialization}
 %-
-%-> Frontmatter: title page, abstract, content list, symbol list, preface
+%-> Frontmatter: title page, declaration, abstracts, content list
 %-
-\plainmatter% initialize the environment
-\input{contents/frontpages}% title page, abstract, dedication
-% {% content list region
-\nofootermatter
+\plainmatter% set the page layout
+%-> The title page
+\maketitle%
+%-> The author's declaration
+\makedeclaration%
+\nofootermatter% change the page layout
 \input{contents/abstracts}
-% \linespread{1.5}% local line space
-%\intotoc{\contentsname}% add link to contents table and bookmark
-\tableofcontents% contents catalog
-%\intotoc{\listfigurename}% add link to contents table and bookmark
-% \listoffigures% figures catalog
-%\intotoc{\listtablename}% add link to contents table and bookmark
-% \listoftables% tables catalog
-% }
-% \input{contents/Prematter}% list of symbols, preface content
+%-> The table of contents
+\tableofcontents%
 %-
-%-> Mainmatter
+%-> Mainmatter: the main body
 %-
-\mainmatter% initialize the environment
-\input{contents/Mainmatter}% main content
+\mainmatter% change the page layout
+\input{contents/mainbody}%
 %-
-%-> Acknowledgement
+%-> Backmatter: acknowledgement, references, appendices (if any)
 %-
-\input{contents/acknowledgement}
-%-
-%-> Bibliography
-%-
-% \backmatter% initialize the environment
+%-> The acknowledgement
+\input{contents/acknowledgement}%
+%-> The references
 \intotoc{\bibname}% add link to contents table and bookmark
-\bibliography{bibliography/ref}% bibliography
-%-
-%-> Appendix
-%-
-\appendix% initialize the environment
-\input{contents/appendices}% appendix content, if no appendix, comment this line.
+\bibliography{bibliography/ref}%
+%-> The appendices (if any)
+\appendix% change the page layout
+\input{contents/appendices}%
 \end{document}
 %---------------------------------------------------------------------------%
 
