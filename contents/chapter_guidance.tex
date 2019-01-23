@@ -1,34 +1,36 @@
 \chapter{\LaTeX{}使用说明}\label{chap:guide}
 
-为方便使用及更好地展示\LaTeX{}排版的优秀特性，ucasthesis的框架和文件体系进行了细致地处理，尽可能地对各个功能和板块进行了模块化和封装，对于初学者来说，众多的文件目录也许一开始让人觉得有些无所适从，但阅读完下面的使用说明后，会发现原来使用思路是简单而清晰的，而且，当对\LaTeX{}有一定的认识和了解后，会发现其相对Word类排版系统极具吸引力的优秀特性。所以，如果是初学者，请不要退缩，请稍加尝试和坚持，以领略到\LaTeX{}的非凡魅力，并可以通过阅读相关资料如\LaTeX{} Wikibook\citep{wikibook2014latex}来完善自己的使用知识。
+为方便使用及更好地展示\LaTeX{}排版的优秀特性，\texttt{cuzthesis}对框架和文件体系进行了细致地处理，尽可能地对各个功能和板块进行了模块化和封装，对于初学者来说，众多的文件目录也许一开始让人觉得有些无所适从，但阅读完下面的使用说明后，会发现原来使用思路是简单而清晰的；而且，当对\LaTeX{}有一定的认识和了解后，会发现其相对Word类排版系统极具吸引力的优秀特性。故若是初学者，请不要退缩，请稍加尝试和坚持，以领略到\LaTeX{}的非凡魅力，并可以通过阅读相关资料如\LaTeX{} Wikibook\citep{wikibook2014latex}来完善自己的使用知识。
 
-\section{先试试效果}
+\section{新手上路}
 
 \begin{enumerate}
     \item 安装软件：根据所用操作系统和章节~\ref{sec:system}中的信息安装\LaTeX{}编译环境。
-    \item 获取模板：下载 \href{https://github.com/mohuangrui/ucasthesis}{ucasthesis} 模板并解压。ucasthesis模板不仅提供了相应的类文件，同时也提供了包括参考文献等在内的完成学位论文的一切要素，所以，下载时，推荐下载整个ucasthesis文件夹，而不是单独的文档类。
+    \item 获取模板：下载 \href{https://github.com/xiehao/CUZThesis}{cuzthesis} 模板并解压。cuzthesis模板不仅提供了相应的类文件，同时也提供了包括参考文献等在内的完成学位论文的一切要素，所以，下载时，推荐下载整个cuzthesis文件夹，而不是单独的文档类。
     \item 编译模板：
         \begin{enumerate}
             \item Windows：双击运行artratex.bat脚本。
-            \item Linux或MacOS: {\scriptsize \verb|terminal| -> \verb|chmod +x ./artratex.sh| -> \verb|./artratex.sh xa|}
-            \item 任意系统：都可使用\LaTeX{}编辑器打开Thesis.tex文件并选择xelatex编译引擎进行编译。
+            \item Linux或macOS: {\scriptsize \verb|terminal| -> \verb|chmod +x ./artratex.sh| -> \verb|./artratex.sh xa|}
+            \item 任意系统：都可使用\LaTeX{}编辑器打开thesis.tex文件并选择xelatex编译引擎进行编译。
         \end{enumerate}
     \item 错误处理：若编译中遇到了问题，请先查看“常见问题”（章节~\ref{sec:qa}）。
 \end{enumerate}
 
-编译完成即可获得本PDF说明文档。而这也完成了学习使用ucasthesis撰写论文的一半进程。什么？这就学成一半了，这么简单？？？，是的，就这么简单！
+编译完成即可获得本PDF说明文档，而这也完成了学习使用cuzthesis撰写论文的一半进程。至此，新手已上路！
 
 \section{文档目录简介}
 
-\subsection{Thesis.tex}
+本部分主要介绍cuzthesis工程的目录结构，以助读者理解各部分含义。
 
-Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对其的阅读可以了解整个论文框架的搭建。
+\subsection{thesis.tex}
+
+thesis.tex为主文档，其设计和规划了论文的整体框架，通过对其的阅读可以了解整个论文框架的搭建。如无意外，读者无需修改此文档。
 
 \subsection{编译脚本}
 
 \begin{itemize}
-    \item Windows：双击Dos脚本artratex.bat可得全编译后的PDF文档，其存在是为了帮助不了解\LaTeX{}编译过程的初学者跨过编译这第一道坎，请勿通过邮件传播和接收此脚本，以防范Dos脚本的潜在风险。
-    \item Linux或MacOS：在terminal中运行
+    \item Windows：双击批处理文件artratex.bat可得全编译后的PDF文档，其存在是为了帮助不了解\LaTeX{}编译过程的初学者跨过编译这第一道坎，请勿通过邮件传播和接收此脚本，以防范DOS脚本的潜在风险。
+    \item Linux或macOS：在终端中运行
         \begin{itemize}
             \item \verb|./artratex.sh xa|：获得全编译后的PDF文档
             \item \verb|./artratex.sh x|：快速编译模式
@@ -36,47 +38,50 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
     \item 全编译指运行 \verb|xelatex+bibtex+xelatex+xelatex| 以正确生成所有的引用链接，如目录，参考文献及引用等。在写作过程中若无添加新的引用，则可用快速编译，即只运行一遍\LaTeX{}编译引擎以减少编译时间。
 \end{itemize}
 
-\subsection{Tmp文件夹}
+\subsection{cache文件夹}
 
-运行编译脚本后，编译所生成的文档皆存于Tmp文件夹内，包括编译得到的PDF文档，其存在是为了保持工作空间的整洁，因为好的心情是很重要的。
+运行上述编译脚本后，编译所生成的中间文件与最终PDF文档皆存于该文件夹内，其存在是为了保持工作空间的整洁，因为好的心情是很重要的。若自行编译（即不运行上述编译脚本）则不在该文件夹下生成文件。
 
-\subsection{Style文件夹}
+\subsection{styles文件夹}
 
-包含ucasthesis文档类的定义文件和配置文件，通过对它们的修改可以实现特定的模版设定。若需更新模板，一般只需用新的样式文件替换旧的即可。
+该文件夹包含cuzthesis文档类的定义文件和配置文件，通过对它们的修改可以实现特定的模版设定。若需更新模板，一般只需用新的样式文件替换旧的即可。该部分为模板编写者修改之用，一般读者亦无需修改此部分。
 
 \begin{enumerate}
-    \item ucasthesis.cls：文档类定义文件，论文的最核心的格式即通过它来定义的。
-    \item ucasthesis.cfg：文档类配置文件，设定如目录显示为“目~录”而非“目录”。
-    \item artratex.sty: 常用宏包及文档设定，如参考文献样式、文献引用样式、页眉页脚设定等。这些功能具有开关选项，常只需在Thesis.tex中的如下命令中进行启用即可，一般无需修改artratex.sty本身。
+    \item cuzthesis.cls：文档类定义文件，论文的最核心的格式即通过它来定义的。
+    \item cuzthesis.cfg：文档类配置文件，为类定义文件准备常量标签等配置信息。
+    \item artratex.sty: 常用宏包及文档设定，如参考文献样式、文献引用样式、页眉页脚设定等。这些功能具有开关选项，常只需在thesis.tex中的如下命令中进行启用即可，一般无需修改artratex.sty本身。
         
         \path{\usepackage[options]{artratex}} 
     \item artracom.sty：自定义命令以及添加宏包的推荐放置位置。
 \end{enumerate}
 
-\subsection{Tex文件夹}
+\subsection{contents文件夹}
 
-文件夹内为论文的所有实体内容，正常情况下，这也是\textbf{使用ucasthesis撰写学文论文时，主要关注和修改的一个位置，注：所有文件都必须采用UTF-8编码，否则编译后将出现乱码文本}，详细分类介绍如下：
+该文件夹内为论文的所有实体内容，正常情况下，这也是\textbf{使用cuzthesis撰写学文论文时，主要关注和修改的一个位置。注：所有文件都必须采用UTF-8编码，否则编译后将出现乱码文本}，详细介绍如下：
 
 \begin{itemize}
-    \item Frontpage.tex：为论文中英文封面及中英文摘要。\textbf{论文封面会根据英文学位名称如Bachelor，Master，或是Doctor自动切换为相应的格式}。
-    \item Mainmatter.tex：索引需要出现的Chapter。开始写论文时，可以只索引当前章节，以快速编译查看，当论文完成后，再对所有章节进行索引即可。
-    \item Chap{\_}xxx.tex：为论文主体的各个章节，可根据需要添加和撰写。
-    \item Appendix.tex：为附录内容
-    \item Backmatter.tex：为发表文章信息和致谢部分等。
+    \item initialization.tex：为论文中出现的一些必要信息的初始化，如：中英文标题、作者名、学号、专业、学院、毕业年份等等，这些信息变量一旦设置一次之后，后面很多地方即可直接调用。
+    \item mainbody.tex：索引需要出现的章节。开始写论文时，可以只索引当前章节，以快速编译查看，当论文完成后，再对所有章节进行索引即可。
+    \item abstracts.tex：中英文摘要的内容。
+    \item chapter{\_}xxx.tex：为论文主体的各个章节，即mainbody.tex文件中索引的章节，可根据需要添加和撰写（建议将xxx替换为相应章节的全小写英文名，如introduction等）。
+    \item acknowledgement.tex：致谢的内容。
+    \item appendices.tex：为附录内容，如无此部分可将其在cuzthesis.tex文件中的导入语句注释掉
 \end{itemize}
 
-\subsection{Img文件夹}
+\subsection{images文件夹}
 
-用于放置论文中所需要的图类文件，支持格式有：.jpg, .png, .pdf。其中，\verb|ucas_logo.pdf|为国科大校徽。不建议为各章节图片建子目录，即使图片众多，若命名规则合理，图片查询亦是十分方便。
+该文件夹用于放置论文中所需要的图片类文件，支持格式有：.jpg, .png, .pdf。其中，cuz{\_}logo.pdf为浙传校徽文件，用于创建封面。建议将清晰的矢量图（如流程图、框架图、模块图等）转换成.pdf格式并裁剪到合适大小，而位图则以.png格式为佳。原则上，能用矢量图的尽量不要用位图。此外，不建议为各章节图片建子目录，即使图片众多，若命名规则合理，图片查询亦是十分方便。
 
-\subsection{Biblio文件夹}
+\subsection{bibliography文件夹}
+
+该文件夹主要用于存放参考文件格式定义文件与内容信息，
 
 \begin{enumerate}
-    \item ref.bib：参考文献信息库。
-    \item gbt7714-xxx.bst：符合国标的文献样式定义文件。由 \href{https://github.com/zepinglee/gbt7714-bibtex-style}{zepinglee}  开发，并满足最新国标要求。与文献样式有关的问题，请查阅开发者所提供的文档，并建议适当追踪其更新。
+    \item references.bib：参考文献内容信息库。
+    \item gbt7714-xxx.bst：符合国标的文献样式定义文件。由\href{https://github.com/zepinglee/gbt7714-bibtex-style}{zepinglee}开发，并满足最新国标要求。与文献样式有关的问题，请查阅开发者所提供的文档，并建议适当追踪其更新。
 \end{enumerate}
 
-\section{数学公式、图表、参考文献等功能}
+\section{数学公式、图、表、代码、参考文献等功能}
 
 \subsection{数学公式}
 
@@ -190,6 +195,55 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
         \EndProcedure
     \end{algorithmic}
 \end{algorithm}
+
+\subsection{代码段}
+
+原则上，论文中应尽可能少的出现工程代码。
+如果您必须引用一小段代码，
+可以使用\texttt{lstlisting}设置代码环境。
+本模板的代码环境默认配置在\texttt{zjuthesis.cls}，
+您可以搜索关键字“代码”找到配置。
+
+本模板不鼓励引用大段代码，
+所以默认情况下不为代码环境开启行号功能。
+观察\autoref{code:samp-code}，结合前述图表设置，
+试图理解代码环境的编写。
+
+\begin{lstlisting}[language=C++,numbers=left, numberstyle=\tiny,label=code:samp-code, caption=一段Chromium的源代码]
+#include <iostream>
+
+// Start tasks to take all the threads and block them.
+const int kNumBlockTasks = static_cast<int>(kNumWorkerThreads);
+for (int i = 0; i < kNumBlockTasks; ++i) {
+    EXPECT_TRUE(pool()->PostWorkerTask(
+        FROM_HERE,
+        base::Bind(&TestTracker::BlockTask, tracker(), i, &blocker)));
+}
+tracker()->WaitUntilTasksBlocked(kNumWorkerThreads);
+
+// Setup to open the floodgates from within Shutdown().
+SetWillWaitForShutdownCallback(
+    base::Bind(&TestTracker::PostBlockingTaskThenUnblockThreads,
+                scoped_refptr<TestTracker>(tracker()), pool(), &blocker,
+                kNumWorkerThreads));
+pool()->Shutdown(kNumWorkerThreads + 1);
+
+// Ensure that the correct number of tasks actually got run.
+tracker()->WaitUntilTasksComplete(static_cast<size_t>(kNumWorkerThreads + 1));
+tracker()->ClearCompleteSequence();
+
+int main(int argc, char const **argv) {
+    std::cout << "Hello CUZThesis" << std::endl;
+    return 0;
+}
+\end{lstlisting}
+
+引用一两行代码，可以直接使用\texttt{verbatim}环境完成。
+注意，此环境不会采取任何主动断行策略。
+\begin{verbatim}
+Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
+--exclude .git 
+\end{verbatim}
 
 \subsection{参考文献引用}
 

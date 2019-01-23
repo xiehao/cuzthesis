@@ -240,8 +240,11 @@
         \fi
     \fi
     \ifartx@times%
-        \setmainfont[NFSSFamily=entextrm]{Times New Roman}%
-        \setsansfont[NFSSFamily=entextsf]{Times New Roman}%
+        % \setmainfont[NFSSFamily=entextrm]{Times New Roman}%
+        % \setsansfont[NFSSFamily=entextsf]{Times New Roman}%
+        \setmainfont{TeX Gyre Termes}% an alternative of Times New Roman
+        \setsansfont{TeX Gyre Heros}% an alternative of Helvetica
+        \setmonofont{TeX Gyre Cursor}% an alternative of Courier New
     \else
         \setmainfont[NFSSFamily=entextrm]{FreeSerif}%
         \setsansfont[NFSSFamily=entextsf]{FreeSerif}%
@@ -566,13 +569,13 @@
     \lstset{%
         numberbychapter=false,% numbered sequentially or by chapter
         backgroundcolor=\color{white},% background color;
-        basicstyle=\scriptsize,% font size for code
+        basicstyle=\ttfamily\footnotesize,% font size for code
         breakatwhitespace=false,% sets if automatic breaks should only happen at whitespace
         breaklines=true,% sets automatic line breaking
-        captionpos=b,% caption-position to bottom
+        % captionpos=b,% caption-position to bottom
         commentstyle=\color{mygreen},% comment style
-        %deletekeywords={...},% delete keywords from the given language
-        frame=single,% adds a frame around the code
+        % deletekeywords={...},% delete keywords from the given language
+        frame=lines,% adds a frame around the code
         keepspaces=true,% keeps spaces in text for keeping indentation of code
         keywordstyle=\color{blue},% keyword style
         %otherkeywords={*,...},% add more keywords to the set
@@ -583,11 +586,12 @@
         showspaces=false,% show spaces everywhere adding particular underscores;
         showstringspaces=false,% underline spaces within strings only
         showtabs=false,% show tabs within strings adding particular underscores
-        stepnumber=2,% the step between two line-numbers. If it's 1, each line will be numbered
+        stepnumber=1,% the step between two line-numbers. If it's 1, each line will be numbered
         stringstyle=\color{mymauve},% string literal style
         tabsize=2,% sets default tabsize to 2 spaces
         title=\lstname% show the filename of files
     }
+    \renewcommand{\lstlistingname}{代码清单}
 \fi
 %-
 %-> Page background
