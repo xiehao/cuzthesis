@@ -90,19 +90,18 @@
 %-> Unique caption numbering style for equations, listings, algorithms, tables and figures
 %-
 \@addtoreset{equation}{chapter}
-\renewcommand\theequation{\arabic{chapter}\cuz@label@equationhyphen\arabic{equation}}
+\renewcommand\theequation{\arabic{chapter}\cuz@label@captionnumberconnector\arabic{equation}}
 % \newtagform{cuzequation}{()}{)}
 % \usetagform{cuzequation}
-\renewcommand{\thetable}{\arabic{chapter}\cuz@label@equationhyphen\arabic{table}}
-\renewcommand{\thefigure}{\arabic{chapter}\cuz@label@equationhyphen\arabic{figure}}
+\renewcommand{\thetable}{\arabic{chapter}\cuz@label@captionnumberconnector\arabic{table}}
+\renewcommand{\thefigure}{\arabic{chapter}\cuz@label@captionnumberconnector\arabic{figure}}
 \renewcommand{\lstlistingname}{\cuz@label@codelisting}
-% \renewcommand{\thelstlisting}{\arabic{chapter}\cuz@label@equationhyphen\arabic{lstlisting}}
+% \renewcommand{\thelstlisting}{\arabic{chapter}\cuz@label@captionnumberconnector\arabic{lstlisting}}
 \AtBeginDocument{
-    % \renewcommand{\thelstlisting}{\ifnum \c@chapter>\z@ \thechapter-\fi \@arabic\c@lstlisting}%
-    \renewcommand{\thelstlisting}{\ifnum\c@chapter>\z@\arabic{chapter}\cuz@label@equationhyphen\fi\arabic{lstlisting}}%
+    \renewcommand{\thelstlisting}{\ifnum\c@chapter>\z@\arabic{chapter}\cuz@label@captionnumberconnector\fi\arabic{lstlisting}}%
 }
 \floatname{algorithm}{\cuz@label@algorithmname}
-\renewcommand{\thealgorithm}{\arabic{chapter}\cuz@label@equationhyphen\arabic{algorithm}}
+\renewcommand{\thealgorithm}{\arabic{chapter}\cuz@label@captionnumberconnector\arabic{algorithm}}
 %---------------------------------------------------------------------------%
 \endinput
 
