@@ -560,7 +560,7 @@
     \definecolor{mygray}{rgb}{0.5,0.5,0.5}
     \definecolor{mymauve}{rgb}{0.58,0,0.82}
     \lstset{%
-        numberbychapter=false,% numbered sequentially or by chapter
+        numberbychapter=true,% numbered sequentially or by chapter
         backgroundcolor=\color{white},% background color;
         basicstyle=\ttfamily\footnotesize,% font size for code
         breakatwhitespace=false,% sets if automatic breaks should only happen at whitespace
@@ -573,7 +573,7 @@
         keywordstyle=\color{blue},% keyword style
         %otherkeywords={*,...},% add more keywords to the set
         numbers=left,% where to put the line-numbers; possible values are (none, left, right)
-        numbersep=5pt,% how far the line-numbers are from the code
+        numbersep=1.5em,% how far the line-numbers are from the code
         numberstyle=\tiny\color{mygray},% the style that is used for the line-numbers
         rulecolor=\color{black},% if not set, the frame-color may be changed on line-breaks
         showspaces=false,% show spaces everywhere adding particular underscores;
@@ -584,7 +584,6 @@
         tabsize=2,% sets default tabsize to 2 spaces
         title=\lstname% show the filename of files
     }
-    \renewcommand{\lstlistingname}{代码清单}
 \fi
 %-
 %-> Page background

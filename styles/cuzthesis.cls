@@ -66,7 +66,7 @@
 %---------------------------------------------------------------------------%
 \RequirePackage{ifxetex}% LaTeX engine detection
 \RequirePackage{etoolbox}% a toolbox of programming facilities
-\RequirePackage{textcase}
+\RequirePackage{textcase}% Uppercase and lowercase letters
 \newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 \newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% expansion control
 %---------------------------------------------------------------------------%
@@ -640,7 +640,7 @@
         \zihao{3}\heiti\cuz@value@title
     \end{center}
     \par\vspace{2ex}
-    {\bfseries\cuz@label@chineseabstract：}\hspace{-1em}
+    {\bfseries\cuz@label@chineseabstract：}\hspace{-0.8em}
     \def\temp{\chinesekeywords{#1}}
 }{
     \par\temp\par
@@ -657,7 +657,7 @@
         \zihao{3}\bfseries\MakeTextUppercase{\cuz@value@englishtitle}
     \end{center}
     \par\vspace{2ex}
-    {\bfseries\cuz@label@englishabstract:}\hspace{-1em}
+    {\bfseries\cuz@label@englishabstract:}\hspace{-0.8em}
     \def\temp{\englishkeywords{#1}}
 }{
     \par\temp\par
@@ -677,15 +677,6 @@
     \addcontentsline{toc}{chapter}{\cuz@label@appendices}
     \setcounter{equation}{0}
 }{}
-%-
-%-> Equation, table and figure style
-%-
-\@addtoreset{equation}{chapter}
-\renewcommand\theequation{\arabic{chapter}\cuz@label@equationhyphen\arabic{equation}}
-% \newtagform{cuzequation}{()}{)}
-% \usetagform{cuzequation}
-\renewcommand{\thetable}{\arabic{chapter}\cuz@label@equationhyphen\arabic{table}}
-\renewcommand{\thefigure}{\arabic{chapter}\cuz@label@equationhyphen\arabic{figure}}
 %---------------------------------------------------------------------------%
 \endinput
 
