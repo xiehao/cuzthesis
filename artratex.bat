@@ -1,7 +1,8 @@
 @rem ------------------------------------------------
 @rem            LaTeX Automated Compiler
 @rem                <By Huangrui Mo>
-@rem Copyright (C) Huangrui Mo <huangrui.mo@gmail.com>
+@rem              <Modified by Hao XIE>
+@rem Copyright (C) Hao XIE <oaheix@gmail.com>
 @rem This is free software: you can redistribute it
 @rem and/or modify it under the terms of the GNU General
 @rem Public License as published by the Free Software

@@ -4,7 +4,8 @@ set -e
 #---------------------------------------------------------------------------#
 #-                       LaTeX Automated Compiler                          -#
 #-                          <By Huangrui Mo>                               -#
-#- Copyright (C) Huangrui Mo <huangrui.mo@gmail.com>                       -#
+#-                        <Modified by Hao XIE>                            -#
+#- Copyright (C) Hao XIE <oaheix@gmail.com>                                -#
 #- This is free software: you can redistribute it and/or modify it         -#
 #- under the terms of the GNU General Public License as published by       -#
 #- the Free Software Foundation, either version 3 of the License, or       -#

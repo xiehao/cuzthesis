@@ -3,7 +3,7 @@
 %-                           Document Style                                -%
 %-                                                                         -%
 %---------------------------------------------------------------------------%
-%- Copyright (C) Huangrui Mo <huangrui.mo@gmail.com> 
+%- Copyright (C) Hao XIE <oaheix@gmail.com> 
 %- This is free software: you can redistribute it and/or modify it
 %- under the terms of the GNU General Public License as published by
 %- the Free Software Foundation, either version 3 of the License, or
@@ -239,9 +239,15 @@
             \fi
         \fi
     \fi
-    \setmainfont{TeX Gyre Termes}% an alternative of Times New Roman
-    \setsansfont{TeX Gyre Heros}% an alternative of Helvetica
-    \setmonofont{TeX Gyre Cursor}% an alternative of Courier New
+    \ifartx@mac%
+        \setmainfont{Times New Roman}% an alternative of Times New Roman
+        \setsansfont{Helvetica}% an alternative of Helvetica
+        \setmonofont{Courier New}% an alternative of Courier New
+    \else
+        \setmainfont{TeX Gyre Termes}% an alternative of Times New Roman
+        \setsansfont{TeX Gyre Heros}% an alternative of Helvetica
+        \setmonofont{TeX Gyre Cursor}% an alternative of Courier New
+    \fi
 \fi
 %-
 %-> Bibliography processor and package
