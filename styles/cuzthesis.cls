@@ -66,7 +66,8 @@
 %---------------------------------------------------------------------------%
 \RequirePackage{ifxetex}% LaTeX engine detection
 \RequirePackage{etoolbox}% a toolbox of programming facilities
-\RequirePackage{textcase}
+\RequirePackage{textcase}% Uppercase and lowercase letters
+\RequirePackage{hologo}% Some useful logos
 \newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 \newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% expansion control
 %---------------------------------------------------------------------------%
@@ -266,9 +267,9 @@
 }
 \renewcommand{\title}[2][\cuz@value@title]{%
     \gdef\cuz@value@title{#2}
-    %\def\cuz@value@titlemark{\MakeUppercase{#1}}}
-    \gdef\cuz@value@titlemark{#1}
+    \gdef\cuz@value@titlemark{\MakeUppercase{#1}}
 }
+\newcommand{\englishtitle}[1]{\gdef\cuz@value@englishtitle{#1}}
 \renewcommand{\@title}{\cuz@value@titlemark}
 \renewcommand{\author}[1]{\gdef\cuz@value@author{#1}}
 \newcommand{\authorid}[1]{\gdef\cuz@value@authorid{#1}}
@@ -404,58 +405,6 @@
 			\makebox[3em][s]{\cuz@label@advisortitle}： & \cuzunderline{\cuz@value@advisortitle}
 		\end{tabular}
 	\end{center}
-}
-%-
-%-> English item commands
-%-
-\newcommand{\englishtitle}[1]{\gdef\cuz@value@englishtitle{#1}}
-\newcommand{\englishauthor}[1]{\gdef\cuz@value@englishauthor{#1}}
-\newcommand{\englishadvisor}[1]{\gdef\cuz@value@englishadvisor{#1}}
-\newcommand{\englishdegree}[1]{\xdef\cuz@value@englishdegree{\zap@space#1 \@empty}}% expand and remove space
-\newcommand{\englishdegreetype}[1]{\gdef\cuz@value@englishdegreetype{#1}}
-\newcommand{\englishthesistype}[1]{\gdef\cuz@value@englishthesistype{#1}}
-\newcommand{\englishmajor}[1]{\gdef\cuz@value@englishmajor{#1}}
-\newcommand{\englishinstitute}[1]{\gdef\cuz@value@englishinstitute{#1}}
-\newcommand{\englishdate}[1]{\gdef\cuz@value@englishdate{#1}}
-%-
-%-> Redefine English style
-%-
-\newcommand{\makeenglishtitle}{%
-    \cleardoublepage
-    \thispagestyle{empty}
-    \begin{center}
-        \linespread{1.5}
-        \zihao{4}\bfseries
-
-        \vspace*{50pt}
-
-        {\zihao{-3}\bfseries \ulenhance[1.5pt]{\ \cuz@value@englishtitle\ }}
-
-        \vspace*{\stretch{2}}
-
-        {\cuz@label@englishstatement}
-
-        {By}
-
-        {\cuz@value@englishauthor}
-
-        {\cuz@value@englishadvisor}
-
-        \vspace*{\stretch{3}}
-
-        {\cuz@value@englishinstitute}
-
-        \vspace*{\stretch{1}}
-
-        {\cuz@value@englishdate}
-
-        \vspace*{\stretch{3}}
-    \end{center}
-    \clearpage
-    \if@twoside
-      \thispagestyle{empty}
-      \cleardoublepage[empty]
-    \fi
 }
 %---------------------------------------------------------------------------%
 %->> Author's declaration
@@ -640,7 +589,7 @@
         \zihao{3}\heiti\cuz@value@title
     \end{center}
     \par\vspace{2ex}
-    {\bfseries\cuz@label@chineseabstract：}\hspace{-1em}
+    {\bfseries\cuz@label@chineseabstract：}\hspace{-0.8em}
     \def\temp{\chinesekeywords{#1}}
 }{
     \par\temp\par
@@ -657,7 +606,7 @@
         \zihao{3}\bfseries\MakeTextUppercase{\cuz@value@englishtitle}
     \end{center}
     \par\vspace{2ex}
-    {\bfseries\cuz@label@englishabstract:}\hspace{-1em}
+    {\bfseries\cuz@label@englishabstract:}\hspace{-0.8em}
     \def\temp{\englishkeywords{#1}}
 }{
     \par\temp\par
@@ -676,15 +625,6 @@
     \chaptermark{\cuz@label@appendices}
     \setcounter{equation}{0}
 }{}
-%-
-%-> Equation, table and figure style
-%-
-\@addtoreset{equation}{chapter}
-\renewcommand\theequation{\arabic{chapter}\cuz@label@equationhyphen\arabic{equation}}
-% \newtagform{cuzequation}{()}{)}
-% \usetagform{cuzequation}
-\renewcommand{\thetable}{\arabic{chapter}\cuz@label@equationhyphen\arabic{table}}
-\renewcommand{\thefigure}{\arabic{chapter}\cuz@label@equationhyphen\arabic{figure}}
 %---------------------------------------------------------------------------%
 \endinput
 
