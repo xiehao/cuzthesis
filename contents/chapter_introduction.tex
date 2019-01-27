@@ -12,9 +12,26 @@
 此浙传毕业论文模板cuzthesis基于国科大莫晃锐制作的ucasthesis模板发展而来。当前
 cuzthesis模板满足最新的浙江传媒学院本科毕业论文撰写要求和封面设定。兼顾操作系
 统：Windows，Linux，macOS 和\LaTeX{}编译引擎：\hologo{pdfLaTeX}、
-\hologo{XeLaTeX}、\hologo{LuaLaTeX}。支持中文书签、中文渲染、中文粗体显示、拷贝
+\hologo{XeLaTeX}、\hologo{LuaLaTeX}，详细支持情况见表\autoref{tab:support-status}。支持中文书签、中文渲染、中文粗体显示、拷贝
 PDF中的文本到其他文本编辑器等特性。此外，对模板的文档结构进行了精心设计，撰写了
 编译脚本提高模板的易用性和使用效率。
+\begin{table}[!htbp]
+    \caption[编译引擎跨平台情况]{各平台下编译引擎支持情况（支持的打\checkmark）}
+    \label{tab:support-status}
+    \centering
+    \small% fontsize
+    % \setlength{\tabcolsep}{4pt}% column separation
+    % \renewcommand{\arraystretch}{1.2}%row space 
+    \begin{tabular}{cccc}
+        \toprule
+         & \hologo{pdfLaTeX} & \hologo{XeLaTeX} & \hologo{LuaLaTeX} \\
+        \midrule
+        Windows & \checkmark\footnote{暂不完全支持，章节标题字体会变为黑体而非宋体。} & \checkmark & \\
+        Linux & & \checkmark & \checkmark \\
+        macOS & & \checkmark & \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 cuzthesis的目标在于简化毕业论文的撰写，利用\LaTeX{}格式与内容分离的特征，模板将
 格式设计好后，作者可只需关注论文内容。同时，cuzthesis有着整洁一致的代码结构和扼
@@ -37,15 +54,15 @@ cuzthesis的目标在于简化毕业论文的撰写，利用\LaTeX{}格式与内
 \href{https://en.wikibooks.org/wiki/LaTeX/Installation}{\LaTeX{}编译系统}和
 \href{https://en.wikibooks.org/wiki/LaTeX/Installation}{\LaTeX{}文本编辑器}为
 \begin{center}
-    %\footnotesize% fontsize
+    \small% fontsize
     %\setlength{\tabcolsep}{4pt}% column separation
     %\renewcommand{\arraystretch}{1.5}% row space 
     \begin{tabular}{lcc}
-        \hline
+        \toprule
         %\multicolumn{num_of_cols_to_merge}{alignment}{contents} \\
         %\cline{i-j}% partial hline from column i to column j
         操作系统 & \LaTeX{}编译系统 & \LaTeX{}文本编辑器\\
-        \hline
+        \midrule
         Linux &
         \href{https://www.tug.org/texlive/acquire-netinstall.html}{\TeX{}Live
         Full} & \href{https://code.visualstudio.com/download}{vscode}、
@@ -57,7 +74,7 @@ cuzthesis的目标在于简化毕业论文的撰写，利用\LaTeX{}格式与内
         \href{https://www.tug.org/texlive/acquire-netinstall.html}{\TeX{}Live
         Full} & \href{https://code.visualstudio.com/download}{vscode}、
         \href{https://www.texstudio.org/}{TeXstudio}\\
-        \hline
+        \bottomrule
     \end{tabular}
 \end{center}
 

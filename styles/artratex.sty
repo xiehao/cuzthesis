@@ -363,6 +363,9 @@
 %-
 \ifartx@table%
     \RequirePackage{ctable}% imports the array, tabularx and booktabs packages
+    \RequirePackage{footnote}% enable the footnotes in tables and tabulars
+    \makesavenoteenv{table}
+    \makesavenoteenv{tabular}
 \fi
 %-
 %-> List structures
