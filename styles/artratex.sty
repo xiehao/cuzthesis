@@ -239,17 +239,19 @@
             \fi
         \fi
     \fi
-    \ifartx@mac%
-        \setmainfont{Times New Roman}% an alternative of Times New Roman
-        \setsansfont{Helvetica}% an alternative of Helvetica
-        \setmonofont{Courier New}% an alternative of Courier New
+    \ifartx@times%
+        \setmainfont[NFSSFamily=entextrm]{Times New Roman}% Times New Roman
+        \setsansfont[NFSSFamily=entextsf]{Times New Roman}% Helvetica
+        \setmonofont[NFSSFamily=entexttt]{Courier New}% Courier New
     \else
-        \setmainfont{TeX Gyre Termes}% an alternative of Times New Roman
-        \setsansfont{TeX Gyre Heros}% an alternative of Helvetica
-        \setmonofont{TeX Gyre Cursor}% an alternative of Courier New
+        \setmainfont[NFSSFamily=entextrm]{FreeSerif}
+        \setsansfont[NFSSFamily=entextsf]{FreeSerif}
+        % \setmainfont[NFSSFamily=entextrm]{TeX Gyre Termes}% an alternative of Times New Roman
+        % \setsansfont[NFSSFamily=entextsf]{TeX Gyre Heros}% an alternative of Helvetica
+        \setmonofont[NFSSFamily=entexttt]{TeX Gyre Cursor}% an alternative of Courier New
     \fi
 \fi
-%-
+%- 
 %-> Bibliography processor and package
 %-
 %- Bibtex processor + natbib package
@@ -344,7 +346,7 @@
 %-
 \ifartx@color% enable color package to use color
     %\RequirePackage{color}%
-    \RequirePackage[usenames,dvipsnames,table]{xcolor}%
+    \RequirePackage[usenames,svgnames,table]{xcolor}%
 \fi
 %-
 %-> Draw graphics directly with TeX commands

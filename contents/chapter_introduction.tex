@@ -1,3 +1,10 @@
+\vspace*{\fill}
+\begin{quotation}
+    本文以ucasthesis使用指南为基础，保留了多数文字，只在涉及浙传特有的部分做了相
+    应修改，在此向原作者表示忠心感谢！
+\end{quotation}
+\vspace*{\fill}
+
 \chapter{绪论}\label{chap:introduction}
 
 \section{课题背景}
@@ -10,12 +17,12 @@
 明白让\LaTeX{}简单易用的重要性，而这正是cuzthesis与ucasthesis所追求和体现的。
 
 此浙传毕业论文模板cuzthesis基于国科大莫晃锐制作的ucasthesis模板发展而来。当前
-cuzthesis模板满足最新的浙江传媒学院本科毕业论文撰写要求和封面设定。兼顾操作系
-统：Windows，Linux，macOS 和\LaTeX{}编译引擎：\hologo{pdfLaTeX}、
-\hologo{XeLaTeX}、\hologo{LuaLaTeX}，详细支持情况见表\autoref{tab:support-status}。支持中文书签、中文渲染、中文粗体显示、拷贝
-PDF中的文本到其他文本编辑器等特性。此外，对模板的文档结构进行了精心设计，撰写了
-编译脚本提高模板的易用性和使用效率。
-\begin{table}[!htbp]
+cuzthesis模板满足最新的浙江传媒学院本科毕业论文撰写要求和封面设定，兼顾主流操作
+系统：Windows，Linux，macOS 和主流\LaTeX{}编译引擎：\hologo{pdfLaTeX}、
+\hologo{XeLaTeX}、\hologo{LuaLaTeX}，详细支持情况见表\ref{tab:support-status}。
+支持中文书签、中文渲染、中文粗体显示、拷贝PDF中的文本到其他文本编辑器等特性。此
+外，对模板的文档结构进行了精心设计，撰写了编译脚本提高模板的易用性和使用效率。
+\begin{table}[htbp]
     \caption[编译引擎跨平台情况]{各平台下编译引擎支持情况（支持的打\checkmark）}
     \label{tab:support-status}
     \centering
@@ -26,9 +33,14 @@ PDF中的文本到其他文本编辑器等特性。此外，对模板的文档�
         \toprule
          & \hologo{pdfLaTeX} & \hologo{XeLaTeX} & \hologo{LuaLaTeX} \\
         \midrule
-        Windows & \checkmark\footnote{暂不完全支持，章节标题字体会变为黑体而非宋体。} & \checkmark & \\
-        Linux & & \checkmark & \checkmark \\
+        Linux\footnote{\hologo{pdfLaTeX}完全不支持，\hologo{XeLaTeX}和
+        \hologo{LuaLaTeX}暂不完全支持，粗楷体加由粗宋体代替，仿宋加粗无效。} & &
+        \checkmark & \checkmark \\
         macOS & & \checkmark & \\
+        Windows & \checkmark\footnote{暂不完全支持，粗宋体加由黑体代替。} &
+        \checkmark\footnote{暂不完全支持，粗楷体由粗宋体代替。} &
+        \checkmark\footnote{暂不完全支持，所有中文字体均无法加粗，且编译时间较
+        \hologo{XeLaTeX}慢一些。} \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -42,22 +54,26 @@ cuzthesis的目标在于简化毕业论文的撰写，利用\LaTeX{}格式与内
 
 \section{系统要求}\label{sec:system}
 
-\href{https://github.com/mohuangrui/ucasthesis}{\texttt{ucasthesis}} 宏包可以在
-目前主流的 \href{https://en.wikibooks.org/wiki/LaTeX/Introduction}{\LaTeX{}} 编
-译系统中使用，例如C\TeX{}套装 （请勿混淆C\TeX{}套装与ctex宏包。C\TeX{}套装是集成
-了许多\LaTeX{}组件的\LaTeX{}编译系统，因已停止维护，\textbf{不再建议使用}。
+\href{https://github.com/xiehao/CUZThesis}{cuzthesis}宏包可以在目前主流的
+\href{https://en.wikibooks.org/wiki/LaTeX/Introduction}{\LaTeX{}}编译系统中使
+用，例如C\TeX{}套装（请勿混淆C\TeX{}套装与ctex宏包。C\TeX{}套装是集成了许多
+\LaTeX{}组件的\LaTeX{}编译系统，因已停止维护，\textbf{不再建议使用}。
 \href{https://ctan.org/pkg/ctex?lang=en}{ctex} 宏包如同cuzthesis，是\LaTeX{}命令
 集，其维护状态活跃，并被主流的\LaTeX{}编译系统默认集成，是几乎所有\LaTeX{}中文文
 档的核心架构。）、MiK\TeX{}（维护较不稳定，\textbf{不太推荐使用}）、\TeX{}Live。
 而文本编辑器方面则包括：Visual Studio Code（简称vscode，强烈推荐）、
-\hologo{TeX}、Emacs、Vim等。推荐的
+\hologo{TeX}studio、Emacs、Vim等。推荐的
 \href{https://en.wikibooks.org/wiki/LaTeX/Installation}{\LaTeX{}编译系统}和
-\href{https://en.wikibooks.org/wiki/LaTeX/Installation}{\LaTeX{}文本编辑器}为
-\begin{center}
+\href{https://en.wikibooks.org/wiki/LaTeX/Installation}{\LaTeX{}文本编辑器}如表
+\ref{tab:recomendations}所示。
+\begin{table}[htbp]
+    \caption[推荐的编译系统与编辑器]{不同平台下推荐的编译系统与编辑器}
+    \label{tab:recomendations}
+    \centering
     \small% fontsize
     %\setlength{\tabcolsep}{4pt}% column separation
     %\renewcommand{\arraystretch}{1.5}% row space 
-    \begin{tabular}{lcc}
+    \begin{tabular}{ccc}
         \toprule
         %\multicolumn{num_of_cols_to_merge}{alignment}{contents} \\
         %\cline{i-j}% partial hline from column i to column j
@@ -66,17 +82,17 @@ cuzthesis的目标在于简化毕业论文的撰写，利用\LaTeX{}格式与内
         Linux &
         \href{https://www.tug.org/texlive/acquire-netinstall.html}{\TeX{}Live
         Full} & \href{https://code.visualstudio.com/download}{vscode}、
-        \href{https://www.texstudio.org/}{TeXstudio}、Emacs、Vim\\
+        \href{https://www.texstudio.org/}{\hologo{TeX}studio}、Emacs、Vim\\
         MacOS & \href{https://www.tug.org/mactex/}{Mac\TeX{} Full} &
         \href{https://code.visualstudio.com/download}{vscode}、
-        \href{https://www.texstudio.org/}{TeXstudio}、Emacs\\
+        \href{https://www.texstudio.org/}{\hologo{TeX}studio}、Emacs\\
         Windows &
         \href{https://www.tug.org/texlive/acquire-netinstall.html}{\TeX{}Live
         Full} & \href{https://code.visualstudio.com/download}{vscode}、
-        \href{https://www.texstudio.org/}{TeXstudio}\\
+        \href{https://www.texstudio.org/}{\hologo{TeX}studio}\\
         \bottomrule
     \end{tabular}
-\end{center}
+\end{table}
 
 \LaTeX{}编译系统，如\TeX{}Live（Mac\TeX{}为针对macOS的\TeX{}Live)，用于提供编译
 环境；\LaTeX{}文本编辑器 (如vscode) 用于编辑\TeX{}源文件。请从各软件官网下载安装
@@ -93,7 +109,7 @@ cuzthesis的目标在于简化毕业论文的撰写，利用\LaTeX{}格式与内
 关于模板编译和样式设计的问题，请\textbf{先仔细阅读此说明文档，特别是“常见问题”
 （章节~\ref{sec:qa}）}。若问题仍无法得到解决，请\textbf{先将问题理解清楚并描述清
 楚，再将问题反馈}至
-\href{https://github.com/xiehao/CUZThesis/issues}{Github/ucasthesis/issues}。
+\href{https://github.com/xiehao/CUZThesis/issues}{Github/cuzthesis/issues}。
 
 欢迎大家有效地反馈模板不足之处，一起不断改进模板。希望大家向同事积极推广
 \LaTeX{}，一起更高效地做科研。

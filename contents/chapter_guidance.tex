@@ -44,15 +44,15 @@ cuzthesis.tex为主文档，其设计和规划了论文的整体框架，通过�
 
 \begin{itemize}
     \item Windows：双击批处理文件artratex.bat可得全编译后的PDF文档，其存在是为了
-    帮助不了解\LaTeX{}编译过程的初学者跨过编译这第一道坎，请勿通过邮件传播和接收
-    此脚本，以防范DOS脚本的潜在风险。
+    帮助不了解\LaTeX{}编译过程的初学者跨过编译这第一道坎，\textbf{请勿通过邮件传
+    播和接收此脚本，以防范DOS脚本的潜在风险。}
     \item Linux或macOS：在终端中运行
         \begin{itemize}
             \item \verb|./artratex.sh xa|：获得全编译后的PDF文档
             \item \verb|./artratex.sh x|：快速编译模式
         \end{itemize}
-    \item 全编译指运行 \verb|xelatex+bibtex+xelatex+xelatex| 以正确生成所有的引
-    用链接，如目录，参考文献及引用等。在写作过程中若无添加新的引用，则可用快速编
+    \item 全编译指运行\verb|xelatex+bibtex+xelatex+xelatex|以正确生成所有的引用
+    链接，如目录，参考文献及引用等。在写作过程中若无添加新的引用，则可用快速编
     译，即只运行一遍\LaTeX{}编译引擎以减少编译时间。
 \end{itemize}
 
@@ -97,7 +97,7 @@ cuzthesis.tex为主文档，其设计和规划了论文的整体框架，通过�
     introduction等）。
     \item acknowledgement.tex：致谢的内容。
     \item appendices.tex：为附录内容，如无此部分可将其在cuzthesis.tex文件中的导
-    入语句注释掉
+    入语句注释掉。
 \end{itemize}
 
 \subsection{images文件夹}
@@ -347,7 +347,7 @@ Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
 \end{itemize}
 
 当前文档的默认参考文献样式为\textbf{super}。在该模式下，若希望在特定位置将上标改
-为嵌入式标，可使用
+为嵌入式标，可使用：
 
 \begin{itemize}
     \item 文本类型：\verb|\citetns{lamport1986document,chen2005zhulu}|，正如此处
