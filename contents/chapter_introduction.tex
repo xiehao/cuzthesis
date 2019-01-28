@@ -23,7 +23,7 @@ cuzthesis模板满足最新的浙江传媒学院本科毕业论文撰写要求�
 支持中文书签、中文渲染、中文粗体显示、拷贝PDF中的文本到其他文本编辑器等特性。此
 外，对模板的文档结构进行了精心设计，撰写了编译脚本提高模板的易用性和使用效率。
 \begin{table}[htbp]
-    \caption[编译引擎跨平台情况]{各平台下编译引擎支持情况（支持的打\checkmark）}
+    \caption[编译引擎跨平台情况]{各平台下编译引擎支持情况（\checkmark：支持或部分支持；$\times$：不支持）}
     \label{tab:support-status}
     \centering
     \small% fontsize
@@ -33,14 +33,14 @@ cuzthesis模板满足最新的浙江传媒学院本科毕业论文撰写要求�
         \toprule
          & \hologo{pdfLaTeX} & \hologo{XeLaTeX} & \hologo{LuaLaTeX} \\
         \midrule
-        Linux\footnote{\hologo{pdfLaTeX}完全不支持，\hologo{XeLaTeX}和
-        \hologo{LuaLaTeX}暂不完全支持，粗楷体加由粗宋体代替，仿宋加粗无效。} & &
-        \checkmark & \checkmark \\
-        macOS & & \checkmark & \\
+        Linux & $\times$ & \checkmark\footnote{暂不完全支持，粗楷体加由粗宋体代
+        替，仿宋加粗无效；但不影响本模板使用。} & \checkmark\footnote{暂不完全支
+        持，粗楷体加由粗宋体代替，仿宋加粗无效；但不影响本模板使用。} \\
+        macOS & ?\footnote{暂未测试……} & \checkmark & ?\footnote{暂未测试……} \\
         Windows & \checkmark\footnote{暂不完全支持，粗宋体加由黑体代替。} &
-        \checkmark\footnote{暂不完全支持，粗楷体由粗宋体代替。} &
-        \checkmark\footnote{暂不完全支持，所有中文字体均无法加粗，且编译时间较
-        \hologo{XeLaTeX}慢一些。} \\
+        \checkmark\footnote{暂不完全支持，粗楷体由粗宋体代替；但不影响本模板使
+        用。} & \checkmark\footnote{暂不完全支持，所有中文字体均无法加粗，且编译
+        时间较\hologo{XeLaTeX}慢一些。} \\
         \bottomrule
     \end{tabular}
 \end{table}
