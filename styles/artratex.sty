@@ -242,13 +242,19 @@
     \ifartx@times%
         \setmainfont[NFSSFamily=entextrm]{Times New Roman}% Times New Roman
         \setsansfont[NFSSFamily=entextsf]{Times New Roman}% Helvetica
-        \setmonofont[NFSSFamily=entexttt]{Courier New}% Courier New
+        % \setmonofont[NFSSFamily=entexttt]{Courier New}% Courier New
+        \ifartx@windows%
+            \setmonofont[NFSSFamily=entexttt]{Consolas}%
+        \else\ifartx@mac
+            \setmonofont[NFSSFamily=entexttt]{Monaco}%
+            \fi
+        \fi
     \else
         \setmainfont[NFSSFamily=entextrm]{FreeSerif}
         \setsansfont[NFSSFamily=entextsf]{FreeSerif}
         % \setmainfont[NFSSFamily=entextrm]{TeX Gyre Termes}% an alternative of Times New Roman
         % \setsansfont[NFSSFamily=entextsf]{TeX Gyre Heros}% an alternative of Helvetica
-        \setmonofont[NFSSFamily=entexttt]{TeX Gyre Cursor}% an alternative of Courier New
+        \setmonofont[NFSSFamily=entexttt]{Ubuntu Mono}%{TeX Gyre Cursor}% an alternative of Courier New
     \fi
 \fi
 %- 

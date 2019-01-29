@@ -1,13 +1,6 @@
-\vspace*{\fill}
-\begin{quotation}
-    本文以ucasthesis使用指南为基础，保留了多数文字，只在涉及浙传特有的部分做了相
-    应修改，在此向原作者表示忠心感谢！
-\end{quotation}
-\vspace*{\fill}
-
 \chapter{绪论}\label{chap:introduction}
 
-\section{课题背景}
+\section{课题背景}\label{sec:background}
 
 考虑到许多同学可能缺乏\LaTeX{}使用经验，cuzthesis在参考了ucasthesis模板的基础
 上，将\LaTeX{}的复杂性高度封装，开放出简单的接口，以便轻易使用。同时，对用
@@ -61,8 +54,8 @@ cuzthesis的目标在于简化毕业论文的撰写，利用\LaTeX{}格式与内
 \href{https://ctan.org/pkg/ctex?lang=en}{ctex} 宏包如同cuzthesis，是\LaTeX{}命令
 集，其维护状态活跃，并被主流的\LaTeX{}编译系统默认集成，是几乎所有\LaTeX{}中文文
 档的核心架构。）、MiK\TeX{}（维护较不稳定，\textbf{不太推荐使用}）、\TeX{}Live。
-而文本编辑器方面则包括：Visual Studio Code（简称vscode，强烈推荐）、
-\hologo{TeX}studio、Emacs、Vim等。推荐的
+而文本编辑器方面则包括：Visual Studio Code（简称VS Code）、\hologo{TeX}studio、
+Emacs、Vim等。推荐的
 \href{https://en.wikibooks.org/wiki/LaTeX/Installation}{\LaTeX{}编译系统}和
 \href{https://en.wikibooks.org/wiki/LaTeX/Installation}{\LaTeX{}文本编辑器}如表
 \ref{tab:recomendations}所示。
@@ -81,26 +74,26 @@ cuzthesis的目标在于简化毕业论文的撰写，利用\LaTeX{}格式与内
         \midrule
         Linux &
         \href{https://www.tug.org/texlive/acquire-netinstall.html}{\TeX{}Live
-        Full} & \href{https://code.visualstudio.com/download}{vscode}、
+        Full} & \href{https://code.visualstudio.com/download}{VS Code}、
         \href{https://www.texstudio.org/}{\hologo{TeX}studio}、Emacs、Vim\\
         MacOS & \href{https://www.tug.org/mactex/}{Mac\TeX{} Full} &
-        \href{https://code.visualstudio.com/download}{vscode}、
+        \href{https://code.visualstudio.com/download}{VS Code}、
         \href{https://www.texstudio.org/}{\hologo{TeX}studio}、Emacs\\
         Windows &
         \href{https://www.tug.org/texlive/acquire-netinstall.html}{\TeX{}Live
-        Full} & \href{https://code.visualstudio.com/download}{vscode}、
+        Full} & \href{https://code.visualstudio.com/download}{VS Code}、
         \href{https://www.texstudio.org/}{\hologo{TeX}studio}\\
         \bottomrule
     \end{tabular}
 \end{table}
 
 \LaTeX{}编译系统，如\TeX{}Live（Mac\TeX{}为针对macOS的\TeX{}Live)，用于提供编译
-环境；\LaTeX{}文本编辑器 (如vscode) 用于编辑\TeX{}源文件。请从各软件官网下载安装
-程序，勿使用不明程序源。\textbf{\LaTeX{}编译系统和\LaTeX{}编辑器分别安装成功后，
-即完成了\LaTeX{}的系统配置}，无需其他手动干预和配置。若系统原带有旧版的\LaTeX{}
-编译系统并想安装新版，请\textbf{先卸载干净旧版再安装新版}。
+环境；\LaTeX{}文本编辑器 (如VS Code) 用于编辑\TeX{}源文件。请从各软件官网下载安
+装程序，勿使用不明程序源。\textbf{\LaTeX{}编译系统和\LaTeX{}编辑器分别安装成功
+后，即完成了\LaTeX{}的系统配置}，无需其他手动干预和配置。若系统原带有旧版的
+\LaTeX{}编译系统并想安装新版，请\textbf{先卸载干净旧版再安装新版}。
 
-\section{问题反馈}
+\section{问题反馈}\label{sec:callback}
 
 关于\LaTeX{}的知识性问题，请查阅
 \href{https://github.com/mohuangrui/ucasthesis/wiki}{ucasthesis和\LaTeX{}知识小
@@ -114,8 +107,9 @@ cuzthesis的目标在于简化毕业论文的撰写，利用\LaTeX{}格式与内
 欢迎大家有效地反馈模板不足之处，一起不断改进模板。希望大家向同事积极推广
 \LaTeX{}，一起更高效地做科研。
 
-\section{模板下载}
+\section{模板下载}\label{sec:download}
 
 \begin{center}
-    \href{https://github.com/xiehao/CUZThesis}{Github/cuzthesis}: \url{https://github.com/xiehao/CUZThesis}
+    \href{https://github.com/xiehao/CUZThesis}{Github/cuzthesis}:
+    \url{https://github.com/xiehao/CUZThesis}。
 \end{center}

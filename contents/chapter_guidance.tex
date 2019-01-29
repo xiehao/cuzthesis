@@ -8,9 +8,9 @@
 \LaTeX{}的非凡魅力，并可以通过阅读相关资料如\LaTeX{}
 Wikibook\citep{wikibook2014latex}来完善自己的使用知识。
 
-\section{新手上路}
+\section{新手上路}\label{sec:newbie}
 
-\begin{enumerate}
+\begin{itemize}
     \item 安装软件：根据所用操作系统和章节~\ref{sec:system}中的信息安装\LaTeX{}
     编译环境。
     \item 获取模板：下载 \href{https://github.com/xiehao/CUZThesis}{cuzthesis}
@@ -18,68 +18,103 @@ Wikibook\citep{wikibook2014latex}来完善自己的使用知识。
     在内的完成学位论文的一切要素，所以，下载时，推荐下载整个cuzthesis文件夹，而
     不是单独的文档类。
     \item 编译模板：
-        \begin{enumerate}
-            \item Windows：双击运行artratex.bat脚本。
-            \item Linux或macOS: {\small \verb|terminal| -> \verb|chmod +x ./artratex.sh| -> \verb|./artratex.sh xa|}
+        \begin{itemize}
+            \item Windows：双击运行run.bat脚本。
+            \item Linux或macOS: {\small \verb|terminal| -> \verb|chmod +x ./run.sh| -> \verb|./run.sh xa|}
             \item 任意系统：都可使用\LaTeX{}编辑器打开cuzthesis.tex文件并选择
             \hologo{XeLaTeX}编译引擎进行编译。
-        \end{enumerate}
+        \end{itemize}
     \item 错误处理：若编译中遇到了问题，请先查看“常见问题”（章节
     ~\ref{sec:qa}）。
-\end{enumerate}
+\end{itemize}
 
 编译完成即可获得本PDF说明文档，而这也完成了学习使用cuzthesis撰写论文的一半进程。
 至此，新手已上路！
 
-\section{文档目录简介}
+\section{文档目录简介}\label{sec:directory}
 
-本部分主要介绍cuzthesis工程的目录结构，以助读者理解各部分含义。
+本部分主要介绍cuzthesis工程的目录结构，以助读者理解各部分含义。总体结构如下所
+示，现就重要文件或文件夹分别详细解释如下：
 
-\subsection{cuzthesis.tex}
+\begingroup
+    \small\linespread{1}
+    \begin{center}
+        \begin{verbatim}
+            CUZThesis
+            ├── bibliography
+            │   ├── gbt7714-plain.bst
+            │   ├── gbt7714-unsrt.bst
+            │   └── references.bib
+            ├── cache
+            ├── contents
+            │   ├── abstracts.tex
+            │   ├── acknowledgement.tex
+            │   ├── appendices.tex
+            │   ├── chapter_guidance.tex
+            │   ├── chapter_introduction.tex
+            │   ├── initialization.tex
+            │   └── mainbody.tex
+            ├── cuzthesis.tex
+            ├── images
+            │   ├── cuz_logo.png
+            │   └── ...
+            ├── README.md
+            ├── run.bat
+            ├── run.sh
+            └── styles
+                ├── artracom.sty
+                ├── artratex.sty
+                ├── cuzthesis.cfg
+                └── cuzthesis.cls
+        \end{verbatim}
+    \end{center}
+\endgroup
+
+\subsection{cuzthesis.tex}\label{sub:cuzthesis}
 
 cuzthesis.tex为主文档，其设计和规划了论文的整体框架，通过对其的阅读可以了解整个
 论文框架的搭建。如无意外，读者无需修改此文档。
 
-\subsection{编译脚本}
+\subsection{编译脚本}\label{sub:scripts}
 
 \begin{itemize}
-    \item Windows：双击批处理文件artratex.bat可得全编译后的PDF文档，其存在是为了
+    \item Windows：双击批处理文件run.bat可得全编译后的PDF文档，其存在是为了
     帮助不了解\LaTeX{}编译过程的初学者跨过编译这第一道坎，\textbf{请勿通过邮件传
     播和接收此脚本，以防范DOS脚本的潜在风险。}
     \item Linux或macOS：在终端中运行
         \begin{itemize}
-            \item \verb|./artratex.sh xa|：获得全编译后的PDF文档
-            \item \verb|./artratex.sh x|：快速编译模式
+            \item \verb|./run.sh xa|：获得全编译后的PDF文档
+            \item \verb|./run.sh x|：快速编译模式
         \end{itemize}
     \item 全编译指运行\verb|xelatex+bibtex+xelatex+xelatex|以正确生成所有的引用
     链接，如目录，参考文献及引用等。在写作过程中若无添加新的引用，则可用快速编
     译，即只运行一遍\LaTeX{}编译引擎以减少编译时间。
 \end{itemize}
 
-\subsection{cache文件夹}
+\subsection{cache文件夹}\label{sub:cache}
 
 运行上述编译脚本后，编译所生成的中间文件与最终PDF文档皆存于该文件夹内，其存在是
 为了保持工作空间的整洁，因为好的心情是很重要的。若自行编译（即不运行上述编译脚
 本）则不在该文件夹下生成文件。
 
-\subsection{styles文件夹}
+\subsection{styles文件夹}\label{sub:styles}
 
 该文件夹包含cuzthesis文档类的定义文件和配置文件，通过对它们的修改可以实现特定的
 模版设定。若需更新模板，一般只需用新的样式文件替换旧的即可。该部分为模板编写者修
 改之用，一般读者亦无需修改此部分。
 
-\begin{enumerate}
+\begin{itemize}
     \item cuzthesis.cls：文档类定义文件，论文的最核心的格式即通过它来定义的。
     \item cuzthesis.cfg：文档类配置文件，为类定义文件准备常量标签等配置信息。
     \item artratex.sty: 常用宏包及文档设定，如参考文献样式、文献引用样式、页眉页
-    脚设定等。这些功能具有开关选项，常只需在thesis.tex中的如下命令中进行启用即
-    可，一般无需修改artratex.sty本身。
+    脚设定等。这些功能具有开关选项，常只需在cuzthesis.tex中的如下命令中进行启用
+    即可，一般无需修改artratex.sty本身。
         
         \path{\usepackage[options]{artratex}} 
     \item artracom.sty：自定义命令以及添加宏包的推荐放置位置。
-\end{enumerate}
+\end{itemize}
 
-\subsection{contents文件夹}
+\subsection{contents文件夹}\label{sub:contents}
 
 该文件夹内为论文的所有实体内容，正常情况下，这也是\textbf{使用cuzthesis撰写学文
 论文时，主要关注和修改的一个位置。注：所有文件都必须采用UTF-8编码，否则编译后将
@@ -89,9 +124,9 @@ cuzthesis.tex为主文档，其设计和规划了论文的整体框架，通过�
     \item initialization.tex：为论文中出现的一些必要信息的初始化，如：中英文标
     题、作者名、学号、专业、学院、毕业年份等等，这些信息变量一旦设置一次之后，后
     面很多地方即可直接调用。
+    \item abstracts.tex：中英文摘要的内容。
     \item mainbody.tex：索引需要出现的章节。开始写论文时，可以只索引当前章节，以
     快速编译查看，当论文完成后，再对所有章节进行索引即可。
-    \item abstracts.tex：中英文摘要的内容。
     \item chapter{\_}xxx.tex：为论文主体的各个章节，即mainbody.tex文件中索引的章
     节，可根据需要添加和撰写（建议将xxx替换为相应章节的全小写英文名，如
     introduction等）。
@@ -100,32 +135,37 @@ cuzthesis.tex为主文档，其设计和规划了论文的整体框架，通过�
     入语句注释掉。
 \end{itemize}
 
-\subsection{images文件夹}
+\subsection{images文件夹}\label{sub:images-folder}
 
 该文件夹用于放置论文中所需要的图片类文件，支持格式有：.jpg, .png, .pdf。其中，
-cuz{\_}logo.pdf为浙传校徽文件，用于创建封面。建议将清晰的矢量图（如流程图、框架
-图、模块图等）转换成.pdf格式并裁剪到合适大小，而位图则以.png格式为佳。原则上，能
-用矢量图的尽量不要用位图。此外，不建议为各章节图片建子目录，即使图片众多，若命名
-规则合理，图片查询亦是十分方便。
+cuz{\_}logo.pdf为浙传校徽文件，用于创建封面。
 
-\subsection{bibliography文件夹}
+
+\begin{leftbar}
+    \noindent\textbf{建议：}将清晰的矢量图（如流程图、框架图、模块图等）转换成
+    .pdf格式并裁剪到合适大小，而位图则以.png格式为佳。原则上，能用矢量图的尽量不
+    要用位图。此外，不建议为各章节图片建子目录，即使图片众多，若命名规则合理，图
+    片查询亦是十分方便。
+\end{leftbar}
+
+\subsection{bibliography文件夹}\label{sub:bibliography}
 
 该文件夹主要用于存放参考文件格式定义文件与内容信息，
 
-\begin{enumerate}
+\begin{itemize}
     \item references.bib：参考文献内容信息库。
     \item gbt7714-xxx.bst：符合国标的文献样式定义文件。由
     \href{https://github.com/zepinglee/gbt7714-bibtex-style}{zepinglee}开发，并
     满足最新国标要求。与文献样式有关的问题，请查阅开发者所提供的文档，并建议适当
     追踪其更新。
-\end{enumerate}
+\end{itemize}
 
-\section{排版元素}
+\section{排版元素}\label{sec:elements}
 
 学位论文中的排版元素有很多，本模板无法逐一介绍，只就公式、图表等几种常用的排版元
 素的用法及注意事项简要说明如下，详细用法请参考相应资料。
 
-\subsection{数学公式}
+\subsection{数学公式}\label{sub:equations}
 
 比如Navier-Stokes方程，如式\eqref{eq:ns}和式\eqref{eq:ns-}所示：
 \begin{equation}
@@ -146,7 +186,7 @@ cuz{\_}logo.pdf为浙传校徽文件，用于创建封面。建议将清晰的�
 artracom.sty中对一些常用数据类型如矢量矩阵等进行了封装，这样的好处是如有一天需要
 修改矢量的显示形式，只需单独修改artracom.sty中的矢量定义即可实现全文档的修改。
 
-\subsection{表格}
+\subsection{表格}\label{sub:tables}
 
 请见表~\ref{tab:sample}。制表的更多范例，请见
 \href{https://en.wikibooks.org/wiki/LaTeX/Tables}{WiKibook Tables}。
@@ -170,14 +210,14 @@ artracom.sty中对一些常用数据类型如矢量矩阵等进行了封装，�
     \end{tabular}
 \end{table}
 
-\subsection{图片}
+\subsection{图片}\label{sub:images}
 
 一图胜千言，图片的插入在论文中往往能起到点睛的作用。在插入图片时，须在正文中加以
 引用，并配上相应的解释说明。同时，应将代码放置在引用处的后方合适位置（勿相距甚
 远）。论文中图片的插入通常分为单图和多图，下面分别加以介绍：
 
 单图插入：假设插入名为\verb|tc_q_criteria|（后缀可以为.jpg、.png、.pdf，下同）的
-图片，其效果如图\ref{fig:tc_q_criteria}。注意，应在图的下方给出图例
+图片，其效果如图~\ref{fig:tc_q_criteria}。注意，应在图的下方给出图例
 （\verb|\caption|）。
 \begin{figure}[!htbp]
     \centering
@@ -187,7 +227,7 @@ artracom.sty中对一些常用数据类型如矢量矩阵等进行了封装，�
 \end{figure}
 
 若插图的空白区域过大，以图片\verb|shock_cyn|为例，自动裁剪如图
-\ref{fig:shock_cyn}。
+~\ref{fig:shock_cyn}。
 \begin{figure}[!htbp]
     \centering
     % trim option's parameter order: left bottom right top
@@ -226,7 +266,7 @@ artracom.sty中对一些常用数据类型如矢量矩阵等进行了封装，�
     \label{fig:oaspl}
 \end{figure}
 
-\subsection{算法}
+\subsection{算法}\label{sub:algorithms}
 
 算法环境在浙传毕设论文官方Word模板中未作明确要求，故暂采用通用样式，如算法
 \ref{alg:euclid}所示，详细使用方法请参见文档
@@ -248,19 +288,15 @@ artracom.sty中对一些常用数据类型如矢量矩阵等进行了封装，�
     \end{algorithmic}
 \end{algorithm}
 
-\subsection{代码段}
+\subsection{代码段}\label{sub:listings}
 
-原则上，论文正文中应尽可能少的出现工程代码片段，建议每次不超过一页，并在正文中应
-配有相应解释。这也体现了作者代码设计上的水平，即用尽可能少的代码完成尽可能具体的
-任务。若必须引用一小段代码，可使用lstlisting设置代码环境。本模板的代码环境默认配
-置在artratex.sty，搜索关键字“\verb|\lstset|”即可找到相应配置。
+在正文中引用一段代码，可使用lstlisting设置代码环境。本模板的代码环境默认配置在
+artratex.sty，搜索关键字“\verb|\lstset|”即可找到相应配置。
 
-观察\autoref{code:samp-code}，结合前述图表设置，试图理解代码环境的编写。
+观察代码段~\ref{code:samp-code}，结合前述图表设置，试图理解代码环境的编写。
 
 \begin{lstlisting}[
-    language=c++,
-    numbers=left,
-    numberstyle=\tiny,
+    language=C++,
     label=code:samp-code,
     caption=一段Chromium的源代码
 ]
@@ -297,7 +333,14 @@ Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
     \end{verbatim}
 \endgroup
 
-\subsection{参考文献引用}
+\begin{leftbar}
+    \noindent\textbf{建议：}原则上，论文正文中应尽可能少出现工程代码片段，建议每
+    段代码不超过一页（半页以内尤佳），并在正文中配有相应解释说明；超过一页的代码
+    片段可拆分成多个模块（函数）分别列出并解释，若实在无法拆分，可将其放到附录
+    中。
+\end{leftbar}
+
+\subsection{参考文献引用}\label{sub:references}
 
 参考文献引用过程以实例进行介绍，假设需要引用名为``Document Preparation System''
 的文献，步骤如下：
@@ -361,11 +404,11 @@ Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
 \href{https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management}{WiKibook
 Bibliography}。
 
-\nocite{*}
+% \nocite{*}
 
 \section{常见使用问题}\label{sec:qa}
 
-\begin{enumerate}
+\begin{itemize}
     \item 模板每次发布前，都已在Windows，Linux，macOS系统上测试通过。下载模板
     后，若编译出现错误，则请参考国科大模板附带的
     \href{https://github.com/mohuangrui/ucasthesis/wiki}{\LaTeX{}知识小站} 中的
@@ -379,7 +422,7 @@ Bibliography}。
     编辑器编译。注：\LaTeX{}文本编辑器编译的默认设定为\hologo{pdfLaTeX}编译引
     擎，若选择\hologo{XeLaTeX}编译引擎，请进入下拉菜单选择。为正确生成引用链接，
     需要进行全编译。由于\hologo{LuaLaTeX}编译引擎尚不成熟，故暂不推荐。
-    \item vscode中关于\hologo{LaTeX}方面建议安装的插件：
+    \item VS Code中关于\hologo{LaTeX}方面建议安装的插件：
         \begin{itemize}
             \item \hologo{LaTeX} Workshop：提供了绝大多数\hologo{LaTeX}的辅助功
             能；
@@ -391,7 +434,7 @@ Bibliography}。
             \item GitLens：提供了绝大多数Git的辅助功能；
             \item gitignore：对.gitignore文件进行操作；
             \item Markdown All in One：提供了Markdown语法支持与预览；
-            \item Settings Sync：在不同平台间同步vscode插件及配置信息。
+            \item Settings Sync：在不同平台间同步VS Code插件及配置信息。
         \end{itemize}
     \item 设置文档样式: 在artratex.sty中搜索关键字定位相应命令，然后修改：
         \begin{itemize}
@@ -411,6 +454,6 @@ Bibliography}。
             \item 楷体：{\itshape 浙传论文模板cuzthesis} 或 \textit{浙传论文模板cuzthesis}
             \item 粗楷体：{\bfseries\itshape 浙传论文模板cuzthesis} 或 \textit{\bfseries 浙传论文模板cuzthesis}
         \end{itemize}
-\end{enumerate}
+\end{itemize}
 
 

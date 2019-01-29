@@ -68,6 +68,7 @@
 \RequirePackage{etoolbox}% a toolbox of programming facilities
 \RequirePackage{textcase}% Uppercase and lowercase letters
 \RequirePackage{hologo}% Some useful logos
+\RequirePackage{framed}% Framed paragraphs
 \newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 \newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% expansion control
 %---------------------------------------------------------------------------%
