@@ -19,12 +19,12 @@
 %-
 %-> Layout
 %-
-\newif\ifcuz@singlesided \cuz@singlesidedfalse
 \DeclareOption{singlesided}{% enable single-sided printing
-    \cuz@singlesidedtrue%
+    \PassOptionsToClass{oneside}{ctexbook}%
 }
 \newif\ifcuz@doublesided \cuz@doublesidedfalse
 \DeclareOption{doublesided}{% enable double-sided printing
+    \PassOptionsToClass{twoside}{ctexbook}%
     \cuz@doublesidedtrue%
 }
 \newif\ifcuz@hdr \cuz@hdrfalse
@@ -33,8 +33,13 @@
 }
 \newif\ifcuz@printcopy \cuz@printcopyfalse
 \DeclareOption{printcopy}{% enable print copy layout
-    \cuz@doublesidedtrue% auto enable double-sided style
+    \PassOptionsToClass{twoside}{ctexbook}%
     \cuz@printcopytrue%
+}
+\newif\ifcuz@plain \cuz@plainfalse
+\DeclareOption{plain}{
+    \PassOptionsToClass{scheme=plain}{ctexbook}%
+    \cuz@plaintrue%
 }
 %-
 %-> Draft version info
@@ -56,11 +61,7 @@
 %---------------------------------------------------------------------------%
 %->> Load class information
 %---------------------------------------------------------------------------%
-\ifcuz@doublesided% if double-sided printing enabled
-    \LoadClass[UTF8,a4paper,twoside,zihao=-4]{ctexbook}
-\else% if double-sided printing isn't enabled
-    \LoadClass[UTF8,a4paper,oneside,zihao=-4]{ctexbook}
-\fi
+\LoadClass[UTF8,a4paper,zihao=-4]{ctexbook}
 %---------------------------------------------------------------------------%
 %->> Required packages
 %---------------------------------------------------------------------------%
@@ -626,6 +627,16 @@
     \chaptermark{\cuz@label@appendices}
     \setcounter{equation}{0}
 }{}
+%---------------------------------------------------------------------------%
+%->> Customized bibliography settings
+%---------------------------------------------------------------------------%
+\ifcuz@plain%
+    \def\bibetal{\cuz@value@englishbibetal}
+    \def\biband{\cuz@value@englishbiband}
+\else%
+    \def\bibetal{\cuz@value@chinesebibetal}
+    \def\biband{\cuz@value@chinesebiband}
+\fi
 %---------------------------------------------------------------------------%
 \endinput
 
