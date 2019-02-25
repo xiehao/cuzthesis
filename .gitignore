@@ -1,5 +1,6 @@
 cache/
 *thesis.pdf
+!guidance.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
