@@ -446,10 +446,11 @@
 %\renewcommand{\thetable}{\thesection\arabic{table}}% configure the label style
 %- Set bibliography entry
 \ifartx@bibtex%
-    \setlength{\bibsep}{0.0ex plus 0.2ex minus 0.2ex}% set distance between entries
+    % \setlength{\bibsep}{0.0ex plus 0.2ex minus 0.2ex}% set distance between entries
+    \setlength{\bibsep}{0.38\baselineskip}
 \fi
 \ifartx@biber%
-    \setlength\bibitemsep{0.5\baselineskip}% set distance between entries
+    \setlength\bibitemsep{0.38\baselineskip}% set distance between entries
 \fi
 \renewcommand*{\bibfont}{\small}% set font size for bibliography
 %-
