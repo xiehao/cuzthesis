@@ -619,6 +619,10 @@
     \chapter*{\cuz@label@acknowledgement}
     \chaptermark{\cuz@label@acknowledgement}
     \vspace{3ex}
+    % \linespread{1.3}
+    \renewcommand{\baselinestretch}{1.3}
+    \setlength{\parskip}{0.5\baselineskip}
+    \selectfont
 }{}
 %- define appendices
 \newenvironment{appendices}{
@@ -626,6 +630,13 @@
     \chapter*{\cuz@label@appendices}
     \chaptermark{\cuz@label@appendices}
     \setcounter{equation}{0}
+}{}
+\newenvironment{cuzchapter}[2]{
+    \chapter{#1}
+    \label{#2}
+    \renewcommand{\baselinestretch}{1.3}
+    \setlength{\parskip}{0.5\baselineskip}
+    \selectfont
 }{}
 %---------------------------------------------------------------------------%
 %->> Customized bibliography settings
