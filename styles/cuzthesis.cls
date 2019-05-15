@@ -548,7 +548,7 @@
     \@afterheading
 }
 \def\@makechapterhead#1{%
-	\vspace{1.5ex} %\vspace*{20\p@}%
+	% \vspace{1.5ex} %\vspace*{20\p@}%
 	{
         \parindent \z@ % \centering
         \songti\zihao{4}\bfseries\rmfamily
@@ -560,7 +560,7 @@
         \interlinepenalty\@M
         #1\par\nobreak
 	}
-    \vspace{1.5ex}
+    \vspace{0.6ex}
 }
 \def\@schapter#1{%
 	\@makeschapterhead{#1}
@@ -621,7 +621,7 @@
     \vspace{3ex}
     % \linespread{1.3}
     \renewcommand{\baselinestretch}{1.3}
-    \setlength{\parskip}{0.5\baselineskip}
+    \setlength{\parskip}{0.47\baselineskip}
     \selectfont
 }{}
 %- define appendices
@@ -635,7 +635,7 @@
     \chapter{#1}
     \label{#2}
     \renewcommand{\baselinestretch}{1.3}
-    \setlength{\parskip}{0.5\baselineskip}
+    \setlength{\parskip}{0.47\baselineskip}
     \selectfont
 }{}
 %---------------------------------------------------------------------------%
