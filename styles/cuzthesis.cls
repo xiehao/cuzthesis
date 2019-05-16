@@ -621,7 +621,7 @@
     \vspace{3ex}
     % \linespread{1.3}
     \renewcommand{\baselinestretch}{1.3}
-    \setlength{\parskip}{0.47\baselineskip}
+    \setlength{\parskip}{0.4\baselineskip}
     \selectfont
 }{}
 %- define appendices
@@ -635,7 +635,7 @@
     \chapter{#1}
     \label{#2}
     \renewcommand{\baselinestretch}{1.3}
-    \setlength{\parskip}{0.47\baselineskip}
+    \setlength{\parskip}{0.4\baselineskip}
     \selectfont
 }{}
 %---------------------------------------------------------------------------%
