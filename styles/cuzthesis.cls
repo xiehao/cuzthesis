@@ -623,21 +623,27 @@
     \renewcommand{\baselinestretch}{1.3}
     \setlength{\parskip}{0.4\baselineskip}
     \selectfont
-}{}
+}{
+    \par
+}
 %- define appendices
 \newenvironment{appendices}{
     \intotoc{\cuz@label@appendices}% should be placed first
     \chapter*{\cuz@label@appendices}
     \chaptermark{\cuz@label@appendices}
     \setcounter{equation}{0}
-}{}
+}{
+    \par
+}
 \newenvironment{cuzchapter}[2]{
     \chapter{#1}
     \label{#2}
     \renewcommand{\baselinestretch}{1.3}
     \setlength{\parskip}{0.4\baselineskip}
     \selectfont
-}{}
+}{
+    \par
+}
 %---------------------------------------------------------------------------%
 %->> Customized bibliography settings
 %---------------------------------------------------------------------------%
