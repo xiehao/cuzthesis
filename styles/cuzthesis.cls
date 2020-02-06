@@ -277,6 +277,8 @@
 \newcommand{\authorid}[1]{\gdef\cuz@value@authorid{#1}}
 \newcommand{\advisor}[1]{\gdef\cuz@value@advisor{#1}}
 \newcommand{\advisortitle}[1]{\gdef\cuz@value@advisortitle{#1}}
+\newcommand{\coadvisor}[1]{\gdef\cuz@value@coadvisor{#1}}
+\newcommand{\coadvisortitle}[1]{\gdef\cuz@value@coadvisortitle{#1}}
 \newcommand{\degree}[1]{\gdef\cuz@value@degree{#1}}
 \newcommand{\degreetype}[1]{\gdef\cuz@value@degreetype{#1}}
 \newcommand{\major}[1]{\gdef\cuz@value@major{#1}}
@@ -397,14 +399,17 @@
 		\vfill
 %		\vskip 9mm
 		\begin{tabular}{>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c}
-			\makebox[6em][s]{\cuz@label@author}： & \cuzunderline{\cuz@value@author} &
+			\makebox[6.5em][s]{\cuz@label@author}： & \cuzunderline{\cuz@value@author} &
 			\makebox[3em][s]{\cuz@label@authorid}： & \cuzunderline{\cuz@value@authorid} \\
             \rule{0pt}{10mm}
-            \makebox[6em][s]{\cuz@label@institute}： & \cuzunderline{\cuz@value@institute} &
+            \makebox[6.5em][s]{\cuz@label@institute}： & \cuzunderline{\cuz@value@institute} &
 			\makebox[3em][s]{\cuz@label@major}： & \cuzunderline{\cuz@value@major} \\
             \rule{0pt}{10mm}
-            \makebox[6em][s]{\cuz@label@advisor}： & \cuzunderline{\cuz@value@advisor} &
-			\makebox[3em][s]{\cuz@label@advisortitle}： & \cuzunderline{\cuz@value@advisortitle}
+            \makebox[6.5em][s]{\cuz@label@advisor}： & \cuzunderline{\cuz@value@advisor} &
+			\makebox[3em][s]{\cuz@label@advisortitle}： & \cuzunderline{\cuz@value@advisortitle} \\
+            \rule{0pt}{10mm}
+            \makebox[6.5em][s]{\cuz@label@coadvisor}： & \cuzunderline{\cuz@value@coadvisor} &
+			\makebox[3em][s]{\cuz@label@coadvisortitle}： & \cuzunderline{\cuz@value@coadvisortitle}
 		\end{tabular}
 	\end{center}
 }
