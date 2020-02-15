@@ -289,16 +289,18 @@
 %-
 \newcounter{iline}
 \newcounter{numbertitlelines}
+\newcount\numbertitlelines
+\newbox\titlebox
 % Define a macro to calculate the number of title lines
 % #1: The length of title line (set by paper)
 % #2: The text of title (set by user)
 \newlength{\titlelength}
 \def\cuz@macro@numbertitlelines#1#2{
-    \settowidth{\titlelength}{#2}
-    \setcounter{numbertitlelines}{0}
-    \loop{
-        \stepcounter{numbertitlelines}
-    }\ifdim\titlelength>\value{numbertitlelines}#1\repeat
+    \setbox\titlebox=\vbox{\hsize=#1 \cuz@macro@titleformat
+        #2\par
+        \global\numbertitlelines=\the\prevgraf
+    }
+    \setcounter{numbertitlelines}{\the\numbertitlelines}
 }
 % Define a macro to calculate the lift of title rules
 % #1: The number of title lines (calculated by \cuz@macro@numbertitlelines)
@@ -331,6 +333,7 @@
 % #2: The thickness of title line (set by paper)
 % #3: The text of title (set by user)
 \def\cuz@macro@multiunderline#1#2#3{
+    \cuz@macro@titleformat 
     \cuz@macro@numbertitlelines{#1}{#3}
     \cuz@macro@titlerulelift{numbertitlelines}{3.5ex}{4.0ex}
     \def\ULthickness{#2}
@@ -345,6 +348,7 @@
         }
     }
 }
+\newcommand{\cuz@macro@titleformat}{\zihao{-2}\heiti\centering}
 \newlength{\cuz@length@titlelinewidth}
 \addtolength{\cuz@length@titlelinewidth}{300pt}
 \newlength{\cuz@length@otherinfowidth}
@@ -378,20 +382,18 @@
 	\end{center}
     \vspace{4mm}
 	\begin{center}
-        \zihao{-2}
+        \cuz@macro@titleformat
         \cuz@macro@numbertitlelines{\cuz@length@titlelinewidth}{\cuz@value@title}
         \cuz@macro@titleheight{numbertitlelines}{3.5ex}{4ex}
 		\begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
 			\cuz@label@thesistitle & {
                 \begin{minipage}[t][\titleheight][t]{\cuz@length@titlelinewidth}
-				    \zihao{-2} \heiti
-                    % \ulenhance[0.8pt]{\hfill\cuz@value@title\hfill}
                     \cuz@macro@multiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
                 \end{minipage}
             } \\%[20pt]
 			\rule{0pt}{3ex} & {
                 \begin{minipage}[t][][t]{\cuz@length@titlelinewidth}
-                    \zihao{-2} \rmfamily
+                    \renewcommand{\cuz@macro@titleformat}{\zihao{-2}\rmfamily\centering}
                     \cuz@macro@multiunderline{\cuz@length@titlelinewidth}{0.8pt}{\MakeTextUppercase{\cuz@value@englishtitle}}
                 \end{minipage}
             } \\
