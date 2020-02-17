@@ -70,6 +70,7 @@
 \RequirePackage{textcase}% Uppercase and lowercase letters
 \RequirePackage{hologo}% Some useful logos
 \RequirePackage{framed}% Framed paragraphs
+\RequirePackage{lineno}
 \newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 \newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% expansion control
 %---------------------------------------------------------------------------%
@@ -287,66 +288,77 @@
 %-
 %-> Redefine Chinese style
 %-
-\newcounter{iline}
-\newcounter{numbertitlelines}
-\newcount\numbertitlelines
-\newbox\titlebox
+% \newcounter{iline}
+% \newcounter{numbertitlelines}
+% \newcount\numbertitlelines
+% \newbox\titlebox
 % Define a macro to calculate the number of title lines
 % #1: The length of title line (set by paper)
 % #2: The text of title (set by user)
-\newlength{\titlelength}
-\def\cuz@macro@numbertitlelines#1#2{
-    \setbox\titlebox=\vbox{\hsize=#1 \cuz@macro@titleformat
-        #2\par
-        \global\numbertitlelines=\the\prevgraf
-    }
-    \setcounter{numbertitlelines}{\the\numbertitlelines}
-}
+% \def\cuz@macro@numbertitlelines#1#2{
+%     \setbox\titlebox=\vbox{\hsize=#1 \cuz@macro@titleformat
+%         #2\par
+%         \global\numbertitlelines=\the\prevgraf
+%     }
+%     \setcounter{numbertitlelines}{\the\numbertitlelines}
+% }
 % Define a macro to calculate the lift of title rules
 % #1: The number of title lines (calculated by \cuz@macro@numbertitlelines)
 % #2: The base height (set by user)
 % #2: The height of one line (set by user)
-\newlength{\titlerulelift}
-\def\cuz@macro@titlerulelift#1#2#3{
-    \setlength{\titlerulelift}{#2}
-    \setcounter{iline}{1}
-    \@whilenum\value{iline}<\value{#1}\do{
-        \stepcounter{iline}
-        \addtolength{\titlerulelift}{#3}
-    }
-}
+% \newlength{\titlerulelift}
+% \def\cuz@macro@titlerulelift#1#2#3{
+%     \setlength{\titlerulelift}{#2}
+%     \setcounter{iline}{1}
+%     \@whilenum\value{iline}<\value{#1}\do{
+%         \stepcounter{iline}
+%         \addtolength{\titlerulelift}{#3}
+%     }
+% }
 % Define a macro to calculate the total title height
 % #1: The number of title lines (calculated by \cuz@macro@numbertitlelines)
 % #2: The base height (set by user)
 % #2: The height of one line (set by user)
-\newlength{\titleheight}
-\def\cuz@macro@titleheight#1#2#3{
-    \setlength{\titleheight}{#2}
-    \setcounter{iline}{1}
-    \@whilenum\value{iline}<\value{#1}\do{
-        \stepcounter{iline}
-        \addtolength{\titleheight}{#3}
-    }
-}
+% \newlength{\titleheight}
+% \def\cuz@macro@titleheight#1#2#3{
+%     \setlength{\titleheight}{#2}
+%     \setcounter{iline}{1}
+%     \@whilenum\value{iline}<\value{#1}\do{
+%         \stepcounter{iline}
+%         \addtolength{\titleheight}{#3}
+%     }
+% }
 % Define a macro for underlined title with adaptive multilines
 % #1: The length of title line (set by paper)
 % #2: The thickness of title line (set by paper)
 % #3: The text of title (set by user)
-\def\cuz@macro@multiunderline#1#2#3{
-    \cuz@macro@titleformat 
-    \cuz@macro@numbertitlelines{#1}{#3}
-    \cuz@macro@titlerulelift{numbertitlelines}{3.5ex}{4.0ex}
-    \def\ULthickness{#2}
-    \centering #3 \\
-    \raisebox{\titlerulelift}[0pt][0pt]{
-        \parbox[t][][t]{#1}{
-            \setcounter{iline}{0}
-            \@whilenum\value{iline}<\value{numbertitlelines}\do{
-                \stepcounter{iline}
-                \rule{#1}{\ULthickness}\\
-            }
-        }
-    }
+% \def\cuz@macro@multiunderline#1#2#3{
+%     \cuz@macro@titleformat 
+%     \cuz@macro@numbertitlelines{#1}{#3}
+%     \cuz@macro@titlerulelift{numbertitlelines}{3.5ex}{4.0ex}
+%     \def\ULthickness{#2}
+%     \centering #3 \\
+%     \raisebox{\titlerulelift}[0pt][0pt]{
+%         \parbox[t][][t]{#1}{
+%             \setcounter{iline}{0}
+%             \@whilenum\value{iline}<\value{numbertitlelines}\do{
+%                 \stepcounter{iline}
+%                 \rule{#1}{\ULthickness}\\
+%             }
+%         }
+%     }
+% }
+
+% Define a macro for underlined text with adaptive multilines
+% #1: The width of text line, not text itself (set by paper)
+% #2: The thickness of text line (set by paper)
+% #3: The content of text (set by user)
+\def\cuz@macro@exmultiunderline#1#2#3{
+    \begin{minipage}[t][][t]{#1}
+        \centering\internallinenumbers
+        \renewcommand{\makeLineNumber}{\rule[-0.6ex]{\textwidth}{#2}\hss}
+        #3\par
+    \end{minipage}
 }
 \newcommand{\cuz@macro@titleformat}{\zihao{-2}\heiti\centering}
 \newlength{\cuz@length@titlelinewidth}
@@ -382,36 +394,41 @@
 	\end{center}
     \vspace{4mm}
 	\begin{center}
-        \cuz@macro@titleformat
-        \cuz@macro@numbertitlelines{\cuz@length@titlelinewidth}{\cuz@value@title}
-        \cuz@macro@titleheight{numbertitlelines}{3.5ex}{4ex}
 		\begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
-			\cuz@label@thesistitle & {
-                \begin{minipage}[t][\titleheight][t]{\cuz@length@titlelinewidth}
-                    \cuz@macro@multiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
-                \end{minipage}
-            } \\%[20pt]
-			\rule{0pt}{3ex} & {
-                \begin{minipage}[t][][t]{\cuz@length@titlelinewidth}
-                    \renewcommand{\cuz@macro@titleformat}{\zihao{-2}\rmfamily\centering}
-                    \cuz@macro@multiunderline{\cuz@length@titlelinewidth}{0.8pt}{\MakeTextUppercase{\cuz@value@englishtitle}}
-                \end{minipage}
+            \cuz@label@thesistitle & {
+                \cuz@macro@titleformat
+                \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
+            } \\%
+			\rule{0pt}{4.5ex} & {
+                \renewcommand{\cuz@macro@titleformat}{\zihao{3}\rmfamily\centering}
+                \cuz@macro@titleformat
+                \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\MakeTextUppercase{\cuz@value@englishtitle}}
             } \\
         \end{tabular}
 		\vfill
-%		\vskip 9mm
 		\begin{tabular}{>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c}
-			\makebox[6.5em][s]{\cuz@label@author}： & \cuzunderline{\cuz@value@author} &
-			\makebox[3em][s]{\cuz@label@authorid}： & \cuzunderline{\cuz@value@authorid} \\
+            \makebox[6.5em][s]{\cuz@label@author}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@author} &
+            \makebox[2.5em][s]{\cuz@label@authorid}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@authorid}
+            \\
             \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@institute}： & \cuzunderline{\cuz@value@institute} &
-			\makebox[3em][s]{\cuz@label@major}： & \cuzunderline{\cuz@value@major} \\
+            \makebox[6.5em][s]{\cuz@label@institute}： & 
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@institute} &
+            \makebox[2.5em][s]{\cuz@label@major}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@major}
+            \\
             \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@advisor}： & \cuzunderline{\cuz@value@advisor} &
-			\makebox[3em][s]{\cuz@label@advisortitle}： & \cuzunderline{\cuz@value@advisortitle} \\
+            \makebox[6.5em][s]{\cuz@label@advisor}： & 
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@advisor} &
+            \makebox[2.5em][s]{\cuz@label@advisortitle}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@advisortitle}
+            \\
             \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@coadvisor}： & \cuzunderline{\cuz@value@coadvisor} &
-			\makebox[3em][s]{\cuz@label@coadvisortitle}： & \cuzunderline{\cuz@value@coadvisortitle}
+            \makebox[6.5em][s]{\cuz@label@coadvisor}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisor} &
+            \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
 		\end{tabular}
 	\end{center}
 }
