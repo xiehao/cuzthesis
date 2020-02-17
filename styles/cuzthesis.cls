@@ -361,6 +361,8 @@
     \end{minipage}
 }
 \newcommand{\cuz@macro@titleformat}{\zihao{-2}\heiti\centering}
+\newcommand{\cuz@macro@englishtitleformat}{\zihao{3}\rmfamily\centering}
+\newcommand{\cuz@macro@otherinfoformat}{\zihao{3}\songti\centering}
 \newlength{\cuz@length@titlelinewidth}
 \addtolength{\cuz@length@titlelinewidth}{300pt}
 \newlength{\cuz@length@otherinfowidth}
@@ -400,13 +402,13 @@
                 \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
             } \\%
 			\rule{0pt}{4.5ex} & {
-                \renewcommand{\cuz@macro@titleformat}{\zihao{3}\rmfamily\centering}
-                \cuz@macro@titleformat
+                \cuz@macro@englishtitleformat
                 \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\MakeTextUppercase{\cuz@value@englishtitle}}
             } \\
         \end{tabular}
-		\vfill
-		\begin{tabular}{>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c>{\zihao{3}\songti}c}
+        \vfill
+        \cuz@macro@otherinfoformat
+		\begin{tabular}{cccc}
             \makebox[6.5em][s]{\cuz@label@author}： &
             \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@author} &
             \makebox[2.5em][s]{\cuz@label@authorid}： &
