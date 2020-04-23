@@ -35,6 +35,7 @@
 \artxifstreq{\artxfontset}{mac}{\artx@mactrue\artx@timestrue}{%
 \artxifstreq{\artxfontset}{adobe}{\artx@adobetrue\artx@timestrue}{%
 \artx@otherstrue\artx@timesfalse}}}
+\RequirePackage{ifplatform}% check which platform it is running on
 %-
 %-> LaTeX engine <pdflatex>, <lualatex>, <xelatex>
 %-
@@ -193,8 +194,9 @@
     %- Text + Math: Palatino
     %\RequirePackage{palatino}%
 \else% <xelatex> or <lualatex> call system fonts
-    \RequirePackage[cmintegrals]{newtxmath}% math symbol font, load after math but before fontspec packages
     \RequirePackage{fontspec}% support calling system fonts
+    \RequirePackage{newtxtext}%
+    \RequirePackage[cmintegrals]{newtxmath}% math symbol font, load after math but before fontspec packages
     %- Font properties: <family> + <weight> + <shape> + <size>
     %- Specify the three default TeX font families: <main>, <sans>, <mono>
     %- \setxxxxfont{<font>}[BoldFont=<font-b>,ItalicFont=<font-i>]%
@@ -224,14 +226,14 @@
         \setCJKsansfont[AutoFakeBold=2]{SimHei}%
         \setCJKmonofont{FangSong}%
     \else%
-        \setCJKfamilyfont{zhli}{LiSu}%
-        \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on Mac and Linux.
-        \setCJKfamilyfont{zhyou}{YouYuan}%
-        \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on Mac and Linux.
+        % \setCJKfamilyfont{zhli}{LiSu}%
+        % \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on Mac and Linux.
+        % \setCJKfamilyfont{zhyou}{YouYuan}%
+        % \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on Mac and Linux.
         \ifartx@mac%
-            \setCJKmainfont[ItalicFont=Kaiti SC,BoldItalicFont=Kaiti SC Bold]{Songti SC Light}%
-            \setCJKsansfont{Heiti SC}%
-            \setCJKmonofont{STFangsong}%
+            % \setCJKmainfont[ItalicFont=Kaiti SC,BoldItalicFont=Kaiti SC Bold]{Songti SC Light}%
+            % \setCJKsansfont{Heiti SC}%
+            % \setCJKmonofont{STFangsong}%
         \else\ifartx@adobe%
             \setCJKmainfont[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}%
             \setCJKsansfont[AutoFakeBold]{AdobeHeitiStd-Regular}%
@@ -246,16 +248,45 @@
         \ifartx@windows%
             \setmonofont[NFSSFamily=entexttt]{Consolas}%
         \else\ifartx@mac
-            \setmonofont[NFSSFamily=entexttt]{Monaco}%
+            % \setmonofont[NFSSFamily=entexttt]{Monaco}%
             \fi
         \fi
     \else
-        \setmainfont[NFSSFamily=entextrm]{FreeSerif}
-        \setsansfont[NFSSFamily=entextsf]{FreeSerif}
+        % \setmainfont[NFSSFamily=entextrm]{FreeSerif}
+        % \setsansfont[NFSSFamily=entextsf]{FreeSerif}
         % \setmainfont[NFSSFamily=entextrm]{TeX Gyre Termes}% an alternative of Times New Roman
         % \setsansfont[NFSSFamily=entextsf]{TeX Gyre Heros}% an alternative of Helvetica
-        \setmonofont[NFSSFamily=entexttt]{Ubuntu Mono}%{TeX Gyre Cursor}% an alternative of Courier New
+        % \setmonofont[NFSSFamily=entexttt]{Ubuntu Mono}%{TeX Gyre Cursor}% an alternative of Courier New
     \fi
+
+    \ifwindows
+        % TODO
+    \else
+        \setCJKfamilyfont{zhli}{LiSu}%
+        \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on macOS and Linux.
+        \setCJKfamilyfont{zhyou}{YouYuan}%
+        \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on macOS and Linux.
+        \ifmacosx
+            \setCJKmainfont{Songti SC}[%
+                UprightFont    = * Light,
+                BoldFont       = * Bold,
+                ItalicFont     = Kaiti SC,
+                BoldItalicFont = Kaiti SC Bold,
+            ]%
+            \setCJKsansfont{Heiti SC}[%
+                BoldFont = * Medium,
+            ]%
+            \setCJKmonofont{STFangsong}%
+            \setmainfont{Times New Roman}% Times New Roman
+            \setsansfont{Helvetica}% Helvetica
+        \fi
+        \iflinux
+            % TODO
+        \fi
+    \fi
+    \setmonofont{JetBrains Mono}[
+        Scale=MatchLowercase,
+    ]% JetBrains Mono for all platforms
 \fi
 %- 
 %-> Bibliography processor and package
