@@ -184,7 +184,7 @@
 %-
 %-> Language settings
 %-
-\ifPDFTeX% <pdflatex> call font packages
+\ifpdftex% <pdflatex> call font packages
     \RequirePackage[utf8]{inputenc}% set input encoding, document must use utf-8 encoding
     \RequirePackage[T1]{fontenc}% set font encoding to enable modern font encoding
     %- Call font package options:
@@ -194,7 +194,7 @@
     %- Text + Math: Palatino
     %\RequirePackage{palatino}%
 \else% <xelatex> or <lualatex> call system fonts
-    \ifXeTeX
+    \ifxetex
         \RequirePackage{xeCJK}% support calling system fonts
     \fi
     \RequirePackage{fontspec}% support calling system fonts
@@ -431,7 +431,7 @@
 %- Declare graphic extensions for automatic selection when including graphics
 %- via avoiding supplying graphic extensions in \includegraphics command,
 %- the source file can be more general and adaptive
-\ifXeTeX%
+\ifxetex%
     \DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps,.tif,.bmp,.gif}%
 \else% <pdflatex> or <lualatex>
     \DeclareGraphicsExtensions{.pdf,.png,.jpg}%
