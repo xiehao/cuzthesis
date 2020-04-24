@@ -195,8 +195,13 @@
     %\RequirePackage{palatino}%
 \else% <xelatex> or <lualatex> call system fonts
     \RequirePackage{fontspec}% support calling system fonts
+    \@ifpackagelater{fontspec}{2016/12/27}{}{%
+        \PackageError{artratex}{fontspec >= 2016/12/27 is required ...}{}%
+    }
     \RequirePackage{newtxtext}%
     \RequirePackage[cmintegrals]{newtxmath}% math symbol font, load after math but before fontspec packages
+    \RequirePackage{mathrsfs}% enable \mathscr for script alphabet
+    \RequirePackage[cal=cm]{mathalfa}%
     %- Font properties: <family> + <weight> + <shape> + <size>
     %- Specify the three default TeX font families: <main>, <sans>, <mono>
     %- \setxxxxfont{<font>}[BoldFont=<font-b>,ItalicFont=<font-i>]%
@@ -221,46 +226,48 @@
     % is a new one. mathrm and mathsf can be set by \setmathrm and \setmathsf
     %\RequirePackage{unicode-math}% another math symbol font configuration
     %\setmathfont{XITS Math}% a complete symbol set for STIX math fonts
-    \ifartx@windows%
-        \setCJKmainfont[AutoFakeBold=2,ItalicFont=KaiTi]{SimSun}%
-        \setCJKsansfont[AutoFakeBold=2]{SimHei}%
-        \setCJKmonofont{FangSong}%
-    \else%
-        % \setCJKfamilyfont{zhli}{LiSu}%
-        % \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on Mac and Linux.
-        % \setCJKfamilyfont{zhyou}{YouYuan}%
-        % \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on Mac and Linux.
-        \ifartx@mac%
-            % \setCJKmainfont[ItalicFont=Kaiti SC,BoldItalicFont=Kaiti SC Bold]{Songti SC Light}%
-            % \setCJKsansfont{Heiti SC}%
-            % \setCJKmonofont{STFangsong}%
-        \else\ifartx@adobe%
-            \setCJKmainfont[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}%
-            \setCJKsansfont[AutoFakeBold]{AdobeHeitiStd-Regular}%
-            \setCJKmonofont{AdobeFangsongStd-Regular}%
-            \fi
-        \fi
-    \fi
-    \ifartx@times%
-        \setmainfont[NFSSFamily=entextrm]{Times New Roman}% Times New Roman
-        \setsansfont[NFSSFamily=entextsf]{Times New Roman}% Helvetica
-        % \setmonofont[NFSSFamily=entexttt]{Courier New}% Courier New
-        \ifartx@windows%
-            \setmonofont[NFSSFamily=entexttt]{Consolas}%
-        \else\ifartx@mac
-            % \setmonofont[NFSSFamily=entexttt]{Monaco}%
-            \fi
-        \fi
-    \else
-        % \setmainfont[NFSSFamily=entextrm]{FreeSerif}
-        % \setsansfont[NFSSFamily=entextsf]{FreeSerif}
-        % \setmainfont[NFSSFamily=entextrm]{TeX Gyre Termes}% an alternative of Times New Roman
-        % \setsansfont[NFSSFamily=entextsf]{TeX Gyre Heros}% an alternative of Helvetica
-        % \setmonofont[NFSSFamily=entexttt]{Ubuntu Mono}%{TeX Gyre Cursor}% an alternative of Courier New
-    \fi
+    % \ifartx@windows%
+    %     % \setCJKmainfont[AutoFakeBold=2,ItalicFont=KaiTi]{SimSun}%
+    %     % \setCJKsansfont[AutoFakeBold=2]{SimHei}%
+    %     % \setCJKmonofont{FangSong}%
+    % \else%
+    %     % \setCJKfamilyfont{zhli}{LiSu}%
+    %     % \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on Mac and Linux.
+    %     % \setCJKfamilyfont{zhyou}{YouYuan}%
+    %     % \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on Mac and Linux.
+    %     \ifartx@mac%
+    %         % \setCJKmainfont[ItalicFont=Kaiti SC,BoldItalicFont=Kaiti SC Bold]{Songti SC Light}%
+    %         % \setCJKsansfont{Heiti SC}%
+    %         % \setCJKmonofont{STFangsong}%
+    %     \else\ifartx@adobe%
+    %         \setCJKmainfont[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}%
+    %         \setCJKsansfont[AutoFakeBold]{AdobeHeitiStd-Regular}%
+    %         \setCJKmonofont{AdobeFangsongStd-Regular}%
+    %         \fi
+    %     \fi
+    % \fi
+    % \ifartx@times%
+    %     \setmainfont[NFSSFamily=entextrm]{Times New Roman}% Times New Roman
+    %     \setsansfont[NFSSFamily=entextsf]{Times New Roman}% Helvetica
+    %     % \setmonofont[NFSSFamily=entexttt]{Courier New}% Courier New
+    %     \ifartx@windows%
+    %         \setmonofont[NFSSFamily=entexttt]{Consolas}%
+    %     \else\ifartx@mac
+    %         % \setmonofont[NFSSFamily=entexttt]{Monaco}%
+    %         \fi
+    %     \fi
+    % \else
+    %     % \setmainfont[NFSSFamily=entextrm]{FreeSerif}
+    %     % \setsansfont[NFSSFamily=entextsf]{FreeSerif}
+    %     % \setmainfont[NFSSFamily=entextrm]{TeX Gyre Termes}% an alternative of Times New Roman
+    %     % \setsansfont[NFSSFamily=entextsf]{TeX Gyre Heros}% an alternative of Helvetica
+    %     % \setmonofont[NFSSFamily=entexttt]{Ubuntu Mono}%{TeX Gyre Cursor}% an alternative of Courier New
+    % \fi
 
     \ifwindows
-        % TODO
+        \setCJKmainfont{SimSun}[AutoFakeBold=2,ItalicFont=KaiTi]%
+        \setCJKsansfont{SimHei}[AutoFakeBold=2]%
+        \setCJKmonofont{FangSong}%
     \else
         \setCJKfamilyfont{zhli}{LiSu}%
         \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on macOS and Linux.
