@@ -19,38 +19,38 @@
 %-
 %-> Platform fontset <windows>, <mac>, <adobe>, <times>, <others>
 %-
-\RequirePackage{expl3}% LaTeX3 programming environment
-\ExplSyntaxOn%
-\providecommand{\g__ctex_fontset_tl}{}% platform fontset state variable
-\edef\artxfontset{\g__ctex_fontset_tl}% expanded platform fontset state variable
-\ExplSyntaxOff%
-\newif\ifartx@windows \artx@windowsfalse
-\newif\ifartx@mac \artx@macfalse
-\newif\ifartx@adobe \artx@adobefalse
-\newif\ifartx@times \artx@timesfalse
-\newif\ifartx@others \artx@othersfalse
-\RequirePackage{etoolbox}% a toolbox of programming facilities
-\newcommand{\artxifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
-\artxifstreq{\artxfontset}{windows}{\artx@windowstrue\artx@timestrue}{%
-\artxifstreq{\artxfontset}{mac}{\artx@mactrue\artx@timestrue}{%
-\artxifstreq{\artxfontset}{adobe}{\artx@adobetrue\artx@timestrue}{%
-\artx@otherstrue\artx@timesfalse}}}
+% \RequirePackage{expl3}% LaTeX3 programming environment
+% \ExplSyntaxOn%
+% \providecommand{\g__ctex_fontset_tl}{}% platform fontset state variable
+% \edef\artxfontset{\g__ctex_fontset_tl}% expanded platform fontset state variable
+% \ExplSyntaxOff%
+% \newif\ifartx@windows \artx@windowsfalse
+% \newif\ifartx@mac \artx@macfalse
+% \newif\ifartx@adobe \artx@adobefalse
+% \newif\ifartx@times \artx@timesfalse
+% \newif\ifartx@others \artx@othersfalse
+% \RequirePackage{etoolbox}% a toolbox of programming facilities
+% \newcommand{\artxifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
+% \artxifstreq{\artxfontset}{windows}{\artx@windowstrue\artx@timestrue}{%
+% \artxifstreq{\artxfontset}{mac}{\artx@mactrue\artx@timestrue}{%
+% \artxifstreq{\artxfontset}{adobe}{\artx@adobetrue\artx@timestrue}{%
+% \artx@otherstrue\artx@timesfalse}}}
 \RequirePackage{ifplatform}% check which platform it is running on
 %-
 %-> LaTeX engine <pdflatex>, <lualatex>, <xelatex>
 %-
-\newif\ifartx@pdftex \artx@pdftexfalse
-\newif\ifartx@luatex \artx@luatexfalse
-\newif\ifartx@xetex \artx@xetexfalse
-\RequirePackage{ifxetex,ifluatex}% LaTeX engine detection
-\ifxetex%
-    \artx@xetextrue
-    \RequirePackage{xeCJK}% support calling system fonts
-\else\ifluatex%
-    \artx@luatextrue
-\else%
-    \artx@pdftextrue
-\fi\fi%
+% \newif\ifartx@pdftex \artx@pdftexfalse
+% \newif\ifartx@luatex \artx@luatexfalse
+% \newif\ifartx@xetex \artx@xetexfalse
+\RequirePackage{iftex}% LaTeX engine detection
+% \ifxetex%
+%     \artx@xetextrue
+%     % \RequirePackage{xeCJK}% support calling system fonts
+% \else\ifluatex%
+%     \artx@luatextrue
+% \else%
+%     \artx@pdftextrue
+% \fi\fi%
 %-
 %-> Bibliography engine <bibtex>, <biber>
 %-
@@ -184,7 +184,7 @@
 %-
 %-> Language settings
 %-
-\ifartx@pdftex% <pdflatex> call font packages
+\ifPDFTeX% <pdflatex> call font packages
     \RequirePackage[utf8]{inputenc}% set input encoding, document must use utf-8 encoding
     \RequirePackage[T1]{fontenc}% set font encoding to enable modern font encoding
     %- Call font package options:
@@ -194,6 +194,9 @@
     %- Text + Math: Palatino
     %\RequirePackage{palatino}%
 \else% <xelatex> or <lualatex> call system fonts
+    \ifXeTeX
+        \RequirePackage{xeCJK}% support calling system fonts
+    \fi
     \RequirePackage{fontspec}% support calling system fonts
     \@ifpackagelater{fontspec}{2016/12/27}{}{%
         \PackageError{artratex}{fontspec >= 2016/12/27 is required ...}{}%
@@ -226,44 +229,6 @@
     % is a new one. mathrm and mathsf can be set by \setmathrm and \setmathsf
     %\RequirePackage{unicode-math}% another math symbol font configuration
     %\setmathfont{XITS Math}% a complete symbol set for STIX math fonts
-    % \ifartx@windows%
-    %     % \setCJKmainfont[AutoFakeBold=2,ItalicFont=KaiTi]{SimSun}%
-    %     % \setCJKsansfont[AutoFakeBold=2]{SimHei}%
-    %     % \setCJKmonofont{FangSong}%
-    % \else%
-    %     % \setCJKfamilyfont{zhli}{LiSu}%
-    %     % \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on Mac and Linux.
-    %     % \setCJKfamilyfont{zhyou}{YouYuan}%
-    %     % \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on Mac and Linux.
-    %     \ifartx@mac%
-    %         % \setCJKmainfont[ItalicFont=Kaiti SC,BoldItalicFont=Kaiti SC Bold]{Songti SC Light}%
-    %         % \setCJKsansfont{Heiti SC}%
-    %         % \setCJKmonofont{STFangsong}%
-    %     \else\ifartx@adobe%
-    %         \setCJKmainfont[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}%
-    %         \setCJKsansfont[AutoFakeBold]{AdobeHeitiStd-Regular}%
-    %         \setCJKmonofont{AdobeFangsongStd-Regular}%
-    %         \fi
-    %     \fi
-    % \fi
-    % \ifartx@times%
-    %     \setmainfont[NFSSFamily=entextrm]{Times New Roman}% Times New Roman
-    %     \setsansfont[NFSSFamily=entextsf]{Times New Roman}% Helvetica
-    %     % \setmonofont[NFSSFamily=entexttt]{Courier New}% Courier New
-    %     \ifartx@windows%
-    %         \setmonofont[NFSSFamily=entexttt]{Consolas}%
-    %     \else\ifartx@mac
-    %         % \setmonofont[NFSSFamily=entexttt]{Monaco}%
-    %         \fi
-    %     \fi
-    % \else
-    %     % \setmainfont[NFSSFamily=entextrm]{FreeSerif}
-    %     % \setsansfont[NFSSFamily=entextsf]{FreeSerif}
-    %     % \setmainfont[NFSSFamily=entextrm]{TeX Gyre Termes}% an alternative of Times New Roman
-    %     % \setsansfont[NFSSFamily=entextsf]{TeX Gyre Heros}% an alternative of Helvetica
-    %     % \setmonofont[NFSSFamily=entexttt]{Ubuntu Mono}%{TeX Gyre Cursor}% an alternative of Courier New
-    % \fi
-
     \ifwindows
         \setCJKmainfont{SimSun}[AutoFakeBold=2,ItalicFont=KaiTi]%
         \setCJKsansfont{SimHei}[AutoFakeBold=2]%
@@ -288,7 +253,14 @@
             \setsansfont{Helvetica}% Helvetica
         \fi
         \iflinux
-            % TODO
+            \setCJKmainfont{AdobeSongStd-Light}[%
+                AutoFakeBold=2,
+                ItalicFont=AdobeKaitiStd-Regular,
+            ]
+            \setCJKsansfont{AdobeHeitiStd-Regular}[%
+                AutoFakeBold=2,
+            ]%
+            \setCJKmonofont{AdobeFangsongStd-Regular}%
         \fi
     \fi
     \setmonofont{JetBrains Mono}[
@@ -459,7 +431,7 @@
 %- Declare graphic extensions for automatic selection when including graphics
 %- via avoiding supplying graphic extensions in \includegraphics command,
 %- the source file can be more general and adaptive
-\ifartx@xetex%
+\ifXeTeX%
     \DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps,.tif,.bmp,.gif}%
 \else% <pdflatex> or <lualatex>
     \DeclareGraphicsExtensions{.pdf,.png,.jpg}%
