@@ -201,7 +201,10 @@
     \@ifpackagelater{fontspec}{2016/12/27}{}{%
         \PackageError{artratex}{fontspec >= 2016/12/27 is required ...}{}%
     }
-    \RequirePackage{newtxtext}%
+    \ifmacosx
+    \else
+        \RequirePackage{newtxtext}%
+    \fi
     \RequirePackage[cmintegrals]{newtxmath}% math symbol font, load after math but before fontspec packages
     \RequirePackage{mathrsfs}% enable \mathscr for script alphabet
     \RequirePackage[cal=cm]{mathalfa}%
