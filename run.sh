@@ -40,7 +40,7 @@ else
     if [[ $1 == *'p'* ]]; then
         TexCompiler="pdflatex"
     else
-        TexCompiler="xelatex"
+        TexCompiler="xelatex -shell-escape"
     fi
 fi
 #-
