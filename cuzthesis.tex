@@ -66,14 +66,14 @@
 %-
 %-> Backmatter: acknowledgement, references, appendices (if any)
 %-
-%-> The acknowledgement
-\input{contents/acknowledgement}%
 %-> The references
 \intotoc{\bibname}% add link to contents table and bookmark
 \begingroup
     \linespread{1.2}\selectfont
     \bibliography{bibliography/references}%
 \endgroup
+%-> The acknowledgement
+\input{contents/acknowledgement}%
 %-> The appendices (if any)
 \appendix% change the page layout
 \input{contents/appendices}%
