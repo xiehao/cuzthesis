@@ -285,6 +285,8 @@
 \newcommand{\major}[1]{\gdef\cuz@value@major{#1}}
 \newcommand{\institute}[1]{\gdef\cuz@value@institute{#1}}
 \newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
+\newcommand{\proposaldate}[1]{\gdef\cuz@value@proposaldate{#1}}
+\newcommand{\surveydate}[1]{\gdef\cuz@value@surveydate{#1}}
 %-
 %-> Redefine Chinese style
 %-
@@ -432,6 +434,62 @@
             \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
             \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
 		\end{tabular}
+	\end{center}
+}
+\newcommand{\makeproposaltitle}{%
+    \cuzifstreq{\cuz@value@degree}{学士}{%
+        \def\cuz@label@thesis{\cuz@label@bacthesis}%
+        \def\cuz@label@major{\cuz@label@ungradmajor}%
+        \def\cuz@label@institute{\cuz@label@ungradinstitute}%
+    }{%
+    \cuzifstreq{\cuz@value@degree}{硕士}{%
+        \def\cuz@label@thesis{\cuz@label@masthesis}%
+        \def\cuz@label@major{\cuz@label@gradmajor}%
+        \def\cuz@label@institute{\cuz@label@gradinstitute}%
+    }{%
+        \def\cuz@label@thesis{\cuz@label@docthesis}%
+        \def\cuz@label@major{\cuz@label@gradmajor}%
+        \def\cuz@label@institute{\cuz@label@gradinstitute}%
+    }}%
+    \cleardoublepage
+    \thispagestyle{empty}
+    \par
+    \begin{center}
+		{\cuz@value@schoollogo}
+        \vfill
+        {
+            \zihao{-1}\heiti\mdseries%
+            \cuz@label@proposal%
+        }
+        \vfill
+        \cuz@macro@otherinfoformat
+		\begin{tabular}{cccc}
+            \makebox[6.5em][s]{\cuz@label@author}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@author} &
+            \makebox[2.5em][s]{\cuz@label@authorid}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@authorid}
+            \\
+            \rule{0pt}{10mm}
+            \makebox[6.5em][s]{\cuz@label@institute}： & 
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@institute} &
+            \makebox[2.5em][s]{\cuz@label@major}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@major}
+            \\
+            \rule{0pt}{10mm}
+            \makebox[6.5em][s]{\cuz@label@advisor}： & 
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@advisor} &
+            \makebox[2.5em][s]{\cuz@label@advisortitle}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@advisortitle}
+            \\
+            \rule{0pt}{10mm}
+            \makebox[6.5em][s]{\cuz@label@coadvisor}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisor} &
+            \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
+        \end{tabular}\par
+        \vspace{6ex}%
+        \cuz@label@date\cuz@value@proposaldate\par%
+        \makebox[12.5em][s]{\bfseries\cuz@label@maker}%
 	\end{center}
 }
 %---------------------------------------------------------------------------%
