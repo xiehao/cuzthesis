@@ -427,12 +427,12 @@
             \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@advisor} &
             \makebox[2.5em][s]{\cuz@label@advisortitle}： &
             \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@advisortitle}
-            \\
-            \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@coadvisor}： &
-            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisor} &
-            \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
-            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
+            % \\
+            % \rule{0pt}{10mm}
+            % \makebox[6.5em][s]{\cuz@label@coadvisor}： &
+            % \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisor} &
+            % \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
+            % \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
 		\end{tabular}
 	\end{center}
 }
