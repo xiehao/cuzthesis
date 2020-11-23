@@ -237,10 +237,6 @@
         \setCJKsansfont{SimHei}[AutoFakeBold=2]%
         \setCJKmonofont{FangSong}%
     \else
-        \setCJKfamilyfont{zhli}{LiSu}%
-        \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on macOS and Linux.
-        \setCJKfamilyfont{zhyou}{YouYuan}%
-        \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on macOS and Linux.
         \ifmacosx
             \setCJKmainfont{Songti SC}[%
                 UprightFont    = * Light,
@@ -256,6 +252,10 @@
             \setsansfont{Helvetica}% Helvetica
         \fi
         \iflinux
+            \setCJKfamilyfont{zhli}{LiSu}%
+            \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on macOS and Linux.
+            \setCJKfamilyfont{zhyou}{YouYuan}%
+            \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on macOS and Linux.
             \setCJKmainfont{AdobeSongStd-Light}[%
                 AutoFakeBold=2,
                 ItalicFont=AdobeKaitiStd-Regular,
