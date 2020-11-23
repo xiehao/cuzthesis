@@ -700,7 +700,7 @@
 %- define acknowledgement
 \newenvironment{acknowledgement}{
     \intotoc{\cuz@label@acknowledgement}% should be placed first
-    \chapter*{\cuz@label@acknowledgement}
+    \chapter*{\songti\cuz@label@acknowledgement}
     \chaptermark{\cuz@label@acknowledgement}
     \vspace{3ex}
     % \linespread{1.3}
@@ -713,7 +713,7 @@
 %- define appendices
 \newenvironment{appendices}{
     \intotoc{\cuz@label@appendices}% should be placed first
-    \chapter*{\cuz@label@appendices}
+    \chapter*{\songti\cuz@label@appendices}
     \chaptermark{\cuz@label@appendices}
     \setcounter{equation}{0}
 }{
