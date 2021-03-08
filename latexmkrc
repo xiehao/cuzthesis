@@ -1,0 +1,1 @@
+$xelatex = 'xelatex -shell-escape -file-line-error';
