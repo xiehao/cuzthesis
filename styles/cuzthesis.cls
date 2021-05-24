@@ -261,9 +261,9 @@
 %-> Chinese item commands
 %-
 
-\newcommand{\cuzunderline}[2][\cuz@length@otherinfowidth]{
-    \uline{\hbox to #1{\hss#2\hss}}\hskip3pt
-}
+% \newcommand{\cuzunderline}[2][\cuz@length@otherinfowidth]{
+%     \uline{\hbox to #1{\hss#2\hss}}\hskip3pt
+% }
 \newcommand{\confidential}[1]{\gdef\cuz@value@confidential{#1}}
 \newcommand{\schoollogo}[2]{\gdef\cuz@value@schoollogo{
     \includegraphics[width=#1\textwidth]{#2}}
@@ -367,8 +367,10 @@
 \newcommand{\cuz@macro@otherinfoformat}{\zihao{3}\songti\centering}
 \newlength{\cuz@length@titlelinewidth}
 \addtolength{\cuz@length@titlelinewidth}{300pt}
-\newlength{\cuz@length@otherinfowidth}
-\addtolength{\cuz@length@otherinfowidth}{130pt}
+\newlength{\cuz@length@leftinfowidth}
+\addtolength{\cuz@length@leftinfowidth}{115pt}
+\newlength{\cuz@length@rightinfowidth}
+\addtolength{\cuz@length@rightinfowidth}{145pt}
 \renewcommand{\maketitle}{%
     \cuzifstreq{\cuz@value@degree}{学士}{%
         \def\cuz@label@thesis{\cuz@label@bacthesis}%
@@ -412,27 +414,27 @@
         \cuz@macro@otherinfoformat
 		\begin{tabular}{cccc}
             \makebox[6.5em][s]{\cuz@label@author}： &
-            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@author} &
+            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@author} &
             \makebox[2.5em][s]{\cuz@label@authorid}： &
-            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@authorid}
+            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@authorid}
             \\
             \rule{0pt}{10mm}
             \makebox[6.5em][s]{\cuz@label@institute}： & 
-            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@institute} &
+            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@institute} &
             \makebox[2.5em][s]{\cuz@label@major}： &
-            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@major}
+            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@major}
             \\
             \rule{0pt}{10mm}
             \makebox[6.5em][s]{\cuz@label@advisor}： & 
-            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@advisor} &
+            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@advisor} &
             \makebox[2.5em][s]{\cuz@label@advisortitle}： &
-            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@advisortitle}
+            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
             % \\
             % \rule{0pt}{10mm}
             % \makebox[6.5em][s]{\cuz@label@coadvisor}： &
-            % \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisor} &
+            % \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
             % \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
-            % \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
+            % \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
 		\end{tabular}
 	\end{center}
 }
