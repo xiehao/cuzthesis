@@ -194,17 +194,17 @@
     %- Text + Math: Palatino
     %\RequirePackage{palatino}%
 \else% <xelatex> or <lualatex> call system fonts
-    \ifxetex
-        \RequirePackage{xeCJK}% support calling system fonts
-    \fi
-    \RequirePackage{fontspec}% support calling system fonts
-    \@ifpackagelater{fontspec}{2016/12/27}{}{%
-        \PackageError{artratex}{fontspec >= 2016/12/27 is required ...}{}%
-    }
-    \ifmacosx
-    \else
-        \RequirePackage{newtxtext}%
-    \fi
+    % \ifxetex
+    %     \RequirePackage{xeCJK}% support calling system fonts
+    % \fi
+    % \RequirePackage{fontspec}% support calling system fonts
+    % \@ifpackagelater{fontspec}{2016/12/27}{}{%
+    %     \PackageError{artratex}{fontspec >= 2016/12/27 is required ...}{}%
+    % }
+    % \ifmacosx
+    % \else
+    %     \RequirePackage{newtxtext}%
+    % \fi
     \RequirePackage[cmintegrals]{newtxmath}% math symbol font, load after math but before fontspec packages
     \RequirePackage{mathrsfs}% enable \mathscr for script alphabet
     \RequirePackage[cal=cm]{mathalfa}%
@@ -265,12 +265,15 @@
             \setCJKsansfont{AdobeHeitiStd-Regular}[%
                 AutoFakeBold=2,
             ]%
-            \setCJKmonofont{AdobeFangsongStd-Regular}%
+            \setCJKmonofont{AdobeFangsongStd-Regular}[%
+                AutoFakeBold=2,
+            ]%
+            \setmainfont{Times New Roman}% Times New Roman
         \fi
     \fi
-    \setmonofont{JetBrains Mono}[
+    \setmonofont{Fira Mono}[
         Scale=MatchLowercase,
-    ]% JetBrains Mono for all platforms
+    ]% Fira Mono for all platforms
 \fi
 %- 
 %-> Bibliography processor and package
