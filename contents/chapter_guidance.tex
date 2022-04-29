@@ -217,19 +217,19 @@ artracom.sty中对一些常用数据类型如矢量矩阵等进行了封装，�
 引用，并配上相应的解释说明。同时，应将代码放置在引用处的后方合适位置（勿相距甚
 远）。论文中图片的插入通常分为单图和多图，下面分别加以介绍：
 
-单图插入：假设插入名为\verb|tc_q_criteria|（后缀可以为.jpg、.png、.pdf，下同）的
-图片，其效果如图~\ref{fig:tc_q_criteria}。注意，应在图的下方给出图例
+单图插入：假设插入名为\verb|cuz_logo.png|（后缀可以为.jpg、.png、.pdf，下同）的
+图片，其效果如图~\ref{fig:cuz_logo}。注意，应在图的下方给出图例
 （\verb|\caption|）。
-\begin{figure}[!htbp]
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.40\textwidth]{tc_q_criteria}
-    \caption[Q判据等值面图]{Q判据等值面图，同时测试一下一个很长的标题，比如这真的是一个很长很长很长很长很长很长很长很长的标题。}
-    \label{fig:tc_q_criteria}
+    \includegraphics[width=0.5\textwidth]{cuz_logo}
+    \caption[浙传校徽]{浙传校徽，同时测试一下一个很长的标题，比如这真的是一个很长很长很长很长很长很长很长很长的标题。}
+    \label{fig:cuz_logo}
 \end{figure}
 
 若插图的空白区域过大，以图片\verb|shock_cyn|为例，自动裁剪如图
 ~\ref{fig:shock_cyn}。
-\begin{figure}[!htbp]
+\begin{figure}[h]
     \centering
     % trim option's parameter order: left bottom right top
     \includegraphics[trim = 30mm 0mm 30mm 0mm, clip, width=0.40\textwidth]{shock_cyn}
@@ -239,7 +239,7 @@ artracom.sty中对一些常用数据类型如矢量矩阵等进行了封装，�
 
 多图的插入如图~\ref{fig:oaspl}，多图不应在子图中给文本子标题，只要给序号，并在主
 标题中进行引用说明。
-\begin{figure}[!htbp]
+\begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_a}
@@ -273,7 +273,7 @@ artracom.sty中对一些常用数据类型如矢量矩阵等进行了封装，�
 \ref{alg:euclid}所示，详细使用方法请参见文档
 \href{https://ctan.org/pkg/algorithmicx?lang=en}{algorithmicx}。
 
-\begin{algorithm}[!htbp]
+\begin{algorithm}[h]
     \small
     \caption{Euclid算法}\label{alg:euclid}
     \begin{algorithmic}[1]
