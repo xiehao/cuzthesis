@@ -41,6 +41,10 @@
     \PassOptionsToClass{scheme=plain}{ctexbook}%
     \cuz@plaintrue%
 }
+\newif\ifcuz@blinded \cuz@blindedfalse
+\DeclareOption{blinded}{
+    \cuz@blindedtrue%
+}
 %-
 %-> Draft version info
 %-
@@ -136,7 +140,7 @@
     %- Define different kinds of header and footer for different parts
     \fancypagestyle{frontmatterstyle}{% style for frontmatter
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \cuz@label@header@bacthesis}% structure elements
+        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
         \fancyhead[REO]{\footnotesize \@title}% structure elements
         \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
         \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
@@ -152,7 +156,7 @@
     }
     \fancypagestyle{mainmatterstyle}{% style for mainmatter
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \cuz@label@header@bacthesis}% structure elements
+        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
         \fancyhead[REO]{\footnotesize \@title}% structure elements
         \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
         \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
@@ -168,7 +172,7 @@
     }
     \fancypagestyle{backmatterstyle}{% header and footer style for backmatter
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \cuz@label@header@bacthesis}% structure elements
+        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
         \fancyhead[REO]{\footnotesize \@title}% structure elements
         \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
         \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
@@ -201,7 +205,7 @@
     }
     \fancypagestyle{noheaderstyle}{% header and footer style for no header
         \fancyhf{}% clear fields
-        %\fancyhead[LEO]{\footnotesize \cuz@label@header@bacthesis}% structure elements
+        %\fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
         %\fancyhead[REO]{\footnotesize \@title}% structure elements
         \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
         \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
@@ -217,7 +221,7 @@
     }
     \fancypagestyle{nofooterstyle}{% header and footer style for no footer
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \cuz@label@header@bacthesis}% structure elements
+        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
         \fancyhead[REO]{\footnotesize \@title}% structure elements
         % \fancyfoot[LEO]{\footnotesize \thepage}% page number
         % \fancyfoot[REO]{\footnotesize \thepage}% page number
@@ -238,8 +242,8 @@
 %- redefine cleardoublepage to have page style argument
 \renewcommand{\cleardoublepage}[1][plain]{%
     \clearpage\if@twoside\ifodd\c@page\else%
-    \thispagestyle{#1}%
-    \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi%
+            \thispagestyle{#1}%
+            \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi%
 }
 %- underline
 \ifxetex% use underline from xeCJKfntef
@@ -265,8 +269,14 @@
 %     \uline{\hbox to #1{\hss#2\hss}}\hskip3pt
 % }
 \newcommand{\confidential}[1]{\gdef\cuz@value@confidential{#1}}
-\newcommand{\schoollogo}[2]{\gdef\cuz@value@schoollogo{
-    \includegraphics[width=#1\textwidth]{#2}}
+\newcommand{\schoollogo}[2]{
+    \gdef\cuz@value@schoollogo{
+        \ifcuz@blinded
+            \vspace*{4.5em}
+        \else
+            \includegraphics[width=#1\textwidth]{#2}
+        \fi
+    }
 }
 \renewcommand{\title}[2][\cuz@value@title]{%
     \gdef\cuz@value@title{#2}
@@ -274,16 +284,16 @@
 }
 \newcommand{\englishtitle}[1]{\gdef\cuz@value@englishtitle{#1}}
 \renewcommand{\@title}{\cuz@value@titlemark}
-\renewcommand{\author}[1]{\gdef\cuz@value@author{#1}}
-\newcommand{\authorid}[1]{\gdef\cuz@value@authorid{#1}}
-\newcommand{\advisor}[1]{\gdef\cuz@value@advisor{#1}}
-\newcommand{\advisortitle}[1]{\gdef\cuz@value@advisortitle{#1}}
-\newcommand{\coadvisor}[1]{\gdef\cuz@value@coadvisor{#1}}
-\newcommand{\coadvisortitle}[1]{\gdef\cuz@value@coadvisortitle{#1}}
+\renewcommand{\author}[1]{\gdef\cuz@value@author{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
+\newcommand{\authorid}[1]{\gdef\cuz@value@authorid{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
+\newcommand{\advisor}[1]{\gdef\cuz@value@advisor{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
+\newcommand{\advisortitle}[1]{\gdef\cuz@value@advisortitle{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
+\newcommand{\coadvisor}[1]{\gdef\cuz@value@coadvisor{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
+\newcommand{\coadvisortitle}[1]{\gdef\cuz@value@coadvisortitle{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
 \newcommand{\degree}[1]{\gdef\cuz@value@degree{#1}}
 \newcommand{\degreetype}[1]{\gdef\cuz@value@degreetype{#1}}
-\newcommand{\major}[1]{\gdef\cuz@value@major{#1}}
-\newcommand{\institute}[1]{\gdef\cuz@value@institute{#1}}
+\newcommand{\major}[1]{\gdef\cuz@value@major{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
+\newcommand{\institute}[1]{\gdef\cuz@value@institute{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
 \newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
 \newcommand{\proposaldate}[1]{\gdef\cuz@value@proposaldate{#1}}
 \newcommand{\surveydate}[1]{\gdef\cuz@value@surveydate{#1}}
@@ -377,57 +387,57 @@
         \def\cuz@label@major{\cuz@label@ungradmajor}%
         \def\cuz@label@institute{\cuz@label@ungradinstitute}%
     }{%
-    \cuzifstreq{\cuz@value@degree}{硕士}{%
-        \def\cuz@label@thesis{\cuz@label@masthesis}%
-        \def\cuz@label@major{\cuz@label@gradmajor}%
-        \def\cuz@label@institute{\cuz@label@gradinstitute}%
-    }{%
-        \def\cuz@label@thesis{\cuz@label@docthesis}%
-        \def\cuz@label@major{\cuz@label@gradmajor}%
-        \def\cuz@label@institute{\cuz@label@gradinstitute}%
-    }}%
+        \cuzifstreq{\cuz@value@degree}{硕士}{%
+            \def\cuz@label@thesis{\cuz@label@masthesis}%
+            \def\cuz@label@major{\cuz@label@gradmajor}%
+            \def\cuz@label@institute{\cuz@label@gradinstitute}%
+        }{%
+            \def\cuz@label@thesis{\cuz@label@docthesis}%
+            \def\cuz@label@major{\cuz@label@gradmajor}%
+            \def\cuz@label@institute{\cuz@label@gradinstitute}%
+        }}%
     \cleardoublepage
     \thispagestyle{empty}
     \par
     \begin{center}
-		{\cuz@value@schoollogo}\par
-		\vspace{24mm}
-		{
-		    {\lishu \zihao{-0} \bfseries \cuz@label@thesis} \par
-		    \vspace{5mm}
-		    {\heiti \zihao{-2} (\;\cuz@value@graduateyear 届\;)}
-		}\par
-	\end{center}
+        {\cuz@value@schoollogo}\par
+        \vspace{24mm}
+        {
+            {\lishu \zihao{-0} \bfseries \cuz@label@thesis} \par
+            \vspace{5mm}
+            {\heiti \zihao{-2} (\;\cuz@value@graduateyear 届\;)}
+        }\par
+    \end{center}
     \vspace{4mm}
-	\begin{center}
-		\begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
+    \begin{center}
+        \begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
             \cuz@label@thesistitle & {
-                \cuz@macro@titleformat
-                \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
-            } \\%
-			\rule{0pt}{4.5ex} & {
-                \cuz@macro@englishtitleformat
-                \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\MakeTextUppercase{\cuz@value@englishtitle}}
-            } \\
+                    \cuz@macro@titleformat
+                    \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
+            }                          \\%
+            \rule{0pt}{4.5ex}      & {
+                    \cuz@macro@englishtitleformat
+                    \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\MakeTextUppercase{\cuz@value@englishtitle}}
+            }                          \\
         \end{tabular}
         \vfill
         \cuz@macro@otherinfoformat
-		\begin{tabular}{cccc}
-            \makebox[6.5em][s]{\cuz@label@author}： &
-            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@author} &
-            \makebox[2.5em][s]{\cuz@label@authorid}： &
+        \begin{tabular}{cccc}
+            \makebox[6.5em][s]{\cuz@label@author}：                                              &
+            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@author}    &
+            \makebox[2.5em][s]{\cuz@label@authorid}：                                            &
             \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@authorid}
             \\
             \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@institute}： & 
+            \makebox[6.5em][s]{\cuz@label@institute}：                                           &
             \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@institute} &
-            \makebox[2.5em][s]{\cuz@label@major}： &
+            \makebox[2.5em][s]{\cuz@label@major}：                                               &
             \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@major}
             \\
             \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@advisor}： & 
-            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@advisor} &
-            \makebox[2.5em][s]{\cuz@label@advisortitle}： &
+            \makebox[6.5em][s]{\cuz@label@advisor}：                                             &
+            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@advisor}   &
+            \makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
             \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
             % \\
             % \rule{0pt}{10mm}
@@ -435,8 +445,8 @@
             % \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
             % \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
             % \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
-		\end{tabular}
-	\end{center}
+        \end{tabular}
+    \end{center}
 }
 \newcommand{\makeproposaltitle}{%
     \cuzifstreq{\cuz@value@degree}{学士}{%
@@ -444,20 +454,20 @@
         \def\cuz@label@major{\cuz@label@ungradmajor}%
         \def\cuz@label@institute{\cuz@label@ungradinstitute}%
     }{%
-    \cuzifstreq{\cuz@value@degree}{硕士}{%
-        \def\cuz@label@thesis{\cuz@label@masthesis}%
-        \def\cuz@label@major{\cuz@label@gradmajor}%
-        \def\cuz@label@institute{\cuz@label@gradinstitute}%
-    }{%
-        \def\cuz@label@thesis{\cuz@label@docthesis}%
-        \def\cuz@label@major{\cuz@label@gradmajor}%
-        \def\cuz@label@institute{\cuz@label@gradinstitute}%
-    }}%
+        \cuzifstreq{\cuz@value@degree}{硕士}{%
+            \def\cuz@label@thesis{\cuz@label@masthesis}%
+            \def\cuz@label@major{\cuz@label@gradmajor}%
+            \def\cuz@label@institute{\cuz@label@gradinstitute}%
+        }{%
+            \def\cuz@label@thesis{\cuz@label@docthesis}%
+            \def\cuz@label@major{\cuz@label@gradmajor}%
+            \def\cuz@label@institute{\cuz@label@gradinstitute}%
+        }}%
     \cleardoublepage
     \thispagestyle{empty}
     \par
     \begin{center}
-		{\cuz@value@schoollogo}
+        {\cuz@value@schoollogo}
         \vfill
         {
             \zihao{-1}\heiti\mdseries%
@@ -465,34 +475,34 @@
         }
         \vfill
         \cuz@macro@otherinfoformat
-		\begin{tabular}{cccc}
-            \makebox[6.5em][s]{\cuz@label@author}： &
-            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@author} &
-            \makebox[2.5em][s]{\cuz@label@authorid}： &
+        \begin{tabular}{cccc}
+            \makebox[6.5em][s]{\cuz@label@author}：                                               &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@author}    &
+            \makebox[2.5em][s]{\cuz@label@authorid}：                                             &
             \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@authorid}
             \\
             \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@institute}： & 
+            \makebox[6.5em][s]{\cuz@label@institute}：                                            &
             \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@institute} &
-            \makebox[2.5em][s]{\cuz@label@major}： &
+            \makebox[2.5em][s]{\cuz@label@major}：                                                &
             \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@major}
             \\
             \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@advisor}： & 
-            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@advisor} &
-            \makebox[2.5em][s]{\cuz@label@advisortitle}： &
+            \makebox[6.5em][s]{\cuz@label@advisor}：                                              &
+            \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@advisor}   &
+            \makebox[2.5em][s]{\cuz@label@advisortitle}：                                         &
             \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@advisortitle}
             \\
             \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@coadvisor}： &
+            \makebox[6.5em][s]{\cuz@label@coadvisor}：                                            &
             \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisor} &
-            \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
+            \makebox[2.5em][s]{\cuz@label@coadvisortitle}：                                       &
             \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
         \end{tabular}\par
         \vspace{6ex}%
         \cuz@label@date\cuz@value@proposaldate\par%
         \makebox[12.5em][s]{\bfseries\cuz@label@maker}%
-	\end{center}
+    \end{center}
 }
 %---------------------------------------------------------------------------%
 %->> Author's declaration
@@ -519,13 +529,13 @@
             \heiti\zihao{-3}\bfseries\sffamily
             % \hfill{} {\cuz@value@declare@s \hspace*{8em}}
             % \vspace{1ex}
-            
+
             % \hfill{} {\cuz@value@declare@d \hspace*{8em}}
             \renewcommand\arraystretch{1.3}
             \begin{tabular}{@{}p{0.4\linewidth}l@{}}
-                & \cuz@value@declare@s \\
-                & \cuz@value@declare@d \\
-           \end{tabular} \par
+                 & \cuz@value@declare@s \\
+                 & \cuz@value@declare@d \\
+            \end{tabular} \par
         }
     }
     \clearpage
@@ -547,18 +557,18 @@
     \ifnum #1>\c@tocdepth \else
         \vskip \z@ \@plus.2\p@
         {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
-        \parindent #2\relax\@afterindenttrue
-        \interlinepenalty\@M
-        \leavevmode \zihao{-4}%\sffamily
-        \@tempdima #3\relax
-        \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-        {#4}\nobreak
-        % \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}
-        \leaders\hbox{$\m@th\mkern \@dotsep \hbox{.}\mkern \@dotsep$}
-        \hfill
-        \nobreak
-        \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
-        \par\penalty\@highpenalty}%
+            \parindent #2\relax\@afterindenttrue
+            \interlinepenalty\@M
+            \leavevmode \zihao{-4}%\sffamily
+            \@tempdima #3\relax
+            \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+            {#4}\nobreak
+            % \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}
+            \leaders\hbox{$\m@th\mkern \@dotsep \hbox{.}\mkern \@dotsep$}
+            \hfill
+            \nobreak
+            \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
+            \par\penalty\@highpenalty}%
     \fi
 }
 %- redefine l@part from book.cls to add dotted toc line
@@ -568,18 +578,18 @@
         \addvspace{2.25em \@plus\p@}%
         \setlength\@tempdima{3em}%
         \begingroup
-            \parindent \z@ \rightskip \@pnumwidth
-            \parfillskip -\@pnumwidth
-            {
-                \leavevmode\zihao{-4}%\sffamily 
-                #1
-                % \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}% add dotted toc line
-                \leaders\hbox{$\m@th\mkern \@dotsep \hbox{.}\mkern \@dotsep$}
-                \hfil \hb@xt@\@pnumwidth{\hss #2}
-            }\par
-            \nobreak
-            \global\@nobreaktrue
-            \everypar{\global\@nobreakfalse\everypar{}}%
+        \parindent \z@ \rightskip \@pnumwidth
+        \parfillskip -\@pnumwidth
+        {
+            \leavevmode\zihao{-4}%\sffamily 
+            #1
+            % \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}% add dotted toc line
+            \leaders\hbox{$\m@th\mkern \@dotsep \hbox{.}\mkern \@dotsep$}
+            \hfil \hb@xt@\@pnumwidth{\hss #2}
+        }\par
+        \nobreak
+        \global\@nobreaktrue
+        \everypar{\global\@nobreakfalse\everypar{}}%
         \endgroup
     \fi
 }
@@ -590,16 +600,16 @@
         % \vskip \@chaptervspace \@plus\p@
         \setlength\@tempdima{1.5em}%
         \begingroup
-            \parindent \z@ \rightskip \@pnumwidth
-            \parfillskip -\@pnumwidth
-            \leavevmode \zihao{-4}%\sffamily
-            \advance\leftskip\@tempdima
-            \hskip -\leftskip
-            #1\nobreak
-            % \leaders\hbox{$\m@th\mkern \@dotsep \cdots\mkern \@dotsep$}% add dotted toc line
-            \leaders\hbox{$\m@th\mkern \@dotsep \hbox{.}\mkern \@dotsep$}
-            \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
-            \penalty\@highpenalty
+        \parindent \z@ \rightskip \@pnumwidth
+        \parfillskip -\@pnumwidth
+        \leavevmode \zihao{-4}%\sffamily
+        \advance\leftskip\@tempdima
+        \hskip -\leftskip
+        #1\nobreak
+        % \leaders\hbox{$\m@th\mkern \@dotsep \cdots\mkern \@dotsep$}% add dotted toc line
+        \leaders\hbox{$\m@th\mkern \@dotsep \hbox{.}\mkern \@dotsep$}
+        \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+        \penalty\@highpenalty
         \endgroup
     \fi
 }
@@ -610,51 +620,51 @@
 %->> Redefine Chapter styles
 %---------------------------------------------------------------------------%
 \renewcommand\chapter{%
-	\ifcuz@doublesided\cleardoublepage\else\clearpage\fi%
-	\phantomsection	%
-	\global\@topnum\z@ %
-	\@afterindenttrue % indentation of the first paragraph
-	\secdef\@chapter\@schapter}
+  \ifcuz@doublesided\cleardoublepage\else\clearpage\fi%
+  \phantomsection	%
+  \global\@topnum\z@ %
+  \@afterindenttrue % indentation of the first paragraph
+  \secdef\@chapter\@schapter}
 \def\@chapter[#1]#2{%
-	\ifnum \c@secnumdepth >\m@ne
-		\if@mainmatter
-			\refstepcounter{chapter}%
-			\addcontentsline{toc}{chapter}{\protect\numberline{\CTEXthechapter}#1}
-		\else
-			\addcontentsline{toc}{chapter}{#1}%
-		\fi
-	\else
-		\addcontentsline{toc}{chapter}{#1}%
-	\fi
+    \ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter
+            \refstepcounter{chapter}%
+            \addcontentsline{toc}{chapter}{\protect\numberline{\CTEXthechapter}#1}
+        \else
+            \addcontentsline{toc}{chapter}{#1}%
+        \fi
+    \else
+        \addcontentsline{toc}{chapter}{#1}%
+    \fi
     \chaptermark{#1}%
     % add 10pt space at the corresponding position of figure list and table list
-	%\addtocontents{lof}{\protect\addvspace{10\p@}}%
-	%\addtocontents{lot}{\protect\addvspace{10\p@}}%
-	\@makechapterhead{#2}
+    %\addtocontents{lof}{\protect\addvspace{10\p@}}%
+    %\addtocontents{lot}{\protect\addvspace{10\p@}}%
+    \@makechapterhead{#2}
     \@afterheading
 }
 \def\@makechapterhead#1{%
-	% \vspace{1.5ex} %\vspace*{20\p@}%
-	{
-        \parindent \z@ % \centering
-        \songti\zihao{4}\bfseries\rmfamily
-        \ifnum \c@secnumdepth >\m@ne
-            \if@mainmatter
-                \CTEXthechapter \hskip 0.5em%
+    % \vspace{1.5ex} %\vspace*{20\p@}%
+    {
+            \parindent \z@ % \centering
+            \songti\zihao{4}\bfseries\rmfamily
+            \ifnum \c@secnumdepth >\m@ne
+                \if@mainmatter
+                    \CTEXthechapter \hskip 0.5em%
+                \fi
             \fi
-        \fi
-        \interlinepenalty\@M
-        #1\par\nobreak
-	}
+            \interlinepenalty\@M
+            #1\par\nobreak
+        }
     \vspace{0.6ex}
 }
 \def\@schapter#1{%
-	\@makeschapterhead{#1}
+    \@makeschapterhead{#1}
     \@afterheading
 }
 \def\@makeschapterhead#1{%
     \vspace*{1.5ex} % \vspace*{20\p@}%
-	{
+    {
         \parindent \z@ \centering
         \heiti\zihao{3}\bfseries%\sffamily
         \interlinepenalty\@M
