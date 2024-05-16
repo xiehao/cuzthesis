@@ -677,34 +677,37 @@
 %---------------------------------------------------------------------------%
 %- define Chinese keywords
 \newcommand{\chinesekeywords}[1]{%
-    \vspace{\baselineskip}
+    % \vspace{\baselineskip}
     {\bfseries\cuz@label@chinesekeywords} #1
 }
 %- define Chinese abstract
 \newenvironment{chineseabstract}[1]{%
     \clearpage
+    \setlength{\parskip}{0.0\baselineskip}
     \begin{center}
         \zihao{3}\heiti\cuz@value@title
     \end{center}
-    \par\vspace{2ex}
-    {\bfseries\cuz@label@chineseabstract：}\hspace{-0.8em}
+    % \par
+    % \vspace{2ex}
+    {\bfseries\cuz@label@chineseabstract：}%\hspace{-0.8em}
     \def\temp{\chinesekeywords{#1}}
 }{
     \par\temp\par
 }
 %- define Engish keywords
 \newcommand{\englishkeywords}[1]{%
-    \vspace{\baselineskip}
+    % \vspace{\baselineskip}
     {\bfseries\cuz@label@englishkeywords} #1
 }
 %- define English abstract
 \newenvironment{englishabstract}[1]{%
-    \vspace{8ex} % no clear page, right after the Chinese abstract, a wired style.
+    % \vspace{8ex} % no clear page, right after the Chinese abstract, a wired style.
+    \setlength{\parskip}{0.0\baselineskip}
     \begin{center}
         \zihao{3}\bfseries\MakeTextUppercase{\cuz@value@englishtitle}
     \end{center}
-    \par\vspace{2ex}
-    {\bfseries\cuz@label@englishabstract:}\hspace{-0.8em}
+    % \par\vspace{2ex}
+    {\bfseries\cuz@label@englishabstract:}\hspace{-1em}
     \def\temp{\englishkeywords{#1}}
 }{
     \par\temp\par
