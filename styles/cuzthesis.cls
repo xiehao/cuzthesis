@@ -117,9 +117,9 @@
 % \setlength{\headsep}{17.5pt}% vertical margin between header and body text
 % \setlength{\footskip}{29.5pt}% vertical margin between footer and body text
 % %- specifies the amount of space between paragraphs.
-% \setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}
+\setlength{\parskip}{0.0\baselineskip}
 % %- line spacing
-\linespread{1.5}% line space setting
+\linespread{1.25}% line space setting
 % \raggedbottom% prevent adding vertical white space in strange places
 % %- default pagestyle is page number at bottom without headers and footers
 % \pagestyle{plain}
@@ -685,7 +685,7 @@
 %- define Chinese abstract
 \newenvironment{chineseabstract}[1]{%
     \clearpage
-    \setlength{\parskip}{0.0\baselineskip}
+    % \setlength{\parskip}{0.0\baselineskip}
     \begin{center}
         \zihao{3}\heiti\cuz@value@title
     \end{center}
@@ -704,7 +704,7 @@
 %- define English abstract
 \newenvironment{englishabstract}[1]{%
     % \vspace{8ex} % no clear page, right after the Chinese abstract, a wired style.
-    \setlength{\parskip}{0.0\baselineskip}
+    % \setlength{\parskip}{0.0\baselineskip}
     \begin{center}
         \zihao{3}\bfseries\MakeTextUppercase{\cuz@value@englishtitle}
     \end{center}
@@ -719,11 +719,11 @@
     \intotoc{\cuz@label@acknowledgement}% should be placed first
     \chapter*{\songti\cuz@label@acknowledgement}
     \chaptermark{\cuz@label@acknowledgement}
-    \vspace{3ex}
+    \vspace{2ex}
     % \linespread{1.3}
-    \renewcommand{\baselinestretch}{1.3}
-    \setlength{\parskip}{0.4\baselineskip}
-    \selectfont
+    % \renewcommand{\baselinestretch}{1.3}
+    % \setlength{\parskip}{0.4\baselineskip}
+    % \selectfont
 }{
     \par
 }
@@ -739,9 +739,9 @@
 \newenvironment{cuzchapter}[2]{
     \chapter{#1}
     \label{#2}
-    \renewcommand{\baselinestretch}{1.3}
-    \setlength{\parskip}{0.4\baselineskip}
-    \selectfont
+    % \renewcommand{\baselinestretch}{1.3}
+    % \setlength{\parskip}{0.4\baselineskip}
+    % \selectfont
 }{
     \par
 }
