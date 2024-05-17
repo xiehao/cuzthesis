@@ -14,7 +14,7 @@
 %---------------------------------------------------------------------------%
 %->> Document class declaration
 %---------------------------------------------------------------------------%
-\documentclass[singlesided,cuzhdr]{styles/cuzthesis}%
+\documentclass[singlesided,cuzhdr,blinded]{styles/cuzthesis}%
 %- Multiple optional arguments:
 %- [<singlesided|doublesided|printcopy>]% set one or two sided eprint or print
 %- [draftversion]% show draft version information
@@ -71,10 +71,10 @@
 %-
 %-> The references
 \intotoc{\bibname}% add link to contents table and bookmark
-\begingroup
-    \linespread{1.2}\selectfont
+% \begingroup
+    % \linespread{1.2}\selectfont
     \bibliography{bibliography/references}%
-\endgroup
+% \endgroup
 %-> The acknowledgement
 \input{contents/acknowledgement}%
 %-> The appendices (if any)
