@@ -75,6 +75,8 @@
 \RequirePackage{hologo}% Some useful logos
 \RequirePackage{framed}% Framed paragraphs
 \RequirePackage{lineno}
+\RequirePackage{setspace}
+\RequirePackage{multirow}
 \newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 \newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% expansion control
 %---------------------------------------------------------------------------%
