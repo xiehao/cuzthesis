@@ -658,21 +658,21 @@
             \interlinepenalty\@M
             #1\par\nobreak
         }
-    \vspace{0.6ex}
+    \vspace{.6ex}
 }
 \def\@schapter#1{%
     \@makeschapterhead{#1}
     \@afterheading
 }
 \def\@makeschapterhead#1{%
-    \vspace*{1.5ex} % \vspace*{20\p@}%
+    % \vspace*{1.5ex} % \vspace*{20\p@}%
     {
         \parindent \z@ \centering
         \heiti\zihao{3}\bfseries%\sffamily
         \interlinepenalty\@M
         #1\par\nobreak
     }
-    \vspace{1.5ex} % \vskip 24\p@
+    % \vspace{1.5ex} % \vskip 24\p@
 }
 %---------------------------------------------------------------------------%
 %->> Define some useful environments
@@ -732,6 +732,7 @@
     \intotoc{\cuz@label@appendices}% should be placed first
     \chapter*{\songti\cuz@label@appendices}
     \chaptermark{\cuz@label@appendices}
+    \vspace{2ex}
     \setcounter{equation}{0}
 }{
     \par
