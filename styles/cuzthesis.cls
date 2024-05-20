@@ -689,7 +689,7 @@
     \begin{center}
         \zihao{3}\heiti\cuz@value@title
     \end{center}
-    % \par
+    \par
     % \vspace{2ex}
     {\bfseries\cuz@label@chineseabstract：}%\hspace{-0.8em}
     \def\temp{\chinesekeywords{#1}}
@@ -708,8 +708,9 @@
     \begin{center}
         \zihao{3}\bfseries\MakeTextUppercase{\cuz@value@englishtitle}
     \end{center}
-    % \par\vspace{2ex}
-    {\bfseries\cuz@label@englishabstract:}\hspace{-1em}
+    \par
+    % \vspace{2ex}
+    {\bfseries\cuz@label@englishabstract:}\hspace{-.5em}
     \def\temp{\englishkeywords{#1}}
 }{
     \par\temp\par
