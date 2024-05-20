@@ -691,6 +691,7 @@
     \end{center}
     % \par
     % \vspace{2ex}
+    
     {\bfseries\cuz@label@chineseabstract：}%\hspace{-0.8em}
     \def\temp{\chinesekeywords{#1}}
 }{
@@ -709,6 +710,7 @@
         \zihao{3}\bfseries\MakeTextUppercase{\cuz@value@englishtitle}
     \end{center}
     % \par\vspace{2ex}
+    
     {\bfseries\cuz@label@englishabstract:}\hspace{-1em}
     \def\temp{\englishkeywords{#1}}
 }{
