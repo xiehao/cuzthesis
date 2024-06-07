@@ -258,15 +258,24 @@
             \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on macOS and Linux.
             \setCJKfamilyfont{zhyou}{YouYuan}%
             \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on macOS and Linux.
+            \setCJKfamilyfont{adobesongti}{AdobeSongStd-Light}[%
+                AutoFakeBold=4,
+                ItalicFont=AdobeKaitiStd-Regular,
+            ]%
+            \renewcommand*{\songti}{\CJKfamily{adobesongti}}%
+            \setCJKfamilyfont{adobeheiti}{AdobeHeitiStd-Regular}[%
+                AutoFakeBold=4,
+            ]%
+            \renewcommand*{\heiti}{\CJKfamily{adobeheiti}}%
             \setCJKmainfont{AdobeSongStd-Light}[%
-                AutoFakeBold=2,
+                AutoFakeBold=4,
                 ItalicFont=AdobeKaitiStd-Regular,
             ]
             \setCJKsansfont{AdobeHeitiStd-Regular}[%
-                AutoFakeBold=2,
+                AutoFakeBold=4,
             ]%
             \setCJKmonofont{AdobeFangsongStd-Regular}[%
-                AutoFakeBold=2,
+                AutoFakeBold=4,
             ]%
             \setmainfont{Times New Roman}% Times New Roman
         \fi
