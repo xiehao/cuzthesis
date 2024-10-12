@@ -297,7 +297,7 @@
 \newcommand{\major}[1]{\gdef\cuz@value@major{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
 \newcommand{\institute}[1]{\gdef\cuz@value@institute{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
 \newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
-\newcommand{\proposaldate}[1]{\gdef\cuz@value@proposaldate{#1}}
+\newcommand{\openingdate}[1]{\gdef\cuz@value@openingdate{#1}}
 \newcommand{\surveydate}[1]{\gdef\cuz@value@surveydate{#1}}
 %-
 %-> Redefine Chinese style
@@ -450,7 +450,7 @@
         \end{tabular}
     \end{center}
 }
-\newcommand{\makeproposaltitle}{%
+\newcommand{\makeopeningtitle}{%
     \cuzifstreq{\cuz@value@degree}{学士}{%
         \def\cuz@label@thesis{\cuz@label@bacthesis}%
         \def\cuz@label@major{\cuz@label@ungradmajor}%
@@ -473,7 +473,7 @@
         \vfill
         {
             \zihao{-1}\heiti\mdseries%
-            \cuz@label@proposal%
+            \cuz@label@opening%
         }
         \vfill
         \cuz@macro@otherinfoformat
@@ -502,7 +502,7 @@
             \cuz@macro@exmultiunderline{\cuz@length@otherinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
         \end{tabular}\par
         \vspace{6ex}%
-        \cuz@label@date\cuz@value@proposaldate\par%
+        \cuz@label@date\cuz@value@openingdate\par%
         \makebox[12.5em][s]{\bfseries\cuz@label@maker}%
     \end{center}
 }
