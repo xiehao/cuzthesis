@@ -303,6 +303,7 @@
 {\thesection、}
 {0.0em}
 {}
+\titlespacing{\section}{0em}{2ex}{1.5ex}
 \renewcommand{\thesection}{\chinese{section}}
 \titleformat{\subsection}[block]
 {\normalfont\zihao{-4}\bfseries}
