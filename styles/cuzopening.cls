@@ -320,9 +320,9 @@
 %     \def\bibetal{\cuz@value@chinesebibetal}
 %     \def\biband{\cuz@value@chinesebiband}
 % \fi
-\RequirePackage{cite,etoolbox}
-\renewcommand{\bibname}{}
-\patchcmd{\thebibliography}{\chapter*}{\section*}{}{}
+\AfterEndPreamble{
+    \renewcommand{\bibsection}{}
+}
 %---------------------------------------------------------------------------%
 \endinput
 
