@@ -218,7 +218,7 @@
 \newcommand{\institute}[1]{\gdef\cuz@value@institute{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
 \newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
 \newcommand{\openingdate}[1]{\gdef\cuz@value@openingdate{#1}}
-\newcommand{\surveydate}[1]{\gdef\cuz@value@surveydate{#1}}
+\newcommand{\reviewdate}[1]{\gdef\cuz@value@reviewdate{#1}}
 
 % Define a macro for underlined text with adaptive multilines
 % #1: The width of text line, not text itself (set by paper)
@@ -321,8 +321,17 @@
 %     \def\bibetal{\cuz@value@chinesebibetal}
 %     \def\biband{\cuz@value@chinesebiband}
 % \fi
+\RequirePackage{xpatch}
+    \xapptocmd{\NAT@bibsetnum}{
+        \setlength{\leftmargin}{0pt}
+        \setlength{\itemindent}{\labelwidth}
+        \addtolength{\itemindent}{\labelsep}
+    }{}{}
 \AfterEndPreamble{
-    \renewcommand{\bibsection}{}
+    \renewcommand{\bibsection}{\vspace{-0.5em}}
+    \renewcommand{\bibfont}{\zihao{-4}}
+    \makeatletter
+    \makeatother
 }
 %---------------------------------------------------------------------------%
 \endinput
