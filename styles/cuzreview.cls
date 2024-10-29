@@ -307,7 +307,11 @@
 {\thesection、}
 {0.0em}
 {}
-\titlespacing{\section}{0em}{2ex}{1.5ex}
+\titlespacing{\section}{0em}{2ex}{1.5ex} % the spacing above section title has no effect
+\newcommand{\reviewdsection}[1]{
+    \vspace{2ex}
+    \section{#1}
+}
 \renewcommand{\thesection}{\chinese{section}}
 \titleformat{\subsection}[block]
 {\normalfont\zihao{-4}\bfseries}
