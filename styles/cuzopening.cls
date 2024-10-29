@@ -79,6 +79,7 @@
 \RequirePackage{multirow}
 \RequirePackage{titlesec}
 \RequirePackage{lipsum}
+\RequirePackage{tcolorbox}
 \newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 \newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% expansion control
 %---------------------------------------------------------------------------%
@@ -334,5 +335,6 @@
     \makeatother
 }
 %---------------------------------------------------------------------------%
+\tcbuselibrary{most}
 \endinput
 
