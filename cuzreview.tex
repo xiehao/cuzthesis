@@ -1,0 +1,81 @@
+% !TEX program = xelatex
+% !TEX options = -synctex=1 -interaction=nonstopmode -shell-escape -file-line-error "%DOC%"
+% !BIB program = bibtex
+%---------------------------------------------------------------------------%
+%-                                                                         -%
+%-                           LaTeX Template                                -%
+%-                                                                         -%
+%---------------------------------------------------------------------------%
+%- Copyright (C) Hao XIE <oaheix@gmail.com> 
+%- This is free software: you can redistribute it and/or modify it
+%- under the terms of the GNU General Public License as published by
+%- the Free Software Foundation, either version 3 of the License, or
+%- (at your option) any later version.
+%---------------------------------------------------------------------------%
+%->> Document class declaration
+%---------------------------------------------------------------------------%
+\documentclass[singlesided,cuzhdr]{styles/cuzreview}%
+%- Multiple optional arguments:
+%- [<singlesided|doublesided|printcopy>]% set one or two sided eprint or print
+%- [draftversion]% show draft version information
+%- [fontset=<fandol|...>]% specify font set to replace automatic detection
+%- [scheme=plain]% thesis writing of international students
+%- [standard options for ctex book class: draft|paper size|font size|...]%
+%---------------------------------------------------------------------------%
+%->> Document settings
+%---------------------------------------------------------------------------%
+\usepackage[super,list,table]{styles/artratex}% document settings
+%- usage: \usepackage[option1,option2,...,optionN]{artratex}
+%- Multiple optional arguments:
+%- [bibtex|biber]% set bibliography processor and package
+%- [<numbers|super|authoryear|alpha>]% set citation and reference style
+%- <numbers>: textual: Jones [1]; parenthetical: [1]
+%- <super>: textual: Jones superscript [1]; parenthetical: superscript [1]
+%- <authoryear>: textual: Jones (1995); parenthetical: (Jones, 1995)
+%- <alpha>: textual: not available; parenthetical: [Jon95]
+%- [geometry]% reconfigure page layout via geometry package
+%- [lscape]% provide landscape layout environment
+%- [myhdr]% enable header and footer via fancyhdr package
+%- [color]% provide color support via xcolor package
+%- [background]% enable page background
+%- [tikz]% provide complex diagrams via tikz package
+%- [table]% provide complex tables via ctable package
+%- [list]% provide enhanced list environments for algorithm and coding
+%- [math]% enable some extra math packages
+\usepackage{styles/artracom}% user defined commands
+%---------------------------------------------------------------------------%
+%->> Document content
+%---------------------------------------------------------------------------%
+
+\begin{document}
+%-> Initialization
+\input{contents/initialization}
+%-
+%-> Frontmatter: title page, declaration, abstracts, content list
+%-
+% \plainmatter% set the page layout
+%-> The title page
+\maketitle%
+\cleardoublepage
+\nomatter
+\begin{tcolorbox}[
+    breakable,
+    standard jigsaw,
+    opacityback=0,
+    % boxsep=0mm,
+    boxrule=0.2mm,
+    parbox=false,
+    sharp corners=all
+]
+\input{contents/reviewbody.tex}
+\nomatter
+%-> The references
+% \intotoc{\bibname}% add link to contents table and bookmark
+% \begingroup
+    % \linespread{1.2}\selectfont
+    \bibliography{bibliography/references}%
+% \endgroup
+\end{tcolorbox}
+\end{document}
+%---------------------------------------------------------------------------%
+
