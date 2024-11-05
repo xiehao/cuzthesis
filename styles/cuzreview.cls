@@ -326,7 +326,7 @@
 %     \def\biband{\cuz@value@chinesebiband}
 % \fi
 \AfterEndPreamble{
-    \renewcommand{\bibsection}{}
+    \renewcommand{\bibsection}{\vspace{-1.2ex}}
     \renewcommand{\bibfont}{\zihao{5}}
     % \AddEverypageHook{
     %     \ifthenelse{\thepage > 1}{

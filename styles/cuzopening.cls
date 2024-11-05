@@ -329,7 +329,7 @@
         \addtolength{\itemindent}{\labelsep}
     }{}{}
 \AfterEndPreamble{
-    \renewcommand{\bibsection}{\vspace{-0.5em}}
+    \renewcommand{\bibsection}{\vspace{-1.2ex}}
     \renewcommand{\bibfont}{\zihao{-4}}
     \makeatletter
     \makeatother
