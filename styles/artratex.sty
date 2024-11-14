@@ -254,9 +254,18 @@
             \setsansfont{Helvetica}% Helvetica
         \fi
         \iflinux
-            \setCJKfamilyfont{zhli}{LiSu}%
+            % \setCJKfamilyfont{zhli}{LiSu}%
+            \setCJKfamilyfont{zhli}{方正隶书_GBK}[%
+                AutoFakeBold=4,
+            ]%
             \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on macOS and Linux.
-            \setCJKfamilyfont{zhyou}{YouYuan}%
+            \setCJKfamilyfont{zhwei}{方正魏碑_GBK}[%
+                AutoFakeBold=4,
+            ]%
+            \newcommand*{\weibei}{\CJKfamily{zhwei}}% add definition of WeiBei on macOS and Linux.
+            \setCJKfamilyfont{zhyou}{YouYuan}[%
+                AutoFakeBold=4,
+            ]%
             \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on macOS and Linux.
             \setCJKfamilyfont{adobesongti}{AdobeSongStd-Light}[%
                 AutoFakeBold=4,
@@ -267,6 +276,10 @@
                 AutoFakeBold=4,
             ]%
             \renewcommand*{\heiti}{\CJKfamily{adobeheiti}}%
+            \setCJKfamilyfont{adobekaiti}{AdobeKaitiStd-Regular}[%
+                AutoFakeBold=4,
+            ]%
+            \newcommand*{\kaiti}{\CJKfamily{adobekaiti}}%
             \setCJKmainfont{AdobeSongStd-Light}[%
                 AutoFakeBold=4,
                 ItalicFont=AdobeKaitiStd-Regular,
