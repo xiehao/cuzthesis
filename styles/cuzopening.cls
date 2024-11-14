@@ -216,6 +216,7 @@
 \newcommand{\degree}[1]{\gdef\cuz@value@degree{#1}}
 \newcommand{\degreetype}[1]{\gdef\cuz@value@degreetype{#1}}
 \newcommand{\major}[1]{\gdef\cuz@value@major{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
+\newcommand{\class}[1]{\gdef\cuz@value@class{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
 \newcommand{\institute}[1]{\gdef\cuz@value@institute{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
 \newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
 \newcommand{\openingdate}[1]{\gdef\cuz@value@openingdate{#1}}
@@ -322,17 +323,15 @@
 %     \def\bibetal{\cuz@value@chinesebibetal}
 %     \def\biband{\cuz@value@chinesebiband}
 % \fi
-\RequirePackage{xpatch}
-    \xapptocmd{\NAT@bibsetnum}{
-        \setlength{\leftmargin}{0pt}
-        \setlength{\itemindent}{\labelwidth}
-        \addtolength{\itemindent}{\labelsep}
-    }{}{}
+% \RequirePackage{xpatch}
+%     \xapptocmd{\NAT@bibsetnum}{
+%         \setlength{\leftmargin}{0pt}
+%         \setlength{\itemindent}{\labelwidth}
+%         \addtolength{\itemindent}{\labelsep}
+%     }{}{}
 \AfterEndPreamble{
     \renewcommand{\bibsection}{\vspace{-1.2ex}}
     \renewcommand{\bibfont}{\zihao{-4}}
-    \makeatletter
-    \makeatother
 }
 %---------------------------------------------------------------------------%
 \tcbuselibrary{most}

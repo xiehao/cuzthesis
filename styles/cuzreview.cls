@@ -219,6 +219,7 @@
 \newcommand{\degree}[1]{\gdef\cuz@value@degree{#1}}
 \newcommand{\degreetype}[1]{\gdef\cuz@value@degreetype{#1}}
 \newcommand{\major}[1]{\gdef\cuz@value@major{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
+\newcommand{\class}[1]{\gdef\cuz@value@class{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
 \newcommand{\institute}[1]{\gdef\cuz@value@institute{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
 \newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
 \newcommand{\openingdate}[1]{\gdef\cuz@value@openingdate{#1}}
