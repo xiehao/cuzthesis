@@ -233,10 +233,20 @@
     %\RequirePackage{unicode-math}% another math symbol font configuration
     %\setmathfont{XITS Math}% a complete symbol set for STIX math fonts
     \ifwindows
-        \setCJKmainfont{SimSun}[AutoFakeBold=2,ItalicFont=KaiTi]%
-        \setCJKsansfont{SimHei}[AutoFakeBold=2]%
+        \setCJKfamilyfont{zhwei}{华文新魏}[%
+            AutoFakeBold=4,
+        ]%
+        \newcommand*{\weibei}{\CJKfamily{zhwei}}% add definition of WeiBei on macOS and Linux.
+        \setCJKmainfont{SimSun}[AutoFakeBold=4,ItalicFont=KaiTi]%
+        \setCJKsansfont{SimHei}[AutoFakeBold=4]%
         \setCJKmonofont{FangSong}%
+        \setmonofont{FiraMono Nerd Font}[
+            Scale=MatchLowercase,
+        ]% Fira Mono for all platforms
     \else
+        \setmonofont{Fira Mono}[
+            Scale=MatchLowercase,
+        ]% Fira Mono for all platforms
         \ifmacosx
             \setCJKmainfont{Songti SC}[%
                 UprightFont    = * Light,
@@ -293,9 +303,6 @@
             \setmainfont{Times New Roman}% Times New Roman
         \fi
     \fi
-    \setmonofont{Fira Mono}[
-        Scale=MatchLowercase,
-    ]% Fira Mono for all platforms
 \fi
 %- 
 %-> Bibliography processor and package
