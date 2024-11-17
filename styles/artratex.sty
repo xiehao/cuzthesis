@@ -264,16 +264,17 @@
             \setsansfont{Helvetica}% Helvetica
         \fi
         \iflinux
-            % \setCJKfamilyfont{zhli}{LiSu}%
-            \setCJKfamilyfont{zhli}{方正隶书_GBK}[%
+            \setCJKfamilyfont{zhli}{隶书}[%
+            % \setCJKfamilyfont{zhli}{方正隶书_GBK}[%
                 AutoFakeBold=4,
             ]%
             \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on macOS and Linux.
-            \setCJKfamilyfont{zhwei}{方正魏碑_GBK}[%
+            \setCJKfamilyfont{zhwei}{华文新魏}[%
+            % \setCJKfamilyfont{zhwei}{方正魏碑_GBK}[%
                 AutoFakeBold=4,
             ]%
             \newcommand*{\weibei}{\CJKfamily{zhwei}}% add definition of WeiBei on macOS and Linux.
-            \setCJKfamilyfont{zhyou}{YouYuan}[%
+            \setCJKfamilyfont{zhyou}{幼圆}[%
                 AutoFakeBold=4,
             ]%
             \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on macOS and Linux.
