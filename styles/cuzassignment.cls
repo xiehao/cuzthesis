@@ -250,28 +250,28 @@
         {
             \zihao{-1}\weibei\bfseries
             \cuz@label@university
-        \vspace{1.5ex}
+            \vspace{1.5ex}
         } \par
         {
             \zihao{-2}\heiti\bfseries%
             \cuz@label@assignment%
-        \vspace{1.5ex}
+            \vspace{1.5ex}
         } \par
         {
-        \cuz@macro@otherinfoformat
-        \newcommand{\cuz@padding}{\hspace{-1em}}
-        \begin{tabular}{cccc}
-            \cuz@padding\makebox[4em][s]{\cuz@label@major}                                              &
-            \cuz@padding\cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@major}    &
-            \cuz@padding\makebox[4em][s]{\cuz@label@class}                                            &
-            \cuz@padding\cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@class}
-            \\
-            \rule{0pt}{3.5ex}
-            \cuz@padding\makebox[4em][s]{\cuz@label@author}                                           &
-            \cuz@padding\cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@author} &
-            \cuz@padding\makebox[4em][s]{\cuz@label@advisor}                                               &
-            \cuz@padding\cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisor}
-        \end{tabular}\par
+            \cuz@macro@otherinfoformat
+            \newcommand{\cuz@padding}{\hspace{-1em}}
+            \begin{tabular}{cccc}
+                \cuz@padding\makebox[4em][s]{\cuz@label@major}                                               &
+                \cuz@padding\cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@major}  &
+                \cuz@padding\makebox[4em][s]{\cuz@label@class}                                               &
+                \cuz@padding\cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@class}
+                \\
+                \rule{0pt}{3.5ex}
+                \cuz@padding\makebox[4em][s]{\cuz@label@author}                                              &
+                \cuz@padding\cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@author} &
+                \cuz@padding\makebox[4em][s]{\cuz@label@advisor}                                             &
+                \cuz@padding\cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisor}
+            \end{tabular}\par
         }
     \end{center}
 }

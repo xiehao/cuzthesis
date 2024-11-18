@@ -247,7 +247,19 @@
         \setmonofont{Fira Mono}[
             Scale=MatchLowercase,
         ]% Fira Mono for all platforms
+        \newcommand*{\weibei}{\CJKfamily{zhwei}}% add definition of WeiBei on macOS and Linux.
+        \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on macOS and Linux.
+        \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on macOS and Linux.
         \ifmacosx
+            \setCJKfamilyfont{zhli}{Baoli SC}[%
+                AutoFakeBold=4,
+            ]%
+            \setCJKfamilyfont{zhwei}{Weibei SC}[%
+                AutoFakeBold=4,
+            ]%
+            \setCJKfamilyfont{zhyou}{Yuanti SC}[%
+                AutoFakeBold=4,
+            ]%
             \setCJKmainfont{Songti SC}[%
                 UprightFont    = * Light,
                 BoldFont       = * Bold,
@@ -265,19 +277,16 @@
         \fi
         \iflinux
             \setCJKfamilyfont{zhli}{隶书}[%
-            % \setCJKfamilyfont{zhli}{方正隶书_GBK}[%
+                % \setCJKfamilyfont{zhli}{方正隶书_GBK}[%
                 AutoFakeBold=4,
             ]%
-            \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on macOS and Linux.
             \setCJKfamilyfont{zhwei}{华文新魏}[%
-            % \setCJKfamilyfont{zhwei}{方正魏碑_GBK}[%
+                % \setCJKfamilyfont{zhwei}{方正魏碑_GBK}[%
                 AutoFakeBold=4,
             ]%
-            \newcommand*{\weibei}{\CJKfamily{zhwei}}% add definition of WeiBei on macOS and Linux.
             \setCJKfamilyfont{zhyou}{幼圆}[%
                 AutoFakeBold=4,
             ]%
-            \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on macOS and Linux.
             \setCJKfamilyfont{adobesongti}{AdobeSongStd-Light}[%
                 AutoFakeBold=4,
                 ItalicFont=AdobeKaitiStd-Regular,
@@ -327,26 +336,26 @@
         \bibliographystyle{alpha}% alpha scheme
     \fi
     \providecommand*{\citetns}[2][]{% text embedded \citet in superscripted mode
-        \begingroup%
-            \let\NAT@mbox=\mbox%
-            \let\@cite\NAT@citenum%
-            \let\NAT@space\NAT@spacechar%
-            \let\NAT@super@kern\relax%
-            \renewcommand\NAT@open{[}%
-            \renewcommand\NAT@close{]}%
-            \citet[#1]{#2}%
-        \endgroup%
+    \begingroup%
+    \let\NAT@mbox=\mbox%
+    \let\@cite\NAT@citenum%
+    \let\NAT@space\NAT@spacechar%
+    \let\NAT@super@kern\relax%
+    \renewcommand\NAT@open{[}%
+    \renewcommand\NAT@close{]}%
+    \citet[#1]{#2}%
+    \endgroup%
     }
     \providecommand*{\citepns}[2][]{% text embedded \citep in superscripted mode
-        \begingroup%
-            \let\NAT@mbox=\mbox%
-            \let\@cite\NAT@citenum%
-            \let\NAT@space\NAT@spacechar%
-            \let\NAT@super@kern\relax%
-            \renewcommand\NAT@open{[}%
-            \renewcommand\NAT@close{]}%
-            \citep[#1]{#2}%
-        \endgroup%
+    \begingroup%
+    \let\NAT@mbox=\mbox%
+    \let\@cite\NAT@citenum%
+    \let\NAT@space\NAT@spacechar%
+    \let\NAT@super@kern\relax%
+    \renewcommand\NAT@open{[}%
+    \renewcommand\NAT@close{]}%
+    \citep[#1]{#2}%
+    \endgroup%
     }
 \fi
 %- Biber processor + biblatex package
@@ -608,20 +617,20 @@
 %-> Configure landscape environment
 %-
 \ifartx@lscape%
-\fancypagestyle{lscape}{% landscape layout style
-    \fancyhf{}% clear fields
-    \fancyfoot[CE,CO]{%
-    %- textpos: \begin{textblock}{<blockwidth>}[0.5,0.5](<hpos>,<vpos>) text... \end{textblock}
-    %- origin of the absolute coordinate is the top-left corner of the page
-    %- [0.5,0.5] means reference point of the block is the middle
-    \begin{textblock}{0.1}[0.5,0.5](0.85,0.5){\rotatebox{90}{\footnotesize \thepage}}\end{textblock}% position the page number
+    \fancypagestyle{lscape}{% landscape layout style
+        \fancyhf{}% clear fields
+        \fancyfoot[CE,CO]{%
+            %- textpos: \begin{textblock}{<blockwidth>}[0.5,0.5](<hpos>,<vpos>) text... \end{textblock}
+            %- origin of the absolute coordinate is the top-left corner of the page
+            %- [0.5,0.5] means reference point of the block is the middle
+            \begin{textblock}{0.1}[0.5,0.5](0.85,0.5){\rotatebox{90}{\footnotesize \thepage}}\end{textblock}% position the page number
+        }
+        %- set units of <blockwidth>, <hpos>, and <vpos> arguments by corresponding modules 
+        \setlength{\TPHorizModule}{8.5in}% set to the width of page
+        \setlength{\TPVertModule}{11in}% set to the height of page
+        \renewcommand{\headrulewidth}{0pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
     }
-    %- set units of <blockwidth>, <hpos>, and <vpos> arguments by corresponding modules 
-    \setlength{\TPHorizModule}{8.5in}% set to the width of page
-    \setlength{\TPVertModule}{11in}% set to the height of page
-    \renewcommand{\headrulewidth}{0pt}% header rule
-    \renewcommand{\footrulewidth}{0pt}% footer rule
-}
 \fi
 \ifartx@list% enable enhanced list
     \definecolor{mygreen}{rgb}{0,0.6,0}

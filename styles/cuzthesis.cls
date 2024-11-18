@@ -612,11 +612,11 @@
 \def\@makeschapterhead#1{%
     % \vspace*{1.5ex} % \vspace*{20\p@}%
     {
-        \parindent \z@ \centering
-        \heiti\zihao{3}\bfseries%\sffamily
-        \interlinepenalty\@M
-        #1\par\nobreak
-    }
+            \parindent \z@ \centering
+            \heiti\zihao{3}\bfseries%\sffamily
+            \interlinepenalty\@M
+            #1\par\nobreak
+        }
     % \vspace{1.5ex} % \vskip 24\p@
 }
 %---------------------------------------------------------------------------%
