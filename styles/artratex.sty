@@ -232,11 +232,24 @@
     % is a new one. mathrm and mathsf can be set by \setmathrm and \setmathsf
     %\RequirePackage{unicode-math}% another math symbol font configuration
     %\setmathfont{XITS Math}% a complete symbol set for STIX math fonts
+    \newcommand*{\weibei}{\CJKfamily{zhwei}}% add definition of WeiBei.
+    \setmainfont{Times New Roman}% Times New Roman
     \ifwindows
+        \renewcommand*{\lishu}{\CJKfamily{zhli}}% modify definition of Lishu on Windows.
+        \renewcommand*{\youyuan}{\CJKfamily{zhyou}}% modify definition of YouYuan on Windows.
+        \renewcommand*{\heiti}{\CJKfamily{zhhei}}% modify definition of Heiti on Windows.
+        \setCJKfamilyfont{zhli}{隶书}[%
+            AutoFakeBold=4,
+        ]%
         \setCJKfamilyfont{zhwei}{华文新魏}[%
             AutoFakeBold=4,
         ]%
-        \newcommand*{\weibei}{\CJKfamily{zhwei}}% add definition of WeiBei on macOS and Linux.
+        \setCJKfamilyfont{zhyou}{幼圆}[%
+            AutoFakeBold=4,
+        ]%
+        \setCJKfamilyfont{zhhei}{黑体}[%
+            AutoFakeBold=4,
+        ]%
         \setCJKmainfont{SimSun}[AutoFakeBold=4,ItalicFont=KaiTi]%
         \setCJKsansfont{SimHei}[AutoFakeBold=4]%
         \setCJKmonofont{FangSong}%
@@ -247,7 +260,6 @@
         \setmonofont{Fira Mono}[
             Scale=MatchLowercase,
         ]% Fira Mono for all platforms
-        \newcommand*{\weibei}{\CJKfamily{zhwei}}% add definition of WeiBei on macOS and Linux.
         \newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on macOS and Linux.
         \newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on macOS and Linux.
         \ifmacosx
@@ -272,7 +284,6 @@
             \setCJKmonofont{STFangsong}[%
                 AutoFakeBold=3,
             ]%
-            \setmainfont{Times New Roman}% Times New Roman
             \setsansfont{Helvetica}% Helvetica
         \fi
         \iflinux
@@ -310,7 +321,6 @@
             \setCJKmonofont{AdobeFangsongStd-Regular}[%
                 AutoFakeBold=4,
             ]%
-            \setmainfont{Times New Roman}% Times New Roman
         \fi
     \fi
 \fi
