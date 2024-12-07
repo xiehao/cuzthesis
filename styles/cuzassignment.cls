@@ -80,7 +80,6 @@
 \RequirePackage{titlesec}
 \RequirePackage{lipsum}
 \RequirePackage{longtable}
-\RequirePackage{everypage}
 \RequirePackage{tikz}
 \RequirePackage{tcolorbox}
 \newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
@@ -304,16 +303,6 @@
 \AfterEndPreamble{
     \renewcommand{\bibsection}{\vspace{-1.2ex}}
     \renewcommand{\bibfont}{\zihao{5}}
-    % \AddEverypageHook{
-    %     \ifthenelse{\thepage > 1}{
-    %         \begin{tikzpicture}[remember picture, overlay]
-    %             \draw[thin]
-    %             ([xshift=2.3cm, yshift=2.3cm] current page.south west) 
-    %             rectangle 
-    %             ([xshift=-2.3cm, yshift=-2.3cm] current page.north east);
-    %         \end{tikzpicture}
-    %     }{}
-    % }
 }
 \tcbuselibrary{most}
 %---------------------------------------------------------------------------%
