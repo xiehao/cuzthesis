@@ -316,13 +316,13 @@
 %---------------------------------------------------------------------------%
 %->> Customized bibliography settings
 %---------------------------------------------------------------------------%
-% \ifcuz@plain%
-%     \def\bibetal{\cuz@value@englishbibetal}
-%     \def\biband{\cuz@value@englishbiband}
-% \else%
-%     \def\bibetal{\cuz@value@chinesebibetal}
-%     \def\biband{\cuz@value@chinesebiband}
-% \fi
+\ifcuz@plain%
+    \def\bibetal{\cuz@value@englishbibetal}
+    \def\biband{\cuz@value@englishbiband}
+\else%
+    \def\bibetal{\cuz@value@chinesebibetal}
+    \def\biband{\cuz@value@chinesebiband}
+\fi
 % \RequirePackage{xpatch}
 %     \xapptocmd{\NAT@bibsetnum}{
 %         \setlength{\leftmargin}{0pt}
