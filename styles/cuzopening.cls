@@ -333,8 +333,10 @@
 \AfterEndPreamble{
 	\renewcommand{\bibsection}{\vspace{-1.2ex}}
 	\renewcommand{\bibfont}{\zihao{-4}}
+	\renewcommand{\thefigure}{\arabic{figure}}% configure the label style
+	\renewcommand{\thetable}{\arabic{table}}% configure the label style
 }
-%---------------------------------------------------------------------------%
 \tcbuselibrary{most}
+%---------------------------------------------------------------------------%
 \endinput
 

@@ -340,6 +340,8 @@
 	%         \end{tikzpicture}
 	%     }{}
 	% }
+	\renewcommand{\thefigure}{\arabic{figure}}% configure the label style
+	\renewcommand{\thetable}{\arabic{table}}% configure the label style
 }
 \tcbuselibrary{most}
 %---------------------------------------------------------------------------%
