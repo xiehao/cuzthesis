@@ -59,24 +59,24 @@
 \cleardoublepage
 \nomatter
 \begin{tcolorbox}[
-    breakable,
-    standard jigsaw,
-    opacityback=0,
-    % boxsep=0mm,
-    boxrule=0.2mm,
-    parbox=false,
-    sharp corners=all
-]
-$\!$ % BUG: there should be some text above the first section title within a
-    % tcolorbox; otherwise the spacing above each section title will be missing.
-\input{contents/reviewbody.tex}
-\nomatter
-%-> The references
-% \intotoc{\bibname}% add link to contents table and bookmark
-% \begingroup
-    % \linespread{1.2}\selectfont
-    \bibliography{bibliography/references}%
-% \endgroup
+		breakable,
+		standard jigsaw,
+		opacityback=0,
+		% boxsep=0mm,
+		boxrule=0.2mm,
+		parbox=false,
+		sharp corners=all
+	]
+	$\!$ % BUG: there should be some text above the first section title within a
+	% tcolorbox; otherwise the spacing above each section title will be missing.
+	\input{contents/reviewbody.tex}
+	\nomatter
+	%-> The references
+	% \intotoc{\bibname}% add link to contents table and bookmark
+	% \begingroup
+	% \linespread{1.2}\selectfont
+	\bibliography{bibliography/references}%
+	% \endgroup
 \end{tcolorbox}
 \end{document}
 %---------------------------------------------------------------------------%
