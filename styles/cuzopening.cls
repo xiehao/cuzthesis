@@ -298,7 +298,7 @@
 	\end{center}
 }
 %---------------------------------------------------------------------------%
-%->> Redefine Section and Subsection styles
+%->> Redefine \section, \subsection and \subsubsection styles
 %---------------------------------------------------------------------------%
 \titleformat{\section}[hang]
 {\normalfont\zihao{-4}\bfseries}
@@ -314,6 +314,13 @@
 {}
 \titlespacing{\subsection}{0em}{2ex}{1.5ex}
 \renewcommand{\thesubsection}{\chinese{subsection}}
+\titleformat{\subsubsection}[block]
+{\normalfont\zihao{-4}\bfseries}
+{\thesubsubsection.}
+{0.2em}
+{}
+\titlespacing{\subsubsection}{2em}{2ex}{1.5ex}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
 %---------------------------------------------------------------------------%
 %->> Customized bibliography settings
 %---------------------------------------------------------------------------%
