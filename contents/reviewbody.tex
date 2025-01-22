@@ -1,44 +1,82 @@
 \begin{tcolorbox}
-    注意：文献综述正文、参考文献等的字体字号行间距等格式要求，均按照毕业设计论
-    文撰写的格式要求
+	\emph{郑重声明：本文档仅给出个人建议，仅供参考。另外，在实际撰写时，凡出现于
+		tcolorbox环境中的文本均应连同环境本身一同注释或直接删除，以免影响最终呈
+		现效果。}
 \end{tcolorbox}
 
-文献综述应详细阐述与毕业设计选题相关领域的国内外研究现状、发展趋势、存在的问题，
-并明确选题所要解决的问题和所要达到的基本目标。
+\begin{tcolorbox}
+	\begin{itemize}
+		\item 文献综述应详细阐述与毕业设计选题相关领域的国内外研究现状、发展趋
+		      势、存在的问题等。
+		\item 文献综述的质量从某种程度上可反映出作者对相关领域是否\emph{充分}了
+		      解，进而是否有能力开始着手毕业设计工作。
+		\item 文献综述应尽量做到\emph{知己知彼}、\emph{有的放矢}，避免坐井观天、
+		      闭门造车。
+	\end{itemize}
+\end{tcolorbox}
 
 \section{国内外研究现状}
 
 \begin{tcolorbox}
-    小四，宋体，行间距为单倍，首行缩进2字符，段前段后为0， 如果分点，按照层级
-    “一、（一）1.（1）”行文
+	此部分可从总体概括介绍国内外\emph{从过去到现在}相关领域的研究背景、历史发展
+	与研究现状。建议可按国内外分别阐述：
 \end{tcolorbox}
 
 \subsection{国内研究现状}
 
-\lipsum[1]\cite{Bohan1928,chen1980zhongguo}
+\begin{tcolorbox}
+	总体概括国内研究现状。
+\end{tcolorbox}
 
 \subsection{国外研究现状}
 
-\lipsum[2]
+\begin{tcolorbox}
+	总体概况国外研究现状。
+\end{tcolorbox}
 
 \section{研究成果}
 
-\lipsum[2-4]\cite{chen2005zhulu,chu2004tushu,yuan2012lanc}
+\begin{tcolorbox}
+	此部分可重点展开阐述从过去到现在的一些\emph{代表性}工作成果。在阐述时可按某
+	种方式对成果适当进行\emph{归类}、\emph{分析}、\emph{比较}。建议可为每一类单
+	独做小节标题\verb|\subsection{...}|，在小节中按时间顺序详细阐述该类中的重要
+	工作成果，分析每类工作的优缺点、适用性等，最后再进行类间综合比较，并联系自己
+	的工作得出初步结论。
+\end{tcolorbox}
 
 \section{进展情况和发展趋势}
 
-\lipsum[5-7]\cite{lamport1986document,niu2013zonghe}
+\begin{tcolorbox}
+	此部分可着重介绍\emph{从现在到将来}的技术发展趋势。可从现有成果出发，合理预
+	测未来相关技术、平台等的发展趋势。也可借此机会说明自己工作与发展趋势的关系。
+\end{tcolorbox}
 
 \section{存在的问题}
 
-\lipsum[8-11]\cite{wikibook2014latex,Dubrovin1906,hls2012jinji}
+\begin{tcolorbox}
+	此部分可列出现有成果中存在的问题。只有有问题才有改进空间，才更能凸显自己工作
+	的必要性。建议只列出\emph{少量}（$3\sim5$个为宜）、且自己工作有可能解决的问
+	题，同时引出自己的工作，即选题所要解决的问题与达到的基本目标。
+\end{tcolorbox}
 
 \section{主要参考文献}
 
 \begin{tcolorbox}
-    中文字体为宋体，西文字体为Times New Roman，五号，两端对齐，左缩进2字符，悬挂
-    缩进1.5字符，段前段后0.5行，单倍行距。参考文献要求10篇以上，其中外文要有2
-    篇。
+	此部分无需加入任何内容，模板会自动根据正文中的引用生成参考文献，故\emph{要确
+		保在正文中适当位置、以适当方式引用适当数目的适当文献}，具体解释如下：
+	\begin{itemize}
+		\item 引用\emph{位置}应紧跟在被引内容后，但尽量不要出现在标点符号后，除
+		      非整句或整段引用（不提倡）；
+		\item 引用\emph{方式}可采用作者上标型（如：\citet{chen1980zhongguo}提出
+		      ……）、直接上标型（如：采用了……方法\citep{chen2005zhulu}）或多个参
+		      考文献同时引用（如：这些方法
+		      \citep{Bohan1928,chu2004tushu,Dubrovin1906,hls2012jinji}……），但应
+		      注意避免同时引用过多（此处为反例
+		      \citep{yuan2012lana,yuan2012lanb,yuan2012lanc,wikibook2014latex,walls2013drought,stamerjohanns2009mathml,niu2013zonghe,lamport1986document}）；
+		\item 引用\emph{数目}应满足要求，即不低于10篇（其中不低于2篇外文文献）；
+		\item 被引\emph{文献}应尽量选择优质且最新成果（以近3年以内为宜，若确为经
+		      典可适当放宽年限）。
+	\end{itemize}
 \end{tcolorbox}
 
 % Should be empty here, since the bibliograpy will be generated automatically
