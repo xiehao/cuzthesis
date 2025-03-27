@@ -48,7 +48,7 @@
 %---------------------------------------------------------------------------%
 \begin{document}
 %-> Initialization
-\input{contents/initialization}
+\input{src/thesis/frontmatter/initialization}
 %-
 %-> Frontmatter: title page, declaration, abstracts, content list
 %-
@@ -58,14 +58,14 @@
 %-> The author's declaration
 \makedeclaration%
 \nofootermatter% change the page layout
-\input{contents/abstracts}
+\input{src/thesis/frontmatter/abstracts}
 %-> The table of contents
 \tableofcontents%
 %-
 %-> Mainmatter: the main body
 %-
 \mainmatter% change the page layout
-\input{contents/mainbody}%
+\input{src/thesis/mainmatter/mainbody}%
 %-
 %-> Backmatter: acknowledgement, references, appendices (if any)
 %-
@@ -76,10 +76,10 @@
 \bibliography{bibliography/references}%
 % \endgroup
 %-> The acknowledgement
-\input{contents/acknowledgement}%
+\input{src/thesis/frontmatter/acknowledgement}%
 %-> The appendices (if any)
 \appendix% change the page layout
-\input{contents/appendices}%
+\input{src/thesis/backmatter/appendices}%
 \end{document}
 %---------------------------------------------------------------------------%
 

@@ -79,19 +79,19 @@ else
     BibCompiler=""
 fi
 
-#-
-#-> Set compilation out directory resembling the inclusion hierarchy
-#-
+#---------------------------------------------------------------------------#
+#->> Set compilation out directory resembling the inclusion hierarchy
+#---------------------------------------------------------------------------#
 Cache="cache"
-Contents="contents"
-mkdir -p "$Cache/$Contents" || error_exit "Failed to create cache directory."
+mkdir -p "$Cache/src/thesis/"{frontmatter,mainmatter,backmatter} || error_exit "Failed to create cache directory."
+mkdir -p "$Cache/src/"{assignment,opening,review} || error_exit "Failed to create cache directory."
 
 #-
 #-> Set LaTeX environmental variables to add subdirs into search path
 #-
-export TEXINPUTS=".//:$TEXINPUTS" # paths to locate .tex 
-export BIBINPUTS=".//:$BIBINPUTS" # paths to locate .bib
-export BSTINPUTS=".//:$BSTINPUTS" # paths to locate .bst
+export TEXINPUTS=".//:./src//:./src/thesis/frontmatter//:./src/thesis/mainmatter//:./src/thesis/backmatter//:$TEXINPUTS"
+export BIBINPUTS="./bibliography//:$BIBINPUTS"
+export BSTINPUTS="./bibliography//:$BSTINPUTS"
 #---------------------------------------------------------------------------#
 #->> Compiling
 #---------------------------------------------------------------------------#
