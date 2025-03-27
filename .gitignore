@@ -1,3 +1,13 @@
+## Output PDF files (but not assets)
+/*.pdf
+/src/**/*.pdf
+/cache/**/*.pdf
+
+## Keep asset PDF files
+!/assets/**/*.pdf
+!/logo/**/*.pdf
+!/figures/**/*.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
