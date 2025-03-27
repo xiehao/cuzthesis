@@ -89,7 +89,7 @@ mkdir -p "$Cache/src/"{assignment,opening,review} || error_exit "Failed to creat
 #-
 #-> Set LaTeX environmental variables to add subdirs into search path
 #-
-export TEXINPUTS=".//:./src//:./src/thesis/frontmatter//:./src/thesis/mainmatter//:./src/thesis/backmatter//:$TEXINPUTS"
+export TEXINPUTS=".//:./src//:./src/common//:./src/thesis/frontmatter//:./src/thesis/mainmatter//:./src/thesis/backmatter//:$TEXINPUTS"
 export BIBINPUTS="./bibliography//:$BIBINPUTS"
 export BSTINPUTS="./bibliography//:$BSTINPUTS"
 #---------------------------------------------------------------------------#

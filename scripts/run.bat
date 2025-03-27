@@ -85,7 +85,7 @@ if not exist "cache\contents" (
 @rem ------------------------------------------------
 @rem ->> Set environmental variables
 @rem ------------------------------------------------
-set TEXINPUTS=./;./src/;./src/thesis/frontmatter/;./src/thesis/mainmatter/;./src/thesis/backmatter/;%TEXINPUTS%
+set TEXINPUTS=./;./src/;./src/common/;./src/thesis/frontmatter/;./src/thesis/mainmatter/;./src/thesis/backmatter/;%TEXINPUTS%
 set BIBINPUTS=./bibliography/;%BIBINPUTS%
 set BSTINPUTS=./bibliography/;%BSTINPUTS%
 
