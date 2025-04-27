@@ -21,18 +21,18 @@
      |     论文 | `cuzthesis.tex`     |
 3. **仅**需按要求修改部分文件即可，分别解释如下：
    - 任务书：
-     - `contents/assignmentbody.tex`：任务书正文；
+     - `src/assignment/assignmentbody.tex`：任务书正文；
    - 开题报告：
-     - `contents/openingbody.tex`：开题报告正文；
+     - `src/opening/openingbody.tex`：开题报告正文；
    - 文献综述：
-     - `contents/reviewbody.tex`：文献综述正文；
+     - `src/review/reviewbody.tex`：文献综述正文；
    - 论文：
-     - `contents/abstracts.tex`：论文中英文摘要；
-     - `contents/chapter_*.tex`：论文正文各章节，必要时可仿照已有文件自行添加；
-     - `contents/mainbody.tex`：论文正文，间接包含各章节，新增章节时须同步更新；
-     - `contents/acknowledgement.tex`：论文致谢；
-     - `contents/appendices.tex`：论文附录（可选，若无则应删除主文档`cuzthesis.tex`中的相关导入语句）；
+     - `src/thesis/frontmatter/abstracts.tex`：论文中英文摘要；
+     - `src/thesis/mainmatter/chapter_*.tex`：论文正文各章节，必要时可仿照已有文件自行添加；
+     - `src/thesis/mainmatter/mainbody.tex`：论文正文，间接包含各章节，新增章节时须同步更新；
+     - `src/thesis/backmatter/acknowledgement.tex`：论文致谢；
+     - `src/thesis/backmatter/appendices.tex`：论文附录（可选，若无则应删除主文档`cuzthesis.tex`中的相关导入语句）；
    - 其他：
-     - `contents/initialization.tex`：记录各种信息（如毕设题目、作者信息、导师信息等），以便在其他文档中引用，使得数据在多文档之间保持一致；
+     - `src/common/initialization.tex`：记录各种信息（如毕设题目、作者信息、导师信息等），以便在其他文档中引用，使得数据在多文档之间保持一致；
      - `bibliography/references.bib`：参考文献数据库，将待引用参考文献的`BiBTeX`格式信息录入该文件，即可在各文档正文中引用；
 4. 在完成撰写各文档后，可分别导出并下载生成的`.pdf`文档，同时也建议导出并下载整个工程。
