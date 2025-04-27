@@ -454,6 +454,8 @@
 	\RequirePackage{listings}% source code
 	\RequirePackage{lstautogobble}% auto gobble for lstlisting
 	\RequirePackage{algpseudocode,algorithm,algorithmicx}% algorithm
+	\RequirePackage{relsize}
+	\RequirePackage[newfloat=true]{minted}% better source code
 \fi
 %-
 %-> Links support
@@ -672,6 +674,49 @@
 		title=\lstname,% show the filename of files
 		autogobble=true,% auto gobble
 	}
+	% minted settings
+	\SetupFloatingEnvironment{listing}{name=\cuz@label@codelisting}
+	\SetupFloatingEnvironment{listing}{listname=\cuz@label@codelisting}
+	% Adjust spacing for listing environment
+	\captionsetup[listing]{skip=-2ex}  % Reduce space between caption and listing
+	\renewcommand{\theFancyVerbLine}{
+		\textcolor[rgb]{0.5,0.8,1.0}{
+			\smaller{\arabic{FancyVerbLine}}
+		}
+	} %
+	\setmintedinline{
+		fontsize=\smaller[1],
+	} %
+	\setminted{
+		highlightcolor=cyan!20,% color of the high light lines
+		autogobble,% automatically remove the spaces to the left of the code
+		% linenos=true,% show line numbers
+		fontsize=\smaller[1.5],% smaller font size
+		escapeinside=@@,% insert latex code between @ and @
+		frame=leftline,% frame styles: none or lines
+		framerule=.7pt,% frame width
+		numbers=left,% show line numbers on: left, right, both or none
+		numbersep=-.5em,% gap between numbers and start of line
+		mathescape=true,% insert math code
+		obeytabs=true,% properly handle tabs instead of showing ^^I
+		tabsize=4,% set tab size to 4 spaces
+		% resetmargins=true,
+		rulecolor=cyan,% color of frame
+		style=borland,% style sheet used by pygments
+	} %
+	% Shortcuts to languages
+	\newminted{c}{} %
+	\newmintinline{c}{} %
+	\newminted{cpp}{} %
+	\newmintinline{cpp}{} %
+	\newminted{csharp}{} %
+	\newmintinline{csharp}{} %
+	\newminted{java}{} %
+	\newmintinline{java}{} %
+	\newminted{python}{} %
+	\newmintinline{python}{} %
+	\newminted{tex}{} %
+	\newmintinline{tex}{} %
 \fi
 %-
 %-> Page background

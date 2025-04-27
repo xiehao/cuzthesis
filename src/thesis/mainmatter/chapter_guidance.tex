@@ -32,13 +32,15 @@
 	默认为正式提交版本，若需生成用于盲审匿名版本的论文\footnote{该版本已隐去作
 		者、指导教师、学校等相关信息。}，只需在\texttt{cuzthesis.tex}文件中加入
 	\texttt{blinded}选项即可：
-	\begin{lstlisting}[
-            language=tex,
-            caption=加入盲审选项
-            ]
-        \documentclass[singlesided,cuzhdr]{styles/cuzthesis}% 正式版本
-        \documentclass[singlesided,cuzhdr,blinded]{styles/cuzthesis}% 盲审提交版本
-    \end{lstlisting}
+	\begin{listing}[H]
+        \centering
+		\caption{加入盲审选项}
+		\begin{texcode}
+            \documentclass[singlesided,cuzhdr]{styles/cuzthesis}% 正式版本
+            \documentclass[singlesided,cuzhdr,blinded]{styles/cuzthesis}% 盲审提交版本
+        \end{texcode}
+	\end{listing}
+
 
 	编译完成即可获得本PDF说明文档，而这也完成了学习使用cuzthesis撰写论文的一半进
 	程。至此，新手已上路！
@@ -310,31 +312,57 @@
 
 	观察代码段~\ref{code:samp-code}，结合前述图表设置，试图理解代码环境的编写。
 
-	\begin{lstlisting}[
-            language=C++,
-            label=code:samp-code,
-            caption=一段Chromium的源代码
-        ]
-        // Start tasks to take all the threads and block them.
-        const int kNumBlockTasks = static_cast<int>(kNumWorkerThreads);
-        for (int i = 0; i < kNumBlockTasks; ++i) {
-            EXPECT_TRUE(pool()->PostWorkerTask(
-                FROM_HERE,
-                base::Bind(&TestTracker::BlockTask, tracker(), i, &blocker)));
-        }
-        tracker()->WaitUntilTasksBlocked(kNumWorkerThreads);
+	% \begin{lstlisting}[
+    %         language=C++,
+    %         label=code:samp-code,
+    %         caption=一段Chromium的源代码
+    %     ]
+    %     // Start tasks to take all the threads and block them.
+    %     const int kNumBlockTasks = static_cast<int>(kNumWorkerThreads);
+    %     for (int i = 0; i < kNumBlockTasks; ++i) {
+    %         EXPECT_TRUE(pool()->PostWorkerTask(
+    %             FROM_HERE,
+    %             base::Bind(&TestTracker::BlockTask, tracker(), i, &blocker)));
+    %     }
+    %     tracker()->WaitUntilTasksBlocked(kNumWorkerThreads);
 
-        // Setup to open the floodgates from within Shutdown().
-        SetWillWaitForShutdownCallback(
-            base::Bind(&TestTracker::PostBlockingTaskThenUnblockThreads,
-                        scoped_refptr<TestTracker>(tracker()), pool(), &blocker,
-                        kNumWorkerThreads));
-        pool()->Shutdown(kNumWorkerThreads + 1);
+    %     // Setup to open the floodgates from within Shutdown().
+    %     SetWillWaitForShutdownCallback(
+    %         base::Bind(&TestTracker::PostBlockingTaskThenUnblockThreads,
+    %                     scoped_refptr<TestTracker>(tracker()), pool(), &blocker,
+    %                     kNumWorkerThreads));
+    %     pool()->Shutdown(kNumWorkerThreads + 1);
 
-        // Ensure that the correct number of tasks actually got run.
-        tracker()->WaitUntilTasksComplete(static_cast<size_t>(kNumWorkerThreads + 1));
-        tracker()->ClearCompleteSequence();
-    \end{lstlisting}
+    %     // Ensure that the correct number of tasks actually got run.
+    %     tracker()->WaitUntilTasksComplete(static_cast<size_t>(kNumWorkerThreads + 1));
+    %     tracker()->ClearCompleteSequence();
+    % \end{lstlisting}
+    \begin{listing}[H]
+        \centering
+        \caption{一段Chromium的源代码}
+        \label{code:samp-code}
+        \begin{cppcode}
+            // Start tasks to take all the threads and block them.
+            const int kNumBlockTasks = static_cast<int>(kNumWorkerThreads);
+            for (int i = 0; i < kNumBlockTasks; ++i) {
+                EXPECT_TRUE(pool()->PostWorkerTask(
+                    FROM_HERE,
+                    base::Bind(&TestTracker::BlockTask, tracker(), i, &blocker)));
+            }
+            tracker()->WaitUntilTasksBlocked(kNumWorkerThreads);
+
+            // Setup to open the floodgates from within Shutdown().
+            SetWillWaitForShutdownCallback(
+                base::Bind(&TestTracker::PostBlockingTaskThenUnblockThreads,
+                            scoped_refptr<TestTracker>(tracker()), pool(), &blocker,
+                            kNumWorkerThreads));
+            pool()->Shutdown(kNumWorkerThreads + 1);
+
+            // Ensure that the correct number of tasks actually got run.
+            tracker()->WaitUntilTasksComplete(static_cast<size_t>(kNumWorkerThreads + 1));
+            tracker()->ClearCompleteSequence();
+        \end{cppcode}
+    \end{listing}
 
 	引用一两行代码，可以直接使用\texttt{verbatim}环境完成；若想调整环境中字体大
 	小，可先用\verb|\begingroup|和\verb|\endgroup|将其包住，后加入字体大小命令。

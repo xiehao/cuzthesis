@@ -20,62 +20,91 @@
 
 	\section*{测试代码段编号} \label{sec:testlistings}
 
-	参见代码段\ref{code:samp-code-cpp}、代码段\ref{code:samp-code-java}与代码段
-	\ref{code:samp-code-python}：
+	参见代码段
+	\ref{code:samp-code-c}、\ref{code:samp-code-cpp}、\ref{code:samp-code-java}、\ref{code:samp-code-csharp}、
+	\ref{code:samp-code-python}与\ref{code:samp-code-latex}：
 
-	\begin{lstlisting}[
-        language=C++,
-        label=code:samp-code-cpp,
-        caption=一段简单得不能再简单的C++代码
-    ]
-    /* 一段简单得不能再简单的C++代码 */
-    #include <iostream>
+    \begin{listing}[H]
+        \centering
+        \caption{一段简单得不能再简单的C代码}
+        \label{code:samp-code-c}
+        \begin{ccode}
+            /* 一段简单得不能再简单的C代码 */
+            #include <stdio.h>
 
-    int main(int argc, char const **argv) {
-        std::cout << "Hello CUZThesis!!" << std::endl;
-        return 0;
-    }
-    \end{lstlisting}
+            int main(int argc, char const **argv) {
+                printf("Hello CUZThesis!!\n");
+                return 0;
+            }
+        \end{ccode}
+    \end{listing}
 
-	\begin{lstlisting}[
-        language=Java,
-        label=code:samp-code-java,
-        caption=一段简单得不能再简单的Java代码
-    ]
-    // 一段简单得不能再简单的Java代码
-    class HelloCUZThesis {
-        public static void main(String[] args) {
-            System.out.println("Hello CUZThesis!!");
-        }
-    }
-    \end{lstlisting}
+    \begin{listing}[H]
+        \centering
+        \caption{一段简单得不能再简单的C++代码}
+        \label{code:samp-code-cpp}
+        \begin{cppcode}
+            /* 一段简单得不能再简单的C++代码 */
+            #include <iostream>
 
-	\begin{lstlisting}[
-    language=Python,
-        label=code:samp-code-python,
-        caption=一段简单得不能再简单的Python代码
-    ]
-    # 一段简单得不能再简单的Python代码
-    print("Hello CUZThesis!!")
-    \end{lstlisting}
+            int main(int argc, char const **argv) {
+                std::cout << "Hello CUZThesis!!" << std::endl;
+                return 0;
+            }
+        \end{cppcode}   
+    \end{listing}
 
-	% \begin{lstlisting}[
-	%     language=[LaTeX]TeX,
-	%     numbers=left,
-	%     numberstyle=\tiny,
-	%     label=code:samp-code-latex,
-	%     caption=一段简单得不能再简单的\hologo{LaTeX}代码
-	% ]
-	% \documentclass{article}
+    \begin{listing}[H]
+        \centering
+        \caption{一段简单得不能再简单的Java代码}
+        \label{code:samp-code-java}
+        \begin{javacode}
+            // 一段简单得不能再简单的Java代码
+            class HelloCUZThesis {
+                public static void main(String[] args) {
+                    System.out.println("Hello CUZThesis!!");
+                }
+            }
+        \end{javacode}
+    \end{listing}
 
-	% \usepackage{metropolis}
+    \begin{listing}[H]
+        \centering
+        \caption{一段简单得不能再简单的C\#代码}
+        \label{code:samp-code-csharp}
+        \begin{csharpcode}
+            // 一段简单得不能再简单的C#代码
+            class HelloCUZThesis {
+                public static void Main(string[] args) {
+                    Console.WriteLine("Hello CUZThesis!!");
+                }
+            }
+        \end{csharpcode}
+    \end{listing}
 
-	% \begin{document}    
-	%     \begin{frame}[standout]
-	%         Hello CUZThesis!!
-	%     \end{frame}
-	% \end{document}
-	% \end{lstlisting}
+    \begin{listing}[H]
+        \centering
+        \caption{一段简单得不能再简单的Python代码}
+        \label{code:samp-code-python}
+        \begin{pythoncode}
+            # 一段简单得不能再简单的Python代码
+            print("Hello CUZThesis!!")
+        \end{pythoncode}
+    \end{listing}
+
+    \begin{listing}[H]
+        \centering
+        \caption{一段简单得不能再简单的\hologo{LaTeX}代码}
+        \label{code:samp-code-latex}
+        \begin{texcode}
+            % 一段简单得不能再简单的\hologo{LaTeX}代码
+            \documentclass{article}
+
+            \begin{document}    
+                Hello CUZThesis!!
+            \end{document}
+        \end{texcode}
+    \end{listing}
 
 	\section*{测试生僻字} \label{sec:testcharacters}
 
