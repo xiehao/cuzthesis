@@ -3,7 +3,7 @@
 %-                           Document Class                                -%
 %-                                                                         -%
 %---------------------------------------------------------------------------%
-%- Copyright (C) Hao XIE <oaheix@gmail.com> 
+%- Copyright (C) Hao XIE <oaheix@gmail.com>
 %- This is free software: you can redistribute it and/or modify it
 %- under the terms of the GNU General Public License as published by
 %- the Free Software Foundation, either version 3 of the License, or
@@ -44,6 +44,10 @@
 \newif\ifcuz@blinded \cuz@blindedfalse
 \DeclareOption{blinded}{
     \cuz@blindedtrue%
+}
+\newif\ifcuz@showcoadvisor \cuz@showcoadvisortrue
+\DeclareOption{nocoadvisor}{
+    \cuz@showcoadvisorfalse%
 }
 %-
 %-> Draft version info
@@ -109,7 +113,7 @@
 % % \setlength{\marginparsep}{10pt}% width of space between body text and margin notes
 % %- part two -- vertical heights
 % %- top height + textheight + bottom height = paperheight
-% %- top height = 1.0in (fixed) + voffset + topmargin + headheight + headsep 
+% %- top height = 1.0in (fixed) + voffset + topmargin + headheight + headsep
 % \setlength{\textheight}{246.2mm}% set required text height first
 % \setlength{\voffset}{-17.4mm}% set vertical offset
 % \setlength{\topmargin}{20pt}% vertical margin above header
@@ -348,7 +352,7 @@
 % #2: The thickness of title line (set by paper)
 % #3: The text of title (set by user)
 % \def\cuz@macro@multiunderline#1#2#3{
-%     \cuz@macro@titleformat 
+%     \cuz@macro@titleformat
 %     \cuz@macro@numbertitlelines{#1}{#3}
 %     \cuz@macro@titlerulelift{numbertitlelines}{3.5ex}{4.0ex}
 %     \def\ULthickness{#2}
@@ -442,12 +446,14 @@
             \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@advisor}   &
             \makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
             \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
-            % \\
-            % \rule{0pt}{10mm}
-            % \makebox[6.5em][s]{\cuz@label@coadvisor}： &
-            % \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
-            % \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
-            % \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
+            \\
+            \ifcuz@showcoadvisor
+            \rule{0pt}{10mm}
+            \makebox[6.5em][s]{\cuz@label@coadvisor}： &
+            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
+            \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
+            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
+            \fi
         \end{tabular}
     \end{center}
 }
@@ -528,7 +534,7 @@
         \parindent \z@ \rightskip \@pnumwidth
         \parfillskip -\@pnumwidth
         {
-            \leavevmode\zihao{-4}%\sffamily 
+            \leavevmode\zihao{-4}%\sffamily
             #1
             % \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}% add dotted toc line
             \leaders\hbox{$\m@th\mkern \@dotsep \hbox{.}\mkern \@dotsep$}
