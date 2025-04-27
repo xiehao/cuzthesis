@@ -3,7 +3,7 @@
 %-                           Document Style                                -%
 %-                                                                         -%
 %---------------------------------------------------------------------------%
-%- Copyright (C) Hao XIE <oaheix@gmail.com> 
+%- Copyright (C) Hao XIE <oaheix@gmail.com>
 %- This is free software: you can redistribute it and/or modify it
 %- under the terms of the GNU General Public License as published by
 %- the Free Software Foundation, either version 3 of the License, or
@@ -324,7 +324,7 @@
 		\fi
 	\fi
 \fi
-%- 
+%-
 %-> Bibliography processor and package
 %-
 %- Bibtex processor + natbib package
@@ -637,7 +637,7 @@
 			%- [0.5,0.5] means reference point of the block is the middle
 			\begin{textblock}{0.1}[0.5,0.5](0.85,0.5){\rotatebox{90}{\footnotesize \thepage}}\end{textblock}% position the page number
 		}
-		%- set units of <blockwidth>, <hpos>, and <vpos> arguments by corresponding modules 
+		%- set units of <blockwidth>, <hpos>, and <vpos> arguments by corresponding modules
 		\setlength{\TPHorizModule}{8.5in}% set to the width of page
 		\setlength{\TPVertModule}{11in}% set to the height of page
 		\renewcommand{\headrulewidth}{0pt}% header rule
@@ -677,21 +677,33 @@
 	% minted settings
 	\SetupFloatingEnvironment{listing}{name=\cuz@label@codelisting}
 	\SetupFloatingEnvironment{listing}{listname=\cuz@label@codelisting}
+
 	% Adjust spacing for listing environment
-	\captionsetup[listing]{skip=-2ex}  % Reduce space between caption and listing
+	\captionsetup[listing]{skip=-1ex}  % Reduce space between caption and listing
+
+	% Reduce spacing around listing environment
+	% \setlength{\textfloatsep}{0pt plus 1pt minus 1pt}     % Space between float and text
+	% \setlength{\floatsep}{0pt plus 1pt minus 1pt}         % Space between consecutive floats
+	% \setlength{\intextsep}{0pt plus 1pt minus 1pt}        % Space for floats in the text
+
+	% Customize line numbers
 	\renewcommand{\theFancyVerbLine}{
 		\textcolor[rgb]{0.5,0.8,1.0}{
 			\smaller{\arabic{FancyVerbLine}}
 		}
 	} %
+
+	% Inline code settings
 	\setmintedinline{
 		fontsize=\smaller[1],
 	} %
+
+	% Main minted settings
 	\setminted{
 		highlightcolor=cyan!20,% color of the high light lines
 		autogobble,% automatically remove the spaces to the left of the code
 		% linenos=true,% show line numbers
-		fontsize=\smaller[1.5],% smaller font size
+		fontsize=\smaller[1],% smaller font size
 		escapeinside=@@,% insert latex code between @ and @
 		frame=leftline,% frame styles: none or lines
 		framerule=.7pt,% frame width
@@ -703,19 +715,29 @@
 		% resetmargins=true,
 		rulecolor=cyan,% color of frame
 		style=borland,% style sheet used by pygments
+		% baselinestretch=0.9,% reduce line spacing within code blocks
 	} %
-	% Shortcuts to languages
-	\newminted{c}{} %
+
+	% Define a custom environment for compact listings
+	\usepackage{etoolbox}
+	\AtBeginEnvironment{listing}{%
+		% \vspace{-1.5ex}% reduce space before listing
+	}
+	\AtEndEnvironment{listing}{%
+		\vspace{-3ex}% reduce space after listing
+	}
+	% Shortcuts to languages with compact spacing
+	\newminted[ccode]{c}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
 	\newmintinline{c}{} %
-	\newminted{cpp}{} %
+	\newminted[cppcode]{cpp}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
 	\newmintinline{cpp}{} %
-	\newminted{csharp}{} %
+	\newminted[csharpcode]{csharp}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
 	\newmintinline{csharp}{} %
-	\newminted{java}{} %
+	\newminted[javacode]{java}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
 	\newmintinline{java}{} %
-	\newminted{python}{} %
+	\newminted[pythoncode]{python}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
 	\newmintinline{python}{} %
-	\newminted{tex}{} %
+	\newminted[texcode]{tex}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
 	\newmintinline{tex}{} %
 \fi
 %-
