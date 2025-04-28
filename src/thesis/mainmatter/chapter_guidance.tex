@@ -103,8 +103,11 @@ chmod +x ./run.sh
 
     \section{文档目录简介}\label{sec:directory}
 
-    本部分主要介绍cuzthesis工程的目录结构，以助读者理解各部分含义。总体结构如下所
-    示，现就重要文件或文件夹分别详细解释如下：
+    本部分主要介绍 cuzthesis 工程的目录结构，以帮助读者理解各部分的含义和用途。了解文档的组织结构对于高效使用模板和维护论文至关重要。
+
+    \subsection{目录结构概览}\label{sub:directory-overview}
+
+    cuzthesis 模板采用模块化的目录结构，将不同功能的文件分门别类地组织在不同的文件夹中，使得整个工程结构清晰、易于维护。总体结构如下所示：
 
     \begingroup
     \small\linespread{1}
@@ -140,97 +143,189 @@ chmod +x ./run.sh
     \end{center}
     \endgroup
 
-    \subsection{cuzthesis.tex}\label{sub:cuzthesis}
+    这种目录结构设计遵循了关注点分离的原则，将内容、样式和配置分开，使得用户可以专注于内容创作，而不必过多关注格式和排版细节。下面将详细介绍各个文件夹和关键文件的功能和用途。
 
-    cuzthesis.tex为主文档，其设计和规划了论文的整体框架，通过对其的阅读可以了解
-    整个论文框架的搭建。如无意外，读者无需修改此文档。
+    \subsection{主文档 (cuzthesis.tex)}\label{sub:cuzthesis}
 
-    \subsection{run脚本}\label{sub:scripts}
+    cuzthesis.tex 是整个论文的主文档，它设计和规划了论文的整体框架，通过阅读这个文件可以了解整个论文的结构和组织方式。主文档主要负责以下几个方面：
+
+    \begin{enumerate}
+        \item \textbf{文档类声明}：指定使用 cuzthesis 文档类及其选项，如单面/双面打印、页眉页脚样式等。
+        \item \textbf{宏包加载}：加载论文所需的各种宏包，如 artratex.sty、artracom.sty 等。
+        \item \textbf{文档结构组织}：通过 \verb|\input| 命令导入各个章节文件，组织论文的整体结构。
+        \item \textbf{特殊页面生成}：生成封面、声明页、目录等特殊页面。
+    \end{enumerate}
+
+    一般情况下，用户只需要根据需要修改文档类选项和宏包选项，无需修改文档的整体结构。如果需要添加或删除章节，只需在主文档中添加或注释相应的 \verb|\input| 命令即可。
+
+    \subsection{编译脚本 (run.bat 和 run.sh)}\label{sub:scripts}
+
+    为了简化 LaTeX 文档的编译过程，模板提供了两个编译脚本，分别用于 Windows 和 Linux/macOS 系统：
 
     \begin{itemize}
-        \item Windows：双击批处理文件run.bat可得全编译后的PDF文档，其存在是为了
-              帮助不了解\LaTeX{}编译过程的初学者跨过编译这第一道坎，\textbf{请勿
-                  通过邮件传播和接收此脚本，以防范DOS脚本的潜在风险。}
-        \item Linux或macOS：在终端中运行
+        \item \textbf{Windows (run.bat)}：双击此批处理文件可以一键编译生成 PDF 文档。此脚本的主要目的是帮助不熟悉 LaTeX 编译过程的初学者快速上手。\textbf{注意：请勿通过邮件传播和接收此脚本，以防范 DOS 脚本的潜在安全风险。}
+
+        \item \textbf{Linux/macOS (run.sh)}：在终端中运行以下命令：
               \begin{itemize}
-                  \item \verb|./run.sh xa <filename>|：获得全编译后的PDF文档
-                  \item \verb|./run.sh x <filename>|：快速编译模式
+                  \item \verb|./run.sh xa <filename>|：执行完整编译流程，生成最终 PDF 文档
+                  \item \verb|./run.sh x <filename>|：执行快速编译模式，适用于内容修改但无新引用的情况
               \end{itemize}
-        \item 全编译指运行\verb|xelatex+bibtex+xelatex+xelatex|以正确生成所有的
-              引用链接，如目录，参考文献及引用等。在写作过程中若无添加新的引用，
-              则可用快速编译，即只运行一遍\LaTeX{}编译引擎以减少编译时间。
     \end{itemize}
 
-    \subsection{cache文件夹}\label{sub:cache}
-
-    运行上述编译脚本后，编译所生成的中间文件与最终PDF文档皆存于该文件夹内，其存
-    在是为了保持工作空间的整洁，因为好的心情是很重要的。若自行编译（即不运行上述
-    编译脚本）则不在该文件夹下生成文件。
-
-    \subsection{styles文件夹}\label{sub:styles}
-
-    该文件夹包含cuzthesis文档类的定义文件和配置文件，通过对它们的修改可以实现特
-    定的模版设定。若需更新模板，一般只需用新的样式文件替换旧的即可。该部分为模板
-    编写者修改之用，一般读者亦无需修改此部分。
+    \subsubsection{编译模式说明}
 
     \begin{itemize}
-        \item cuzthesis.cls：文档类定义文件，论文的最核心的格式即通过它来定义
-              的。
-        \item cuzthesis.cfg：文档类配置文件，为类定义文件准备常量标签等配置信
-              息。
-        \item artratex.sty: 常用宏包及文档设定，如参考文献样式、文献引用样式、页
-              眉页脚设定等。这些功能具有开关选项，常只需在cuzthesis.tex中的如下
-              命令中进行启用即可，一般无需修改artratex.sty本身。
+        \item \textbf{完整编译}：执行 \verb|xelatex + bibtex + xelatex + xelatex| 编译流程，确保所有交叉引用、目录、参考文献等都正确生成。首次编译或添加新引用时应使用此模式。
+
+        \item \textbf{快速编译}：仅执行一次 \verb|xelatex| 编译，适用于仅修改文本内容而未添加新引用的情况，可大幅减少编译时间。
+    \end{itemize}
+
+    对于使用集成开发环境（如 VS Code、TeXstudio 等）的用户，可以配置编辑器使用相同的编译流程，无需依赖这些脚本。
+
+    \subsection{缓存目录 (cache)}\label{sub:cache}
+
+    cache 文件夹是用于存放编译过程中生成的中间文件和最终 PDF 文档的目录。使用专门的缓存目录有以下几个优点：
+
+    \begin{itemize}
+        \item \textbf{保持工作空间整洁}：将大量的临时文件（如 .aux、.log、.toc 等）集中存放，避免它们与源文件混杂在一起，使项目目录结构更加清晰。
+
+        \item \textbf{便于清理}：需要清理临时文件时，只需删除 cache 目录中的内容，而不必担心误删源文件。
+
+        \item \textbf{提高工作效率}：整洁的工作环境有助于提高工作效率和心情，特别是在长期编写大型文档时。
+    \end{itemize}
+
+    需要注意的是，如果不使用提供的编译脚本，而是直接通过 LaTeX 编译器或编辑器编译文档，则临时文件会生成在当前工作目录中，而不是 cache 目录中。在这种情况下，可以考虑使用编辑器的清理功能或手动清理临时文件。
+
+    \subsection{样式文件 (styles)}\label{sub:styles}
+
+    styles 文件夹包含 cuzthesis 文档类的定义文件和配置文件，这些文件控制论文的整体格式和样式。这部分主要由模板开发者维护，一般用户无需修改。但了解这些文件的功能有助于在需要时进行有针对性的定制。
+
+    \begin{itemize}
+        \item \textbf{cuzthesis.cls}：文档类定义文件，是整个模板的核心。它定义了论文的基本格式，包括页面布局、字体设置、章节样式、页眉页脚等。该文件基于标准的 LaTeX 文档类（如 book、report 等）进行扩展，添加了符合浙江传媒学院学位论文要求的特定格式。
+
+        \item \textbf{cuzthesis.cfg}：文档类配置文件，包含各种常量标签和配置信息，如论文类型名称、学位级别、学校名称等。将这些配置信息单独放在一个文件中，便于在不修改核心文档类的情况下进行定制。
+
+        \item \textbf{artratex.sty}：常用宏包及文档设定文件，负责加载论文所需的各种宏包，并设置参考文献样式、文献引用样式、页眉页脚等。这些功能通常具有开关选项，可以在主文档中通过以下命令进行启用或禁用：
 
               \path{\usepackage[options]{artratex}}
-        \item artracom.sty：自定义命令以及添加宏包的推荐放置位置。
+
+              其中 options 可以是 numbers（顺序编码制）、super（上标顺序编码制）、authoryear（著者-出版年制）等。
+
+        \item \textbf{artracom.sty}：自定义命令文件，包含各种自定义的命令和环境，如矢量符号、张量符号、特殊环境等。这是添加新命令和宏包的推荐位置，可以在不修改核心文档类的情况下扩展功能。
     \end{itemize}
 
-    \subsection{contents文件夹}\label{sub:contents}
+    如果需要更新模板，通常只需替换这些样式文件即可，而不必修改论文的内容文件。对于有特殊排版需求的用户，可以在了解这些文件的基础上进行有针对性的修改，但建议在修改前备份原始文件，并详细记录所做的更改。
 
-    该文件夹内为论文的所有实体内容，正常情况下，这也是\textbf{使用cuzthesis撰写
-        学文论文时，主要关注和修改的一个位置。注：所有文件都必须采用UTF-8编码，
-        否则编译后将出现乱码文本}，详细介绍如下：
+    \subsection{源文件目录 (src)}\label{sub:src}
+
+    src 目录包含论文的所有源文件，是用户在撰写论文时主要关注和修改的位置。该目录采用模块化的结构，将不同类型的内容分别放在不同的子目录中，使得整个论文结构更加清晰。
+
+    \subsubsection{公共文件 (common)}\label{subsub:common}
+
+    common 目录包含论文的公共文件，主要是 initialization.tex，它负责初始化论文中的各种信息：
 
     \begin{itemize}
-        \item initialization.tex：为论文中出现的一些必要信息的初始化，如：中英文
-              标题、作者名、学号、专业、学院、毕业年份等等，这些信息变量一旦设置
-              一次之后，后面很多地方即可直接调用。
-        \item abstracts.tex：中英文摘要的内容。
-        \item mainbody.tex：索引需要出现的章节。开始写论文时，可以只索引当前章
-              节，以快速编译查看，当论文完成后，再对所有章节进行索引即可。
-        \item chapter{\_}xxx.tex：为论文主体的各个章节，即mainbody.tex文件中索引
-              的章节，可根据需要添加和撰写（建议将xxx替换为相应章节的全小写英文
-              名，如introduction等）。
-        \item acknowledgement.tex：致谢的内容。
-        \item appendices.tex：为附录内容，如无此部分可将其在cuzthesis.tex文件中
-              的导入语句注释掉。
+        \item \textbf{initialization.tex}：定义论文的基本信息，如中英文标题、作者姓名、学号、专业、学院、毕业年份等。这些信息只需设置一次，后续在论文的各个部分（如封面、声明页、页眉等）都可以直接调用，确保信息的一致性。
     \end{itemize}
 
-    \subsection{images文件夹}\label{sub:images-folder}
+    \subsubsection{论文内容 (thesis)}\label{subsub:thesis}
 
-    该文件夹用于放置论文中所需要的图片类文件，支持格式有：.jpg, .png, .pdf。其
-    中， cuz{\_}logo.pdf为浙传校徽文件，用于创建封面。
+    thesis 目录包含论文的主体内容，按照论文的结构分为三个子目录：
 
+    \begin{itemize}
+        \item \textbf{frontmatter}：前置部分，包含摘要等内容
+            \begin{itemize}
+                \item \textbf{abstracts.tex}：中英文摘要，包括关键词
+            \end{itemize}
+
+        \item \textbf{mainmatter}：主体部分，包含论文的各个章节
+            \begin{itemize}
+                \item \textbf{mainbody.tex}：主体结构文件，用于组织和引用各个章节文件
+                \item \textbf{chapter\_introduction.tex}：绪论章节
+                \item \textbf{chapter\_literature.tex}：文献综述章节
+                \item \textbf{chapter\_design.tex}：设计与实现章节
+                \item \textbf{chapter\_guidance.tex}：使用指南章节
+                \item \textbf{chapter\_conclusions.tex}：结论与展望章节
+            \end{itemize}
+
+        \item \textbf{backmatter}：后置部分，包含致谢和附录等内容
+            \begin{itemize}
+                \item \textbf{acknowledgement.tex}：致谢内容
+                \item \textbf{appendices.tex}：附录内容，如源代码、数据表格等
+            \end{itemize}
+    \end{itemize}
 
     \begin{leftbar}
-        \noindent\textbf{建议：}将清晰的矢量图（如流程图、框架图、模块图等）转换
-        成.pdf格式并裁剪到合适大小，而位图则以.png格式为佳。原则上，能用矢量图的
-        尽量不要用位图。此外，不建议为各章节图片建子目录，即使图片众多，若命名规
-        则合理，图片查询亦是十分方便。
+        \noindent\textbf{注意：}所有文件都必须采用 UTF-8 编码，否则编译后将出现乱码。在开始写作时，可以只在 mainbody.tex 中引用当前正在编写的章节，以加快编译速度；当论文完成后，再引用所有章节进行完整编译。
     \end{leftbar}
 
-    \subsection{bibliography文件夹}\label{sub:bibliography}
+    \subsection{图片目录 (figures)}\label{sub:figures}
 
-    该文件夹主要用于存放参考文件格式定义文件与内容信息，
+    figures 目录用于存放论文中所需的各种图片和媒体文件。合理组织和管理图片文件对于保持论文的整洁和提高工作效率非常重要。
+
+    \subsubsection{支持的图片格式}\label{subsub:image-formats}
+
+    模板支持以下几种常见的图片格式：
+    \begin{itemize}
+        \item \textbf{.pdf}：适用于矢量图，如流程图、框架图、模块图等
+        \item \textbf{.png}：适用于位图，特别是需要透明背景的图片
+        \item \textbf{.jpg}：适用于照片等不需要透明背景的位图
+    \end{itemize}
+
+    其中，cuz\_logo.png 是浙江传媒学院的校徽文件，用于创建论文封面。
+
+    \subsubsection{图片管理建议}\label{subsub:image-management}
+
+    \begin{leftbar}
+        \noindent\textbf{图片格式选择建议：}
+        \begin{itemize}
+            \item 对于流程图、框架图、模块图等结构性图形，建议使用矢量格式（.pdf），以保证在任何缩放比例下都能清晰显示。
+            \item 对于屏幕截图、界面展示等，建议使用 .png 格式，特别是当需要透明背景时。
+            \item 对于照片等真实图像，可以使用 .jpg 格式以节省空间。
+            \item 原则上，能用矢量图的尽量不要用位图，以保证论文的专业性和清晰度。
+        \end{itemize}
+
+        \noindent\textbf{图片组织建议：}
+        \begin{itemize}
+            \item 不建议为各章节图片创建子目录，即使图片众多，只要采用合理的命名规则，也能方便查找。
+            \item 图片命名可以采用"章节\_内容\_序号"的方式，如"intro\_framework\_1.pdf"，这样可以直观地了解图片的归属和内容。
+            \item 对于需要多次修改的图片，建议保留原始文件（如 .ai、.psd、.vsdx 等）在单独的目录中，以便日后修改。
+        \end{itemize}
+    \end{leftbar}
+
+    \subsection{参考文献目录 (bibliography)}\label{sub:bibliography}
+
+    bibliography 目录用于存放参考文献相关的文件，包括参考文献数据库和样式文件。参考文献是学术论文的重要组成部分，正确管理和引用参考文献对于提高论文的学术性和可信度至关重要。
+
+    \subsubsection{文件说明}\label{subsub:bibliography-files}
 
     \begin{itemize}
-        \item references.bib：参考文献内容信息库。
-        \item gbt7714-xxx.bst：符合国标的文献样式定义文件。由
-              \href{https://github.com/zepinglee/gbt7714-bibtex-style}{zepinglee}
-              开发，并满足最新国标要求。与文献样式有关的问题，请查阅开发者所提供
-              的文档，并建议适当追踪其更新。
+        \item \textbf{references.bib}：参考文献数据库文件，用于存储所有引用文献的详细信息，如作者、标题、出版年份、期刊名称等。这是一个纯文本文件，采用 BibTeX 格式，可以使用文本编辑器或专门的参考文献管理软件（如 JabRef、Zotero、Mendeley 等）进行编辑。
+
+        \item \textbf{gbt7714-plain.bst}：符合 GB/T 7714-2015 国标的参考文献样式文件，用于生成"著者-出版年"制的参考文献列表。
+
+        \item \textbf{gbt7714-unsrt.bst}：符合 GB/T 7714-2015 国标的参考文献样式文件，用于生成按引用顺序排列的参考文献列表。
     \end{itemize}
+
+    这些样式文件由 \href{https://github.com/zepinglee/gbt7714-bibtex-style}{zepinglee} 开发，满足最新的中国国家标准 GB/T 7714-2015《信息与文献 参考文献著录规则》的要求。关于参考文献样式的详细问题，请查阅开发者提供的文档，并建议适当追踪其更新。
+
+    \subsubsection{参考文献管理建议}\label{subsub:bibliography-management}
+
+    \begin{leftbar}
+        \noindent\textbf{参考文献收集与管理：}
+        \begin{itemize}
+            \item 使用专业的参考文献管理软件（如 JabRef、Zotero、Mendeley 等）可以大大简化参考文献的收集、组织和引用过程。
+            \item 从学术搜索引擎（如 Google Scholar、百度学术等）导出 BibTeX 格式的引用信息，可以避免手动输入错误。
+            \item 定期备份 references.bib 文件，以防数据丢失。
+        \end{itemize}
+
+        \noindent\textbf{BibTeX 条目命名规范：}
+        \begin{itemize}
+            \item 英文文献建议使用"第一作者姓氏+年份+首词"的格式，如"smith2020analysis"。
+            \item 中文文献建议使用"第一作者拼音+年份+首词拼音"的格式，如"zhang2019yanjiu"。
+            \item 保持命名的一致性和可读性，避免使用特殊字符和空格。
+        \end{itemize}
+    \end{leftbar}
 
     \section{排版元素}\label{sec:elements}
 
