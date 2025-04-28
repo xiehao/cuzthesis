@@ -91,9 +91,11 @@
             \item \textbf{Linux 或 macOS}：在终端中执行以下命令：
             \begin{verbatim}
 chmod +x ./scripts/run.sh
-./scripts/run.sh xa cuzthesis
+./scripts/run.sh -xa cuzthesis.tex
             \end{verbatim}
-            其中，第一个参数 xa 指定编译模式（x 表示使用 \hologo{XeLaTeX}，a 表示使用 \hologo{BibTeX}），第二个参数 cuzthesis 指定要编译的文件名（不包含 .tex 扩展名）。
+            其中，第一个参数 -xa 指定编译模式（x 表示使用 \hologo{XeLaTeX}，a 表
+            示使用 \hologo{BibTeX}），第二个参数 cuzthesis.tex 指定要编译的文件
+            名（包含 .tex 扩展名）。
         \end{itemize}
 
         \item \textbf{使用 \LaTeX{} 编辑器}：
@@ -228,11 +230,11 @@ chmod +x ./scripts/run.sh
 
         \item \textbf{Linux/macOS (run.sh)}：位于 scripts 目录下，在终端中运行以下命令：
               \begin{itemize}
-                  \item \verb|./scripts/run.sh xa cuzthesis|：执行完整编译流程，生成最终 PDF 文档
-                  \item \verb|./scripts/run.sh x cuzthesis|：执行快速编译模式，适用于内容修改但无新引用的情况
+                  \item \verb|./scripts/run.sh -xa cuzthesis.tex|：执行完整编译流程，生成最终 PDF 文档
+                  \item \verb|./scripts/run.sh -x cuzthesis.tex|：执行快速编译模式，适用于内容修改但无新引用的情况
               \end{itemize}
 
-              其中，第一个参数指定编译模式（x 表示使用 \hologo{XeLaTeX}，a 表示使用 \hologo{BibTeX}），第二个参数指定要编译的文件名（不包含 .tex 扩展名）。
+              其中，第一个参数指定编译模式（x 表示使用 \hologo{XeLaTeX}，a 表示使用 \hologo{BibTeX}），第二个参数指定要编译的文件名（包含 .tex 扩展名）。
     \end{itemize}
 
     \subsubsection{编译模式说明}
