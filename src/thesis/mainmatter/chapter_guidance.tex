@@ -1,3 +1,59 @@
+    \section{环境配置与安装}\label{sec:installation}
+
+    在开始使用 cuzthesis 模板之前，需要先配置 LaTeX 环境并安装必要的软件。本节将介绍环境配置和模板安装的步骤。
+
+    \subsection{LaTeX 环境配置}\label{sub:latex-environment}
+
+    LaTeX 是一种基于 TeX 的排版系统，用于生成高质量的科技和学术文档。要使用 cuzthesis 模板，首先需要安装 LaTeX 发行版。
+
+    \begin{itemize}
+        \item \textbf{Windows 系统}：推荐安装 TeX Live 或 MiKTeX。
+            \begin{itemize}
+                \item TeX Live：访问 \url{https://tug.org/texlive/} 下载并安装完整版 TeX Live。
+                \item MiKTeX：访问 \url{https://miktex.org/} 下载并安装 MiKTeX。
+            \end{itemize}
+            
+        \item \textbf{macOS 系统}：推荐安装 MacTeX。
+            \begin{itemize}
+                \item 访问 \url{https://tug.org/mactex/} 下载并安装 MacTeX。
+                \item 也可以通过 Homebrew 安装：\verb|brew install --cask mactex|
+            \end{itemize}
+            
+        \item \textbf{Linux 系统}：推荐安装 TeX Live。
+            \begin{itemize}
+                \item Ubuntu/Debian：\verb|sudo apt install texlive-full|
+                \item Fedora：\verb|sudo dnf install texlive-scheme-full|
+                \item Arch Linux：\verb|sudo pacman -S texlive-most texlive-lang|
+            \end{itemize}
+    \end{itemize}
+
+    \subsection{编辑器选择}\label{sub:editor-choice}
+
+    LaTeX 文档可以使用任何文本编辑器编写，但使用专门的 LaTeX 编辑器或配置好的代码编辑器可以提高工作效率。以下是一些推荐的编辑器：
+
+    \begin{itemize}
+        \item \textbf{VS Code}：搭配 LaTeX Workshop 插件，提供语法高亮、自动补全、实时预览等功能。
+        \item \textbf{TeXstudio}：集成开发环境，提供丰富的编辑功能和内置预览。
+        \item \textbf{Overleaf}：基于网页的在线 LaTeX 编辑器，支持协作编辑。
+        \item \textbf{Texmaker/TeXworks}：轻量级编辑器，适合初学者使用。
+    \end{itemize}
+
+    \subsection{获取模板}\label{sub:get-template}
+
+    cuzthesis 模板可以从 GitHub 仓库获取：
+
+    \begin{itemize}
+        \item 访问 \url{https://github.com/xiehao/CUZThesis} 下载最新版本的模板。
+        \item 点击 "Code" 按钮，然后选择 "Download ZIP"，或者使用 Git 克隆仓库：
+        \begin{verbatim}
+    git clone https://github.com/xiehao/CUZThesis.git
+        \end{verbatim}
+        \item 解压下载的文件到本地目录。
+    \end{itemize}
+
+    \begin{leftbar}
+        \noindent\textbf{注意：}建议下载整个 cuzthesis 文件夹，而不是单独的文档类文件。cuzthesis 模板不仅提供了相应的类文件，还包括参考文献样式、示例图片等完成学位论文所需的所有组件。
+    \end{leftbar}
 \begin{cuzchapter}{使用指南与示例}{chap:guide}
 
     %---------------------------------------------------------------------------%
@@ -19,32 +75,6 @@
 
     当对 LaTeX 有一定的认识和了解后，用户会发现其相对 Word 类排版系统极具吸引力的优秀特性。若是初学者，请不要退缩，请稍加尝试和坚持，以领略到 LaTeX 的非凡魅力，并可以通过阅读相关资料如 LaTeX Wikibook\citep{wikibook2014latex}来完善自己的使用知识。
 
-    \section{环境配置与安装}\label{sec:installation}
-
-    在开始使用 cuzthesis 模板之前，需要先配置 LaTeX 环境并安装必要的软件。本节将介绍环境配置和模板安装的步骤。
-
-    \subsection{LaTeX 环境配置}\label{sub:latex-environment}
-
-    LaTeX 是一种基于 TeX 的排版系统，用于生成高质量的科技和学术文档。要使用 cuzthesis 模板，首先需要安装 LaTeX 发行版。
-
-    \begin{itemize}
-        \item 安装软件：根据所用操作系统和章节~\ref{sec:system}中的信息安装\LaTeX{}
-              编译环境。
-        \item 获取模板：下载
-              \href{https://github.com/xiehao/CUZThesis}{cuzthesis}模板并解
-              压。cuzthesis模板不仅提供了相应的类文件，同时也提供了包括参考文献
-              等在内的完成学位论文的一切要素，所以，下载时，推荐下载整个
-              cuzthesis文件夹，而不是单独的文档类。
-        \item 编译模板：
-              \begin{itemize}
-                  \item Windows：双击运行run.bat脚本。
-                  \item Linux或macOS: {\small \verb|terminal| -> \verb|chmod +x ./run.sh| -> \verb|./run.sh xa|}
-                  \item 任意系统：都可使用\LaTeX{}编辑器打开cuzthesis.tex文件并
-                        选择\hologo{XeLaTeX}编译引擎进行编译。
-              \end{itemize}
-        \item 错误处理：若编译中遇到了问题，请先查看“常见问题”（章节
-              ~\ref{sec:qa}）。
-    \end{itemize}
 
     \section{快速入门}\label{sec:quickstart}
 
