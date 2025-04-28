@@ -1,14 +1,25 @@
-\begin{cuzchapter}{\LaTeX{}使用说明}{chap:guide}
+\begin{cuzchapter}{使用指南与示例}{chap:guide}
 
-	为方便使用及更好地展示\LaTeX{}排版的优秀特性，cuzthesis对框架和文件体系进行
-	了细致地处理，尽可能地对各个功能和板块进行了模块化和封装，对于初学者来说，众
-	多的文件目录也许一开始让人觉得有些无所适从，但阅读完下面的使用说明后，会发现
-	原来使用思路是简单而清晰的；而且，当对\LaTeX{}有一定的认识和了解后，会发现其
-	相对Word类排版系统极具吸引力的优秀特性。故若是初学者，请不要退缩，请稍加尝试
-	和坚持，以领略到\LaTeX{}的非凡魅力，并可以通过阅读相关资料如\LaTeX{}
-	Wikibook\citep{wikibook2014latex}来完善自己的使用知识。
+	%---------------------------------------------------------------------------%
+	%->> 使用指南章节写作指南
+	%---------------------------------------------------------------------------%
+	% 本章主要提供模板的使用指南和示例，帮助用户快速上手
+	% 一个完整的使用指南章节应包含以下几个部分：
+	% 1. 环境配置：介绍模板的安装和环境配置
+	% 2. 基本用法：介绍模板的基本使用方法
+	% 3. 高级功能：介绍模板的高级功能和定制方法
+	% 4. 常见问题：解答用户可能遇到的常见问题
+	% 5. 使用示例：提供各种排版元素的使用示例
 
-	\section{新手上路}\label{sec:newbie}
+	\section{模板概述}\label{sec:overview}
+
+	cuzthesis 是为浙江传媒学院本科生设计的毕业论文 LaTeX 模板，旨在帮助学生高效、规范地完成毕业论文的排版工作。本章将详细介绍模板的使用方法和各种功能，帮助用户快速上手并充分利用模板的各项特性。
+
+	为方便使用及更好地展示 LaTeX 排版的优秀特性，cuzthesis 对框架和文件体系进行了细致地处理，尽可能地对各个功能和板块进行了模块化和封装。对于初学者来说，众多的文件目录也许一开始让人觉得有些无所适从，但阅读完本章的使用说明后，会发现原来使用思路是简单而清晰的。
+
+	当对 LaTeX 有一定的认识和了解后，用户会发现其相对 Word 类排版系统极具吸引力的优秀特性。若是初学者，请不要退缩，请稍加尝试和坚持，以领略到 LaTeX 的非凡魅力，并可以通过阅读相关资料如 LaTeX Wikibook\citep{wikibook2014latex}来完善自己的使用知识。
+
+	\section{环境配置与安装}\label{sec:installation}
 
 	\begin{itemize}
 		\item 安装软件：根据所用操作系统和章节~\ref{sec:system}中的信息安装\LaTeX{}
@@ -29,21 +40,66 @@
 		      ~\ref{sec:qa}）。
 	\end{itemize}
 
-	默认为正式提交版本，若需生成用于盲审匿名版本的论文\footnote{该版本已隐去作
-		者、指导教师、学校等相关信息。}，只需在\texttt{cuzthesis.tex}文件中加入
-	\texttt{blinded}选项即可：
-	\begin{listing}[H]
-        \centering
-		\caption{加入盲审选项}
+	\section{快速入门}\label{sec:quickstart}
+
+	本节将介绍如何快速开始使用 cuzthesis 模板撰写论文。
+
+	\subsection{编译模板}
+
+	首次使用模板时，建议先编译一次模板，确保环境配置正确。编译模板的方法有以下几种：
+
+	\begin{itemize}
+		\item \textbf{使用编译脚本}：
+		\begin{itemize}
+			\item \textbf{Windows}：双击运行 run.bat 脚本。
+			\item \textbf{Linux 或 macOS}：在终端中执行以下命令：
+			\begin{verbatim}
+chmod +x ./run.sh
+./run.sh xa
+			\end{verbatim}
+		\end{itemize}
+
+		\item \textbf{使用 LaTeX 编辑器}：
+		\begin{itemize}
+			\item 打开 cuzthesis.tex 文件。
+			\item 选择 XeLaTeX 编译引擎。
+			\item 点击编译按钮或使用快捷键（VS Code 中为 Ctrl+Alt+B）。
+		\end{itemize}
+	\end{itemize}
+
+	编译成功后，将在 cache 文件夹中生成 PDF 文档。如果编译过程中遇到问题，请参考本章后面的"常见问题"部分。
+
+	\subsection{修改论文信息}
+
+	编译成功后，下一步是修改论文的基本信息。打开 src/common/initialization.tex 文件，修改以下信息：
+
+	\begin{itemize}
+		\item 论文标题：修改 \verb|\title{}| 和 \verb|\englishtitle{}|
+		\item 作者信息：修改 \verb|\author{}| 和 \verb|\authorid{}|
+		\item 指导教师信息：修改 \verb|\advisor{}| 和 \verb|\advisortitle{}|
+		\item 学院和专业信息：修改 \verb|\major{}|、\verb|\class{}| 和 \verb|\institute{}|
+		\item 毕业年份：修改 \verb|\graduateyear{}|
+	\end{itemize}
+
+	修改完成后，重新编译模板，查看修改效果。
+
+	\subsection{生成盲审版本}
+
+	在提交论文进行盲审时，需要隐去作者、指导教师、学校等相关信息。cuzthesis 模板提供了盲审选项，只需在 cuzthesis.tex 文件中添加 blinded 选项即可：
+
+	\begin{listing}[htbp]
+		\caption{添加盲审选项}
+		\label{code:blinded-option}
 		\begin{texcode}
-            \documentclass[singlesided,cuzhdr]{styles/cuzthesis}% 正式版本
-            \documentclass[singlesided,cuzhdr,blinded]{styles/cuzthesis}% 盲审提交版本
-        \end{texcode}
+			% 正式版本
+			\documentclass[singlesided,cuzhdr]{styles/cuzthesis}
+
+			% 盲审版本
+			\documentclass[singlesided,cuzhdr,blinded]{styles/cuzthesis}
+		\end{texcode}
 	\end{listing}
 
-
-	编译完成即可获得本PDF说明文档，而这也完成了学习使用cuzthesis撰写论文的一半进
-	程。至此，新手已上路！
+	添加盲审选项后，重新编译模板，生成的 PDF 文档将隐去作者、指导教师、学校等相关信息。
 
 	\section{文档目录简介}\label{sec:directory}
 
@@ -213,7 +269,7 @@
 		\centering
 		\footnotesize% fontsize
 		\setlength{\tabcolsep}{4pt}% column separation
-		\renewcommand{\arraystretch}{1.2}%row space 
+		\renewcommand{\arraystretch}{1.2}%row space
 		\begin{tabular}{lcccccccc}
 			\hline
 			Row number & \multicolumn{8}{c}{This is a multicolumn}                                     \\
@@ -372,7 +428,7 @@
 	\small
 	\begin{verbatim}
 Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
---exclude .git 
+--exclude .git
     \end{verbatim}
 	\endgroup
 
@@ -451,6 +507,167 @@ Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
 		Bibliography}。
 
 	% \nocite{*}
+
+	\section{现代 LaTeX 功能}\label{sec:modern-latex}
+
+	LaTeX 生态系统不断发展，提供了许多现代化的功能和宏包，可以大大提高论文的质量和写作效率。本节介绍一些现代 LaTeX 功能的使用示例。
+
+	\subsection{TikZ 绘图}\label{sub:tikz}
+
+	TikZ 是一个强大的绘图工具，可以创建高质量的矢量图形。以下是一个简单的 TikZ 绘图示例，展示了一个流程图：
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}[
+			node distance=2cm,
+			box/.style={rectangle, draw, text width=3cm, text centered, minimum height=1cm, rounded corners},
+			arrow/.style={thick, ->, >=stealth}
+			]
+
+			% 定义节点
+			\node[box] (start) {开始};
+			\node[box, below of=start] (input) {输入数据};
+			\node[box, below of=input] (process) {处理数据};
+			\node[box, below of=process] (output) {输出结果};
+			\node[box, below of=output] (end) {结束};
+
+			% 连接节点
+			\draw[arrow] (start) -- (input);
+			\draw[arrow] (input) -- (process);
+			\draw[arrow] (process) -- (output);
+			\draw[arrow] (output) -- (end);
+
+		\end{tikzpicture}
+		\caption{使用 TikZ 创建的简单流程图}
+		\label{fig:tikz-flowchart}
+	\end{figure}
+
+	TikZ 还可以绘制更复杂的图形，如数学图表、网络拓扑图、状态机等。详细用法请参考 TikZ 文档。
+
+	\subsection{Beamer 演示文稿}\label{sub:beamer}
+
+	Beamer 是一个用于创建演示文稿的 LaTeX 文档类，可以生成高质量的 PDF 幻灯片。以下是一个简单的 Beamer 演示文稿示例：
+
+	\begin{listing}[htbp]
+		\caption{Beamer 演示文稿示例}
+		\label{code:beamer-example}
+		\begin{texcode}
+			\documentclass{beamer}
+			\usetheme{Madrid}
+			\usecolortheme{beaver}
+
+			\title{LaTeX 演示文稿}
+			\author{张三}
+			\institute{浙江传媒学院}
+			\date{\today}
+
+			\begin{document}
+
+			\begin{frame}
+				\titlepage
+			\end{frame}
+
+			\begin{frame}{目录}
+				\tableofcontents
+			\end{frame}
+
+			\section{引言}
+
+			\begin{frame}{引言}
+				\begin{itemize}
+					\item 第一点
+					\item 第二点
+					\item 第三点
+				\end{itemize}
+			\end{frame}
+
+			\section{方法}
+
+			\begin{frame}{方法}
+				\begin{enumerate}
+					\item 步骤一
+					\item 步骤二
+					\item 步骤三
+				\end{enumerate}
+			\end{frame}
+
+			\end{document}
+		\end{texcode}
+	\end{listing}
+
+	Beamer 提供了多种主题和颜色方案，可以根据需要进行定制。
+
+	\subsection{BibLaTeX 参考文献管理}\label{sub:biblatex}
+
+	BibLaTeX 是一个现代化的参考文献管理工具，比传统的 BibTeX 提供了更多的功能和更灵活的定制选项。以下是使用 BibLaTeX 的示例：
+
+	\begin{listing}[htbp]
+		\caption{BibLaTeX 使用示例}
+		\label{code:biblatex-example}
+		\begin{texcode}
+			% 在导言区加载 biblatex 宏包
+			\usepackage[
+				backend=biber,
+				style=gb7714-2015,
+				sorting=nyt,
+				giveninits=true
+			]{biblatex}
+
+			% 指定参考文献数据库
+			\addbibresource{references.bib}
+
+			% 在文档中引用文献
+			\cite{lamport1986document}
+			\textcite{chen1980zhongguo}
+			\parencite{stamerjohanns2009mathml}
+
+			% 在文档末尾打印参考文献列表
+			\printbibliography[title=参考文献]
+		\end{texcode}
+	\end{listing}
+
+	BibLaTeX 支持多种引用样式和参考文献格式，可以满足不同学科和期刊的要求。
+
+	\subsection{Markdown 与 LaTeX 集成}\label{sub:markdown}
+
+	对于不熟悉 LaTeX 的用户，可以使用 Markdown 编写内容，然后转换为 LaTeX。Pandoc 是一个强大的文档转换工具，可以将 Markdown 转换为 LaTeX。以下是一个简单的 Markdown 示例：
+
+	\begin{listing}[htbp]
+		\caption{Markdown 示例}
+		\label{code:markdown-example}
+		\begin{texcode}
+			# 标题
+
+			## 小标题
+
+			这是一段普通文本，包含**粗体**和*斜体*。
+
+			- 列表项 1
+			- 列表项 2
+			- 列表项 3
+
+			1. 有序列表项 1
+			2. 有序列表项 2
+			3. 有序列表项 3
+
+			> 这是一段引用文本。
+
+			```python
+			def hello_world():
+				print("Hello, World!")
+			```
+
+			[链接文本](https://example.com)
+
+			![图片描述](image.png)
+		\end{texcode}
+	\end{listing}
+
+	使用 Pandoc 将 Markdown 转换为 LaTeX 的命令如下：
+
+	\begin{verbatim}
+pandoc -f markdown -t latex -o output.tex input.md
+	\end{verbatim}
 
 	\section{常见使用问题}\label{sec:qa}
 
