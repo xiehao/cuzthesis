@@ -1,10 +1,10 @@
     \section{环境配置与安装}\label{sec:installation}
 
-    在开始使用 cuzthesis 模板之前，需要先配置 LaTeX 环境并安装必要的软件。本节将介绍环境配置和模板安装的步骤。
+    在开始使用 cuzthesis 模板之前，需要先配置 \LaTeX{} 环境并安装必要的软件。本节将介绍环境配置和模板安装的步骤。
 
-    \subsection{LaTeX 环境配置}\label{sub:latex-environment}
+    \subsection{\LaTeX{} 环境配置}\label{sub:latex-environment}
 
-    LaTeX 是一种基于 TeX 的排版系统，用于生成高质量的科技和学术文档。要使用 cuzthesis 模板，首先需要安装 LaTeX 发行版。
+    \LaTeX{} 是一种基于 \TeX{} 的排版系统，用于生成高质量的科技和学术文档。要使用 cuzthesis 模板，首先需要安装 \LaTeX{} 发行版。
 
     \begin{itemize}
         \item \textbf{Windows 系统}：推荐安装 TeX Live 或 MiKTeX。
@@ -12,13 +12,13 @@
                 \item TeX Live：访问 \url{https://tug.org/texlive/} 下载并安装完整版 TeX Live。
                 \item MiKTeX：访问 \url{https://miktex.org/} 下载并安装 MiKTeX。
             \end{itemize}
-            
+
         \item \textbf{macOS 系统}：推荐安装 MacTeX。
             \begin{itemize}
                 \item 访问 \url{https://tug.org/mactex/} 下载并安装 MacTeX。
                 \item 也可以通过 Homebrew 安装：\verb|brew install --cask mactex|
             \end{itemize}
-            
+
         \item \textbf{Linux 系统}：推荐安装 TeX Live。
             \begin{itemize}
                 \item Ubuntu/Debian：\verb|sudo apt install texlive-full|
@@ -29,12 +29,12 @@
 
     \subsection{编辑器选择}\label{sub:editor-choice}
 
-    LaTeX 文档可以使用任何文本编辑器编写，但使用专门的 LaTeX 编辑器或配置好的代码编辑器可以提高工作效率。以下是一些推荐的编辑器：
+    \LaTeX{} 文档可以使用任何文本编辑器编写，但使用专门的 \LaTeX{} 编辑器或配置好的代码编辑器可以提高工作效率。以下是一些推荐的编辑器：
 
     \begin{itemize}
-        \item \textbf{VS Code}：搭配 LaTeX Workshop 插件，提供语法高亮、自动补全、实时预览等功能。
+        \item \textbf{VS Code}：搭配 \LaTeX{} Workshop 插件，提供语法高亮、自动补全、实时预览等功能。
         \item \textbf{TeXstudio}：集成开发环境，提供丰富的编辑功能和内置预览。
-        \item \textbf{Overleaf}：基于网页的在线 LaTeX 编辑器，支持协作编辑。
+        \item \textbf{Overleaf}：基于网页的在线 \LaTeX{} 编辑器，支持协作编辑。
         \item \textbf{Texmaker/TeXworks}：轻量级编辑器，适合初学者使用。
     \end{itemize}
 
@@ -69,11 +69,11 @@
 
     \section{模板概述}\label{sec:overview}
 
-    cuzthesis 是为浙江传媒学院本科生设计的毕业论文 LaTeX 模板，旨在帮助学生高效、规范地完成毕业论文的排版工作。本章将详细介绍模板的使用方法和各种功能，帮助用户快速上手并充分利用模板的各项特性。
+    cuzthesis 是为浙江传媒学院本科生设计的毕业论文 \LaTeX{} 模板，旨在帮助学生高效、规范地完成毕业论文的排版工作。本章将详细介绍模板的使用方法和各种功能，帮助用户快速上手并充分利用模板的各项特性。
 
-    为方便使用及更好地展示 LaTeX 排版的优秀特性，cuzthesis 对框架和文件体系进行了细致地处理，尽可能地对各个功能和板块进行了模块化和封装。对于初学者来说，众多的文件目录也许一开始让人觉得有些无所适从，但阅读完本章的使用说明后，会发现原来使用思路是简单而清晰的。
+    为方便使用及更好地展示 \LaTeX{} 排版的优秀特性，cuzthesis 对框架和文件体系进行了细致地处理，尽可能地对各个功能和板块进行了模块化和封装。对于初学者来说，众多的文件目录也许一开始让人觉得有些无所适从，但阅读完本章的使用说明后，会发现原来使用思路是简单而清晰的。
 
-    当对 LaTeX 有一定的认识和了解后，用户会发现其相对 Word 类排版系统极具吸引力的优秀特性。若是初学者，请不要退缩，请稍加尝试和坚持，以领略到 LaTeX 的非凡魅力，并可以通过阅读相关资料如 LaTeX Wikibook\citep{wikibook2014latex}来完善自己的使用知识。
+    当对 \LaTeX{} 有一定的认识和了解后，用户会发现其相对 Word 类排版系统极具吸引力的优秀特性。若是初学者，请不要退缩，请稍加尝试和坚持，以领略到 \LaTeX{} 的非凡魅力，并可以通过阅读相关资料如 \LaTeX{} Wikibook\citep{wikibook2014latex}来完善自己的使用知识。
 
 
     \section{快速入门}\label{sec:quickstart}
@@ -93,13 +93,13 @@
 chmod +x ./scripts/run.sh
 ./scripts/run.sh xa cuzthesis
             \end{verbatim}
-            其中，第一个参数 xa 指定编译模式（x 表示使用 XeLaTeX，a 表示使用 BibTeX），第二个参数 cuzthesis 指定要编译的文件名（不包含 .tex 扩展名）。
+            其中，第一个参数 xa 指定编译模式（x 表示使用 \hologo{XeLaTeX}，a 表示使用 \hologo{BibTeX}），第二个参数 cuzthesis 指定要编译的文件名（不包含 .tex 扩展名）。
         \end{itemize}
 
-        \item \textbf{使用 LaTeX 编辑器}：
+        \item \textbf{使用 \LaTeX{} 编辑器}：
         \begin{itemize}
             \item 打开 cuzthesis.tex 文件。
-            \item 选择 XeLaTeX 编译引擎。
+            \item 选择 \hologo{XeLaTeX} 编译引擎。
             \item 点击编译按钮或使用快捷键（VS Code 中为 Ctrl+Alt+B）。
         \end{itemize}
     \end{itemize}
@@ -197,10 +197,10 @@ chmod +x ./scripts/run.sh
 
     \subsection{编译脚本 (scripts)}\label{sub:scripts}
 
-    为了简化 LaTeX 文档的编译过程，模板在 scripts 目录下提供了编译脚本，支持 Windows 和 Linux/macOS 系统：
+    为了简化 \LaTeX{} 文档的编译过程，模板在 scripts 目录下提供了编译脚本，支持 Windows 和 Linux/macOS 系统：
 
     \begin{itemize}
-        \item \textbf{Windows (run.bat)}：位于项目根目录，双击此批处理文件可以一键编译生成 PDF 文档。此脚本的主要目的是帮助不熟悉 LaTeX 编译过程的初学者快速上手。\textbf{注意：请勿通过邮件传播和接收此脚本，以防范 DOS 脚本的潜在安全风险。}
+        \item \textbf{Windows (run.bat)}：位于项目根目录，双击此批处理文件可以一键编译生成 PDF 文档。此脚本的主要目的是帮助不熟悉 \LaTeX{} 编译过程的初学者快速上手。\textbf{注意：请勿通过邮件传播和接收此脚本，以防范 DOS 脚本的潜在安全风险。}
 
         \item \textbf{Linux/macOS (run.sh)}：位于 scripts 目录下，在终端中运行以下命令：
               \begin{itemize}
@@ -208,7 +208,7 @@ chmod +x ./scripts/run.sh
                   \item \verb|./scripts/run.sh x cuzthesis|：执行快速编译模式，适用于内容修改但无新引用的情况
               \end{itemize}
 
-              其中，第一个参数指定编译模式（x 表示使用 XeLaTeX，a 表示使用 BibTeX），第二个参数指定要编译的文件名（不包含 .tex 扩展名）。
+              其中，第一个参数指定编译模式（x 表示使用 \hologo{XeLaTeX}，a 表示使用 \hologo{BibTeX}），第二个参数指定要编译的文件名（不包含 .tex 扩展名）。
     \end{itemize}
 
     \subsubsection{编译模式说明}
@@ -233,14 +233,14 @@ chmod +x ./scripts/run.sh
         \item \textbf{提高工作效率}：整洁的工作环境有助于提高工作效率和心情，特别是在长期编写大型文档时。
     \end{itemize}
 
-    需要注意的是，如果不使用提供的编译脚本，而是直接通过 LaTeX 编译器或编辑器编译文档，则临时文件会生成在当前工作目录中，而不是 cache 目录中。在这种情况下，可以考虑使用编辑器的清理功能或手动清理临时文件。
+    需要注意的是，如果不使用提供的编译脚本，而是直接通过 \LaTeX{} 编译器或编辑器编译文档，则临时文件会生成在当前工作目录中，而不是 cache 目录中。在这种情况下，可以考虑使用编辑器的清理功能或手动清理临时文件。
 
     \subsection{样式文件 (styles)}\label{sub:styles}
 
     styles 文件夹包含 cuzthesis 文档类的定义文件和配置文件，这些文件控制论文的整体格式和样式。这部分主要由模板开发者维护，一般用户无需修改。但了解这些文件的功能有助于在需要时进行有针对性的定制。
 
     \begin{itemize}
-        \item \textbf{cuzthesis.cls}：文档类定义文件，是整个模板的核心。它定义了论文的基本格式，包括页面布局、字体设置、章节样式、页眉页脚等。该文件基于标准的 LaTeX 文档类（如 book、report 等）进行扩展，添加了符合浙江传媒学院学位论文要求的特定格式。
+        \item \textbf{cuzthesis.cls}：文档类定义文件，是整个模板的核心。它定义了论文的基本格式，包括页面布局、字体设置、章节样式、页眉页脚等。该文件基于标准的 \LaTeX{} 文档类（如 book、report 等）进行扩展，添加了符合浙江传媒学院学位论文要求的特定格式。
 
         \item \textbf{cuzthesis.cfg}：文档类配置文件，包含各种常量标签和配置信息，如论文类型名称、学位级别、学校名称等。将这些配置信息单独放在一个文件中，便于在不修改核心文档类的情况下进行定制。
 
@@ -642,9 +642,9 @@ Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
 
     % \nocite{*}
 
-    \section{现代 LaTeX 功能}\label{sec:modern-latex}
+    \section{现代 \LaTeX{} 功能}\label{sec:modern-latex}
 
-    LaTeX 生态系统不断发展，提供了许多现代化的功能和宏包，可以大大提高论文的质量和写作效率。本节介绍一些现代 LaTeX 功能的使用示例。
+    \LaTeX{} 生态系统不断发展，提供了许多现代化的功能和宏包，可以大大提高论文的质量和写作效率。本节介绍一些现代 \LaTeX{} 功能的使用示例。
 
     \subsection{TikZ 绘图}\label{sub:tikz}
 
@@ -680,7 +680,7 @@ Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
 
     \subsection{Beamer 演示文稿}\label{sub:beamer}
 
-    Beamer 是一个用于创建演示文稿的 LaTeX 文档类，可以生成高质量的 PDF 幻灯片。以下是一个简单的 Beamer 演示文稿示例：
+    Beamer 是一个用于创建演示文稿的 \LaTeX{} 文档类，可以生成高质量的 PDF 幻灯片。以下是一个简单的 Beamer 演示文稿示例：
 
     \begin{listing}[htbp]
         \caption{Beamer 演示文稿示例}
@@ -690,7 +690,7 @@ Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
             \usetheme{Madrid}
             \usecolortheme{beaver}
 
-            \title{LaTeX 演示文稿}
+            \title{\LaTeX{} 演示文稿}
             \author{张三}
             \institute{浙江传媒学院}
             \date{\today}
@@ -731,12 +731,12 @@ Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
 
     Beamer 提供了多种主题和颜色方案，可以根据需要进行定制。
 
-    \subsection{BibLaTeX 参考文献管理}\label{sub:biblatex}
+    \subsection{Bib\LaTeX{} 参考文献管理}\label{sub:biblatex}
 
-    BibLaTeX 是一个现代化的参考文献管理工具，比传统的 BibTeX 提供了更多的功能和更灵活的定制选项。以下是使用 BibLaTeX 的示例：
+    Bib\LaTeX{} 是一个现代化的参考文献管理工具，比传统的 \hologo{BibTeX} 提供了更多的功能和更灵活的定制选项。以下是使用 Bib\LaTeX{} 的示例：
 
     \begin{listing}[htbp]
-        \caption{BibLaTeX 使用示例}
+        \caption{Bib\LaTeX{} 使用示例}
         \label{code:biblatex-example}
         \begin{texcode}
             % 在导言区加载 biblatex 宏包
@@ -760,11 +760,11 @@ Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
         \end{texcode}
     \end{listing}
 
-    BibLaTeX 支持多种引用样式和参考文献格式，可以满足不同学科和期刊的要求。
+    Bib\LaTeX{} 支持多种引用样式和参考文献格式，可以满足不同学科和期刊的要求。
 
-    \subsection{Markdown 与 LaTeX 集成}\label{sub:markdown}
+    \subsection{Markdown 与 \LaTeX{} 集成}\label{sub:markdown}
 
-    对于不熟悉 LaTeX 的用户，可以使用 Markdown 编写内容，然后转换为 LaTeX。Pandoc 是一个强大的文档转换工具，可以将 Markdown 转换为 LaTeX。以下是一个简单的 Markdown 示例：
+    对于不熟悉 \LaTeX{} 的用户，可以使用 Markdown 编写内容，然后转换为 \LaTeX{}。Pandoc 是一个强大的文档转换工具，可以将 Markdown 转换为 \LaTeX{}。以下是一个简单的 Markdown 示例：
 
     \begin{listing}[htbp]
         \caption{Markdown 示例}
@@ -797,7 +797,7 @@ Error: Command failed: /bin/sh -c rsync -arvq --exclude cache
         \end{texcode}
     \end{listing}
 
-    使用 Pandoc 将 Markdown 转换为 LaTeX 的命令如下：
+    使用 Pandoc 将 Markdown 转换为 \LaTeX{} 的命令如下：
 
     \begin{verbatim}
 pandoc -f markdown -t latex -o output.tex input.md
@@ -815,15 +815,15 @@ pandoc -f markdown -t latex -o output.tex input.md
         \item 模板文档的编码为UTF-8编码。所有文件都必须采用UTF-8编码，否则编译后
               生成的文档将出现乱码文本。若出现文本编辑器无法打开文档或打开文档乱
               码的问题，请检查编辑器对UTF-8编码的支持。
-        \item 推荐选择\hologo{XeLaTeX}编译引擎编译中文文档。编译脚本的默认设定为
-              \hologo{XeLaTeX}编译引擎。你也可以选择不使用脚本编译，如直接使用
-              \LaTeX{}文本编辑器编译。注：\LaTeX{}文本编辑器编译的默认设定为
-              \hologo{pdfLaTeX}编译引擎，若选择\hologo{XeLaTeX}编译引擎，请进入
+        \item 推荐选择 \hologo{XeLaTeX} 编译引擎编译中文文档。编译脚本的默认设定为
+              \hologo{XeLaTeX} 编译引擎。你也可以选择不使用脚本编译，如直接使用
+              \LaTeX{} 文本编辑器编译。注：\LaTeX{} 文本编辑器编译的默认设定为
+              \hologo{pdfLaTeX} 编译引擎，若选择 \hologo{XeLaTeX} 编译引擎，请进入
               下拉菜单选择。为正确生成引用链接，需要进行全编译。由于
-              \hologo{LuaLaTeX}编译引擎尚不成熟，故暂不推荐。
-        \item VS Code中关于\hologo{LaTeX}方面建议安装的插件：
+              \hologo{LuaLaTeX} 编译引擎尚不成熟，故暂不推荐。
+        \item VS Code 中关于 \LaTeX{} 方面建议安装的插件：
               \begin{itemize}
-                  \item \hologo{LaTeX} Workshop：提供了绝大多数\hologo{LaTeX}的
+                  \item \LaTeX{} Workshop：提供了绝大多数 \LaTeX{} 的
                         辅助功能；
                   \item Rewrap：可使用\verb|Alt+Q|进行硬换行（即自动重排段落使得
                         每行不超过指定宽度）。
