@@ -158,18 +158,20 @@ chmod +x ./run.sh
 
     一般情况下，用户只需要根据需要修改文档类选项和宏包选项，无需修改文档的整体结构。如果需要添加或删除章节，只需在主文档中添加或注释相应的 \verb|\input| 命令即可。
 
-    \subsection{编译脚本 (run.bat 和 run.sh)}\label{sub:scripts}
+    \subsection{编译脚本 (scripts)}\label{sub:scripts}
 
-    为了简化 LaTeX 文档的编译过程，模板提供了两个编译脚本，分别用于 Windows 和 Linux/macOS 系统：
+    为了简化 LaTeX 文档的编译过程，模板在 scripts 目录下提供了编译脚本，支持 Windows 和 Linux/macOS 系统：
 
     \begin{itemize}
-        \item \textbf{Windows (run.bat)}：双击此批处理文件可以一键编译生成 PDF 文档。此脚本的主要目的是帮助不熟悉 LaTeX 编译过程的初学者快速上手。\textbf{注意：请勿通过邮件传播和接收此脚本，以防范 DOS 脚本的潜在安全风险。}
+        \item \textbf{Windows (run.bat)}：位于项目根目录，双击此批处理文件可以一键编译生成 PDF 文档。此脚本的主要目的是帮助不熟悉 LaTeX 编译过程的初学者快速上手。\textbf{注意：请勿通过邮件传播和接收此脚本，以防范 DOS 脚本的潜在安全风险。}
 
-        \item \textbf{Linux/macOS (run.sh)}：在终端中运行以下命令：
+        \item \textbf{Linux/macOS (run.sh)}：位于 scripts 目录下，在终端中运行以下命令：
               \begin{itemize}
-                  \item \verb|./run.sh xa <filename>|：执行完整编译流程，生成最终 PDF 文档
-                  \item \verb|./run.sh x <filename>|：执行快速编译模式，适用于内容修改但无新引用的情况
+                  \item \verb|./scripts/run.sh xa cuzthesis|：执行完整编译流程，生成最终 PDF 文档
+                  \item \verb|./scripts/run.sh x cuzthesis|：执行快速编译模式，适用于内容修改但无新引用的情况
               \end{itemize}
+
+              其中，第一个参数指定编译模式（x 表示使用 XeLaTeX，a 表示使用 BibTeX），第二个参数指定要编译的文件名（不包含 .tex 扩展名）。
     \end{itemize}
 
     \subsubsection{编译模式说明}
