@@ -3,7 +3,7 @@
 % !BIB program = bibtex
 %---------------------------------------------------------------------------%
 %-                                                                         -%
-%-                           LaTeX Template                                -%
+%-                     浙江传媒学院毕业论文模板                           -%
 %-                                                                         -%
 %---------------------------------------------------------------------------%
 %- Copyright (C) Hao XIE <oaheix@gmail.com>
@@ -12,75 +12,163 @@
 %- the Free Software Foundation, either version 3 of the License, or
 %- (at your option) any later version.
 %---------------------------------------------------------------------------%
-%->> Document class declaration
+%->> 文档类声明
 %---------------------------------------------------------------------------%
+% 本文档使用 cuzthesis 文档类，专为浙江传媒学院毕业论文设计
+% 以下是可用的选项及其说明：
 \documentclass[singlesided,cuzhdr,nocoadvisor]{styles/cuzthesis}%
-%- Multiple optional arguments:
-%- [<singlesided|doublesided|printcopy>]% set one or two sided eprint or print
-%- [draftversion]% show draft version information
-%- [fontset=<fandol|...>]% specify font set to replace automatic detection
-%- [scheme=plain]% thesis writing of international students
-%- [nocoadvisor]% hide co-advisor information on the title page
-%- [standard options for ctex book class: draft|paper size|font size|...]%
+
+%->> 文档类选项说明
 %---------------------------------------------------------------------------%
-%->> Document settings
+% 页面布局选项（三选一）：
+% - singlesided：单面打印模式，页边距对称
+% - doublesided：双面打印模式，页边距交替变化
+% - printcopy：印刷出版模式，为装订留出额外空间
+
+% 页眉页脚选项：
+% - cuzhdr：启用浙传风格的页眉页脚
+
+% 版本信息选项：
+% - draftversion：显示草稿版本信息
+
+% 字体设置选项：
+% - fontset=<fandol|founder|mac|ubuntu|windows|...>：指定字体集，替代自动检测
+%   常用值：
+%   - windows：使用 Windows 系统字体（宋体、黑体等）
+%   - mac：使用 macOS 系统字体
+%   - ubuntu：使用 Ubuntu 系统字体
+%   - fandol：使用开源的 Fandol 字体（TeX Live 自带）
+
+% 国际化选项：
+% - scheme=plain：国际学生论文写作模式，使用英文界面
+
+% 合作教师选项：
+% - nocoadvisor：在封面隐藏合作/企业教师信息
+
+% 其他选项：
+% - 支持 ctex book 类的标准选项：draft、paper size、font size 等
 %---------------------------------------------------------------------------%
-\usepackage[super,list,table]{styles/artratex}% document settings
-%- usage: \usepackage[option1,option2,...,optionN]{artratex}
-%- Multiple optional arguments:
-%- [bibtex|biber]% set bibliography processor and package
-%- [<numbers|super|authoryear|alpha>]% set citation and reference style
-%- <numbers>: textual: Jones [1]; parenthetical: [1]
-%- <super>: textual: Jones superscript [1]; parenthetical: superscript [1]
-%- <authoryear>: textual: Jones (1995); parenthetical: (Jones, 1995)
-%- <alpha>: textual: not available; parenthetical: [Jon95]
-%- [geometry]% reconfigure page layout via geometry package
-%- [lscape]% provide landscape layout environment
-%- [myhdr]% enable header and footer via fancyhdr package
-%- [color]% provide color support via xcolor package
-%- [background]% enable page background
-%- [tikz]% provide complex diagrams via tikz package
-%- [table]% provide complex tables via ctable package
-%- [list]% provide enhanced list environments for algorithm and coding
-%- [math]% enable some extra math packages
-\usepackage{styles/artracom}% user defined commands
+%->> 文档设置
 %---------------------------------------------------------------------------%
-%->> Document content
+% artratex 宏包提供了多种文档设置选项，用于控制参考文献、图表、数学等功能
+\usepackage[super,list,table]{styles/artratex}% 文档设置
+
+%->> artratex 宏包选项说明
+%---------------------------------------------------------------------------%
+% 参考文献处理器选项（二选一）：
+% - bibtex：使用 BibTeX 处理参考文献（默认）
+% - biber：使用 Biber 处理参考文献（支持更多功能）
+
+% 引用样式选项（四选一）：
+% - numbers：数字引用样式
+%   - 文内引用：Jones [1]
+%   - 括号引用：[1]
+% - super：上标数字引用样式（默认）
+%   - 文内引用：Jones^[1]
+%   - 括号引用：^[1]
+% - authoryear：作者-年份引用样式
+%   - 文内引用：Jones (1995)
+%   - 括号引用：(Jones, 1995)
+% - alpha：字母数字混合引用样式
+%   - 文内引用：不可用
+%   - 括号引用：[Jon95]
+
+% 页面布局选项：
+% - geometry：通过 geometry 宏包重新配置页面布局
+
+% 环境支持选项：
+% - lscape：提供横向页面布局环境
+% - myhdr：通过 fancyhdr 宏包启用自定义页眉页脚
+% - color：通过 xcolor 宏包提供颜色支持
+% - background：启用页面背景
+% - tikz：通过 tikz 宏包提供复杂图表支持
+% - table：通过 ctable 宏包提供复杂表格支持
+% - list：提供增强的列表环境，用于算法和代码
+% - math：启用额外的数学宏包
+
+% artracom 宏包提供了用户自定义命令，如数学符号、向量表示等
+\usepackage{styles/artracom}% 用户自定义命令
+
+%->> 代码高亮设置
+%---------------------------------------------------------------------------%
+% minted 宏包提供了高质量的代码语法高亮功能
+% - newfloat=true：创建新的浮动环境用于代码块
+\usepackage[newfloat=true]{minted}
+
+% 设置代码段浮动环境的名称为"代码段"
+\SetupFloatingEnvironment{listing}{name=代码段}
+
+% 代码高亮使用说明：
+% 1. 行内代码：\mint{python}{print("Hello")}
+% 2. 代码块：
+%    \begin{listing}[htbp]
+%    \begin{minted}[options]{language}
+%    your code here
+%    \end{minted}
+%    \caption{代码说明}
+%    \label{lst:label}
+%    \end{listing}
+%
+% 常用语言：c, cpp, java, python, html, xml, latex, bash
+% 常用选项：linenos, breaklines, fontsize=\footnotesize
+%---------------------------------------------------------------------------%
+%->> 文档内容
 %---------------------------------------------------------------------------%
 \begin{document}
-%-> Initialization
+
+%->> 初始化信息
+%---------------------------------------------------------------------------%
+% 导入初始化文件，包含论文的基本信息（标题、作者、学院等）
 \input{src/common/initialization}
-%-
-%-> Frontmatter: title page, declaration, abstracts, content list
-%-
-\plainmatter% set the page layout
-%-> The title page
-\maketitle%
-%-> The author's declaration
-\makedeclaration%
-\nofootermatter% change the page layout
+
+%->> 前置部分：封面、声明、摘要、目录
+%---------------------------------------------------------------------------%
+% 设置页面布局为普通格式（无页眉页脚）
+\plainmatter
+
+% 生成论文封面
+\maketitle
+
+% 生成作者声明页
+\makedeclaration
+
+% 更改页面布局为无页脚格式（有页眉无页脚）
+\nofootermatter
+
+% 导入中英文摘要
 \input{src/thesis/frontmatter/abstracts}
-%-> The table of contents
-\tableofcontents%
-%-
-%-> Mainmatter: the main body
-%-
-\mainmatter% change the page layout
-\input{src/thesis/mainmatter/mainbody}%
-%-
-%-> Backmatter: acknowledgement, references, appendices (if any)
-%-
-%-> The references
-\intotoc{\bibname}% add link to contents table and bookmark
+
+% 生成目录
+\tableofcontents
+
+%->> 主体部分：论文正文
+%---------------------------------------------------------------------------%
+% 更改页面布局为主体格式（有页眉页脚）
+\mainmatter
+
+% 导入论文主体内容（包含所有章节）
+\input{src/thesis/mainmatter/mainbody}
+
+%->> 后置部分：参考文献、致谢、附录
+%---------------------------------------------------------------------------%
+% 添加参考文献到目录和书签
+\intotoc{\bibname}
+
+% 生成参考文献
+% 如需调整参考文献的行距，可取消下面的注释
 % \begingroup
 % \linespread{1.2}\selectfont
-\bibliography{bibliography/references}%
+\bibliography{bibliography/references}
 % \endgroup
-%-> The acknowledgement
-\input{src/thesis/backmatter/acknowledgement}%
-%-> The appendices (if any)
-\appendix% change the page layout
-\input{src/thesis/backmatter/appendices}%
+
+% 导入致谢部分
+\input{src/thesis/backmatter/acknowledgement}
+
+% 设置为附录模式（章节编号变为"附录A"等格式）
+\appendix
+
+% 导入附录内容
+\input{src/thesis/backmatter/appendices}
 \end{document}
 %---------------------------------------------------------------------------%
 

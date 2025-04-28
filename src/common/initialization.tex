@@ -1,21 +1,91 @@
 %---------------------------------------------------------------------------%
-%-> Initialization of some info
+%-                                                                         -%
+%-                       论文基本信息初始化                                -%
+%-                                                                         -%
 %---------------------------------------------------------------------------%
-\confidential{}% the confidential level (omitted)
-\schoollogo{0.8}{cuz_logo}% the logo of university
-\title{浙江传媒学院毕业论文\LaTeX{}模板}% the Chinese title of the thesis 
-\englishtitle{A \LaTeX{} Thesis Template for Communication University of Zhejiang (CUZ)}% the English title of the thesis
-\author{???}% the author's name
-\authorid{?????????}% the author's id
-\advisor{???}% the advisor's name
-\advisortitle{??}% the title of the advisor
-\coadvisor{???}% the co-advisor's name
-\coadvisortitle{??}% the title of the co-advisor
-\degree{学士}% the degree (must be one of {"学士","硕士","博士"})
-\major{??????}% the name of the major
-\class{??????}% the name of class
-\institute{??????}% the name of the institute
-\graduateyear{????}% the year of graduation
-\openingdate{????年??月??日}% the date of making opening
-\reviewdate{????年??月??日}% the date of making review
+% 本文件包含论文的基本信息，这些信息将在论文的多个部分使用
+% 请根据您的实际情况修改以下内容
+%---------------------------------------------------------------------------%
+
+%-> 保密级别设置（如无特殊要求，请保持为空）
+% 可选值：空（无保密要求）、"秘密"、"机密"、"绝密"
+\confidential{}
+
+%-> 学校标志设置
+% 第一个参数：标志宽度（相对于页面宽度的比例，推荐值：0.8）
+% 第二个参数：标志文件名（不含扩展名，默认在 figures 目录下查找）
+\schoollogo{0.8}{cuz_logo}
+
+%-> 论文标题设置
+% 中文标题应简明扼要，一般不超过20个汉字
+% 例如：基于深度学习的视频内容分析与推荐系统研究
+\title{浙江传媒学院毕业论文\LaTeX{}模板}
+
+%-> 论文英文标题设置
+% 英文标题应与中文标题内容一致，首字母大写
+% 例如：Research on Video Content Analysis and Recommendation System Based on Deep Learning
+\englishtitle{A \LaTeX{} Thesis Template for Communication University of Zhejiang (CUZ)}
+
+%-> 作者信息设置
+% 作者姓名应与学籍信息一致
+% 例如：张三
+\author{张三}
+
+%-> 学号设置
+% 请填写您的完整学号
+% 例如：20230123456
+\authorid{20230123456}
+
+%-> 指导教师信息设置
+% 指导教师姓名应与教师证件信息一致
+% 例如：李四
+\advisor{李四}
+
+%-> 指导教师职称设置
+% 常见职称：教授、副教授、讲师、助教
+% 例如：教授
+\advisortitle{教授}
+
+%-> 合作/企业教师信息设置（如无可保留，使用nocoadvisor选项可在封面隐藏此项）
+% 例如：王五
+\coadvisor{王五}
+
+%-> 合作/企业教师职称设置
+% 常见职称：教授级高工、高级工程师、工程师等
+% 例如：高级工程师
+\coadvisortitle{高级工程师}
+
+%-> 学位类别设置
+% 必须是以下三者之一：学士、硕士、博士
+\degree{学士}
+
+%-> 专业名称设置
+% 请填写完整的专业名称，应与学籍信息一致
+% 例如：数字媒体技术
+\major{数字媒体技术}
+
+%-> 班级名称设置
+% 请填写完整的班级名称，应与学籍信息一致
+% 例如：数字媒体技术2020-1班
+\class{数字媒体技术2020-1班}
+
+%-> 学院名称设置
+% 请填写完整的学院名称
+% 例如：计算机科学与技术学院
+\institute{计算机科学与技术学院}
+
+%-> 毕业年份设置
+% 请填写您的预期毕业年份
+% 例如：2024
+\graduateyear{2024}
+
+%-> 开题报告日期设置（用于开题报告文档）
+% 格式：YYYY年MM月DD日
+% 例如：2023年10月15日
+\openingdate{2023年10月15日}
+
+%-> 文献综述日期设置（用于文献综述文档）
+% 格式：YYYY年MM月DD日
+% 例如：2023年12月20日
+\reviewdate{2023年12月20日}
 %---------------------------------------------------------------------------%
