@@ -16,6 +16,15 @@
 %---------------------------------------------------------------------------%
 % 本文档使用 cuzthesis 文档类，专为浙江传媒学院毕业论文设计
 % 以下是可用的选项及其说明：
+%
+% 【使用说明】
+% 1. 首次使用时，请先阅读本文件中的注释，了解各选项的功能
+% 2. 根据需要修改文档类选项和宏包选项
+% 3. 在 src/common/initialization.tex 中填写论文基本信息
+% 4. 在 src/thesis/frontmatter/abstracts.tex 中编写中英文摘要
+% 5. 在 src/thesis/mainmatter/ 目录下编写各章节内容
+% 6. 使用 ./scripts/run.sh -xa cuzthesis.tex 命令编译论文
+%
 \documentclass[singlesided,cuzhdr,nocoadvisor]{styles/cuzthesis}%
 
 %->> 文档类选项说明
@@ -51,6 +60,11 @@
 %->> 文档设置
 %---------------------------------------------------------------------------%
 % artratex 宏包提供了多种文档设置选项，用于控制参考文献、图表、数学等功能
+% 常用配置组合：
+% - 基础配置：\usepackage[super]{styles/artratex}
+% - 标准配置：\usepackage[super,list,table]{styles/artratex}
+% - 完整配置：\usepackage[super,list,table,tikz,math,color]{styles/artratex}
+% - 作者年份引用：\usepackage[authoryear,list,table]{styles/artratex}
 \usepackage[super,list,table,tikz]{styles/artratex}% 文档设置
 
 %->> artratex 宏包选项说明
@@ -93,24 +107,64 @@
 %---------------------------------------------------------------------------%
 % minted 宏包提供了高质量的代码语法高亮功能
 % - newfloat=true：创建新的浮动环境用于代码块
+% - texcomments=true：允许在代码注释中使用 LaTeX 命令
+% - breaklines=true：自动换行
+% - fontsize=\small：设置代码字体大小
 \usepackage[newfloat=true]{minted}
 
 % 设置代码段浮动环境的名称为"代码段"
 \SetupFloatingEnvironment{listing}{name=代码段}
 
+% 全局设置代码高亮样式（可选）
+% \setminted{
+%   style=tango,          % 代码高亮主题：tango, autumn, perldoc, borland, colorful
+%   fontsize=\small,      % 代码字体大小
+%   linenos=true,         % 显示行号
+%   breaklines=true,      % 自动换行
+%   tabsize=4,            % Tab 宽度为 4 个空格
+%   frame=lines,          % 添加上下边框
+%   framesep=2mm,         % 边框与代码的间距
+%   autogobble=true,      % 自动删除每行开头的空白
+%   baselinestretch=1.2,  % 行间距
+%   bgcolor=gray!10       % 背景色（浅灰色）
+% }
+
+% 为特定语言设置样式（可选）
+% \setminted[python]{
+%   style=tango,
+%   linenos=true,
+%   breaklines=true
+% }
+
 % 代码高亮使用说明：
 % 1. 行内代码：\mint{python}{print("Hello")}
 % 2. 代码块：
 %    \begin{listing}[htbp]
-%    \begin{minted}[options]{language}
-%    your code here
-%    \end{minted}
-%    \caption{代码说明}
-%    \label{lst:label}
+%      \caption{代码说明}
+%      \label{lst:label}
+%      \begin{minted}[options]{language}
+%        your code here
+%      \end{minted}
 %    \end{listing}
 %
-% 常用语言：c, cpp, java, python, html, xml, latex, bash
-% 常用选项：linenos, breaklines, fontsize=\footnotesize
+% 3. 简化的语言环境（在 artratex.sty 中定义）：
+%    \begin{listing}[htbp]
+%      \caption{Python 代码示例}
+%      \label{lst:python-example}
+%      \begin{pythoncode}
+%        def hello():
+%            print("Hello, World!")
+%      \end{pythoncode}
+%    \end{listing}
+%
+% 常用语言：c, cpp, java, python, html, xml, latex, bash, sql, javascript
+% 常用选项：
+%   - linenos：显示行号
+%   - breaklines：自动换行
+%   - fontsize=\footnotesize：设置字体大小
+%   - frame=lines：添加上下边框
+%   - style=tango：设置高亮主题
+%   - texcomments：允许在注释中使用 LaTeX 命令
 %---------------------------------------------------------------------------%
 %->> 文档内容
 %---------------------------------------------------------------------------%
@@ -119,6 +173,12 @@
 %->> 初始化信息
 %---------------------------------------------------------------------------%
 % 导入初始化文件，包含论文的基本信息（标题、作者、学院等）
+% 在 src/common/initialization.tex 中修改以下信息：
+% - 论文标题（中英文）
+% - 作者姓名、学号
+% - 指导教师姓名、职称
+% - 学院、专业、班级
+% - 毕业年份
 \input{src/common/initialization}
 
 %->> 前置部分：封面、声明、摘要、目录
@@ -127,19 +187,30 @@
 \plainmatter
 
 % 生成论文封面
+% 封面内容根据 initialization.tex 中的信息自动生成
+% 如需修改封面样式，请修改 cuzthesis.cls 文件中的 \maketitle 命令
 \maketitle
 
 % 生成作者声明页
+% 如需修改声明内容，请修改 cuzthesis.cls 文件中的 \makedeclaration 命令
 \makedeclaration
 
 % 更改页面布局为无页脚格式（有页眉无页脚）
 \nofootermatter
 
 % 导入中英文摘要
+% 在 src/thesis/frontmatter/abstracts.tex 中编写中英文摘要和关键词
+% 摘要应简明扼要地概述论文的主要内容，包括研究目的、方法、结果和结论
+% 关键词应能反映论文的主题和特点，一般为 3-8 个
 \input{src/thesis/frontmatter/abstracts}
 
 % 生成目录
+% 目录自动根据各级标题生成，无需手动编辑
+% 如需添加图表目录，可在此处添加 \listoffigures 和 \listoftables 命令
 \tableofcontents
+% \listoffigures  % 图目录（可选）
+% \listoftables   % 表目录（可选）
+% \listoflistings % 代码目录（可选）
 
 %->> 主体部分：论文正文
 %---------------------------------------------------------------------------%
@@ -147,6 +218,9 @@
 \mainmatter
 
 % 导入论文主体内容（包含所有章节）
+% mainbody.tex 文件通过 \input 命令引用各个章节文件
+% 如需添加或删除章节，请修改 src/thesis/mainmatter/mainbody.tex 文件
+% 各章节文件位于 src/thesis/mainmatter/ 目录下
 \input{src/thesis/mainmatter/mainbody}
 
 %->> 后置部分：参考文献、致谢、附录
@@ -155,6 +229,8 @@
 \intotoc{\bibname}
 
 % 生成参考文献
+% 参考文献数据库文件为 bibliography/references.bib
+% 如需添加新的参考文献，请编辑该文件
 % 如需调整参考文献的行距，可取消下面的注释
 % \begingroup
 % \linespread{1.2}\selectfont
@@ -162,12 +238,16 @@
 % \endgroup
 
 % 导入致谢部分
+% 在 src/thesis/backmatter/acknowledgement.tex 中编写致谢内容
+% 致谢应简明扼要，对支持和帮助过论文工作的人员和单位表示感谢
 \input{src/thesis/backmatter/acknowledgement}
 
 % 设置为附录模式（章节编号变为"附录A"等格式）
 \appendix
 
 % 导入附录内容
+% 在 src/thesis/backmatter/appendices.tex 中编写附录内容
+% 附录可包含对正文的补充说明、源代码、数据表格等内容
 \input{src/thesis/backmatter/appendices}
 \end{document}
 %---------------------------------------------------------------------------%
