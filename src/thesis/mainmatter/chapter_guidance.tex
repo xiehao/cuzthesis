@@ -21,6 +21,12 @@
 
     \section{环境配置与安装}\label{sec:installation}
 
+    在开始使用 cuzthesis 模板之前，需要先配置 LaTeX 环境并安装必要的软件。本节将介绍环境配置和模板安装的步骤。
+
+    \subsection{LaTeX 环境配置}\label{sub:latex-environment}
+
+    LaTeX 是一种基于 TeX 的排版系统，用于生成高质量的科技和学术文档。要使用 cuzthesis 模板，首先需要安装 LaTeX 发行版。
+
     \begin{itemize}
         \item 安装软件：根据所用操作系统和章节~\ref{sec:system}中的信息安装\LaTeX{}
               编译环境。
@@ -54,9 +60,10 @@
             \item \textbf{Windows}：双击运行 run.bat 脚本。
             \item \textbf{Linux 或 macOS}：在终端中执行以下命令：
             \begin{verbatim}
-chmod +x ./run.sh
-./run.sh xa
+chmod +x ./scripts/run.sh
+./scripts/run.sh xa cuzthesis
             \end{verbatim}
+            其中，第一个参数 xa 指定编译模式（x 表示使用 XeLaTeX，a 表示使用 BibTeX），第二个参数 cuzthesis 指定要编译的文件名（不包含 .tex 扩展名）。
         \end{itemize}
 
         \item \textbf{使用 LaTeX 编辑器}：
