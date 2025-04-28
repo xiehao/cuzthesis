@@ -150,30 +150,54 @@ chmod +x ./scripts/run.sh
     \small\linespread{1}
     \begin{center}
         \begin{verbatim}
-            CUZThesis
             ├── bibliography
             │   ├── gbt7714-plain.bst
             │   ├── gbt7714-unsrt.bst
             │   └── references.bib
             ├── cache
-            ├── contents
-            │   ├── abstracts.tex
-            │   ├── acknowledgement.tex
-            │   ├── appendices.tex
-            │   ├── chapter_guidance.tex
-            │   ├── chapter_introduction.tex
-            │   ├── initialization.tex
-            │   └── mainbody.tex
-            ├── cuzthesis.tex
-            ├── images
-            │   ├── cuz_logo.png
             │   └── ...
+            ├── cuzassignment.tex
+            ├── cuzopening.tex
+            ├── cuzreview.tex
+            ├── cuzthesis.tex
+            ├── guidance.pdf
+            ├── figures
+            │   └── ...
+            ├── latexmkrc
             ├── README.md
-            ├── run.bat
-            ├── run.sh
+            ├── scripts
+            │   ├── clean.sh
+            │   ├── run.bat
+            │   └── run.sh
+            ├── src
+            │   ├── assignment
+            │   │   └── assignmentbody.tex
+            │   ├── common
+            │   │   └── initialization.tex
+            │   ├── opening
+            │   │   └── openingbody.tex
+            │   ├── review
+            │   │   └── reviewbody.tex
+            │   └── thesis
+            │       ├── backmatter
+            │       │   ├── acknowledgement.tex
+            │       │   └── appendices.tex
+            │       ├── frontmatter
+            │       │   └── abstracts.tex
+            │       └── mainmatter
+            │           ├── chapter_conclusions.tex
+            │           ├── chapter_design.tex
+            │           ├── chapter_guidance.tex
+            │           ├── chapter_introduction.tex
+            │           ├── chapter_literature.tex
+            │           └── mainbody.tex
             └── styles
                 ├── artracom.sty
                 ├── artratex.sty
+                ├── cuzassignment.cls
+                ├── cuzbase.cls
+                ├── cuzopening.cls
+                ├── cuzreview.cls
                 ├── cuzthesis.cfg
                 └── cuzthesis.cls
         \end{verbatim}
