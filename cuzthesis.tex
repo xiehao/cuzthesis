@@ -102,69 +102,6 @@
 
 % artracom 宏包提供了用户自定义命令，如数学符号、向量表示等
 \usepackage{styles/artracom}% 用户自定义命令
-
-%->> 代码高亮设置
-%---------------------------------------------------------------------------%
-% minted 宏包提供了高质量的代码语法高亮功能
-% - newfloat=true：创建新的浮动环境用于代码块
-% - texcomments=true：允许在代码注释中使用 LaTeX 命令
-% - breaklines=true：自动换行
-% - fontsize=\small：设置代码字体大小
-\usepackage[newfloat=true]{minted}
-
-% 设置代码段浮动环境的名称为"代码段"
-\SetupFloatingEnvironment{listing}{name=代码段}
-
-% 全局设置代码高亮样式（可选）
-% \setminted{
-%   style=tango,          % 代码高亮主题：tango, autumn, perldoc, borland, colorful
-%   fontsize=\small,      % 代码字体大小
-%   linenos=true,         % 显示行号
-%   breaklines=true,      % 自动换行
-%   tabsize=4,            % Tab 宽度为 4 个空格
-%   frame=lines,          % 添加上下边框
-%   framesep=2mm,         % 边框与代码的间距
-%   autogobble=true,      % 自动删除每行开头的空白
-%   baselinestretch=1.2,  % 行间距
-%   bgcolor=gray!10       % 背景色（浅灰色）
-% }
-
-% 为特定语言设置样式（可选）
-% \setminted[python]{
-%   style=tango,
-%   linenos=true,
-%   breaklines=true
-% }
-
-% 代码高亮使用说明：
-% 1. 行内代码：\mint{python}{print("Hello")}
-% 2. 代码块：
-%    \begin{listing}[htbp]
-%      \caption{代码说明}
-%      \label{lst:label}
-%      \begin{minted}[options]{language}
-%        your code here
-%      \end{minted}
-%    \end{listing}
-%
-% 3. 简化的语言环境（在 artratex.sty 中定义）：
-%    \begin{listing}[htbp]
-%      \caption{Python 代码示例}
-%      \label{lst:python-example}
-%      \begin{pythoncode}
-%        def hello():
-%            print("Hello, World!")
-%      \end{pythoncode}
-%    \end{listing}
-%
-% 常用语言：c, cpp, java, python, html, xml, latex, bash, sql, javascript
-% 常用选项：
-%   - linenos：显示行号
-%   - breaklines：自动换行
-%   - fontsize=\footnotesize：设置字体大小
-%   - frame=lines：添加上下边框
-%   - style=tango：设置高亮主题
-%   - texcomments：允许在注释中使用 LaTeX 命令
 %---------------------------------------------------------------------------%
 %->> 文档内容
 %---------------------------------------------------------------------------%
@@ -245,7 +182,7 @@
 % 设置为附录模式（章节编号变为"附录A"等格式）
 \appendix
 
-% 导入附录内容
+% 导入附录内容（若无则可注释掉）
 % 在 src/thesis/backmatter/appendices.tex 中编写附录内容
 % 附录可包含对正文的补充说明、源代码、数据表格等内容
 \input{src/thesis/backmatter/appendices}
