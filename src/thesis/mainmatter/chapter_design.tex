@@ -17,7 +17,7 @@
 
     cuzthesis 模板的设计目标是创建一个全面、易用且符合学术标准的浙江传媒学院毕业论文 LaTeX 模板，具体目标包括：
 
-    \begin{enumerate}
+    \begin{itemize}
         \item \textbf{格式符合性}：严格遵循浙江传媒学院毕业论文的格式要求，确保生成的论文符合学校标准。
 
         \item \textbf{易用性}：降低 LaTeX 的使用门槛，使初学者能够快速上手，专注于论文内容而非排版细节。
@@ -27,13 +27,13 @@
         \item \textbf{跨平台兼容性}：确保模板在不同操作系统和 LaTeX 编译环境下都能正常工作。
 
         \item \textbf{文档完备性}：提供详细的使用文档和示例，帮助用户解决常见问题。
-    \end{enumerate}
+    \end{itemize}
 
     \subsection{设计原则}
 
     在模板设计过程中，我们遵循以下设计原则：
 
-    \begin{enumerate}
+    \begin{itemize}
         \item \textbf{内容与形式分离}：严格遵循 LaTeX 的"内容与形式分离"理念，使用户能够专注于内容创作。
 
         \item \textbf{模块化设计}：将模板分为多个功能模块，每个模块负责特定的功能，便于维护和扩展。
@@ -43,7 +43,7 @@
         \item \textbf{错误容忍性}：设计合理的错误处理机制，提供友好的错误提示，帮助用户快速定位和解决问题。
 
         \item \textbf{可维护性}：采用清晰的代码结构和命名规范，便于后续维护和更新。
-    \end{enumerate}
+    \end{itemize}
 
     \section{系统架构}\label{sec:system-architecture}
 
@@ -137,7 +137,7 @@
 
     cuzthesis 文档类基于 ctexbook 文档类开发，继承了 ctexbook 的基本功能，并进行了定制和扩展。主要技术实现包括：
 
-    \begin{enumerate}
+    \begin{itemize}
         \item \textbf{选项处理机制}：使用 LaTeX 的 keyval 机制处理文档类选项，支持多种选项组合。
 
         \item \textbf{页面布局设计}：使用 geometry 宏包精确控制页面尺寸、页边距和页眉页脚位置。
@@ -145,25 +145,25 @@
         \item \textbf{字体设置}：使用 fontspec 和 xeCJK 宏包设置中英文字体，支持不同操作系统的字体自动检测和替换。
 
         \item \textbf{章节样式定制}：使用 ctex 宏包的章节样式定制功能，实现符合浙传要求的章节标题格式。
-    \end{enumerate}
+    \end{itemize}
 
     \subsection{参考文献管理}
 
     参考文献管理是学术论文的重要组成部分，cuzthesis 模板采用 BibTeX 系统进行参考文献管理，主要技术实现包括：
 
-    \begin{enumerate}
+    \begin{itemize}
         \item \textbf{参考文献样式}：使用符合国标 GB/T 7714-2015 的 BibTeX 样式文件（gbt7714-plain.bst 和 gbt7714-unsrt.bst）。
 
         \item \textbf{引用样式定制}：支持多种引用样式（numbers、super、authoryear、alpha），用户可根据需要选择。
 
         \item \textbf{多语言支持}：支持中英文混排的参考文献，自动处理不同语言的标点符号和排序规则。
-    \end{enumerate}
+    \end{itemize}
 
     \subsection{浮动体处理}
 
     浮动体（图表、算法、代码等）的处理是论文排版的重要部分，cuzthesis 模板对浮动体进行了精心设计，主要技术实现包括：
 
-    \begin{enumerate}
+    \begin{itemize}
         \item \textbf{图表编号格式}：使用 caption 宏包定制图表编号格式，支持"章-序号"的编号方式。
 
         \item \textbf{多图排版}：使用 subcaption 宏包支持子图排版，便于展示多个相关图形。
@@ -171,13 +171,13 @@
         \item \textbf{算法环境}：使用 algorithm 和 algorithmic 宏包实现算法的排版。
 
         \item \textbf{代码高亮}：使用 minted 宏包实现代码的语法高亮，支持多种编程语言。
-    \end{enumerate}
+    \end{itemize}
 
     \subsection{跨平台兼容性}
 
     为确保模板在不同操作系统和编译环境下都能正常工作，cuzthesis 模板采取了以下技术措施：
 
-    \begin{enumerate}
+    \begin{itemize}
         \item \textbf{字体自动检测}：根据不同操作系统自动检测并使用合适的字体，避免字体缺失问题。
 
         \item \textbf{编译引擎适配}：针对不同的 LaTeX 编译引擎（pdfLaTeX、XeLaTeX、LuaLaTeX）进行适配，确保兼容性。
@@ -185,7 +185,7 @@
         \item \textbf{路径处理}：使用相对路径引用文件，避免不同操作系统路径表示不同导致的问题。
 
         \item \textbf{编码统一}：统一使用 UTF-8 编码，确保在不同平台上文本显示一致。
-    \end{enumerate}
+    \end{itemize}
 
     \section{实现细节}\label{sec:implementation-details}
 
@@ -288,7 +288,7 @@
 
     为确保模板的质量和可靠性，我们采用了以下测试方法：
 
-    \begin{enumerate}
+    \begin{itemize}
         \item \textbf{功能测试}：测试模板的各项功能是否正常工作，包括编译、引用、图表生成等。
 
         \item \textbf{兼容性测试}：在不同操作系统（Windows、Linux、macOS）和不同编译环境（pdfLaTeX、XeLaTeX、LuaLaTeX）下测试模板的兼容性。
@@ -296,7 +296,7 @@
         \item \textbf{格式符合性测试}：检查生成的论文是否符合浙江传媒学院的格式要求。
 
         \item \textbf{用户体验测试}：邀请不同背景的用户使用模板，收集反馈意见。
-    \end{enumerate}
+    \end{itemize}
 
     \subsection{测试结果}
 

@@ -212,12 +212,12 @@ chmod +x ./scripts/run.sh
 
     cuzthesis.tex 是整个论文的主文档，它设计和规划了论文的整体框架，通过阅读这个文件可以了解整个论文的结构和组织方式。主文档主要负责以下几个方面：
 
-    \begin{enumerate}
+    \begin{itemize}
         \item \textbf{文档类声明}：指定使用 cuzthesis 文档类及其选项，如单面/双面打印、页眉页脚样式等。
         \item \textbf{宏包加载}：加载论文所需的各种宏包，如 artratex.sty、artracom.sty 等。
         \item \textbf{文档结构组织}：通过 \verb|\input| 命令导入各个章节文件，组织论文的整体结构。
         \item \textbf{特殊页面生成}：生成封面、声明页、目录等特殊页面。
-    \end{enumerate}
+    \end{itemize}
 
     一般情况下，用户只需要根据需要修改文档类选项和宏包选项，无需修改文档的整体结构。如果需要添加或删除章节，只需在主文档中添加或注释相应的 \verb|\input| 命令即可。
 
