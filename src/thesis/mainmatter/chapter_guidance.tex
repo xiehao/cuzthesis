@@ -427,19 +427,17 @@ chmod +x ./scripts/run.sh
         \caption[样表]{这是一个样表。}
         \label{tab:sample}
         \centering
-        \footnotesize% fontsize
-        \setlength{\tabcolsep}{4pt}% column separation
-        \renewcommand{\arraystretch}{1.2}%row space
-        \begin{tabular}{lcccccccc}
-            \hline
-            Row number & \multicolumn{8}{c}{This is a multicolumn}                                     \\
+        \smaller[1]
+        \begin{tabular}{r|cccccccc}
+            \toprule
+            \textbf{行数} & \multicolumn{8}{c}{\textbf{这是一个跨列居中标题}} \\
             %\cline{2-9}% partial hline from column i to column j
-            \hline
-            Row 1      & $1$                                       & $2$ & $4$ & $5$ & $6$ & $7$ & $8$ \\
-            Row 2      & $1$                                       & $2$ & $4$ & $5$ & $6$ & $7$ & $8$ \\
-            Row 3      & $1$                                       & $2$ & $4$ & $5$ & $6$ & $7$ & $8$ \\
-            Row 4      & $1$                                       & $2$ & $4$ & $5$ & $6$ & $7$ & $8$ \\
-            \hline
+            \midrule
+            第1行 & $1$ & $2$ & $3$ &$4$ & $5$ & $6$ & $7$ & $8$ \\
+            第2行 & $1$ & $2$ & $3$ &$4$ & $5$ & $6$ & $7$ & $8$ \\
+            第3行 & $1$ & $2$ & $3$ &$4$ & $5$ & $6$ & $7$ & $8$ \\
+            第4行 & $1$ & $2$ & $3$ &$4$ & $5$ & $6$ & $7$ & $8$ \\
+            \bottomrule
         \end{tabular}
     \end{table}
 
