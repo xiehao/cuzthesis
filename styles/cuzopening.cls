@@ -3,7 +3,7 @@
 %-                           Document Class                                -%
 %-                                                                         -%
 %---------------------------------------------------------------------------%
-%- Copyright (C) Hao XIE <oaheix@gmail.com> 
+%- Copyright (C) Hao XIE <oaheix@gmail.com>
 %- This is free software: you can redistribute it and/or modify it
 %- under the terms of the GNU General Public License as published by
 %- the Free Software Foundation, either version 3 of the License, or
@@ -112,7 +112,7 @@
 % % \setlength{\marginparsep}{10pt}% width of space between body text and margin notes
 % %- part two -- vertical heights
 % %- top height + textheight + bottom height = paperheight
-% %- top height = 1.0in (fixed) + voffset + topmargin + headheight + headsep 
+% %- top height = 1.0in (fixed) + voffset + topmargin + headheight + headsep
 % \setlength{\textheight}{246.2mm}% set required text height first
 % \setlength{\voffset}{-17.4mm}% set vertical offset
 % \setlength{\topmargin}{20pt}% vertical margin above header
@@ -221,6 +221,8 @@
 \newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
 \newcommand{\openingdate}[1]{\gdef\cuz@value@openingdate{#1}}
 \newcommand{\reviewdate}[1]{\gdef\cuz@value@reviewdate{#1}}
+\newcommand{\declaredate}[1]{\gdef\cuz@value@declaredate{#1}}
+\newcommand{\signature}[1]{\gdef\cuz@value@signature{#1}}
 
 % Define a macro for underlined text with adaptive multilines
 % #1: The width of text line, not text itself (set by paper)
@@ -285,13 +287,16 @@
 			\cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@advisor}   &
 			\makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
 			\cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
-			% \\
-			% \rule{0pt}{10mm}
-			% \makebox[6.5em][s]{\cuz@label@coadvisor}： &
-			% \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
-			% \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
-			% \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
-		\end{tabular}\par
+            \\
+            \ifdefined\cuz@value@coadvisor
+            \rule{0pt}{10mm}
+            \makebox[6.5em][s]{\cuz@label@coadvisor}： &
+            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
+            \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
+            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
+            \fi
+		\end{tabular}
+		\par
 		\vspace{6ex}%
 		\cuz@label@date\cuz@value@openingdate\par%
 		\makebox[12.5em][s]{\bfseries\cuz@label@maker}%

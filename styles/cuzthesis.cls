@@ -45,10 +45,7 @@
 \DeclareOption{blinded}{
     \cuz@blindedtrue%
 }
-\newif\ifcuz@showcoadvisor \cuz@showcoadvisortrue
-\DeclareOption{nocoadvisor}{
-    \cuz@showcoadvisorfalse%
-}
+
 %-
 %-> Draft version info
 %-
@@ -464,7 +461,7 @@
             \makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
             \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
             \\
-            \ifcuz@showcoadvisor
+            \ifdefined\cuz@value@coadvisor
             \rule{0pt}{10mm}
             \makebox[6.5em][s]{\cuz@label@coadvisor}： &
             \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
