@@ -1,6 +1,6 @@
 %---------------------------------------------------------------------------%
 %-                                                                         -%
-%-                           Document Style                                -%
+%-                           文档样式包                                     -%
 %-                                                                         -%
 %---------------------------------------------------------------------------%
 %- Copyright (C) Hao XIE <oaheix@gmail.com>
@@ -8,16 +8,29 @@
 %- under the terms of the GNU General Public License as published by
 %- the Free Software Foundation, either version 3 of the License, or
 %- (at your option) any later version.
+%-
+%- 此包提供LaTeX文档的通用样式功能和包管理
+%- 包括字体配置、数学包、参考文献、图表环境、代码高亮等
+%-
+%- 包职责分工：
+%- 1. cuzcommon.sty - CUZ特定命令定义（作者信息、日期、下划线等）
+%- 2. artratex.sty (本包) - 通用LaTeX功能（字体、数学、图表、参考文献等）
+%- 3. cuzthesis.cfg - 用户配置参数（格式化命令、长度定义等）
+%-
+%- 设计原则：
+%- - artratex.sty可被其他LaTeX项目复用
+%- - cuzcommon.sty专门为CUZ文档类设计
+%- - 两包功能互补，无重复定义
 %---------------------------------------------------------------------------%
-%->> Identification
+%->> 文件标识
 %---------------------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}%
 \ProvidesPackage{artratex}[2014/10/01 v0.1 LaTeX macros package]%
 %---------------------------------------------------------------------------%
-%->> Declare options
+%->> 选项声明
 %---------------------------------------------------------------------------%
 %-
-%-> Platform fontset <windows>, <mac>, <adobe>, <times>, <others>
+%-> 平台字体集 <windows>, <mac>, <adobe>, <times>, <others>
 %-
 % \RequirePackage{expl3}% LaTeX3 programming environment
 % \ExplSyntaxOn%
@@ -35,14 +48,14 @@
 % \artxifstreq{\artxfontset}{mac}{\artx@mactrue\artx@timestrue}{%
 % \artxifstreq{\artxfontset}{adobe}{\artx@adobetrue\artx@timestrue}{%
 % \artx@otherstrue\artx@timesfalse}}}
-\RequirePackage{ifplatform}% check which platform it is running on
+\RequirePackage{ifplatform}% 检查运行平台
 %-
-%-> LaTeX engine <pdflatex>, <lualatex>, <xelatex>
+%-> LaTeX引擎 <pdflatex>, <lualatex>, <xelatex>
 %-
 % \newif\ifartx@pdftex \artx@pdftexfalse
 % \newif\ifartx@luatex \artx@luatexfalse
 % \newif\ifartx@xetex \artx@xetexfalse
-\RequirePackage{iftex}% LaTeX engine detection
+\RequirePackage{iftex}% LaTeX引擎检测
 % \ifxetex%
 %     \artx@xetextrue
 %     % \RequirePackage{xeCJK}% support calling system fonts
@@ -52,7 +65,7 @@
 %     \artx@pdftextrue
 % \fi\fi%
 %-
-%-> Bibliography engine <bibtex>, <biber>
+%-> 参考文献引擎 <bibtex>, <biber>
 %-
 \newif\ifartx@bibtex \artx@bibtextrue
 \newif\ifartx@biber \artx@biberfalse
@@ -65,7 +78,7 @@
 	\artx@bibertrue
 }
 %-
-%-> Citation and reference style
+%-> 引用和参考文献样式
 %-
 \newif\ifartx@numbers \artx@numberstrue
 \newif\ifartx@super \artx@superfalse
@@ -96,35 +109,35 @@
 	\artx@alphatrue
 }
 %-
-%-> Page layout reconfiguration
+%-> 页面布局重配置
 %-
 \newif\ifartx@geometry \artx@geometryfalse
 \DeclareOption{geometry}{%
 	\artx@geometrytrue
 }
 %-
-%-> Landscape layout support
+%-> 横向布局支持
 %-
 \newif\ifartx@lscape \artx@lscapefalse
 \DeclareOption{lscape}{%
 	\artx@lscapetrue
 }
 %-
-%-> Header and footer
+%-> 页眉页脚
 %-
 \newif\ifartx@myhdr \artx@myhdrfalse
 \DeclareOption{myhdr}{%
 	\artx@myhdrtrue
 }
 %-
-%-> Color support
+%-> 颜色支持
 %-
 \newif\ifartx@color \artx@colorfalse
 \DeclareOption{color}{%
 	\artx@colortrue
 }
 %-
-%-> Page background
+%-> 页面背景
 %-
 \newif\ifartx@background \artx@backgroundfalse
 \DeclareOption{background}{%
@@ -132,7 +145,7 @@
 	\artx@backgroundtrue
 }
 %-
-%-> Complex diagrams support
+%-> 复杂图表支持
 %-
 \newif\ifartx@tikz \artx@tikzfalse
 \DeclareOption{tikz}{%
@@ -140,14 +153,14 @@
 	\artx@tikztrue
 }
 %-
-%-> Complex tables support
+%-> 复杂表格支持
 %-
 \newif\ifartx@table \artx@tablefalse
 \DeclareOption{table}{%
 	\artx@tabletrue
 }
 %-
-%-> Enhanced list
+%-> 增强列表
 %-
 \newif\ifartx@list \artx@listfalse
 \DeclareOption{list}{%
@@ -155,45 +168,45 @@
 	\artx@listtrue
 }
 %-
-%-> Extra math support
+%-> 额外数学支持
 %-
 \newif\ifartx@math \artx@mathfalse
 \DeclareOption{math}{%
 	\artx@mathtrue
 }
 %-
-%-> Handle non-implemented options
+%-> 处理未实现的选项
 %-
 \DeclareOption*{%
 	\PackageWarning{artratex}{Unknown option '\CurrentOption'}%
 }
 %-
-%-> Terminates all options processing
+%-> 终止所有选项处理
 %-
 \ProcessOptions\relax%
 %---------------------------------------------------------------------------%
-%->> Required packages
+%->> 必需包
 %---------------------------------------------------------------------------%
 %-
-%-> Math packages
+%-> 数学包配置
 %-
-\RequirePackage{amsmath}% math packages
-\ifartx@math% extra math packages
+\RequirePackage{amsmath}% 数学包
+\ifartx@math% 额外数学包
 	\RequirePackage{mathtools,amsfonts}%
 \fi
 %-
-%-> Language settings
+%-> 语言和字体设置
 %-
-\ifpdftex% <pdflatex> call font packages
-	\RequirePackage[utf8]{inputenc}% set input encoding, document must use utf-8 encoding
-	\RequirePackage[T1]{fontenc}% set font encoding to enable modern font encoding
-	%- Call font package options:
-	%- Text + Math: Times Roman
+\ifpdftex% <pdflatex> 调用字体包
+	\RequirePackage[utf8]{inputenc}% 设置输入编码，文档必须使用utf-8编码
+	\RequirePackage[T1]{fontenc}% 设置字体编码以启用现代字体编码
+	%- 调用字体包选项：
+	%- 文本 + 数学：Times Roman
 	\RequirePackage{newtxtext}%
-	\RequirePackage[cmintegrals]{newtxmath}% load after math packages
-	%- Text + Math: Palatino
+	\RequirePackage[cmintegrals]{newtxmath}% 在数学包之后加载
+	%- 文本 + 数学：Palatino
 	%\RequirePackage{palatino}%
-\else% <xelatex> or <lualatex> call system fonts
+\else% <xelatex> 或 <lualatex> 调用系统字体
 	% \ifxetex
 	%     \RequirePackage{xeCJK}% support calling system fonts
 	% \fi
@@ -205,39 +218,39 @@
 	% \else
 	%     \RequirePackage{newtxtext}%
 	% \fi
-	\RequirePackage[cmintegrals]{newtxmath}% math symbol font, load after math but before fontspec packages
-	\RequirePackage{mathrsfs}% enable \mathscr for script alphabet
+	\RequirePackage[cmintegrals]{newtxmath}% 数学符号字体，在数学包之后但在fontspec包之前加载
+	\RequirePackage{mathrsfs}% 启用\mathscr用于脚本字母
 	\RequirePackage[cal=cm]{mathalfa}%
-	%- Font properties: <family> + <weight> + <shape> + <size>
-	%- Specify the three default TeX font families: <main>, <sans>, <mono>
-	%- \setxxxxfont{<font>}[BoldFont=<font-b>,ItalicFont=<font-i>]%
-	%- <font>: \mdseries\upshape; <font-b>: \bfseries\upshape; <font-i>: \mdseries\itshape
-	%- <\lfseries|\mdseries|\bfseries>: weight of font, default <\mdseries>
-	%- <\upshape|\itshape|\scshape>: shape of font, default <\upshape>
-	%- Roman or Serif - typefaces with strokes - for main content
-	%- examples: Times New Roman, Garamond, Adobe Garamond Pro
+	%- 字体属性：<族> + <粗细> + <形状> + <大小>
+	%- 指定三个默认TeX字体族：<主字体>, <无衬线>, <等宽>
+	%- \setxxxxfont{<字体>}[BoldFont=<粗体>,ItalicFont=<斜体>]%
+	%- <字体>: \mdseries\upshape; <粗体>: \bfseries\upshape; <斜体>: \mdseries\itshape
+	%- <\lfseries|\mdseries|\bfseries>: 字体粗细，默认<\mdseries>
+	%- <\upshape|\itshape|\scshape>: 字体形状，默认<\upshape>
+	%- 罗马或衬线字体 - 带笔画的字体 - 用于主要内容
+	%- 示例：Times New Roman, Garamond, Adobe Garamond Pro
 	%\setmainfont{Garamond}[BoldFont=Garamond-Bold,ItalicFont=Garamond-Italic]%
-	%- font switches: {\rmfamily ...}, \textrm{...}, {\normalfont ...}, \textnormal{...}
-	%- the latter is due to \renewcommand*{\familydefault}{\rmdefault}
-	%- Sans serif - typefaces without strokes - for headings demanding high readability
-	%- examples: Arial, Helvetica, Gill Sans, Futura
-	%\setsansfont{Gill Sans MT}% font switches: {\sffamily ...}, \textsf{...}
-	%- Monospaced - typefaces with same width - for programming, etc
-	%- examples: Rockwell, Andale Mono, Courier
-	%\setmonofont{Rockwell}% font switches: {\ttfamily, ...}, \texttt{...}
-	%- Specify user-defined font families and font switches
-	%\newfontfamily\<font-switch>{<font>}[<font features>]%
-	%\newcommand{\text<font-switch>}[1]{{\<font-switch> #1}}%
-	% without NFSSFamily option, a font family is defined only when the added font name
-	% is a new one. mathrm and mathsf can be set by \setmathrm and \setmathsf
-	%\RequirePackage{unicode-math}% another math symbol font configuration
-	%\setmathfont{XITS Math}% a complete symbol set for STIX math fonts
-	\newcommand*{\weibei}{\CJKfamily{zhwei}}% add definition of WeiBei.
+	%- 字体切换：{\rmfamily ...}, \textrm{...}, {\normalfont ...}, \textnormal{...}
+	%- 后者是由于\renewcommand*{\familydefault}{\rmdefault}
+	%- 无衬线字体 - 无笔画的字体 - 用于需要高可读性的标题
+	%- 示例：Arial, Helvetica, Gill Sans, Futura
+	%\setsansfont{Gill Sans MT}% 字体切换：{\sffamily ...}, \textsf{...}
+	%- 等宽字体 - 相同宽度的字体 - 用于编程等
+	%- 示例：Rockwell, Andale Mono, Courier
+	%\setmonofont{Rockwell}% 字体切换：{\ttfamily, ...}, \texttt{...}
+	%- 指定用户定义的字体族和字体切换
+	%\newfontfamily\<字体切换>{<字体>}[<字体特性>]%
+	%\newcommand{\text<字体切换>}[1]{{\<字体切换> #1}}%
+	% 没有NFSSFamily选项时，只有当添加的字体名称是新的时才定义字体族
+	% mathrm和mathsf可以通过\setmathrm和\setmathsf设置
+	%\RequirePackage{unicode-math}% 另一种数学符号字体配置
+	%\setmathfont{XITS Math}% STIX数学字体的完整符号集
+	\newcommand*{\weibei}{\CJKfamily{zhwei}}% 添加魏碑字体定义
 	\setmainfont{Times New Roman}% Times New Roman
 	\ifwindows
-		\renewcommand*{\lishu}{\CJKfamily{zhli}}% modify definition of Lishu on Windows.
-		\renewcommand*{\youyuan}{\CJKfamily{zhyou}}% modify definition of YouYuan on Windows.
-		\renewcommand*{\heiti}{\CJKfamily{zhhei}}% modify definition of Heiti on Windows.
+		\renewcommand*{\lishu}{\CJKfamily{zhli}}% 修改Windows上隶书的定义
+		\renewcommand*{\youyuan}{\CJKfamily{zhyou}}% 修改Windows上幼圆的定义
+		\renewcommand*{\heiti}{\CJKfamily{zhhei}}% 修改Windows上黑体的定义
 		\setCJKfamilyfont{zhli}{隶书}[%
 			AutoFakeBold=4,
 		]%
@@ -259,9 +272,9 @@
 	\else
 		\setmonofont{Fira Mono}[
 			Scale=MatchLowercase,
-		]% Fira Mono for all platforms
-		\newcommand*{\lishu}{\CJKfamily{zhli}}% add definition of Lishu on macOS and Linux.
-		\newcommand*{\youyuan}{\CJKfamily{zhyou}}% add definition of YouYuan on macOS and Linux.
+		]% 所有平台使用Fira Mono
+		\newcommand*{\lishu}{\CJKfamily{zhli}}% 在macOS和Linux上添加隶书定义
+		\newcommand*{\youyuan}{\CJKfamily{zhyou}}% 在macOS和Linux上添加幼圆定义
 		\ifmacosx
 			\setCJKfamilyfont{zhli}{Baoli SC}[%
 				AutoFakeBold=4,
@@ -284,7 +297,7 @@
 			\setCJKmonofont{STFangsong}[%
 				AutoFakeBold=3,
 			]%
-			\setsansfont{Helvetica}% Helvetica
+			\setsansfont{Helvetica}% Helvetica字体
 		\fi
 		\iflinux
 			\setCJKfamilyfont{zhli}{隶书}[%
@@ -325,27 +338,27 @@
 	\fi
 \fi
 %-
-%-> Bibliography processor and package
+%-> 参考文献处理器和包配置
 %-
-%- Bibtex processor + natbib package
+%- Bibtex处理器 + natbib包
 \ifartx@bibtex%
-	\ifartx@numbers% enable numbered citation style
-		\ifartx@super% enable superscripted citation style
-			\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted square bracket
+	\ifartx@numbers% 启用数字引用样式
+		\ifartx@super% 启用上标引用样式
+			\RequirePackage[square,comma,super,sort&compress]{natbib}% 上标方括号
 		\else
-			\RequirePackage[square,comma,numbers,sort&compress]{natbib}% square bracket
+			\RequirePackage[square,comma,numbers,sort&compress]{natbib}% 方括号
 		\fi
-		\bibliographystyle{bibliography/gbt7714-unsrt}% numbered scheme
+		\bibliographystyle{bibliography/gbt7714-unsrt}% 数字方案
 	\fi
-	\ifartx@authoryear% enable author year citation style
-		\RequirePackage{natbib}% author year citation mode
-		\bibliographystyle{bibliography/gbt7714-plain}% author year scheme
+	\ifartx@authoryear% 启用作者年份引用样式
+		\RequirePackage{natbib}% 作者年份引用模式
+		\bibliographystyle{bibliography/gbt7714-plain}% 作者年份方案
 	\fi
-	\ifartx@alpha% enable alpha citation style
-		\RequirePackage[square,comma,numbers]{natbib}% square bracket
-		\bibliographystyle{alpha}% alpha scheme
+	\ifartx@alpha% 启用字母引用样式
+		\RequirePackage[square,comma,numbers]{natbib}% 方括号
+		\bibliographystyle{alpha}% 字母方案
 	\fi
-	\providecommand*{\citetns}[2][]{% text embedded \citet in superscripted mode
+	\providecommand*{\citetns}[2][]{% 上标模式下的文本嵌入\citet
 	\begingroup%
 	\let\NAT@mbox=\mbox%
 	\let\@cite\NAT@citenum%
@@ -356,7 +369,7 @@
 	\citet[#1]{#2}%
 	\endgroup%
 	}
-	\providecommand*{\citepns}[2][]{% text embedded \citep in superscripted mode
+	\providecommand*{\citepns}[2][]{% 上标模式下的文本嵌入\citep
 	\begingroup%
 	\let\NAT@mbox=\mbox%
 	\let\@cite\NAT@citenum%
@@ -368,65 +381,65 @@
 	\endgroup%
 	}
 \fi
-%- Biber processor + biblatex package
+%- Biber处理器 + biblatex包
 \ifartx@biber%
-	\ifartx@numbers% enable numbered citation style
-		\ifartx@super% enable superscripted citation style
+	\ifartx@numbers% 启用数字引用样式
+		\ifartx@super% 启用上标引用样式
 			\RequirePackage[style=numeric-comp]{biblatex}%
 		\else
 			\RequirePackage[style=numeric-comp]{biblatex}%
 		\fi
 	\fi
-	\ifartx@authoryear% enable author year citation style
+	\ifartx@authoryear% 启用作者年份引用样式
 		\RequirePackage[style=authoryear]{biblatex}%
 	\fi
-	\ifartx@alpha% enable alpha citation style
+	\ifartx@alpha% 启用字母引用样式
 		\RequirePackage[style=alphabetic]{biblatex}%
 	\fi
 	\addbibresource{ref.bib}%
 \fi
 %-
-%-> Figure environment support
+%-> 图表环境支持
 %-
-\RequirePackage{graphicx}% packages for including graphics
-\RequirePackage[font={small,bf},skip=8pt,labelsep=space,font={bf,normalsize}]{caption}% options: [margin=10pt,labelfont=bf]
-\RequirePackage{subcaption}% package for subfigures
-\RequirePackage[list=off]{bicaption}% package for binary captions
+\RequirePackage{graphicx}% 包含图形的包
+\RequirePackage[font={small,bf},skip=8pt,labelsep=space,font={bf,normalsize}]{caption}% 选项：[margin=10pt,labelfont=bf]
+\RequirePackage{subcaption}% 子图包
+\RequirePackage[list=off]{bicaption}% 双语标题包
 \captionsetup[figure][bi-first]{format=hang,hangindent=-0.5em}%
 \captionsetup[figure][bi-second]{format=hang,hangindent=-2em,name=Figure}%
 \captionsetup[table][bi-first]{format=hang,hangindent=-0.5em}%
 \captionsetup[table][bi-second]{format=hang,hangindent=-2em,name=Table}%
-\RequirePackage[section]{placeins}% prevent floats from being moved over section
+\RequirePackage[section]{placeins}% 防止浮动体跨越章节
 %-
-%-> Page layout and spacing
+%-> 页面布局和间距
 %-
-\ifartx@geometry% enable geometry to redefine page layout
-	\RequirePackage{geometry}% page layout
-	%\RequirePackage{setspace}% line spacing
+\ifartx@geometry% 启用geometry重新定义页面布局
+	\RequirePackage{geometry}% 页面布局
+	%\RequirePackage{setspace}% 行间距
 \fi
-\ifartx@lscape% landscape layout
-	\RequirePackage{fancyhdr}% fancy headers and footers
-	%- usage: \begin{landscape} [\thispagestyle{lscape}] text... \end{landscape}
-	\RequirePackage{pdflscape}% landscape environment
-	\RequirePackage[absolute]{textpos}% rotated page number
+\ifartx@lscape% 横向布局
+	\RequirePackage{fancyhdr}% 花式页眉页脚
+	%- 用法：\begin{landscape} [\thispagestyle{lscape}] text... \end{landscape}
+	\RequirePackage{pdflscape}% 横向环境
+	\RequirePackage[absolute]{textpos}% 旋转页码
 \fi
-\ifartx@myhdr% header and footer style
-	\RequirePackage{fancyhdr}% fancy headers and footers
+\ifartx@myhdr% 页眉页脚样式
+	\RequirePackage{fancyhdr}% 花式页眉页脚
 \fi
-%\RequirePackage{microtype}% improves general appearance of the text
+%\RequirePackage{microtype}% 改善文本的整体外观
 %-
-%-> Color
+%-> 颜色
 %-
-\ifartx@color% enable color package to use color
+\ifartx@color% 启用颜色包以使用颜色
 	%\RequirePackage{color}%
 	\RequirePackage[usenames,svgnames,table]{xcolor}%
 \fi
 %-
-%-> Draw graphics directly with TeX commands
+%-> 直接用TeX命令绘制图形
 %-
 \ifartx@tikz%
-	\RequirePackage{tikz}% automatically load pgf package
-	\usetikzlibrary{% load libraries
+	\RequirePackage{tikz}% 自动加载pgf包
+	\usetikzlibrary{% 加载库
 		positioning,
 		arrows,
 		calc,
@@ -434,87 +447,87 @@
 	}%
 \fi
 %-
-%-> Complex tables
+%-> 复杂表格
 %-
 \ifartx@table%
-	\RequirePackage{ctable}% imports the array, tabularx and booktabs packages
-	\RequirePackage{footnote}% enable the footnotes in tables and tabulars
+	\RequirePackage{ctable}% 导入array、tabularx和booktabs包
+	\RequirePackage{footnote}% 在表格中启用脚注
 	\makesavenoteenv{table}
 	\makesavenoteenv{tabular}
 \fi
 %-
-%-> List structures
+%-> 列表结构
 %-
-\ifartx@list% enable enhanced list and verbatim structures
-	\RequirePackage{verbatim}% improve verbatim environment
-	\RequirePackage{enumitem}% configure the enumerate environment
-	\setlist[enumerate]{wide=\parindent}% only indent the first line
-	\setlist[itemize]{wide=\parindent}% only indent the first line
-	\setlist{nosep}% default text spacing
-	\RequirePackage{listings}% source code
-	\RequirePackage{lstautogobble}% auto gobble for lstlisting
-	\RequirePackage{algpseudocode,algorithm,algorithmicx}% algorithm
+\ifartx@list% 启用增强的列表和逐字结构
+	\RequirePackage{verbatim}% 改善逐字环境
+	\RequirePackage{enumitem}% 配置枚举环境
+	\setlist[enumerate]{wide=\parindent}% 只缩进第一行
+	\setlist[itemize]{wide=\parindent}% 只缩进第一行
+	\setlist{nosep}% 默认文本间距
+	\RequirePackage{listings}% 源代码
+	\RequirePackage{lstautogobble}% lstlisting的自动缩进
+	\RequirePackage{algpseudocode,algorithm,algorithmicx}% 算法
 	\RequirePackage{relsize}
-	\RequirePackage[newfloat=true]{minted}% better source code
+	\RequirePackage[newfloat=true]{minted}% 更好的源代码
 \fi
 %-
-%-> Links support
+%-> 链接支持
 %-
 \RequirePackage{hyperref}%
-\hypersetup{% set hyperlinks
-	%bookmarks=true,% show bookmarks bar
-	pdfencoding=auto,% allows non-Latin based languages in bookmarks
-	%pdftitle={},% title
-	%pdfauthor={},% author
-	%pdfsubject={},% subject
-	%pdftoolbar=true,% show toolbar
-	%pdfmenubar=true,% show menu
-	pdffitwindow=false,% window fit to page when opened
-	pdfstartview={FitW},% fits the width of the page to the window
-	%pdfnewwindow=true,% links in new window
-	%backref=true,% do bibliographical back references
-	%pagebackref=true,% backreference by page number
-	colorlinks=true,% false: boxed links; true: colored links
-	linkcolor=black,% color of internal links
-	citecolor=blue,% color of links to bibliography
-	filecolor=magenta,% color of file links
-	urlcolor=violet,% color of external links
-	bookmarksnumbered=true,% put section numbers in bookmarks
-	%hidelinks% remove link color and border
+\hypersetup{% 设置超链接
+	%bookmarks=true,% 显示书签栏
+	pdfencoding=auto,% 允许书签中使用非拉丁语言
+	%pdftitle={},% 标题
+	%pdfauthor={},% 作者
+	%pdfsubject={},% 主题
+	%pdftoolbar=true,% 显示工具栏
+	%pdfmenubar=true,% 显示菜单
+	pdffitwindow=false,% 打开时窗口适应页面
+	pdfstartview={FitW},% 页面宽度适应窗口
+	%pdfnewwindow=true,% 在新窗口中打开链接
+	%backref=true,% 进行参考文献反向引用
+	%pagebackref=true,% 按页码反向引用
+	colorlinks=true,% false: 框式链接; true: 彩色链接
+	linkcolor=black,% 内部链接颜色
+	citecolor=blue,% 参考文献链接颜色
+	filecolor=magenta,% 文件链接颜色
+	urlcolor=violet,% 外部链接颜色
+	bookmarksnumbered=true,% 在书签中显示章节号
+	%hidelinks% 移除链接颜色和边框
 }
 %---------------------------------------------------------------------------%
-%->> Configuration command
+%->> 配置命令
 %---------------------------------------------------------------------------%
 %-
-%-> Extensions and directories for graphics
+%-> 图形扩展名和目录
 %-
-%- Declare graphic extensions for automatic selection when including graphics
-%- via avoiding supplying graphic extensions in \includegraphics command,
-%- the source file can be more general and adaptive
+%- 声明图形扩展名以便在包含图形时自动选择
+%- 通过避免在\includegraphics命令中提供图形扩展名，
+%- 源文件可以更通用和适应性更强
 \ifxetex%
 	\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps,.tif,.bmp,.gif}%
-\else% <pdflatex> or <lualatex>
+\else% <pdflatex> 或 <lualatex>
 	\DeclareGraphicsExtensions{.pdf,.png,.jpg}%
 \fi
-\graphicspath{{figures/}}% search path for figures
+\graphicspath{{figures/}}% 图形搜索路径
 %-
-%-> Layout, space, and style
+%-> 布局、间距和样式
 %-
-\ifartx@geometry% enable geometry to redefine page layout
+\ifartx@geometry% 启用geometry重新定义页面布局
 	\geometry{paper=a4paper,left=31.7mm,right=31.7mm,top=25.4mm,bottom=25.4mm}%
 \fi
-%\linespread{1.5}% 1.5 for "one and a half" line spacing, and 2.0 for "double" line spacing
-%\setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}% skip space a paragraph
-\setcounter{tocdepth}{2}% depth for the table of contents
-\setcounter{secnumdepth}{3}% depth for section numbering, default is 2(subsub)
-%- Set equation, figure, table numbering
-%\numberwithin{equation}{section}% set enumeration level
-%\renewcommand{\theequation}{\thesection\arabic{equation}}% configure the label style
-%\numberwithin{figure}{section}% set enumeration level
-%\renewcommand{\thefigure}{\thesection\arabic{figure}}% configure the label style
-%\numberwithin{table}{section}% set enumeration level
-%\renewcommand{\thetable}{\thesection\arabic{table}}% configure the label style
-%- Set bibliography entry
+%\linespread{1.5}% 1.5为"一倍半"行距，2.0为"双倍"行距
+%\setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}% 段落间距
+\setcounter{tocdepth}{2}% 目录深度
+\setcounter{secnumdepth}{3}% 章节编号深度，默认为2(subsub)
+%- 设置公式、图、表编号
+%\numberwithin{equation}{section}% 设置枚举级别
+%\renewcommand{\theequation}{\thesection\arabic{equation}}% 配置标签样式
+%\numberwithin{figure}{section}% 设置枚举级别
+%\renewcommand{\thefigure}{\thesection\arabic{figure}}% 配置标签样式
+%\numberwithin{table}{section}% 设置枚举级别
+%\renewcommand{\thetable}{\thesection\arabic{table}}% 配置标签样式
+%- 设置参考文献条目
 \ifartx@bibtex%
 	% \setlength{\bibsep}{0.0ex plus 0.2ex minus 0.2ex}% set distance between entries
 	\setlength{\bibsep}{0.1\baselineskip}
