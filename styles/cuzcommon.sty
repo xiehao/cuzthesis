@@ -1,6 +1,6 @@
 %---------------------------------------------------------------------------%
 %-                                                                         -%
-%-                           Common Package                                 -%
+%-                             公共包                                       -%
 %-                                                                         -%
 %---------------------------------------------------------------------------%
 %- Copyright (C) Hao XIE <oaheix@gmail.com>
@@ -9,26 +9,26 @@
 %- the Free Software Foundation, either version 3 of the License, or
 %- (at your option) any later version.
 %-
-%- This package contains common command definitions shared across all
-%- CUZ document classes (cuzthesis, cuzreview, cuzopening, cuzassignment).
-%- Created to eliminate code duplication and improve maintainability.
+%- 此包包含所有CUZ文档类共享的命令定义
+%- (cuzthesis, cuzreview, cuzopening, cuzassignment)
+%- 创建目的是消除代码重复并提高可维护性
 %---------------------------------------------------------------------------%
-%->> Identification
+%->> 文件标识
 %---------------------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}%
-\ProvidesPackage{cuzcommon}[2025/05/25 v1.0 CUZ Common Definitions Package]%
+\ProvidesPackage{cuzcommon}[2025/01/19 v1.0 CUZ Common Definitions Package]%
 
 %---------------------------------------------------------------------------%
-%->> Common utility commands
+%->> 公共工具命令
 %---------------------------------------------------------------------------%
-\newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
-\newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% expansion control
+\newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% 展开控制
+\newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% 展开控制
 
 %---------------------------------------------------------------------------%
-%->> Common author information commands (identical across all classes)
+%->> 公共作者信息命令（所有类中定义相同）
 %---------------------------------------------------------------------------%
 %-
-%-> These commands have identical definitions in all document classes
+%-> 这些命令在所有文档类中具有相同的定义
 %-
 \newcommand{\authorid}[1]{\gdef\cuz@value@authorid{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
 \newcommand{\advisor}[1]{\gdef\cuz@value@advisor{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
@@ -42,7 +42,7 @@
 \newcommand{\institute}[1]{\gdef\cuz@value@institute{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
 
 %---------------------------------------------------------------------------%
-%->> Common date commands (identical across all classes)
+%->> 公共日期命令（所有类中定义相同）
 %---------------------------------------------------------------------------%
 \newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
 \newcommand{\openingdate}[1]{\gdef\cuz@value@openingdate{#1}}
@@ -51,36 +51,36 @@
 \newcommand{\signature}[1]{\gdef\cuz@value@signature{#1}}
 
 %---------------------------------------------------------------------------%
-%->> Note: Formatting commands and length definitions moved to cuzthesis.cfg
+%->> 注意：格式化命令和长度定义已移动到cuzthesis.cfg
 %---------------------------------------------------------------------------%
-%- These configuration parameters are now defined in the .cfg file for easier
-%- user customization: titleformat, englishtitleformat, otherinfoformat,
+%- 这些配置参数现在在.cfg文件中定义，以便用户更容易自定义：
+%- titleformat, englishtitleformat, otherinfoformat,
 %- titlelinewidth, leftinfowidth, rightinfowidth
 
 %---------------------------------------------------------------------------%
-%->> Common underline commands
+%->> 公共下划线命令
 %---------------------------------------------------------------------------%
 %-
-%-> Basic underline enhancement (identical across all classes)
+%-> 基本下划线增强（所有类中定义相同）
 %-
-\ifxetex% use underline from xeCJKfntef
-    % \renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}% set underline color
-    % \renewcommand{\uline}[1]{\CJKunderline{#1}}% unified name
-\else% use underline from ulem
+\ifxetex% 使用xeCJKfntef的下划线
+    % \renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}% 设置下划线颜色
+    % \renewcommand{\uline}[1]{\CJKunderline{#1}}% 统一名称
+\else% 使用ulem的下划线
     \RequirePackage{ulem}%
 \fi
-\newcommand{\ulenhance}[2][1pt]{% enhanced underline
-    \def\ULthickness{#1}% set thickness
+\newcommand{\ulenhance}[2][1pt]{% 增强下划线
+    \def\ULthickness{#1}% 设置厚度
     \uline{#2}}
-\newcommand{\ulhshift}{-4em}% horizontal shift on underline
-\newcommand{\ulextend}[2][350pt]{% extend underline length
+\newcommand{\ulhshift}{-4em}% 下划线水平偏移
+\newcommand{\ulextend}[2][350pt]{% 扩展下划线长度
     \hbox to #1{\hfill\hspace*{\ulhshift}#2\hfill}}
 
 %---------------------------------------------------------------------------%
-%->> Common page style commands
+%->> 公共页面样式命令
 %---------------------------------------------------------------------------%
 %-
-%-> Redefine cleardoublepage to have page style argument (identical across all classes)
+%-> 重定义cleardoublepage以具有页面样式参数（所有类中定义相同）
 %-
 \renewcommand{\cleardoublepage}[1][plain]{%
     \clearpage\if@twoside\ifodd\c@page\else%
@@ -89,6 +89,6 @@
 }
 
 %---------------------------------------------------------------------------%
-%->> End of package
+%->> 包结束
 %---------------------------------------------------------------------------%
 \endinput
