@@ -81,6 +81,7 @@
 \RequirePackage{lineno}
 \RequirePackage{setspace}
 \RequirePackage{multirow}
+\RequirePackage{adjustbox}% for image alignment
 \newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 \newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% expansion control
 %---------------------------------------------------------------------------%
@@ -304,6 +305,8 @@
 \newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
 \newcommand{\openingdate}[1]{\gdef\cuz@value@openingdate{#1}}
 \newcommand{\reviewdate}[1]{\gdef\cuz@value@reviewdate{#1}}
+\newcommand{\declaredate}[1]{\gdef\cuz@value@declaredate{#1}}
+\newcommand{\signature}[1]{\gdef\cuz@value@signature{#1}}
 %-
 %-> Redefine Chinese style
 %-
@@ -485,9 +488,9 @@
 
             % \hfill{} {\cuz@value@declare@d \hspace*{8em}}
             \renewcommand\arraystretch{1.3}
-            \begin{tabular}{@{}p{0.4\linewidth}l@{}}
-                 & \cuz@value@declare@s \\
-                 & \cuz@value@declare@d \\
+            \begin{tabular}{@{}p{0.4\linewidth}cl@{}}
+                 & \cuz@value@declare@s & \ifdefined\cuz@value@signature\adjustbox{valign=m}{\includegraphics[width=6em]{\cuz@value@signature}}\fi \\
+                 & \multicolumn{2}{r}{\ifdefined\cuz@value@declaredate\cuz@value@declaredate\else\cuz@value@declare@d\fi} \\
             \end{tabular} \par
         }
     }
