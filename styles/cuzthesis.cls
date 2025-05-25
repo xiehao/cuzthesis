@@ -658,7 +658,31 @@
     \chapter*{\songti\cuz@label@appendices}
     \chaptermark{\cuz@label@appendices}
     \vspace{2ex}
+    % 启用附录模式：使用section作为主要层级，编号改为字母格式
+    \setcounter{section}{0}
     \setcounter{equation}{0}
+    \setcounter{figure}{0}
+    \setcounter{table}{0}
+    % 重新定义section编号格式为字母（A, B, C...）
+    \renewcommand{\thesection}{\Alph{section}}
+    \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+    \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+    % 重新定义图表编号格式，使用section的字母编号
+    \renewcommand{\thefigure}{\thesection\cuz@label@captionnumberconnector\arabic{figure}}
+    \renewcommand{\thetable}{\thesection\cuz@label@captionnumberconnector\arabic{table}}
+    \renewcommand{\theequation}{\thesection\cuz@label@captionnumberconnector\arabic{equation}}
+    % 修改section标题格式，使其与正文section保持一致
+    \ctexset{
+        section = {
+            format = \linespread{1.5}\zihao{-4}\bfseries\raggedright,
+            number = \Alph{section},
+            name = {},
+            aftername = \hskip 0.5em,
+            beforeskip = 0.4ex,
+            afterskip = 0.4ex,
+            indent = 2em,
+        }
+    }
 }{
     \par
 }

@@ -691,10 +691,16 @@
 	\SetupFloatingEnvironment{listing}{name=\cuz@label@codelisting}
 	\SetupFloatingEnvironment{listing}{listname=\cuz@label@codelisting}
 
-	% Change listing numbering format to match figures and tables (chapter-number)
-	% In appendices (where chapter has no number), only show the listing number
+	% Change listing numbering format to match figures and tables
+	% Use chapter numbering in main matter, section numbering in appendices
 	\AtBeginDocument{
-		\renewcommand{\thelisting}{\ifnum\c@chapter>\z@\arabic{chapter}\cuz@label@captionnumberconnector\fi\arabic{listing}}%
+		\renewcommand{\thelisting}{%
+			\ifnum\c@chapter>\z@%
+				\thechapter\cuz@label@captionnumberconnector\arabic{listing}%
+			\else%
+				\thesection\cuz@label@captionnumberconnector\arabic{listing}%
+			\fi%
+		}%
 	}
 
 	% Adjust spacing for listing environment
