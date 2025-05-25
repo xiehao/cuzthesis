@@ -79,8 +79,7 @@
 \RequirePackage{setspace}
 \RequirePackage{multirow}
 \RequirePackage{adjustbox}% for image alignment
-\newcommand{\cuzifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
-\newcommand{\cuzifstrbk}{\expandafter\ifblank\expandafter}% expansion control
+\RequirePackage{styles/cuzcommon}% common definitions
 %---------------------------------------------------------------------------%
 %->> Load class configuration
 %---------------------------------------------------------------------------%
@@ -243,25 +242,7 @@
 %---------------------------------------------------------------------------%
 %->> Style control commands
 %---------------------------------------------------------------------------%
-%- redefine cleardoublepage to have page style argument
-\renewcommand{\cleardoublepage}[1][plain]{%
-    \clearpage\if@twoside\ifodd\c@page\else%
-            \thispagestyle{#1}%
-            \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi%
-}
-%- underline
-\ifxetex% use underline from xeCJKfntef
-    % \renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}% set underline color
-    % \renewcommand{\uline}[1]{\CJKunderline{#1}}% unified name
-\else% use underline from ulem
-    \RequirePackage{ulem}%
-\fi
-\newcommand{\ulenhance}[2][1pt]{% enhanced underline
-    \def\ULthickness{#1}% set thickness
-    \uline{#2}}
-\newcommand{\ulhshift}{-4em}% horizontal shift on underline
-\newcommand{\ulextend}[2][350pt]{% extend underline length
-    \hbox to #1{\hfill\hspace*{\ulhshift}#2\hfill}}
+%- thesis-specific style commands (common commands are in cuzcommon.sty)
 %---------------------------------------------------------------------------%
 %->> Titlepage
 %---------------------------------------------------------------------------%
@@ -289,21 +270,7 @@
 \newcommand{\englishtitle}[1]{\gdef\cuz@value@englishtitle{#1}}
 \renewcommand{\@title}{\cuz@value@titlemark}
 \renewcommand{\author}[1]{\gdef\cuz@value@author{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
-\newcommand{\authorid}[1]{\gdef\cuz@value@authorid{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
-\newcommand{\advisor}[1]{\gdef\cuz@value@advisor{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
-\newcommand{\advisortitle}[1]{\gdef\cuz@value@advisortitle{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
-\newcommand{\coadvisor}[1]{\gdef\cuz@value@coadvisor{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
-\newcommand{\coadvisortitle}[1]{\gdef\cuz@value@coadvisortitle{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
-\newcommand{\degree}[1]{\gdef\cuz@value@degree{#1}}
-\newcommand{\degreetype}[1]{\gdef\cuz@value@degreetype{#1}}
-\newcommand{\major}[1]{\gdef\cuz@value@major{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
-\newcommand{\class}[1]{\gdef\cuz@value@class{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
-\newcommand{\institute}[1]{\gdef\cuz@value@institute{\ifcuz@blinded\cuz@label@blindedtext\else#1\fi}}
-\newcommand{\graduateyear}[1]{\gdef\cuz@value@graduateyear{#1}}
-\newcommand{\openingdate}[1]{\gdef\cuz@value@openingdate{#1}}
-\newcommand{\reviewdate}[1]{\gdef\cuz@value@reviewdate{#1}}
-\newcommand{\declaredate}[1]{\gdef\cuz@value@declaredate{#1}}
-\newcommand{\signature}[1]{\gdef\cuz@value@signature{#1}}
+%- Other common commands are defined in cuzcommon.sty
 %-
 %-> Title processing for declaration page
 %-
@@ -393,15 +360,7 @@
         #3\par
     \end{minipage}
 }
-\newcommand{\cuz@macro@titleformat}{\zihao{-2}\heiti\centering}
-\newcommand{\cuz@macro@englishtitleformat}{\zihao{3}\rmfamily\centering}
-\newcommand{\cuz@macro@otherinfoformat}{\zihao{3}\songti\centering}
-\newlength{\cuz@length@titlelinewidth}
-\addtolength{\cuz@length@titlelinewidth}{300pt}
-\newlength{\cuz@length@leftinfowidth}
-\addtolength{\cuz@length@leftinfowidth}{115pt}
-\newlength{\cuz@length@rightinfowidth}
-\addtolength{\cuz@length@rightinfowidth}{145pt}
+%- Common formatting commands and lengths are defined in cuzcommon.sty
 \renewcommand{\maketitle}{%
     \cuzifstreq{\cuz@value@degree}{学士}{%
         \def\cuz@label@thesis{\cuz@label@bacthesis}%
