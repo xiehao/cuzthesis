@@ -308,6 +308,20 @@
 \newcommand{\declaredate}[1]{\gdef\cuz@value@declaredate{#1}}
 \newcommand{\signature}[1]{\gdef\cuz@value@signature{#1}}
 %-
+%-> Title processing for declaration page
+%-
+\ExplSyntaxOn
+\tl_new:N \l_cuz_title_tl
+\cs_new:Npn \cuz@declaration@title {
+    % Full expansion to get the actual title text
+    \tl_set:Nf \l_cuz_title_tl { \@title }
+    % Replace double quotation marks with single quotation marks
+    \tl_replace_all:Nnn \l_cuz_title_tl { 《 } { 〈 }
+    \tl_replace_all:Nnn \l_cuz_title_tl { 》 } { 〉 }
+    \tl_use:N \l_cuz_title_tl
+}
+\ExplSyntaxOff
+%-
 %-> Redefine Chinese style
 %-
 % \newcounter{iline}
