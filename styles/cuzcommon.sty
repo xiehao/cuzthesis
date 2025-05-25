@@ -1,28 +1,22 @@
 %---------------------------------------------------------------------------%
-%->> CUZ Common Package
+%-                                                                         -%
+%-                           Common Package                                 -%
+%-                                                                         -%
 %---------------------------------------------------------------------------%
-%-
-%- Copyright (C) 2019-2024 by Huanyu Shi <tolvgx@gmail.com>
-%- 
-%- This file may be distributed and/or modified under the
-%- conditions of the LaTeX Project Public License, either version 1.3c
-%- of this license or (at your option) any later version.
-%- The latest version of this license is in:
-%-
-%-    http://www.latex-project.org/lppl.txt
-%-
-%- and version 1.3c or later is part of all distributions of LaTeX
-%- version 2005/12/01 or later.
-%-
+%- Copyright (C) Hao XIE <oaheix@gmail.com>
 %- This is free software: you can redistribute it and/or modify it
 %- under the terms of the GNU General Public License as published by
 %- the Free Software Foundation, either version 3 of the License, or
 %- (at your option) any later version.
+%-
+%- This package contains common command definitions shared across all
+%- CUZ document classes (cuzthesis, cuzreview, cuzopening, cuzassignment).
+%- Created to eliminate code duplication and improve maintainability.
 %---------------------------------------------------------------------------%
 %->> Identification
 %---------------------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}%
-\ProvidesPackage{cuzcommon}[2024/01/20 v1.0 CUZ Common Definitions Package]%
+\ProvidesPackage{cuzcommon}[2025/05/25 v1.0 CUZ Common Definitions Package]%
 
 %---------------------------------------------------------------------------%
 %->> Common utility commands
@@ -57,21 +51,11 @@
 \newcommand{\signature}[1]{\gdef\cuz@value@signature{#1}}
 
 %---------------------------------------------------------------------------%
-%->> Common formatting commands (identical across all classes)
+%->> Note: Formatting commands and length definitions moved to cuzthesis.cfg
 %---------------------------------------------------------------------------%
-\newcommand{\cuz@macro@titleformat}{\zihao{-2}\heiti\centering}
-\newcommand{\cuz@macro@englishtitleformat}{\zihao{3}\rmfamily\centering}
-\newcommand{\cuz@macro@otherinfoformat}{\zihao{3}\songti\centering}
-
-%---------------------------------------------------------------------------%
-%->> Common length definitions (identical across all classes)
-%---------------------------------------------------------------------------%
-\newlength{\cuz@length@titlelinewidth}
-\addtolength{\cuz@length@titlelinewidth}{300pt}
-\newlength{\cuz@length@leftinfowidth}
-\addtolength{\cuz@length@leftinfowidth}{115pt}
-\newlength{\cuz@length@rightinfowidth}
-\addtolength{\cuz@length@rightinfowidth}{145pt}
+%- These configuration parameters are now defined in the .cfg file for easier
+%- user customization: titleformat, englishtitleformat, otherinfoformat,
+%- titlelinewidth, leftinfowidth, rightinfowidth
 
 %---------------------------------------------------------------------------%
 %->> Common underline commands
