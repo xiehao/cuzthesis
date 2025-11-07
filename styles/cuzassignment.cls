@@ -211,6 +211,19 @@
 \newlength{\cuz@length@rightinfowidth}
 \addtolength{\cuz@length@rightinfowidth}{13em}
 \renewcommand{\maketitle}{%
+	\cuzifstreq{\cuz@value@degree}{学士}{%
+		\def\cuz@label@thesis{\cuz@label@bacthesis}%
+		\def\cuz@label@major{\cuz@label@ungradmajor}%
+		\def\cuz@label@institute{\cuz@label@ungradinstitute}%
+	}{%
+		\cuzifstreq{\cuz@value@degree}{硕士}{%
+			\def\cuz@label@thesis{\cuz@label@masthesis}%
+		}{%
+			\def\cuz@label@thesis{\cuz@label@docthesis}%
+		}
+		\def\cuz@label@major{\cuz@label@gradmajor}%
+		\def\cuz@label@institute{\cuz@label@gradinstitute}%
+	}%
     \cleardoublepage
     \thispagestyle{empty}
     \par
