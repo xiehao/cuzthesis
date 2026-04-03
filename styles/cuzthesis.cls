@@ -143,10 +143,11 @@
     %- Define different kinds of header and footer for different parts
     \fancypagestyle{frontmatterstyle}{% style for frontmatter
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
+        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@thesis}% structure elements
         \fancyhead[REO]{\footnotesize \@title}% structure elements
-        \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
-        \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
+        \fancyfoot[LEO]{\footnotesize \cuz@footer@left}% author (bachelor only)
+        \fancyfoot[REO]{\footnotesize \cuz@footer@right}% page number (bachelor only)
+        \fancyfoot[C]{\footnotesize \cuz@footer@center}% page number (master/doctor)
         \renewcommand{\headrulewidth}{0.8pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
@@ -159,10 +160,11 @@
     }
     \fancypagestyle{mainmatterstyle}{% style for mainmatter
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
+        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@thesis}% structure elements
         \fancyhead[REO]{\footnotesize \@title}% structure elements
-        \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
-        \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
+        \fancyfoot[LEO]{\footnotesize \cuz@footer@left}% author (bachelor only)
+        \fancyfoot[REO]{\footnotesize \cuz@footer@right}% page number (bachelor only)
+        \fancyfoot[C]{\footnotesize \cuz@footer@center}% page number (master/doctor)
         \renewcommand{\headrulewidth}{0.5pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
@@ -175,10 +177,11 @@
     }
     \fancypagestyle{backmatterstyle}{% header and footer style for backmatter
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
+        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@thesis}% structure elements
         \fancyhead[REO]{\footnotesize \@title}% structure elements
-        \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
-        \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
+        \fancyfoot[LEO]{\footnotesize \cuz@footer@left}% author (bachelor only)
+        \fancyfoot[REO]{\footnotesize \cuz@footer@right}% page number (bachelor only)
+        \fancyfoot[C]{\footnotesize \cuz@footer@center}% page number (master/doctor)
         \renewcommand{\headrulewidth}{0.5pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
@@ -208,10 +211,11 @@
     }
     \fancypagestyle{noheaderstyle}{% header and footer style for no header
         \fancyhf{}% clear fields
-        %\fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
+        %\fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@thesis}% structure elements
         %\fancyhead[REO]{\footnotesize \@title}% structure elements
-        \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
-        \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
+        \fancyfoot[LEO]{\footnotesize \cuz@footer@left}% author (bachelor only)
+        \fancyfoot[REO]{\footnotesize \cuz@footer@right}% page number (bachelor only)
+        \fancyfoot[C]{\footnotesize \cuz@footer@center}% page number (master/doctor)
         \renewcommand{\headrulewidth}{0pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
@@ -224,7 +228,7 @@
     }
     \fancypagestyle{nofooterstyle}{% header and footer style for no footer
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
+        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@thesis}% structure elements
         \fancyhead[REO]{\footnotesize \@title}% structure elements
         % \fancyfoot[LEO]{\footnotesize \thepage}% page number
         % \fancyfoot[REO]{\footnotesize \thepage}% page number
@@ -363,112 +367,233 @@
 %- Common formatting commands and lengths are defined in cuzcommon.sty
 \renewcommand{\maketitle}{%
     \cuzifstreq{\cuz@value@degree}{学士}{%
-        \def\cuz@label@thesis{\cuz@label@bacthesis}%
-        \def\cuz@label@major{\cuz@label@ungradmajor}%
-        \def\cuz@label@institute{\cuz@label@ungradinstitute}%
+        %- 本科封面
+        \cleardoublepage
+        \thispagestyle{empty}
+        \par
+        \begin{center}
+            {\cuz@value@schoollogo}\par
+            \vspace{24mm}
+            {
+                {\lishu \zihao{-0} \bfseries \cuz@label@bacthesis} \par
+                \vspace{5mm}
+                {\heiti \zihao{-2} (\;\cuz@value@graduateyear 届\;)}
+            }\par
+        \end{center}
+        \vspace{4mm}
+        \begin{center}
+            \begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
+                \cuz@label@thesistitle & {
+                        \cuz@macro@titleformat
+                        \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
+                }                          \\%
+                \rule{0pt}{4.5ex}      & {
+                        \cuz@macro@englishtitleformat
+                        \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\MakeTextUppercase{\cuz@value@englishtitle}}
+                }                          \\
+            \end{tabular}
+            \vfill
+            \cuz@macro@otherinfoformat
+            \begin{tabular}{cccc}
+                \makebox[6.5em][s]{\cuz@label@author}：                                              &
+                \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@author}    &
+                \makebox[2.5em][s]{\cuz@label@authorid}：                                            &
+                \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@authorid}
+                \\
+                \rule{0pt}{10mm}
+                \makebox[6.5em][s]{\cuz@label@ungradinstitute}：                                     &
+                \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@institute} &
+                \makebox[2.5em][s]{\cuz@label@ungradmajor}：                                         &
+                \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@major}
+                \\
+                \rule{0pt}{10mm}
+                \makebox[6.5em][s]{\cuz@label@advisor}：                                             &
+                \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@advisor}   &
+                \makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
+                \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
+                \\
+                \ifdefined\cuz@value@coadvisor
+                \rule{0pt}{10mm}
+                \makebox[6.5em][s]{\cuz@label@coadvisor}： &
+                \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
+                \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
+                \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
+                \fi
+            \end{tabular}
+        \end{center}
     }{%
-        \cuzifstreq{\cuz@value@degree}{硕士}{%
-            \def\cuz@label@thesis{\cuz@label@masthesis}%
-            \def\cuz@label@major{\cuz@label@gradmajor}%
-            \def\cuz@label@institute{\cuz@label@gradinstitute}%
-        }{%
-            \def\cuz@label@thesis{\cuz@label@docthesis}%
-            \def\cuz@label@major{\cuz@label@gradmajor}%
-            \def\cuz@label@institute{\cuz@label@gradinstitute}%
-        }}%
-    \cleardoublepage
-    \thispagestyle{empty}
-    \par
-    \begin{center}
-        {\cuz@value@schoollogo}\par
-        \vspace{24mm}
-        {
-            {\lishu \zihao{-0} \bfseries \cuz@label@thesis} \par
-            \vspace{5mm}
-            {\heiti \zihao{-2} (\;\cuz@value@graduateyear 届\;)}
-        }\par
-    \end{center}
-    \vspace{4mm}
-    \begin{center}
-        \begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
-            \cuz@label@thesistitle & {
-                    \cuz@macro@titleformat
-                    \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
-            }                          \\%
-            \rule{0pt}{4.5ex}      & {
-                    \cuz@macro@englishtitleformat
-                    \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\MakeTextUppercase{\cuz@value@englishtitle}}
-            }                          \\
-        \end{tabular}
-        \vfill
-        \cuz@macro@otherinfoformat
-        \begin{tabular}{cccc}
-            \makebox[6.5em][s]{\cuz@label@author}：                                              &
-            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@author}    &
-            \makebox[2.5em][s]{\cuz@label@authorid}：                                            &
-            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@authorid}
-            \\
-            \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@institute}：                                           &
-            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@institute} &
-            \makebox[2.5em][s]{\cuz@label@major}：                                               &
-            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@major}
-            \\
-            \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@advisor}：                                             &
-            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@advisor}   &
-            \makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
-            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
-            \\
-            \ifdefined\cuz@value@coadvisor
-            \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@coadvisor}： &
-            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
-            \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
-            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
-            \fi
-        \end{tabular}
-    \end{center}
+        %- 硕士/博士封面
+        \cleardoublepage
+        \thispagestyle{empty}
+        \par
+        \begin{center}
+            {\cuz@value@schoollogo}\par
+            \vspace{20mm}
+            {
+                \cuzifstreq{\cuz@value@degree}{硕士}{%
+                    {\lishu \zihao{-0} \bfseries \cuz@label@masthesis}%
+                }{%
+                    {\lishu \zihao{-0} \bfseries \cuz@label@docthesis}%
+                }
+            }\par
+        \end{center}
+        \vspace{8mm}
+        \begin{center}
+            \begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
+                \cuz@label@thesistitle & {
+                        \cuz@macro@titleformat
+                        \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
+                }                          \\
+            \end{tabular}
+            \vfill
+            \cuz@macro@otherinfoformat
+            \begin{tabular}{cccc}
+                \makebox[6.5em][s]{\cuz@label@gradmajor}：                                           &
+                \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@major}     &
+                \ifdefined\cuz@value@researchfield
+                \makebox[2.5em][s]{\cuz@label@researchfield}：                                       &
+                \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@researchfield}
+                \else
+                \makebox[2.5em][s]{\cuz@label@researchfield}：                                       &
+                \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{}
+                \fi
+                \\
+                \ifdefined\cuz@value@degreetype
+                \rule{0pt}{10mm}
+                \multicolumn{2}{c}{\makebox[6.5em][s]{\cuz@label@degree}：\cuz@macro@exmultiunderline{240pt}{0.6pt}{\cuz@value@degreetype}} &
+                \multicolumn{2}{c}{}
+                \\
+                \fi
+                \rule{0pt}{10mm}
+                \makebox[6.5em][s]{\cuz@label@author}：                                              &
+                \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@author}    &
+                \multicolumn{2}{c}{}
+                \\
+                \rule{0pt}{10mm}
+                \makebox[6.5em][s]{\cuz@label@advisor}：                                             &
+                \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@advisor}   &
+                \makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
+                \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
+                \\
+                \ifdefined\cuz@value@coadvisor
+                \rule{0pt}{10mm}
+                \makebox[6.5em][s]{\cuz@label@coadvisor}： &
+                \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
+                \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
+                \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
+                \\
+                \fi
+                \rule{0pt}{10mm}
+                \makebox[6.5em][s]{\cuz@label@gradinstitute}：                                       &
+                \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@institute} &
+                \multicolumn{2}{c}{}
+            \end{tabular}
+        \end{center}
+    }%
 }
 %---------------------------------------------------------------------------%
 %->> Author's declaration
 %---------------------------------------------------------------------------%
 \newcommand{\makedeclaration}{%
-    \cleardoublepage
-    \thispagestyle{empty}
-    {
-        \linespread{2}
-        \songti\zihao{4}
-        \vspace*{3ex}
-
-        \begin{center}
-            {
-                \heiti\zihao{-2}\bfseries\sffamily\makebox[6em][s]{\cuz@value@declare@create}
-            }
-        \end{center}
-        \vspace{3ex}
-
-        {\cuz@value@declare@creativity}
-
-        \vspace{4ex}
-        {
-            \heiti\zihao{-3}\bfseries\sffamily
-            % \hfill{} {\cuz@value@declare@s \hspace*{8em}}
-            % \vspace{1ex}
-
-            % \hfill{} {\cuz@value@declare@d \hspace*{8em}}
-            \renewcommand\arraystretch{1.3}
-            \begin{tabular}{@{}p{0.4\linewidth}cl@{}}
-                 & \cuz@value@declare@s & \ifdefined\cuz@value@signature\adjustbox{valign=m}{\includegraphics[width=6em]{\cuz@value@signature}}\fi \\
-                 & \multicolumn{2}{r}{\ifdefined\cuz@value@declaredate\cuz@value@declaredate\else\cuz@value@declare@d\fi} \\
-            \end{tabular} \par
-        }
-    }
-    \clearpage
-    \if@twoside
+    \cuzifstreq{\cuz@value@degree}{学士}{%
+        %- 本科郑重声明
+        \cleardoublepage
         \thispagestyle{empty}
-        \cleardoublepage[empty]
-    \fi
+        {
+            \linespread{2}
+            \songti\zihao{4}
+            \vspace*{3ex}
+
+            \begin{center}
+                {
+                    \heiti\zihao{-2}\bfseries\sffamily\makebox[6em][s]{\cuz@value@declare@create}
+                }
+            \end{center}
+            \vspace{3ex}
+
+            {\cuz@value@declare@creativity}
+
+            \vspace{4ex}
+            {
+                \heiti\zihao{-3}\bfseries\sffamily
+                \renewcommand\arraystretch{1.3}
+                \begin{tabular}{@{}p{0.4\linewidth}cl@{}}
+                     & \cuz@value@declare@s & \ifdefined\cuz@value@signature\adjustbox{valign=m}{\includegraphics[width=6em]{\cuz@value@signature}}\fi \\
+                     & \multicolumn{2}{r}{\ifdefined\cuz@value@declaredate\cuz@value@declaredate\else\cuz@value@declare@d\fi} \\
+                \end{tabular} \par
+            }
+        }
+        \clearpage
+        \if@twoside
+            \thispagestyle{empty}
+            \cleardoublepage[empty]
+        \fi
+    }{%
+        %- 硕士/博士独创性声明
+        \cleardoublepage
+        \thispagestyle{empty}
+        {
+            \linespread{2}
+            \songti\zihao{4}
+            \vspace*{3ex}
+
+            \begin{center}
+                {
+                    \heiti\zihao{-2}\bfseries\sffamily\makebox[6em][s]{\cuz@value@declare@origcreate}
+                }
+            \end{center}
+            \vspace{3ex}
+
+            {\cuz@value@declare@origcreativity}
+
+            \vspace{4ex}
+            {
+                \heiti\zihao{-3}\bfseries\sffamily
+                \renewcommand\arraystretch{1.3}
+                \begin{tabular}{@{}p{0.4\linewidth}cl@{}}
+                     & \cuz@value@declare@s & \ifdefined\cuz@value@signature\adjustbox{valign=m}{\includegraphics[width=6em]{\cuz@value@signature}}\fi \\
+                     & \multicolumn{2}{r}{\ifdefined\cuz@value@declaredate\cuz@value@declaredate\else\cuz@value@declare@d\fi} \\
+                \end{tabular} \par
+            }
+        }
+        \clearpage
+        \if@twoside
+            \thispagestyle{empty}
+            \cleardoublepage[empty]
+        \fi
+        %- 硕士/博士授权声明
+        \cleardoublepage
+        \thispagestyle{empty}
+        {
+            \linespread{2}
+            \songti\zihao{4}
+            \vspace*{3ex}
+
+            \begin{center}
+                {
+                    \heiti\zihao{-2}\bfseries\sffamily\makebox[10em][s]{\cuz@value@declare@authcreate}
+                }
+            \end{center}
+            \vspace{3ex}
+
+            {\cuz@value@declare@authcreativity}
+
+            \vspace{4ex}
+            {
+                \heiti\zihao{-3}\bfseries\sffamily
+                \renewcommand\arraystretch{1.3}
+                \begin{tabular}{@{}p{0.4\linewidth}cl@{}}
+                     & \cuz@value@declare@s & \ifdefined\cuz@value@signature\adjustbox{valign=m}{\includegraphics[width=6em]{\cuz@value@signature}}\fi \\
+                     & \multicolumn{2}{r}{\ifdefined\cuz@value@declaredate\cuz@value@declaredate\else\cuz@value@declare@d\fi} \\
+                \end{tabular} \par
+            }
+        }
+        \clearpage
+        \if@twoside
+            \thispagestyle{empty}
+            \cleardoublepage[empty]
+        \fi
+    }%
 }
 %---------------------------------------------------------------------------%
 %->> Configure table of contents
@@ -611,11 +736,15 @@
     \clearpage
     % \setlength{\parskip}{0.0\baselineskip}
     \begin{center}
-        \zihao{3}\heiti\cuz@value@title
+        \cuzifstreq{\cuz@value@degree}{学士}{%
+            \zihao{3}\heiti\cuz@value@title%
+        }{%
+            \zihao{3}\heiti\bfseries\cuz@label@mastchineseabstract%
+        }%
     \end{center}
     \par
     % \vspace{2ex}
-    {\bfseries\cuz@label@chineseabstract：}%\hspace{-0.8em}
+    \cuzifstreq{\cuz@value@degree}{学士}{{\bfseries\cuz@label@chineseabstract：}}{}%\hspace{-0.8em}
     \def\temp{\chinesekeywords{#1}}
 }{
     \par\temp\par
@@ -630,11 +759,15 @@
     % \vspace{8ex} % no clear page, right after the Chinese abstract, a wired style.
     % \setlength{\parskip}{0.0\baselineskip}
     \begin{center}
-        \zihao{3}\bfseries\MakeTextUppercase{\cuz@value@englishtitle}
+        \cuzifstreq{\cuz@value@degree}{学士}{%
+            \zihao{3}\bfseries\MakeTextUppercase{\cuz@value@englishtitle}%
+        }{%
+            \zihao{3}\bfseries\cuz@label@englishabstract%
+        }%
     \end{center}
     \par
     % \vspace{2ex}
-    {\bfseries\cuz@label@englishabstract:}\hspace{-.5em}
+    \cuzifstreq{\cuz@value@degree}{学士}{{\bfseries\cuz@label@englishabstract:}\hspace{-.5em}}{}%
     \def\temp{\englishkeywords{#1}}
 }{
     \par\temp\par
