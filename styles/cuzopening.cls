@@ -217,6 +217,19 @@
 		\def\cuz@label@major{\cuz@label@gradmajor}%
 		\def\cuz@label@institute{\cuz@label@gradinstitute}%
 	}%
+	%- 预计算合作教师行（须在 tabular 外部进行条件判断，避免 \ifdefined 跨越 & 的对齐错误）
+	\ifdefined\cuz@value@coadvisor%
+		\def\cuz@tmp@coadvisorrow{%
+			\rule{0pt}{10mm}%
+			\makebox[6.5em][s]{\cuz@label@coadvisor}：%
+			& \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor}%
+			& \makebox[2.5em][s]{\cuz@label@coadvisortitle}：%
+			& \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}%
+			\\%
+		}%
+	\else%
+		\def\cuz@tmp@coadvisorrow{}%
+	\fi%
 	\cleardoublepage
 	\thispagestyle{empty}
 	\par
@@ -247,13 +260,7 @@
 			\makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
 			\cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
             \\
-            \ifdefined\cuz@value@coadvisor
-            \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@coadvisor}： &
-            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
-            \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
-            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
-            \fi
+            \cuz@tmp@coadvisorrow%
 		\end{tabular}
 		\par
 		\vspace{6ex}%
