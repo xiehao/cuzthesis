@@ -376,6 +376,48 @@
             \def\cuz@label@major{\cuz@label@gradmajor}%
             \def\cuz@label@institute{\cuz@label@gradinstitute}%
         }}%
+    %- 预处理tabular可选行内容，必须在tabular外部完成条件分支，
+    %- 避免在tabular内跨 & 或 \\ 使用 \ifdefined，防止 alignment 报错。
+    %- 合作导师行（本科/硕博均支持，选填）
+    \ifdefined\cuz@value@coadvisor
+        \def\cuz@tabrow@coadvisor{%
+            \rule{0pt}{10mm}%
+            \makebox[6.5em][s]{\cuz@label@coadvisor}： &
+            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
+            \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
+            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
+            \\%
+        }%
+    \else
+        \let\cuz@tabrow@coadvisor\@empty
+    \fi
+    %- 学位类型行和研究方向行（仅硕士/博士，选填；本科模式保持空）
+    \def\cuz@tmp@degree@bachelor{学士}%
+    \ifx\cuz@value@degree\cuz@tmp@degree@bachelor
+        \let\cuz@tabrow@degreetype\@empty
+        \let\cuz@tabrow@researcharea\@empty
+    \else
+        \ifdefined\cuz@value@degreetype
+            \def\cuz@tabrow@degreetype{%
+                \rule{0pt}{10mm}%
+                \makebox[6.5em][s]{\cuz@label@degree}： &
+                \multicolumn{3}{c}{\cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.6pt}{\cuz@value@degreetype}}
+                \\%
+            }%
+        \else
+            \let\cuz@tabrow@degreetype\@empty
+        \fi
+        \ifdefined\cuz@value@researcharea
+            \def\cuz@tabrow@researcharea{%
+                \rule{0pt}{10mm}%
+                \makebox[6.5em][s]{\cuz@label@researcharea}： &
+                \multicolumn{3}{c}{\cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.6pt}{\cuz@value@researcharea}}
+                \\%
+            }%
+        \else
+            \let\cuz@tabrow@researcharea\@empty
+        \fi
+    \fi
     \cleardoublepage
     \thispagestyle{empty}
     \par
@@ -420,13 +462,9 @@
             \makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
             \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
             \\
-            \ifdefined\cuz@value@coadvisor
-            \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@coadvisor}： &
-            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
-            \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
-            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
-            \fi
+            \cuz@tabrow@coadvisor
+            \cuz@tabrow@degreetype
+            \cuz@tabrow@researcharea
         \end{tabular}
     \end{center}
 }
