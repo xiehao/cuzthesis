@@ -106,9 +106,9 @@
 \nofootermatter
 
 % 导入中英文摘要
-% 在 src/master/frontmatter/abstracts.tex 中编写中英文摘要和关键词
+% 在 src/thesis_master/frontmatter/abstracts.tex 中编写中英文摘要和关键词
 % 注意：硕士论文英文摘要须另起一页（已在 abstracts.tex 中通过 \clearpage 实现）
-\input{src/master/frontmatter/abstracts}
+\input{src/thesis_master/frontmatter/abstracts}
 
 % 生成目录
 % 目录自动根据各级标题生成，无需手动编辑
@@ -124,8 +124,8 @@
 
 % 导入论文主体内容（包含所有章节）
 % mainbody.tex 文件通过 \input 命令引用各个章节文件
-% 如需添加或删除章节，请修改 src/master/mainmatter/mainbody.tex 文件
-\input{src/master/mainmatter/mainbody}
+% 如需添加或删除章节，请修改 src/thesis_master/mainmatter/mainbody.tex 文件
+\input{src/thesis_master/mainmatter/mainbody}
 
 %->> 后置部分：参考文献、附录、科研成果、致谢
 %---------------------------------------------------------------------------%
@@ -141,19 +141,19 @@
 \appendix
 
 % 导入附录内容（若无则可注释掉）
-% 在 src/master/backmatter/appendices.tex 中编写附录内容
-\input{src/master/backmatter/appendices}
+% 在 src/thesis_master/backmatter/appendices.tex 中编写附录内容
+\input{src/thesis_master/backmatter/appendices}
 
 % 后记部分：攻读学位期间主要科研成果、致谢
 \backmatter
 
 % 导入攻读学位期间主要科研成果
-% 在 src/master/backmatter/achievements.tex 中填写科研成果列表
-\input{src/master/backmatter/achievements}
+% 在 src/thesis_master/backmatter/achievements.tex 中填写科研成果列表
+\input{src/thesis_master/backmatter/achievements}
 
 % 导入致谢部分
-% 在 src/master/backmatter/acknowledgement.tex 中编写致谢内容
-\input{src/master/backmatter/acknowledgement}
+% 在 src/thesis_master/backmatter/acknowledgement.tex 中编写致谢内容
+\input{src/thesis_master/backmatter/acknowledgement}
 
 \end{document}
 %---------------------------------------------------------------------------%

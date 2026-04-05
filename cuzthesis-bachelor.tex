@@ -135,10 +135,10 @@
 \nofootermatter
 
 % 导入中英文摘要
-% 在 src/thesis/frontmatter/abstracts.tex 中编写中英文摘要和关键词
+% 在 src/thesis_bachelor/frontmatter/abstracts.tex 中编写中英文摘要和关键词
 % 摘要应简明扼要地概述论文的主要内容，包括研究目的、方法、结果和结论
 % 关键词应能反映论文的主题和特点，一般为 3-8 个
-\input{src/thesis/frontmatter/abstracts}
+\input{src/thesis_bachelor/frontmatter/abstracts}
 
 % 生成目录
 % 目录自动根据各级标题生成，无需手动编辑
@@ -155,9 +155,9 @@
 
 % 导入论文主体内容（包含所有章节）
 % mainbody.tex 文件通过 \input 命令引用各个章节文件
-% 如需添加或删除章节，请修改 src/thesis/mainmatter/mainbody.tex 文件
-% 各章节文件位于 src/thesis/mainmatter/ 目录下
-\input{src/thesis/mainmatter/mainbody}
+% 如需添加或删除章节，请修改 src/thesis_bachelor/mainmatter/mainbody.tex 文件
+% 各章节文件位于 src/thesis_bachelor/mainmatter/ 目录下
+\input{src/thesis_bachelor/mainmatter/mainbody}
 
 %->> 后置部分：参考文献、致谢、附录
 %---------------------------------------------------------------------------%
@@ -174,17 +174,17 @@
 % \endgroup
 
 % 导入致谢部分
-% 在 src/thesis/backmatter/acknowledgement.tex 中编写致谢内容
+% 在 src/thesis_bachelor/backmatter/acknowledgement.tex 中编写致谢内容
 % 致谢应简明扼要，对支持和帮助过论文工作的人员和单位表示感谢
-\input{src/thesis/backmatter/acknowledgement}
+\input{src/thesis_bachelor/backmatter/acknowledgement}
 
 % 设置为附录模式（章节编号变为"附录A"等格式）
 \appendix
 
 % 导入附录内容（若无则可注释掉）
-% 在 src/thesis/backmatter/appendices.tex 中编写附录内容
+% 在 src/thesis_bachelor/backmatter/appendices.tex 中编写附录内容
 % 附录可包含对正文的补充说明、源代码、数据表格等内容
-\input{src/thesis/backmatter/appendices}
+\input{src/thesis_bachelor/backmatter/appendices}
 \end{document}
 %---------------------------------------------------------------------------%
 
