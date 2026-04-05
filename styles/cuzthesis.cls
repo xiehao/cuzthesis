@@ -376,6 +376,52 @@
             \def\cuz@label@major{\cuz@label@gradmajor}%
             \def\cuz@label@institute{\cuz@label@gradinstitute}%
         }}%
+    %- 预计算选填字段行内容（须在 tabular 外部进行条件判断）
+    %- 直接在 tabular 内使用 \ifdefined...\fi 跨越 & 对齐符号是非法的，
+    %- 会导致"Incomplete \ifdefined"等编译错误。此处将各条件行预先定义
+    %- 为宏，再在 tabular 中直接展开，从而避免上述问题。
+    %
+    %- 合作/企业教师行（各学位类型均适用，选填）
+    \ifdefined\cuz@value@coadvisor%
+        \def\cuz@tmp@coadvisorrow{%
+            \rule{0pt}{10mm}%
+            \makebox[6.5em][s]{\cuz@label@coadvisor}：%
+            & \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor}%
+            & \makebox[2.5em][s]{\cuz@label@coadvisortitle}：%
+            & \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}%
+            \\%
+        }%
+    \else%
+        \def\cuz@tmp@coadvisorrow{}%
+    \fi%
+    %- 研究方向行与学位类别行（仅硕士/博士适用，选填）
+    \cuzifstreq{\cuz@value@degree}{学士}{%
+        \def\cuz@tmp@researchrow{}%
+        \def\cuz@tmp@degreetyperow{}%
+    }{%
+        \ifdefined\cuz@value@researchdirection%
+            \def\cuz@tmp@researchrow{%
+                \rule{0pt}{10mm}%
+                \makebox[6.5em][s]{\cuz@label@researchdirection}：%
+                & \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@researchdirection}%
+                & &%
+                \\%
+            }%
+        \else%
+            \def\cuz@tmp@researchrow{}%
+        \fi%
+        \ifdefined\cuz@value@degreetype%
+            \def\cuz@tmp@degreetyperow{%
+                \rule{0pt}{10mm}%
+                \makebox[6.5em][s]{\cuz@label@degree}：%
+                & \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@degreetype}%
+                & &%
+                \\%
+            }%
+        \else%
+            \def\cuz@tmp@degreetyperow{}%
+        \fi%
+    }%
     \cleardoublepage
     \thispagestyle{empty}
     \par
@@ -414,19 +460,15 @@
             \makebox[2.5em][s]{\cuz@label@major}：                                               &
             \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@major}
             \\
+            \cuz@tmp@researchrow%
             \rule{0pt}{10mm}
             \makebox[6.5em][s]{\cuz@label@advisor}：                                             &
             \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@advisor}   &
             \makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
             \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
             \\
-            \ifdefined\cuz@value@coadvisor
-            \rule{0pt}{10mm}
-            \makebox[6.5em][s]{\cuz@label@coadvisor}： &
-            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor} &
-            \makebox[2.5em][s]{\cuz@label@coadvisortitle}： &
-            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}
-            \fi
+            \cuz@tmp@coadvisorrow%
+            \cuz@tmp@degreetyperow%
         \end{tabular}
     \end{center}
 }
