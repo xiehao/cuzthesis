@@ -45,6 +45,21 @@
 \DeclareOption{blinded}{
     \cuz@blindedtrue%
 }
+%-
+%-> 学位类型选项
+%-
+\newif\ifcuz@bachelor \cuz@bachelortrue   % 默认本科
+\newif\ifcuz@master   \cuz@masterfalse
+\DeclareOption{bachelor}{%
+    \cuz@bachelortrue%
+    \cuz@masterfalse%
+}
+\DeclareOption{master}{%
+    \cuz@bachelorfalse%
+    \cuz@mastertrue%
+    % 硕士论文默认使用 twoside（参照 doublesided 选项）
+    \PassOptionsToClass{twoside}{ctexbook}%
+}
 
 %-
 %-> Draft version info
@@ -86,6 +101,10 @@
 \AtEndOfPackage{% class cfg loaded after package to make preamble commands take effect
     \makeatletter
     \InputIfFileExists{styles/cuzthesis.cfg}{}{}
+    % 若为硕士模式，追加加载硕士专属配置（覆盖本科默认值）
+    \ifcuz@master
+        \InputIfFileExists{styles/cuzthesis-master.cfg}{}{}
+    \fi
     \makeatother
 }
 %---------------------------------------------------------------------------%
@@ -143,11 +162,17 @@
     %- Define different kinds of header and footer for different parts
     \fancypagestyle{frontmatterstyle}{% style for frontmatter
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
-        \fancyhead[REO]{\footnotesize \@title}% structure elements
-        \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
-        \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
-        \renewcommand{\headrulewidth}{0.8pt}% header rule
+        \ifcuz@master
+            % 硕士前置部分（摘要、目录等）：无页眉，页脚罗马数字页码居中，小五号宋体
+            \fancyfoot[C]{\zihao{-5}\songti \thepage}%
+            \renewcommand{\headrulewidth}{0pt}% header rule
+        \else
+            \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
+            \fancyhead[REO]{\footnotesize \@title}% structure elements
+            \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
+            \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
+            \renewcommand{\headrulewidth}{0.8pt}% header rule
+        \fi
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
     %- Redefine \frontmatter to include the change
@@ -159,11 +184,18 @@
     }
     \fancypagestyle{mainmatterstyle}{% style for mainmatter
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
-        \fancyhead[REO]{\footnotesize \@title}% structure elements
-        \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
-        \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
-        \renewcommand{\headrulewidth}{0.5pt}% header rule
+        \ifcuz@master
+            % 硕士正文部分：页眉五号宋体居中"浙江传媒学院硕士学位论文"，页脚小五号宋体居中阿拉伯数字页码
+            \fancyhead[C]{\zihao{5}\songti \cuz@label@university\cuz@label@header@masthesis}%
+            \fancyfoot[C]{\zihao{-5}\songti \thepage}%
+            \renewcommand{\headrulewidth}{0.5pt}% header rule
+        \else
+            \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
+            \fancyhead[REO]{\footnotesize \@title}% structure elements
+            \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
+            \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
+            \renewcommand{\headrulewidth}{0.5pt}% header rule
+        \fi
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
     %- Redefine \mainmatter to include the change
@@ -175,11 +207,18 @@
     }
     \fancypagestyle{backmatterstyle}{% header and footer style for backmatter
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
-        \fancyhead[REO]{\footnotesize \@title}% structure elements
-        \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
-        \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
-        \renewcommand{\headrulewidth}{0.5pt}% header rule
+        \ifcuz@master
+            % 硕士后置部分（参考文献、附录等）：与正文保持一致的页眉页脚
+            \fancyhead[C]{\zihao{5}\songti \cuz@label@university\cuz@label@header@masthesis}%
+            \fancyfoot[C]{\zihao{-5}\songti \thepage}%
+            \renewcommand{\headrulewidth}{0.5pt}% header rule
+        \else
+            \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
+            \fancyhead[REO]{\footnotesize \@title}% structure elements
+            \fancyfoot[LEO]{\footnotesize \cuz@footer@author{\cuz@value@author}}% page number
+            \fancyfoot[REO]{\footnotesize \cuz@footer@pagenumber{\thepage\ }{\pageref{LastPage}\ }}% page number
+            \renewcommand{\headrulewidth}{0.5pt}% header rule
+        \fi
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
     %- Redefine \backmatter to include the change
@@ -224,11 +263,17 @@
     }
     \fancypagestyle{nofooterstyle}{% header and footer style for no footer
         \fancyhf{}% clear fields
-        \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
-        \fancyhead[REO]{\footnotesize \@title}% structure elements
-        % \fancyfoot[LEO]{\footnotesize \thepage}% page number
-        % \fancyfoot[REO]{\footnotesize \thepage}% page number
-        \renewcommand{\headrulewidth}{0.5pt}% header rule
+        \ifcuz@master
+            % 硕士前置部分（摘要、目录）：无页眉，页脚罗马数字页码居中，小五号宋体
+            \fancyfoot[C]{\zihao{-5}\songti \thepage}%
+            \renewcommand{\headrulewidth}{0pt}% header rule
+        \else
+            \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
+            \fancyhead[REO]{\footnotesize \@title}% structure elements
+            % \fancyfoot[LEO]{\footnotesize \thepage}% page number
+            % \fancyfoot[REO]{\footnotesize \thepage}% page number
+            \renewcommand{\headrulewidth}{0.5pt}% header rule
+        \fi
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
     %- Redefine \nofootermatter to include the change

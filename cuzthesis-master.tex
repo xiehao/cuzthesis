@@ -1,0 +1,159 @@
+% !TEX program = xelatex
+% !TEX options = -synctex=1 -interaction=nonstopmode -shell-escape -file-line-error "%DOC%"
+% !BIB program = bibtex
+%---------------------------------------------------------------------------%
+%-                                                                         -%
+%-                   浙江传媒学院硕士学位论文模板                          -%
+%-                                                                         -%
+%---------------------------------------------------------------------------%
+%- Copyright (C) Hao XIE <oaheix@gmail.com>
+%- This is free software: you can redistribute it and/or modify it
+%- under the terms of the GNU General Public License as published by
+%- the Free Software Foundation, either version 3 of the License, or
+%- (at your option) any later version.
+%---------------------------------------------------------------------------%
+%->> 文档类声明
+%---------------------------------------------------------------------------%
+% 本文档使用 cuzthesis 文档类，并通过 master 选项启用硕士论文格式
+% 以下是可用的选项及其说明：
+%
+% 【使用说明】
+% 1. 首次使用时，请先阅读本文件中的注释，了解各选项的功能
+% 2. 根据需要修改文档类选项和宏包选项
+% 3. 在 src/common/initialization.tex 中填写论文基本信息
+%    - 将 \degree{} 设置为 \degree{硕士}
+%    - 填写 \researchdirection{...}（研究方向）
+%    - 填写 \degreetype{...}（学位授予类别，如：学术型）
+% 4. 在 src/master/frontmatter/abstracts.tex 中编写中英文摘要
+% 5. 在 src/master/mainmatter/ 目录下编写各章节内容
+% 6. 使用 ./scripts/run.sh -xa cuzthesis-master.tex 命令编译论文
+%
+\documentclass[singlesided,cuzhdr,master]{styles/cuzthesis}%
+
+%->> 文档类选项说明
+%---------------------------------------------------------------------------%
+% 页面布局选项（三选一）：
+% - singlesided：单面打印模式，页边距对称
+% - doublesided：双面打印模式，页边距交替变化
+% - printcopy：印刷出版模式，为装订留出额外空间
+% 注意：master 选项会自动启用 twoside，若需单面打印请显式加 singlesided
+
+% 页眉页脚选项：
+% - cuzhdr：启用浙传风格的页眉页脚
+
+% 学位类型选项：
+% - bachelor：本科毕业论文（默认）
+% - master：硕士学位论文（当前文件使用此选项）
+
+% 版本信息选项：
+% - draftversion：显示草稿版本信息
+
+% 字体设置选项：
+% - fontset=<fandol|founder|mac|ubuntu|windows|...>：指定字体集，替代自动检测
+
+% 国际化选项：
+% - scheme=plain：国际学生论文写作模式，使用英文界面
+%---------------------------------------------------------------------------%
+%->> 文档设置
+%---------------------------------------------------------------------------%
+% artratex 宏包提供了多种文档设置选项，用于控制参考文献、图表、数学等功能
+\usepackage[super,list,table,tikz]{styles/artratex}% 文档设置
+
+% artracom 宏包提供了用户自定义命令，如数学符号、向量表示等
+\usepackage{styles/artracom}% 用户自定义命令
+%---------------------------------------------------------------------------%
+%->> 文档内容
+%---------------------------------------------------------------------------%
+\begin{document}
+
+%->> 初始化信息
+%---------------------------------------------------------------------------%
+% 导入初始化文件，包含论文的基本信息（标题、作者、学院等）
+% 在 src/common/initialization.tex 中修改以下信息：
+% - 论文标题（中英文）
+% - 作者姓名、学号
+% - 指导教师姓名、职称
+% - 学院、专业
+% - 研究方向、学位授予类别
+% - 毕业年份
+% 注意：硕士生请将 \degree{} 改为 \degree{硕士}，并填写
+%       \researchdirection{...} 和 \degreetype{...}
+\input{src/common/initialization}
+
+%->> 前置部分：封面
+%---------------------------------------------------------------------------%
+% 设置页面布局为普通格式（无页眉页脚）
+\plainmatter
+
+% 生成论文封面（外封面）
+% 封面内容根据 initialization.tex 中的信息自动生成
+\maketitle
+
+%->> 原创性声明与版权授权书
+%---------------------------------------------------------------------------%
+% 生成原创性声明与版权授权书页（二者在同一页）
+% 如需修改声明内容，请修改 cuzthesis.cfg 或 cuzthesis-master.cfg 中的相关宏
+\makedeclaration
+
+%->> 内页封面
+%---------------------------------------------------------------------------%
+% 内页封面与外封面类似，暂用 \maketitle 占位，后续单独实现硕士内页封面
+\maketitle
+
+%->> 前置部分：摘要、目录
+%---------------------------------------------------------------------------%
+% 更改页面布局为无页脚格式（前置部分使用罗马数字页码）
+\nofootermatter
+
+% 导入中英文摘要
+% 在 src/master/frontmatter/abstracts.tex 中编写中英文摘要和关键词
+% 注意：硕士论文英文摘要须另起一页（已在 abstracts.tex 中通过 \clearpage 实现）
+\input{src/master/frontmatter/abstracts}
+
+% 生成目录
+% 目录自动根据各级标题生成，无需手动编辑
+\tableofcontents
+% \listoffigures  % 图目录（可选）
+% \listoftables   % 表目录（可选）
+% \listoflistings % 代码目录（可选）
+
+%->> 主体部分：论文正文
+%---------------------------------------------------------------------------%
+% 更改页面布局为主体格式（有页眉页脚）
+\mainmatter
+
+% 导入论文主体内容（包含所有章节）
+% mainbody.tex 文件通过 \input 命令引用各个章节文件
+% 如需添加或删除章节，请修改 src/master/mainmatter/mainbody.tex 文件
+\input{src/master/mainmatter/mainbody}
+
+%->> 后置部分：参考文献、附录、科研成果、致谢
+%---------------------------------------------------------------------------%
+% 添加参考文献到目录和书签
+\intotoc{\bibname}
+
+% 生成参考文献
+% 参考文献数据库文件为 bibliography/references.bib
+% 如需添加新的参考文献，请编辑该文件
+\bibliography{bibliography/references}
+
+% 设置为附录模式（章节编号变为"附录A"等格式）
+\appendix
+
+% 导入附录内容（若无则可注释掉）
+% 在 src/master/backmatter/appendices.tex 中编写附录内容
+\input{src/master/backmatter/appendices}
+
+% 后记部分：攻读学位期间主要科研成果、致谢
+\backmatter
+
+% 导入攻读学位期间主要科研成果
+% 在 src/master/backmatter/achievements.tex 中填写科研成果列表
+\input{src/master/backmatter/achievements}
+
+% 导入致谢部分
+% 在 src/master/backmatter/acknowledgement.tex 中编写致谢内容
+\input{src/master/backmatter/acknowledgement}
+
+\end{document}
+%---------------------------------------------------------------------------%
