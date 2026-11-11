@@ -481,7 +481,7 @@
     \end{center}
     \vspace{4mm}
     \begin{center}
-        \begin{tabular}[t]{>{\zihao{2}\heiti\mdseries}rc}
+        \begin{tabular}[t]{>{\zihao{2}\heiti\bfseries}rc}
             \cuz@label@thesistitle & {
                     \cuz@macro@titleformat
                     \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}

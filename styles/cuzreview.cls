@@ -243,6 +243,14 @@
 			\zihao{-1}\heiti\bfseries%
 			\cuz@label@review%
 		}
+        \par
+        \vspace{6ex}
+        \begin{tabular}[t]{>{\zihao{2}\heiti\bfseries}rc}
+            \cuz@label@title & {
+                                   \cuz@macro@titleformat
+                                   \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
+                               } \\%
+        \end{tabular}
 		\vfill
 		\cuz@macro@otherinfoformat
 		\begin{tabular}{cccc}

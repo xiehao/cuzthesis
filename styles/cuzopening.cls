@@ -20,43 +20,43 @@
 %-> Layout
 %-
 \DeclareOption{singlesided}{% enable single-sided printing
-	\PassOptionsToClass{oneside}{ctexbook}%
+    \PassOptionsToClass{oneside}{ctexbook}%
 }
 \newif\ifcuz@doublesided \cuz@doublesidedfalse
 \DeclareOption{doublesided}{% enable double-sided printing
-	\PassOptionsToClass{twoside}{ctexbook}%
-	\cuz@doublesidedtrue%
+    \PassOptionsToClass{twoside}{ctexbook}%
+    \cuz@doublesidedtrue%
 }
 \newif\ifcuz@hdr \cuz@hdrfalse
 \DeclareOption{cuzhdr}{% enable cuz-styled header and footer
-	\cuz@hdrtrue%
+    \cuz@hdrtrue%
 }
 \newif\ifcuz@printcopy \cuz@printcopyfalse
 \DeclareOption{printcopy}{% enable print copy layout
-	\PassOptionsToClass{twoside}{ctexbook}%
-	\cuz@printcopytrue%
+    \PassOptionsToClass{twoside}{ctexbook}%
+    \cuz@printcopytrue%
 }
 \newif\ifcuz@plain \cuz@plainfalse
 \DeclareOption{plain}{
-	\PassOptionsToClass{scheme=plain}{ctexbook}%
-	\cuz@plaintrue%
+    \PassOptionsToClass{scheme=plain}{ctexbook}%
+    \cuz@plaintrue%
 }
 \newif\ifcuz@blinded \cuz@blindedfalse
 \DeclareOption{blinded}{
-	\cuz@blindedtrue%
+    \cuz@blindedtrue%
 }
 %-
 %-> Draft version info
 %-
 \newif\ifcuz@versioninfo \cuz@versioninfofalse
 \DeclareOption{draftversion}{%
-	\cuz@versioninfotrue%
+    \cuz@versioninfotrue%
 }
 %-
 %-> Handle non-implemented options
 %-
 \DeclareOption*{%
-	\PassOptionsToClass{\CurrentOption}{ctexbook}%
+    \PassOptionsToClass{\CurrentOption}{ctexbook}%
 }
 %-
 %-> Terminates all options processing
@@ -85,9 +85,9 @@
 %->> Load class configuration
 %---------------------------------------------------------------------------%
 \AtEndOfPackage{% class cfg loaded after package to make preamble commands take effect
-	\makeatletter
-	\InputIfFileExists{styles/cuzthesis.cfg}{}{}
-	\makeatother
+    \makeatletter
+    \InputIfFileExists{styles/cuzthesis.cfg}{}{}
+    \makeatother
 }
 %---------------------------------------------------------------------------%
 %->> Page layout
@@ -130,33 +130,33 @@
 %->> Page headers and footers
 %---------------------------------------------------------------------------%
 \ifcuz@hdr% user defined header and footer style
-	\RequirePackage{fancyhdr}
-	\RequirePackage{lastpage}
-	\pagestyle{fancy}%
-	\providecommand{\chaptermark}{}% compatibility for non-book classes
-	\providecommand{\thechapter}{}% compatibility for non-book classes
-	\providecommand{\CTEXthechapter}{\thechapter.}% compatibility for non ctex classes
-	%- reset style of chapter and section mark to actual name
-	\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}%
-	% \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}%
-	%- deactivate uppercase effect
-	\renewcommand{\MakeUppercase}[1]{#1}%
-	\fancypagestyle{nostyle}{% header and footer style for no footer
-		\fancyhf{}% clear fields
-		% \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
-		% \fancyhead[REO]{\footnotesize \@title}% structure elements
-		% \fancyfoot[LEO]{\footnotesize \thepage}% page number
-		% \fancyfoot[REO]{\footnotesize \thepage}% page number
-		\renewcommand{\headrulewidth}{0pt}% header rule
-		\renewcommand{\footrulewidth}{0pt}% footer rule
-	}
-	%- Redefine \nomatter to include the change
-	\providecommand{\nomatter}{}% compatibility for non-book classes
-	\let\cuznomatter\nomatter%
-	\renewcommand{\nomatter}{%
-		\cuznomatter%
-		\pagestyle{nostyle}%
-	}
+    \RequirePackage{fancyhdr}
+    \RequirePackage{lastpage}
+    \pagestyle{fancy}%
+    \providecommand{\chaptermark}{}% compatibility for non-book classes
+    \providecommand{\thechapter}{}% compatibility for non-book classes
+    \providecommand{\CTEXthechapter}{\thechapter.}% compatibility for non ctex classes
+    %- reset style of chapter and section mark to actual name
+    \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}%
+    % \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}%
+    %- deactivate uppercase effect
+    \renewcommand{\MakeUppercase}[1]{#1}%
+    \fancypagestyle{nostyle}{% header and footer style for no footer
+        \fancyhf{}% clear fields
+        % \fancyhead[LEO]{\footnotesize \ifcuz@blinded\cuz@label@blindedtext\else\cuz@label@university\fi\cuz@label@header@bacthesis}% structure elements
+        % \fancyhead[REO]{\footnotesize \@title}% structure elements
+        % \fancyfoot[LEO]{\footnotesize \thepage}% page number
+        % \fancyfoot[REO]{\footnotesize \thepage}% page number
+        \renewcommand{\headrulewidth}{0pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    %- Redefine \nomatter to include the change
+    \providecommand{\nomatter}{}% compatibility for non-book classes
+    \let\cuznomatter\nomatter%
+    \renewcommand{\nomatter}{%
+        \cuznomatter%
+        \pagestyle{nostyle}%
+    }
 \fi
 %---------------------------------------------------------------------------%
 %->> Style control commands
@@ -174,17 +174,17 @@
 % }
 \newcommand{\confidential}[1]{\gdef\cuz@value@confidential{#1}}
 \newcommand{\schoollogo}[2]{
-	\gdef\cuz@value@schoollogo{
-		\ifcuz@blinded
-			\vspace*{4.5em}
-		\else
-			\includegraphics[width=#1\textwidth]{#2}
-		\fi
-	}
+    \gdef\cuz@value@schoollogo{
+        \ifcuz@blinded
+            \vspace*{4.5em}
+        \else
+            \includegraphics[width=#1\textwidth]{#2}
+        \fi
+    }
 }
 \renewcommand{\title}[2][\cuz@value@title]{%
-	\gdef\cuz@value@title{#2}
-	\gdef\cuz@value@titlemark{\MakeUppercase{#1}}
+    \gdef\cuz@value@title{#2}
+    \gdef\cuz@value@titlemark{\MakeUppercase{#1}}
 }
 \newcommand{\englishtitle}[1]{\gdef\cuz@value@englishtitle{#1}}
 \renewcommand{\@title}{\cuz@value@titlemark}
@@ -196,77 +196,85 @@
 % #2: The thickness of text line (set by paper)
 % #3: The content of text (set by user)
 \def\cuz@macro@exmultiunderline#1#2#3{
-	\begin{minipage}[t][][t]{#1}
-		\centering\internallinenumbers
-		\renewcommand{\makeLineNumber}{\rule[-0.6ex]{\textwidth}{#2}\hss}
-		#3\par
-	\end{minipage}
+    \begin{minipage}[t][][t]{#1}
+        \centering\internallinenumbers
+        \renewcommand{\makeLineNumber}{\rule[-0.6ex]{\textwidth}{#2}\hss}
+        #3\par
+    \end{minipage}
 }
 %- Common formatting commands and lengths are defined in cuzcommon.sty
 \renewcommand{\maketitle}{%
-	\cuzifstreq{\cuz@value@degree}{学士}{%
-		\def\cuz@label@thesis{\cuz@label@bacthesis}%
-		\def\cuz@label@major{\cuz@label@ungradmajor}%
-		\def\cuz@label@institute{\cuz@label@ungradinstitute}%
-	}{%
-		\cuzifstreq{\cuz@value@degree}{硕士}{%
-			\def\cuz@label@thesis{\cuz@label@masthesis}%
-		}{%
-			\def\cuz@label@thesis{\cuz@label@docthesis}%
-		}
-		\def\cuz@label@major{\cuz@label@gradmajor}%
-		\def\cuz@label@institute{\cuz@label@gradinstitute}%
-	}%
-	%- 预计算合作教师行（须在 tabular 外部进行条件判断，避免 \ifdefined 跨越 & 的对齐错误）
-	\ifdefined\cuz@value@coadvisor%
-		\def\cuz@tmp@coadvisorrow{%
-			\rule{0pt}{10mm}%
-			\makebox[6.5em][s]{\cuz@label@coadvisor}：%
-			& \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor}%
-			& \makebox[2.5em][s]{\cuz@label@coadvisortitle}：%
-			& \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}%
-			\\%
-		}%
-	\else%
-		\def\cuz@tmp@coadvisorrow{}%
-	\fi%
-	\cleardoublepage
-	\thispagestyle{empty}
-	\par
-	\begin{center}
-		{\cuz@value@schoollogo}
-		\vfill
-		{
-			\zihao{-1}\heiti\bfseries%
-			\cuz@label@opening%
-		}
-		\vfill
-		\cuz@macro@otherinfoformat
-		\begin{tabular}{cccc}
-			\makebox[6.5em][s]{\cuz@label@author}：                                              &
-			\cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@author}    &
-			\makebox[2.5em][s]{\cuz@label@authorid}：                                            &
-			\cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@authorid}
-			\\
-			\rule{0pt}{10mm}
-			\makebox[6.5em][s]{\cuz@label@institute}：                                           &
-			\cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@institute} &
-			\makebox[2.5em][s]{\cuz@label@major}：                                               &
-			\cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@major}
-			\\
-			\rule{0pt}{10mm}
-			\makebox[6.5em][s]{\cuz@label@advisor}：                                             &
-			\cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@advisor}   &
-			\makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
-			\cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
+    \cuzifstreq{\cuz@value@degree}{学士}{%
+        \def\cuz@label@thesis{\cuz@label@bacthesis}%
+        \def\cuz@label@major{\cuz@label@ungradmajor}%
+        \def\cuz@label@institute{\cuz@label@ungradinstitute}%
+    }{%
+        \cuzifstreq{\cuz@value@degree}{硕士}{%
+            \def\cuz@label@thesis{\cuz@label@masthesis}%
+        }{%
+            \def\cuz@label@thesis{\cuz@label@docthesis}%
+        }
+        \def\cuz@label@major{\cuz@label@gradmajor}%
+        \def\cuz@label@institute{\cuz@label@gradinstitute}%
+    }%
+    %- 预计算合作教师行（须在 tabular 外部进行条件判断，避免 \ifdefined 跨越 & 的对齐错误）
+    \ifdefined\cuz@value@coadvisor%
+        \def\cuz@tmp@coadvisorrow{%
+            \rule{0pt}{10mm}%
+            \makebox[6.5em][s]{\cuz@label@coadvisor}：%
+            & \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@coadvisor}%
+            & \makebox[2.5em][s]{\cuz@label@coadvisortitle}：%
+            & \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@coadvisortitle}%
+            \\%
+        }%
+    \else%
+        \def\cuz@tmp@coadvisorrow{}%
+    \fi%
+    \cleardoublepage
+    \thispagestyle{empty}
+    \par
+    \begin{center}
+        {\cuz@value@schoollogo}
+        \vfill
+        {
+            \zihao{-1}\heiti\bfseries%
+            \cuz@label@opening%
+        }
+        \par
+        \vspace{6ex}
+        \begin{tabular}[t]{>{\zihao{2}\heiti\bfseries}rc}
+            \cuz@label@title & {
+                                   \cuz@macro@titleformat
+                                   \cuz@macro@exmultiunderline{\cuz@length@titlelinewidth}{0.8pt}{\cuz@value@title}
+                               } \\%
+        \end{tabular}
+        \vfill
+        \cuz@macro@otherinfoformat
+        \begin{tabular}{cccc}
+            \makebox[6.5em][s]{\cuz@label@author}：                                              &
+            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@author}    &
+            \makebox[2.5em][s]{\cuz@label@authorid}：                                            &
+            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@authorid}
+            \\
+            \rule{0pt}{10mm}
+            \makebox[6.5em][s]{\cuz@label@institute}：                                           &
+            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@institute} &
+            \makebox[2.5em][s]{\cuz@label@major}：                                               &
+            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@major}
+            \\
+            \rule{0pt}{10mm}
+            \makebox[6.5em][s]{\cuz@label@advisor}：                                             &
+            \cuz@macro@exmultiunderline{\cuz@length@leftinfowidth}{0.6pt}{\cuz@value@advisor}   &
+            \makebox[2.5em][s]{\cuz@label@advisortitle}：                                        &
+            \cuz@macro@exmultiunderline{\cuz@length@rightinfowidth}{0.6pt}{\cuz@value@advisortitle}
             \\
             \cuz@tmp@coadvisorrow%
-		\end{tabular}
-		\par
-		\vspace{6ex}%
-		\cuz@label@date\cuz@value@openingdate\par%
-		\makebox[12.5em][s]{\bfseries\cuz@label@maker}%
-	\end{center}
+        \end{tabular}
+        \par
+        \vspace{6ex}%
+        \cuz@label@date\cuz@value@openingdate\par%
+        \makebox[12.5em][s]{\bfseries\cuz@label@maker}%
+    \end{center}
 }
 %---------------------------------------------------------------------------%
 %->> Redefine \section, \subsection and \subsubsection styles
@@ -296,11 +304,11 @@
 %->> Customized bibliography settings
 %---------------------------------------------------------------------------%
 \ifcuz@plain%
-	\def\bibetal{\cuz@value@englishbibetal}
-	\def\biband{\cuz@value@englishbiband}
+    \def\bibetal{\cuz@value@englishbibetal}
+    \def\biband{\cuz@value@englishbiband}
 \else%
-	\def\bibetal{\cuz@value@chinesebibetal}
-	\def\biband{\cuz@value@chinesebiband}
+    \def\bibetal{\cuz@value@chinesebibetal}
+    \def\biband{\cuz@value@chinesebiband}
 \fi
 % \RequirePackage{xpatch}
 %     \xapptocmd{\NAT@bibsetnum}{
@@ -309,10 +317,10 @@
 %         \addtolength{\itemindent}{\labelsep}
 %     }{}{}
 \AfterEndPreamble{
-	\renewcommand{\bibsection}{\vspace{-1.2ex}}
-	\renewcommand{\bibfont}{\zihao{-4}}
-	\renewcommand{\thefigure}{\arabic{figure}}% configure the label style
-	\renewcommand{\thetable}{\arabic{table}}% configure the label style
+    \renewcommand{\bibsection}{\vspace{-1.2ex}}
+    \renewcommand{\bibfont}{\zihao{-4}}
+    \renewcommand{\thefigure}{\arabic{figure}}% configure the label style
+    \renewcommand{\thetable}{\arabic{table}}% configure the label style
 }
 \tcbuselibrary{most}
 %---------------------------------------------------------------------------%
