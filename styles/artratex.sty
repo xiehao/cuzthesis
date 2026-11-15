@@ -70,12 +70,12 @@
 \newif\ifartx@bibtex \artx@bibtextrue
 \newif\ifartx@biber \artx@biberfalse
 \DeclareOption{bibtex}{%
-	\artx@bibtextrue
-	\artx@biberfalse
+    \artx@bibtextrue
+    \artx@biberfalse
 }
 \DeclareOption{biber}{%
-	\artx@bibtexfalse
-	\artx@bibertrue
+    \artx@bibtexfalse
+    \artx@bibertrue
 }
 %-
 %-> 引用和参考文献样式
@@ -85,100 +85,100 @@
 \newif\ifartx@authoryear \artx@authoryearfalse
 \newif\ifartx@alpha \artx@alphafalse
 \DeclareOption{numbers}{%
-	\artx@numberstrue
-	\artx@superfalse
-	\artx@authoryearfalse
-	\artx@alphafalse
+    \artx@numberstrue
+    \artx@superfalse
+    \artx@authoryearfalse
+    \artx@alphafalse
 }
 \DeclareOption{super}{%
-	\artx@numberstrue
-	\artx@supertrue
-	\artx@authoryearfalse
-	\artx@alphafalse
+    \artx@numberstrue
+    \artx@supertrue
+    \artx@authoryearfalse
+    \artx@alphafalse
 }
 \DeclareOption{authoryear}{%
-	\artx@numbersfalse
-	\artx@superfalse
-	\artx@authoryeartrue
-	\artx@alphafalse
+    \artx@numbersfalse
+    \artx@superfalse
+    \artx@authoryeartrue
+    \artx@alphafalse
 }
 \DeclareOption{alpha}{%
-	\artx@numbersfalse
-	\artx@superfalse
-	\artx@authoryearfalse
-	\artx@alphatrue
+    \artx@numbersfalse
+    \artx@superfalse
+    \artx@authoryearfalse
+    \artx@alphatrue
 }
 %-
 %-> 页面布局重配置
 %-
 \newif\ifartx@geometry \artx@geometryfalse
 \DeclareOption{geometry}{%
-	\artx@geometrytrue
+    \artx@geometrytrue
 }
 %-
 %-> 横向布局支持
 %-
 \newif\ifartx@lscape \artx@lscapefalse
 \DeclareOption{lscape}{%
-	\artx@lscapetrue
+    \artx@lscapetrue
 }
 %-
 %-> 页眉页脚
 %-
 \newif\ifartx@myhdr \artx@myhdrfalse
 \DeclareOption{myhdr}{%
-	\artx@myhdrtrue
+    \artx@myhdrtrue
 }
 %-
 %-> 颜色支持
 %-
 \newif\ifartx@color \artx@colorfalse
 \DeclareOption{color}{%
-	\artx@colortrue
+    \artx@colortrue
 }
 %-
 %-> 页面背景
 %-
 \newif\ifartx@background \artx@backgroundfalse
 \DeclareOption{background}{%
-	\artx@colortrue
-	\artx@backgroundtrue
+    \artx@colortrue
+    \artx@backgroundtrue
 }
 %-
 %-> 复杂图表支持
 %-
 \newif\ifartx@tikz \artx@tikzfalse
 \DeclareOption{tikz}{%
-	\artx@colortrue
-	\artx@tikztrue
+    \artx@colortrue
+    \artx@tikztrue
 }
 %-
 %-> 复杂表格支持
 %-
 \newif\ifartx@table \artx@tablefalse
 \DeclareOption{table}{%
-	\artx@tabletrue
+    \artx@tabletrue
 }
 %-
 %-> 增强列表
 %-
 \newif\ifartx@list \artx@listfalse
 \DeclareOption{list}{%
-	\artx@colortrue
-	\artx@listtrue
+    \artx@colortrue
+    \artx@listtrue
 }
 %-
 %-> 额外数学支持
 %-
 \newif\ifartx@math \artx@mathfalse
 \DeclareOption{math}{%
-	\artx@mathtrue
+    \artx@mathtrue
 }
 %-
 %-> 处理未实现的选项
 %-
 \DeclareOption*{%
-	\PackageWarning{artratex}{Unknown option '\CurrentOption'}%
+    \PackageWarning{artratex}{Unknown option '\CurrentOption'}%
 }
 %-
 %-> 终止所有选项处理
@@ -192,211 +192,211 @@
 %-
 \RequirePackage{amsmath}% 数学包
 \ifartx@math% 额外数学包
-	\RequirePackage{mathtools,amsfonts}%
+    \RequirePackage{mathtools,amsfonts}%
 \fi
 %-
 %-> 语言和字体设置
 %-
 \ifpdftex% <pdflatex> 调用字体包
-	\RequirePackage[utf8]{inputenc}% 设置输入编码，文档必须使用utf-8编码
-	\RequirePackage[T1]{fontenc}% 设置字体编码以启用现代字体编码
-	%- 调用字体包选项：
-	%- 文本 + 数学：Times Roman
-	\RequirePackage{newtxtext}%
-	\RequirePackage[cmintegrals]{newtxmath}% 在数学包之后加载
-	%- 文本 + 数学：Palatino
-	%\RequirePackage{palatino}%
+    \RequirePackage[utf8]{inputenc}% 设置输入编码，文档必须使用utf-8编码
+    \RequirePackage[T1]{fontenc}% 设置字体编码以启用现代字体编码
+    %- 调用字体包选项：
+    %- 文本 + 数学：Times Roman
+    \RequirePackage{newtxtext}%
+    \RequirePackage[cmintegrals]{newtxmath}% 在数学包之后加载
+    %- 文本 + 数学：Palatino
+    %\RequirePackage{palatino}%
 \else% <xelatex> 或 <lualatex> 调用系统字体
-	% \ifxetex
-	%     \RequirePackage{xeCJK}% support calling system fonts
-	% \fi
-	% \RequirePackage{fontspec}% support calling system fonts
-	% \@ifpackagelater{fontspec}{2016/12/27}{}{%
-	%     \PackageError{artratex}{fontspec >= 2016/12/27 is required ...}{}%
-	% }
-	% \ifmacosx
-	% \else
-	%     \RequirePackage{newtxtext}%
-	% \fi
-	\RequirePackage[cmintegrals]{newtxmath}% 数学符号字体，在数学包之后但在fontspec包之前加载
-	\RequirePackage{mathrsfs}% 启用\mathscr用于脚本字母
-	\RequirePackage[cal=cm]{mathalfa}%
-	%- 字体属性：<族> + <粗细> + <形状> + <大小>
-	%- 指定三个默认TeX字体族：<主字体>, <无衬线>, <等宽>
-	%- \setxxxxfont{<字体>}[BoldFont=<粗体>,ItalicFont=<斜体>]%
-	%- <字体>: \mdseries\upshape; <粗体>: \bfseries\upshape; <斜体>: \mdseries\itshape
-	%- <\lfseries|\mdseries|\bfseries>: 字体粗细，默认<\mdseries>
-	%- <\upshape|\itshape|\scshape>: 字体形状，默认<\upshape>
-	%- 罗马或衬线字体 - 带笔画的字体 - 用于主要内容
-	%- 示例：Times New Roman, Garamond, Adobe Garamond Pro
-	%\setmainfont{Garamond}[BoldFont=Garamond-Bold,ItalicFont=Garamond-Italic]%
-	%- 字体切换：{\rmfamily ...}, \textrm{...}, {\normalfont ...}, \textnormal{...}
-	%- 后者是由于\renewcommand*{\familydefault}{\rmdefault}
-	%- 无衬线字体 - 无笔画的字体 - 用于需要高可读性的标题
-	%- 示例：Arial, Helvetica, Gill Sans, Futura
-	%\setsansfont{Gill Sans MT}% 字体切换：{\sffamily ...}, \textsf{...}
-	%- 等宽字体 - 相同宽度的字体 - 用于编程等
-	%- 示例：Rockwell, Andale Mono, Courier
-	%\setmonofont{Rockwell}% 字体切换：{\ttfamily, ...}, \texttt{...}
-	%- 指定用户定义的字体族和字体切换
-	%\newfontfamily\<字体切换>{<字体>}[<字体特性>]%
-	%\newcommand{\text<字体切换>}[1]{{\<字体切换> #1}}%
-	% 没有NFSSFamily选项时，只有当添加的字体名称是新的时才定义字体族
-	% mathrm和mathsf可以通过\setmathrm和\setmathsf设置
-	%\RequirePackage{unicode-math}% 另一种数学符号字体配置
-	%\setmathfont{XITS Math}% STIX数学字体的完整符号集
-	\newcommand*{\weibei}{\CJKfamily{zhwei}}% 添加魏碑字体定义
-	\setmainfont{Times New Roman}% Times New Roman
-	\ifwindows
-		\renewcommand*{\lishu}{\CJKfamily{zhli}}% 修改Windows上隶书的定义
-		\renewcommand*{\youyuan}{\CJKfamily{zhyou}}% 修改Windows上幼圆的定义
-		\renewcommand*{\heiti}{\CJKfamily{zhhei}}% 修改Windows上黑体的定义
-		\setCJKfamilyfont{zhli}{隶书}[%
-			AutoFakeBold=4,
-		]%
-		\setCJKfamilyfont{zhwei}{华文新魏}[%
-			AutoFakeBold=4,
-		]%
-		\setCJKfamilyfont{zhyou}{幼圆}[%
-			AutoFakeBold=4,
-		]%
-		\setCJKfamilyfont{zhhei}{黑体}[%
-			AutoFakeBold=4,
-		]%
-		\setCJKmainfont{SimSun}[AutoFakeBold=4,ItalicFont=KaiTi]%
-		\setCJKsansfont{SimHei}[AutoFakeBold=4]%
-		\setCJKmonofont{FangSong}%
-		\setmonofont{FiraMono Nerd Font}[
-			Scale=MatchLowercase,
-		]% Fira Mono for all platforms
-	\else
-		\setmonofont{Fira Mono}[
-			Scale=MatchLowercase,
-		]% 所有平台使用Fira Mono
-		\newcommand*{\lishu}{\CJKfamily{zhli}}% 在macOS和Linux上添加隶书定义
-		\newcommand*{\youyuan}{\CJKfamily{zhyou}}% 在macOS和Linux上添加幼圆定义
-		\ifmacosx
-			\setCJKfamilyfont{zhli}{Baoli SC}[%
-				AutoFakeBold=4,
-			]%
-			\setCJKfamilyfont{zhwei}{Weibei SC}[%
-				AutoFakeBold=4,
-			]%
-			\setCJKfamilyfont{zhyou}{Yuanti SC}[%
-				AutoFakeBold=4,
-			]%
-			\setCJKmainfont{Songti SC}[%
-				UprightFont    = * Light,
-				BoldFont       = * Bold,
-				ItalicFont     = Kaiti SC,
-				BoldItalicFont = Kaiti SC Bold,
-			]%
-			\setCJKsansfont{Heiti SC}[%
-				BoldFont = * Medium,
-			]%
-			\setCJKmonofont{STFangsong}[%
-				AutoFakeBold=3,
-			]%
-			\setsansfont{Helvetica}% Helvetica字体
-		\fi
-		\iflinux
-			\setCJKfamilyfont{zhli}{隶书}[%
-				% \setCJKfamilyfont{zhli}{方正隶书_GBK}[%
-				AutoFakeBold=4,
-			]%
-			\setCJKfamilyfont{zhwei}{华文新魏}[%
-				% \setCJKfamilyfont{zhwei}{方正魏碑_GBK}[%
-				AutoFakeBold=4,
-			]%
-			\setCJKfamilyfont{zhyou}{幼圆}[%
-				AutoFakeBold=4,
-			]%
-			\setCJKfamilyfont{adobesongti}{AdobeSongStd-Light}[%
-				AutoFakeBold=4,
-				ItalicFont=AdobeKaitiStd-Regular,
-			]%
-			\renewcommand*{\songti}{\CJKfamily{adobesongti}}%
-			\setCJKfamilyfont{adobeheiti}{AdobeHeitiStd-Regular}[%
-				AutoFakeBold=4,
-			]%
-			\renewcommand*{\heiti}{\CJKfamily{adobeheiti}}%
-			\setCJKfamilyfont{adobekaiti}{AdobeKaitiStd-Regular}[%
-				AutoFakeBold=4,
-			]%
-			\newcommand*{\kaiti}{\CJKfamily{adobekaiti}}%
-			\setCJKmainfont{AdobeSongStd-Light}[%
-				AutoFakeBold=4,
-				ItalicFont=AdobeKaitiStd-Regular,
-			]
-			\setCJKsansfont{AdobeHeitiStd-Regular}[%
-				AutoFakeBold=4,
-			]%
-			\setCJKmonofont{AdobeFangsongStd-Regular}[%
-				AutoFakeBold=4,
-			]%
-		\fi
-	\fi
+    % \ifxetex
+    %     \RequirePackage{xeCJK}% support calling system fonts
+    % \fi
+    % \RequirePackage{fontspec}% support calling system fonts
+    % \@ifpackagelater{fontspec}{2016/12/27}{}{%
+    %     \PackageError{artratex}{fontspec >= 2016/12/27 is required ...}{}%
+    % }
+    % \ifmacosx
+    % \else
+    %     \RequirePackage{newtxtext}%
+    % \fi
+    \RequirePackage[cmintegrals]{newtxmath}% 数学符号字体，在数学包之后但在fontspec包之前加载
+    \RequirePackage{mathrsfs}% 启用\mathscr用于脚本字母
+    \RequirePackage[cal=cm]{mathalfa}%
+    %- 字体属性：<族> + <粗细> + <形状> + <大小>
+    %- 指定三个默认TeX字体族：<主字体>, <无衬线>, <等宽>
+    %- \setxxxxfont{<字体>}[BoldFont=<粗体>,ItalicFont=<斜体>]%
+    %- <字体>: \mdseries\upshape; <粗体>: \bfseries\upshape; <斜体>: \mdseries\itshape
+    %- <\lfseries|\mdseries|\bfseries>: 字体粗细，默认<\mdseries>
+    %- <\upshape|\itshape|\scshape>: 字体形状，默认<\upshape>
+    %- 罗马或衬线字体 - 带笔画的字体 - 用于主要内容
+    %- 示例：Times New Roman, Garamond, Adobe Garamond Pro
+    %\setmainfont{Garamond}[BoldFont=Garamond-Bold,ItalicFont=Garamond-Italic]%
+    %- 字体切换：{\rmfamily ...}, \textrm{...}, {\normalfont ...}, \textnormal{...}
+    %- 后者是由于\renewcommand*{\familydefault}{\rmdefault}
+    %- 无衬线字体 - 无笔画的字体 - 用于需要高可读性的标题
+    %- 示例：Arial, Helvetica, Gill Sans, Futura
+    %\setsansfont{Gill Sans MT}% 字体切换：{\sffamily ...}, \textsf{...}
+    %- 等宽字体 - 相同宽度的字体 - 用于编程等
+    %- 示例：Rockwell, Andale Mono, Courier
+    %\setmonofont{Rockwell}% 字体切换：{\ttfamily, ...}, \texttt{...}
+    %- 指定用户定义的字体族和字体切换
+    %\newfontfamily\<字体切换>{<字体>}[<字体特性>]%
+    %\newcommand{\text<字体切换>}[1]{{\<字体切换> #1}}%
+    % 没有NFSSFamily选项时，只有当添加的字体名称是新的时才定义字体族
+    % mathrm和mathsf可以通过\setmathrm和\setmathsf设置
+    %\RequirePackage{unicode-math}% 另一种数学符号字体配置
+    %\setmathfont{XITS Math}% STIX数学字体的完整符号集
+    \newcommand*{\weibei}{\CJKfamily{zhwei}}% 添加魏碑字体定义
+    \setmainfont{Times New Roman}% Times New Roman
+    \ifwindows
+        \renewcommand*{\lishu}{\CJKfamily{zhli}}% 修改Windows上隶书的定义
+        \renewcommand*{\youyuan}{\CJKfamily{zhyou}}% 修改Windows上幼圆的定义
+        \renewcommand*{\heiti}{\CJKfamily{zhhei}}% 修改Windows上黑体的定义
+        \setCJKfamilyfont{zhli}{隶书}[%
+            AutoFakeBold=4,
+        ]%
+        \setCJKfamilyfont{zhwei}{华文新魏}[%
+            AutoFakeBold=4,
+        ]%
+        \setCJKfamilyfont{zhyou}{幼圆}[%
+            AutoFakeBold=4,
+        ]%
+        \setCJKfamilyfont{zhhei}{黑体}[%
+            AutoFakeBold=4,
+        ]%
+        \setCJKmainfont{SimSun}[AutoFakeBold=4,ItalicFont=KaiTi]%
+        \setCJKsansfont{SimHei}[AutoFakeBold=4]%
+        \setCJKmonofont{FangSong}%
+        \setmonofont{FiraMono Nerd Font}[
+            Scale=MatchLowercase,
+        ]% Fira Mono for all platforms
+    \else
+        \setmonofont{Fira Mono}[
+            Scale=MatchLowercase,
+        ]% 所有平台使用Fira Mono
+        \ifmacosx
+            \setCJKfamilyfont{zhli}{Baoli SC}[%
+                AutoFakeBold=4,
+            ]%
+            \setCJKfamilyfont{zhwei}{Weibei SC}[%
+                AutoFakeBold=4,
+            ]%
+            \setCJKfamilyfont{zhyou}{Yuanti SC}[%
+                AutoFakeBold=4,
+            ]%
+            \setCJKmainfont{Songti SC}[%
+                UprightFont    = * Light,
+                BoldFont       = * Bold,
+                ItalicFont     = Kaiti SC,
+                BoldItalicFont = Kaiti SC Bold,
+            ]%
+            \setCJKsansfont{Heiti SC}[%
+                BoldFont = * Medium,
+            ]%
+            \setCJKmonofont{STFangsong}[%
+                AutoFakeBold=3,
+            ]%
+            \setsansfont{Helvetica}% Helvetica字体
+        \fi
+        \iflinux
+            \newcommand*{\lishu}{\CJKfamily{zhli}}% 在 Linux 上添加隶书定义
+            \newcommand*{\youyuan}{\CJKfamily{zhyou}}% 在 Linux 上添加幼圆定义
+            \setCJKfamilyfont{zhli}{隶书}[%
+                % \setCJKfamilyfont{zhli}{方正隶书_GBK}[%
+                AutoFakeBold=4,
+            ]%
+            \setCJKfamilyfont{zhwei}{华文新魏}[%
+                % \setCJKfamilyfont{zhwei}{方正魏碑_GBK}[%
+                AutoFakeBold=4,
+            ]%
+            \setCJKfamilyfont{zhyou}{幼圆}[%
+                AutoFakeBold=4,
+            ]%
+            \setCJKfamilyfont{adobesongti}{AdobeSongStd-Light}[%
+                AutoFakeBold=4,
+                ItalicFont=AdobeKaitiStd-Regular,
+            ]%
+            \renewcommand*{\songti}{\CJKfamily{adobesongti}}%
+            \setCJKfamilyfont{adobeheiti}{AdobeHeitiStd-Regular}[%
+                AutoFakeBold=4,
+            ]%
+            \renewcommand*{\heiti}{\CJKfamily{adobeheiti}}%
+            \setCJKfamilyfont{adobekaiti}{AdobeKaitiStd-Regular}[%
+                AutoFakeBold=4,
+            ]%
+            \newcommand*{\kaiti}{\CJKfamily{adobekaiti}}%
+            \setCJKmainfont{AdobeSongStd-Light}[%
+                AutoFakeBold=4,
+                ItalicFont=AdobeKaitiStd-Regular,
+            ]
+            \setCJKsansfont{AdobeHeitiStd-Regular}[%
+                AutoFakeBold=4,
+            ]%
+            \setCJKmonofont{AdobeFangsongStd-Regular}[%
+                AutoFakeBold=4,
+            ]%
+        \fi
+    \fi
 \fi
 %-
 %-> 参考文献处理器和包配置
 %-
 %- Bibtex处理器 + natbib包
 \ifartx@bibtex%
-	\ifartx@numbers% 启用数字引用样式
-		\ifartx@super% 启用上标引用样式
-			\RequirePackage[square,comma,super,sort&compress]{natbib}% 上标方括号
-		\else
-			\RequirePackage[square,comma,numbers,sort&compress]{natbib}% 方括号
-		\fi
-		\bibliographystyle{bibliography/gbt7714-unsrt}% 数字方案
-	\fi
-	\ifartx@authoryear% 启用作者年份引用样式
-		\RequirePackage{natbib}% 作者年份引用模式
-		\bibliographystyle{bibliography/gbt7714-plain}% 作者年份方案
-	\fi
-	\ifartx@alpha% 启用字母引用样式
-		\RequirePackage[square,comma,numbers]{natbib}% 方括号
-		\bibliographystyle{alpha}% 字母方案
-	\fi
-	\providecommand*{\citetns}[2][]{% 上标模式下的文本嵌入\citet
-	\begingroup%
-	\let\NAT@mbox=\mbox%
-	\let\@cite\NAT@citenum%
-	\let\NAT@space\NAT@spacechar%
-	\let\NAT@super@kern\relax%
-	\renewcommand\NAT@open{[}%
-	\renewcommand\NAT@close{]}%
-	\citet[#1]{#2}%
-	\endgroup%
-	}
-	\providecommand*{\citepns}[2][]{% 上标模式下的文本嵌入\citep
-	\begingroup%
-	\let\NAT@mbox=\mbox%
-	\let\@cite\NAT@citenum%
-	\let\NAT@space\NAT@spacechar%
-	\let\NAT@super@kern\relax%
-	\renewcommand\NAT@open{[}%
-	\renewcommand\NAT@close{]}%
-	\citep[#1]{#2}%
-	\endgroup%
-	}
+    \ifartx@numbers% 启用数字引用样式
+        \ifartx@super% 启用上标引用样式
+            \RequirePackage[square,comma,super,sort&compress]{natbib}% 上标方括号
+        \else
+            \RequirePackage[square,comma,numbers,sort&compress]{natbib}% 方括号
+        \fi
+        \bibliographystyle{bibliography/gbt7714-unsrt}% 数字方案
+    \fi
+    \ifartx@authoryear% 启用作者年份引用样式
+        \RequirePackage{natbib}% 作者年份引用模式
+        \bibliographystyle{bibliography/gbt7714-plain}% 作者年份方案
+    \fi
+    \ifartx@alpha% 启用字母引用样式
+        \RequirePackage[square,comma,numbers]{natbib}% 方括号
+        \bibliographystyle{alpha}% 字母方案
+    \fi
+    \providecommand*{\citetns}[2][]{% 上标模式下的文本嵌入\citet
+    \begingroup%
+    \let\NAT@mbox=\mbox%
+    \let\@cite\NAT@citenum%
+    \let\NAT@space\NAT@spacechar%
+    \let\NAT@super@kern\relax%
+    \renewcommand\NAT@open{[}%
+    \renewcommand\NAT@close{]}%
+    \citet[#1]{#2}%
+    \endgroup%
+    }
+    \providecommand*{\citepns}[2][]{% 上标模式下的文本嵌入\citep
+    \begingroup%
+    \let\NAT@mbox=\mbox%
+    \let\@cite\NAT@citenum%
+    \let\NAT@space\NAT@spacechar%
+    \let\NAT@super@kern\relax%
+    \renewcommand\NAT@open{[}%
+    \renewcommand\NAT@close{]}%
+    \citep[#1]{#2}%
+    \endgroup%
+    }
 \fi
 %- Biber处理器 + biblatex包
 \ifartx@biber%
-	\ifartx@numbers% 启用数字引用样式
-		\ifartx@super% 启用上标引用样式
-			\RequirePackage[style=numeric-comp]{biblatex}%
-		\else
-			\RequirePackage[style=numeric-comp]{biblatex}%
-		\fi
-	\fi
-	\ifartx@authoryear% 启用作者年份引用样式
-		\RequirePackage[style=authoryear]{biblatex}%
-	\fi
-	\ifartx@alpha% 启用字母引用样式
-		\RequirePackage[style=alphabetic]{biblatex}%
-	\fi
-	\addbibresource{ref.bib}%
+    \ifartx@numbers% 启用数字引用样式
+        \ifartx@super% 启用上标引用样式
+            \RequirePackage[style=numeric-comp]{biblatex}%
+        \else
+            \RequirePackage[style=numeric-comp]{biblatex}%
+        \fi
+    \fi
+    \ifartx@authoryear% 启用作者年份引用样式
+        \RequirePackage[style=authoryear]{biblatex}%
+    \fi
+    \ifartx@alpha% 启用字母引用样式
+        \RequirePackage[style=alphabetic]{biblatex}%
+    \fi
+    \addbibresource{ref.bib}%
 \fi
 %-
 %-> 图表环境支持
@@ -414,86 +414,86 @@
 %-> 页面布局和间距
 %-
 \ifartx@geometry% 启用geometry重新定义页面布局
-	\RequirePackage{geometry}% 页面布局
-	%\RequirePackage{setspace}% 行间距
+    \RequirePackage{geometry}% 页面布局
+    %\RequirePackage{setspace}% 行间距
 \fi
 \ifartx@lscape% 横向布局
-	\RequirePackage{fancyhdr}% 花式页眉页脚
-	%- 用法：\begin{landscape} [\thispagestyle{lscape}] text... \end{landscape}
-	\RequirePackage{pdflscape}% 横向环境
-	\RequirePackage[absolute]{textpos}% 旋转页码
+    \RequirePackage{fancyhdr}% 花式页眉页脚
+    %- 用法：\begin{landscape} [\thispagestyle{lscape}] text... \end{landscape}
+    \RequirePackage{pdflscape}% 横向环境
+    \RequirePackage[absolute]{textpos}% 旋转页码
 \fi
 \ifartx@myhdr% 页眉页脚样式
-	\RequirePackage{fancyhdr}% 花式页眉页脚
+    \RequirePackage{fancyhdr}% 花式页眉页脚
 \fi
 %\RequirePackage{microtype}% 改善文本的整体外观
 %-
 %-> 颜色
 %-
 \ifartx@color% 启用颜色包以使用颜色
-	%\RequirePackage{color}%
-	\RequirePackage[usenames,svgnames,table]{xcolor}%
+    %\RequirePackage{color}%
+    \RequirePackage[usenames,svgnames,table]{xcolor}%
 \fi
 %-
 %-> 直接用TeX命令绘制图形
 %-
 \ifartx@tikz%
-	\RequirePackage{tikz}% 自动加载pgf包
-	\usetikzlibrary{% 加载库
-		positioning,
-		arrows,
-		calc,
-		trees
-	}%
+    \RequirePackage{tikz}% 自动加载pgf包
+    \usetikzlibrary{% 加载库
+        positioning,
+        arrows,
+        calc,
+        trees
+    }%
 \fi
 %-
 %-> 复杂表格
 %-
 \ifartx@table%
-	\RequirePackage{ctable}% 导入array、tabularx和booktabs包
-	\RequirePackage{footnote}% 在表格中启用脚注
-	\makesavenoteenv{table}
-	\makesavenoteenv{tabular}
+    \RequirePackage{ctable}% 导入array、tabularx和booktabs包
+    \RequirePackage{footnote}% 在表格中启用脚注
+    \makesavenoteenv{table}
+    \makesavenoteenv{tabular}
 \fi
 %-
 %-> 列表结构
 %-
 \ifartx@list% 启用增强的列表和逐字结构
-	\RequirePackage{verbatim}% 改善逐字环境
-	\RequirePackage{enumitem}% 配置枚举环境
-	\setlist[enumerate]{wide=\parindent}% 只缩进第一行
-	\setlist[itemize]{wide=\parindent}% 只缩进第一行
-	\setlist{nosep}% 默认文本间距
-	\RequirePackage{listings}% 源代码
-	\RequirePackage{lstautogobble}% lstlisting的自动缩进
-	\RequirePackage{algpseudocode,algorithm,algorithmicx}% 算法
-	\RequirePackage{relsize}
-	\RequirePackage[newfloat=true]{minted}% 更好的源代码
+    \RequirePackage{verbatim}% 改善逐字环境
+    \RequirePackage{enumitem}% 配置枚举环境
+    \setlist[enumerate]{wide=\parindent}% 只缩进第一行
+    \setlist[itemize]{wide=\parindent}% 只缩进第一行
+    \setlist{nosep}% 默认文本间距
+    \RequirePackage{listings}% 源代码
+    \RequirePackage{lstautogobble}% lstlisting的自动缩进
+    \RequirePackage{algpseudocode,algorithm,algorithmicx}% 算法
+    \RequirePackage{relsize}
+    \RequirePackage[newfloat=true]{minted}% 更好的源代码
 \fi
 %-
 %-> 链接支持
 %-
 \RequirePackage{hyperref}%
 \hypersetup{% 设置超链接
-	%bookmarks=true,% 显示书签栏
-	pdfencoding=auto,% 允许书签中使用非拉丁语言
-	%pdftitle={},% 标题
-	%pdfauthor={},% 作者
-	%pdfsubject={},% 主题
-	%pdftoolbar=true,% 显示工具栏
-	%pdfmenubar=true,% 显示菜单
-	pdffitwindow=false,% 打开时窗口适应页面
-	pdfstartview={FitW},% 页面宽度适应窗口
-	%pdfnewwindow=true,% 在新窗口中打开链接
-	%backref=true,% 进行参考文献反向引用
-	%pagebackref=true,% 按页码反向引用
-	colorlinks=true,% false: 框式链接; true: 彩色链接
-	linkcolor=black,% 内部链接颜色
-	citecolor=blue,% 参考文献链接颜色
-	filecolor=magenta,% 文件链接颜色
-	urlcolor=violet,% 外部链接颜色
-	bookmarksnumbered=true,% 在书签中显示章节号
-	%hidelinks% 移除链接颜色和边框
+    %bookmarks=true,% 显示书签栏
+    pdfencoding=auto,% 允许书签中使用非拉丁语言
+    %pdftitle={},% 标题
+    %pdfauthor={},% 作者
+    %pdfsubject={},% 主题
+    %pdftoolbar=true,% 显示工具栏
+    %pdfmenubar=true,% 显示菜单
+    pdffitwindow=false,% 打开时窗口适应页面
+    pdfstartview={FitW},% 页面宽度适应窗口
+    %pdfnewwindow=true,% 在新窗口中打开链接
+    %backref=true,% 进行参考文献反向引用
+    %pagebackref=true,% 按页码反向引用
+    colorlinks=true,% false: 框式链接; true: 彩色链接
+    linkcolor=black,% 内部链接颜色
+    citecolor=blue,% 参考文献链接颜色
+    filecolor=magenta,% 文件链接颜色
+    urlcolor=violet,% 外部链接颜色
+    bookmarksnumbered=true,% 在书签中显示章节号
+    %hidelinks% 移除链接颜色和边框
 }
 %---------------------------------------------------------------------------%
 %->> 配置命令
@@ -505,16 +505,16 @@
 %- 通过避免在\includegraphics命令中提供图形扩展名，
 %- 源文件可以更通用和适应性更强
 \ifxetex%
-	\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps,.tif,.bmp,.gif}%
+    \DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps,.tif,.bmp,.gif}%
 \else% <pdflatex> 或 <lualatex>
-	\DeclareGraphicsExtensions{.pdf,.png,.jpg}%
+    \DeclareGraphicsExtensions{.pdf,.png,.jpg}%
 \fi
 \graphicspath{{figures/}}% 图形搜索路径
 %-
 %-> 布局、间距和样式
 %-
 \ifartx@geometry% 启用geometry重新定义页面布局
-	\geometry{paper=a4paper,left=31.7mm,right=31.7mm,top=25.4mm,bottom=25.4mm}%
+    \geometry{paper=a4paper,left=31.7mm,right=31.7mm,top=25.4mm,bottom=25.4mm}%
 \fi
 %\linespread{1.5}% 1.5为"一倍半"行距，2.0为"双倍"行距
 %\setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}% 段落间距
@@ -529,28 +529,28 @@
 %\renewcommand{\thetable}{\thesection\arabic{table}}% 配置标签样式
 %- 设置参考文献条目
 \ifartx@bibtex%
-	% \setlength{\bibsep}{0.0ex plus 0.2ex minus 0.2ex}% set distance between entries
-	\setlength{\bibsep}{0.1\baselineskip}
-	\renewcommand{\bibpreamble}{\vspace*{1.5ex}}
+    % \setlength{\bibsep}{0.0ex plus 0.2ex minus 0.2ex}% set distance between entries
+    \setlength{\bibsep}{0.1\baselineskip}
+    \renewcommand{\bibpreamble}{\vspace*{1.5ex}}
 \fi
 \ifartx@biber%
-	\setlength\bibitemsep{0.1\baselineskip}% set distance between entries
+    \setlength\bibitemsep{0.1\baselineskip}% set distance between entries
 \fi
 \renewcommand*{\bibfont}{\small}% set font size for bibliography
 %-
 %-> Nomenclature item
 %-
 \providecommand{\nomenclatureitem}[3][ ]{%
-	\noindent\makebox[0.15\textwidth][l]{#2}{{#3}\hfill{#1}}\par
+    \noindent\makebox[0.15\textwidth][l]{#2}{{#3}\hfill{#1}}\par
 }
 %-
 %-> Macro for adding content link to the table of content and bookmark
 %-
 \providecommand{\intotoc}[2][chapter]{%
-	\cleardoublepage% ensure correct page reference
-	\markboth{\MakeUppercase{#2}}{}% set the leftmark
-	\phantomsection% create link in bookmarks
-	\addcontentsline{toc}{#1}{#2}% add content #2 to toc as #1
+    \cleardoublepage% ensure correct page reference
+    \markboth{\MakeUppercase{#2}}{}% set the leftmark
+    \phantomsection% create link in bookmarks
+    \addcontentsline{toc}{#1}{#2}% add content #2 to toc as #1
 }
 %-
 %-> Page header and footer Style
@@ -560,226 +560,226 @@
 %- or section numbers/names, and page numbers.
 %- Configure fancy style
 \ifartx@myhdr% user defined header and footer style
-	\pagestyle{fancy}%
-	\providecommand{\chaptermark}{}% compatibility for non-book classes
-	\providecommand{\thechapter}{}% compatibility for non-book classes
-	\providecommand{\CTEXthechapter}{\thechapter.}% compatibility for non ctex classes
-	%- reset style of chapter and section mark to actual name
-	\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}%
-	\renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}%
-	%- deactivate uppercase effect
-	\renewcommand{\MakeUppercase}[1]{#1}%
-	%- Define different kinds of header and footer for different parts
-	\fancypagestyle{frontmatterstyle}{% style for frontmatter
-		\fancyhf{}% clear fields
-		\fancyhead[CE]{\footnotesize \@title}% structure elements
-		\fancyhead[CO]{\footnotesize \leftmark}% structure elements
-		\fancyfoot[CE]{\footnotesize \thepage}% page number
-		\fancyfoot[CO]{\footnotesize \thepage}% page number
-		\renewcommand{\headrulewidth}{0.8pt}% header rule
-		\renewcommand{\footrulewidth}{0pt}% footer rule
-	}
-	\fancypagestyle{mainmatterstyle}{% style for mainmatter
-		\fancyhf{}% clear fields
-		\fancyhead[CE]{\footnotesize \@title}% structure elements
-		\fancyhead[CO]{\footnotesize \CTEXthechapter\ \leftmark}% structure elements
-		\fancyfoot[LE]{\footnotesize \thepage}% page number
-		\fancyfoot[RO]{\footnotesize \thepage}% page number
-		\renewcommand{\headrulewidth}{0.8pt}% header rule
-		\renewcommand{\footrulewidth}{0pt}% footer rule
-	}
-	\fancypagestyle{backmatterstyle}{% header and footer style for backmatter
-		\fancyhf{}% clear fields
-		\fancyhead[CE]{\footnotesize \@title}% structure elements
-		\fancyhead[CO]{\footnotesize \leftmark}% structure elements
-		\fancyfoot[LE]{\footnotesize \thepage}% page number
-		\fancyfoot[RO]{\footnotesize \thepage}% page number
-		\renewcommand{\headrulewidth}{0.8pt}% header rule
-		\renewcommand{\footrulewidth}{0pt}% footer rule
-	}
-	%- Redefine \frontmatter to include the change
-	\providecommand{\frontmatter}{}% compatibility for non-book classes
-	\let\myfrontmatter\frontmatter%
-	\renewcommand{\frontmatter}{%
-		\myfrontmatter%
-		\pagestyle{frontmatterstyle}%
-	}
-	%- Redefine \mainmatter to include the change
-	\providecommand{\mainmatter}{}% compatibility for non-book classes
-	\let\mymainmatter\mainmatter%
-	\renewcommand{\mainmatter}{%
-		\mymainmatter%
-		\pagestyle{mainmatterstyle}%
-	}
-	%- Redefine \backmatter to include the change
-	\providecommand{\backmatter}{}% compatibility for non-book classes
-	\let\mybackmatter\backmatter%
-	\renewcommand{\backmatter}{%
-		\mybackmatter%
-		\pagestyle{backmatterstyle}%
-	}
-	%- Some Latex commands, like \chapter, use the \thispagestyle command
-	%- to automatically switch to the plain page style, thus ignoring the
-	%- page style currently in effect. To customize such pages you must
-	%- redefine the plain pagestyle. If you want the plain style inherits
-	%- the current style, comment all the lines in plain style definition.
-	\fancypagestyle{plain}{%
-		%\fancyhf{}% clear fields
-		%\renewcommand{\headrulewidth}{0pt}% header rule
-		%\renewcommand{\footrulewidth}{0pt}% footer rule
-	}
-	\fancypagestyle{noheaderstyle}{% header and footer style for no header
-		\fancyhf{}% clear fields
-		%\fancyhead[CE]{\footnotesize \@title}% structure elements
-		%\fancyhead[CO]{\footnotesize \leftmark}% structure elements
-		\fancyfoot[LE]{\footnotesize \thepage}% page number
-		\fancyfoot[RO]{\footnotesize \thepage}% page number
-		\renewcommand{\headrulewidth}{0pt}% header rule
-		\renewcommand{\footrulewidth}{0pt}% footer rule
-	}
+    \pagestyle{fancy}%
+    \providecommand{\chaptermark}{}% compatibility for non-book classes
+    \providecommand{\thechapter}{}% compatibility for non-book classes
+    \providecommand{\CTEXthechapter}{\thechapter.}% compatibility for non ctex classes
+    %- reset style of chapter and section mark to actual name
+    \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}%
+    \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}%
+    %- deactivate uppercase effect
+    \renewcommand{\MakeUppercase}[1]{#1}%
+    %- Define different kinds of header and footer for different parts
+    \fancypagestyle{frontmatterstyle}{% style for frontmatter
+        \fancyhf{}% clear fields
+        \fancyhead[CE]{\footnotesize \@title}% structure elements
+        \fancyhead[CO]{\footnotesize \leftmark}% structure elements
+        \fancyfoot[CE]{\footnotesize \thepage}% page number
+        \fancyfoot[CO]{\footnotesize \thepage}% page number
+        \renewcommand{\headrulewidth}{0.8pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    \fancypagestyle{mainmatterstyle}{% style for mainmatter
+        \fancyhf{}% clear fields
+        \fancyhead[CE]{\footnotesize \@title}% structure elements
+        \fancyhead[CO]{\footnotesize \CTEXthechapter\ \leftmark}% structure elements
+        \fancyfoot[LE]{\footnotesize \thepage}% page number
+        \fancyfoot[RO]{\footnotesize \thepage}% page number
+        \renewcommand{\headrulewidth}{0.8pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    \fancypagestyle{backmatterstyle}{% header and footer style for backmatter
+        \fancyhf{}% clear fields
+        \fancyhead[CE]{\footnotesize \@title}% structure elements
+        \fancyhead[CO]{\footnotesize \leftmark}% structure elements
+        \fancyfoot[LE]{\footnotesize \thepage}% page number
+        \fancyfoot[RO]{\footnotesize \thepage}% page number
+        \renewcommand{\headrulewidth}{0.8pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    %- Redefine \frontmatter to include the change
+    \providecommand{\frontmatter}{}% compatibility for non-book classes
+    \let\myfrontmatter\frontmatter%
+    \renewcommand{\frontmatter}{%
+        \myfrontmatter%
+        \pagestyle{frontmatterstyle}%
+    }
+    %- Redefine \mainmatter to include the change
+    \providecommand{\mainmatter}{}% compatibility for non-book classes
+    \let\mymainmatter\mainmatter%
+    \renewcommand{\mainmatter}{%
+        \mymainmatter%
+        \pagestyle{mainmatterstyle}%
+    }
+    %- Redefine \backmatter to include the change
+    \providecommand{\backmatter}{}% compatibility for non-book classes
+    \let\mybackmatter\backmatter%
+    \renewcommand{\backmatter}{%
+        \mybackmatter%
+        \pagestyle{backmatterstyle}%
+    }
+    %- Some Latex commands, like \chapter, use the \thispagestyle command
+    %- to automatically switch to the plain page style, thus ignoring the
+    %- page style currently in effect. To customize such pages you must
+    %- redefine the plain pagestyle. If you want the plain style inherits
+    %- the current style, comment all the lines in plain style definition.
+    \fancypagestyle{plain}{%
+        %\fancyhf{}% clear fields
+        %\renewcommand{\headrulewidth}{0pt}% header rule
+        %\renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    \fancypagestyle{noheaderstyle}{% header and footer style for no header
+        \fancyhf{}% clear fields
+        %\fancyhead[CE]{\footnotesize \@title}% structure elements
+        %\fancyhead[CO]{\footnotesize \leftmark}% structure elements
+        \fancyfoot[LE]{\footnotesize \thepage}% page number
+        \fancyfoot[RO]{\footnotesize \thepage}% page number
+        \renewcommand{\headrulewidth}{0pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
 \fi
 %-
 %-> Configure landscape environment
 %-
 \ifartx@lscape%
-	\fancypagestyle{lscape}{% landscape layout style
-		\fancyhf{}% clear fields
-		\fancyfoot[CE,CO]{%
-			%- textpos: \begin{textblock}{<blockwidth>}[0.5,0.5](<hpos>,<vpos>) text... \end{textblock}
-			%- origin of the absolute coordinate is the top-left corner of the page
-			%- [0.5,0.5] means reference point of the block is the middle
-			\begin{textblock}{0.1}[0.5,0.5](0.85,0.5){\rotatebox{90}{\footnotesize \thepage}}\end{textblock}% position the page number
-		}
-		%- set units of <blockwidth>, <hpos>, and <vpos> arguments by corresponding modules
-		\setlength{\TPHorizModule}{8.5in}% set to the width of page
-		\setlength{\TPVertModule}{11in}% set to the height of page
-		\renewcommand{\headrulewidth}{0pt}% header rule
-		\renewcommand{\footrulewidth}{0pt}% footer rule
-	}
+    \fancypagestyle{lscape}{% landscape layout style
+        \fancyhf{}% clear fields
+        \fancyfoot[CE,CO]{%
+            %- textpos: \begin{textblock}{<blockwidth>}[0.5,0.5](<hpos>,<vpos>) text... \end{textblock}
+            %- origin of the absolute coordinate is the top-left corner of the page
+            %- [0.5,0.5] means reference point of the block is the middle
+            \begin{textblock}{0.1}[0.5,0.5](0.85,0.5){\rotatebox{90}{\footnotesize \thepage}}\end{textblock}% position the page number
+        }
+        %- set units of <blockwidth>, <hpos>, and <vpos> arguments by corresponding modules
+        \setlength{\TPHorizModule}{8.5in}% set to the width of page
+        \setlength{\TPVertModule}{11in}% set to the height of page
+        \renewcommand{\headrulewidth}{0pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
 \fi
 \ifartx@list% enable enhanced list
-	\definecolor{mygreen}{rgb}{0,0.6,0}
-	\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-	\definecolor{mymauve}{rgb}{0.58,0,0.82}
-	\lstset{%
-		numberbychapter=true,% numbered sequentially or by chapter
-		backgroundcolor=\color{white},% background color;
-		basicstyle=\ttfamily\footnotesize,% font size for code
-		breakatwhitespace=false,% sets if automatic breaks should only happen at whitespace
-		breaklines=true,% sets automatic line breaking
-		% captionpos=b,% caption-position to bottom
-		commentstyle=\color{mygreen},% comment style
-		% deletekeywords={...},% delete keywords from the given language
-		frame=lines,% adds a frame around the code
-		keepspaces=true,% keeps spaces in text for keeping indentation of code
-		keywordstyle=\color{blue},% keyword style
-		%otherkeywords={*,...},% add more keywords to the set
-		numbers=left,% where to put the line-numbers; possible values are (none, left, right)
-		numbersep=1.5em,% how far the line-numbers are from the code
-		numberstyle=\tiny\color{mygray},% the style that is used for the line-numbers
-		rulecolor=\color{black},% if not set, the frame-color may be changed on line-breaks
-		showspaces=false,% show spaces everywhere adding particular underscores;
-		showstringspaces=false,% underline spaces within strings only
-		showtabs=false,% show tabs within strings adding particular underscores
-		stepnumber=1,% the step between two line-numbers. If it's 1, each line will be numbered
-		stringstyle=\color{mymauve},% string literal style
-		tabsize=2,% sets default tabsize to 2 spaces
-		title=\lstname,% show the filename of files
-		autogobble=true,% auto gobble
-	}
-	% minted settings
-	\SetupFloatingEnvironment{listing}{name=\cuz@label@codelisting}
-	\SetupFloatingEnvironment{listing}{listname=\cuz@label@codelisting}
+    \definecolor{mygreen}{rgb}{0,0.6,0}
+    \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+    \definecolor{mymauve}{rgb}{0.58,0,0.82}
+    \lstset{%
+        numberbychapter=true,% numbered sequentially or by chapter
+        backgroundcolor=\color{white},% background color;
+        basicstyle=\ttfamily\footnotesize,% font size for code
+        breakatwhitespace=false,% sets if automatic breaks should only happen at whitespace
+        breaklines=true,% sets automatic line breaking
+        % captionpos=b,% caption-position to bottom
+        commentstyle=\color{mygreen},% comment style
+        % deletekeywords={...},% delete keywords from the given language
+        frame=lines,% adds a frame around the code
+        keepspaces=true,% keeps spaces in text for keeping indentation of code
+        keywordstyle=\color{blue},% keyword style
+        %otherkeywords={*,...},% add more keywords to the set
+        numbers=left,% where to put the line-numbers; possible values are (none, left, right)
+        numbersep=1.5em,% how far the line-numbers are from the code
+        numberstyle=\tiny\color{mygray},% the style that is used for the line-numbers
+        rulecolor=\color{black},% if not set, the frame-color may be changed on line-breaks
+        showspaces=false,% show spaces everywhere adding particular underscores;
+        showstringspaces=false,% underline spaces within strings only
+        showtabs=false,% show tabs within strings adding particular underscores
+        stepnumber=1,% the step between two line-numbers. If it's 1, each line will be numbered
+        stringstyle=\color{mymauve},% string literal style
+        tabsize=2,% sets default tabsize to 2 spaces
+        title=\lstname,% show the filename of files
+        autogobble=true,% auto gobble
+    }
+    % minted settings
+    \SetupFloatingEnvironment{listing}{name=\cuz@label@codelisting}
+    \SetupFloatingEnvironment{listing}{listname=\cuz@label@codelisting}
 
-	% Change listing numbering format to match figures and tables
-	% Use chapter numbering in main matter, section numbering in appendices
-	\AtBeginDocument{
-		\renewcommand{\thelisting}{%
-			\ifnum\c@chapter>\z@%
-				\thechapter\cuz@label@captionnumberconnector\arabic{listing}%
-			\else%
-				\thesection\cuz@label@captionnumberconnector\arabic{listing}%
-			\fi%
-		}%
-	}
+    % Change listing numbering format to match figures and tables
+    % Use chapter numbering in main matter, section numbering in appendices
+    \AtBeginDocument{
+        \renewcommand{\thelisting}{%
+            \ifnum\c@chapter>\z@%
+                \thechapter\cuz@label@captionnumberconnector\arabic{listing}%
+            \else%
+                \thesection\cuz@label@captionnumberconnector\arabic{listing}%
+            \fi%
+        }%
+    }
 
-	% Adjust spacing for listing environment
-	\captionsetup[listing]{skip=-1ex}  % Reduce space between caption and listing
+    % Adjust spacing for listing environment
+    \captionsetup[listing]{skip=-1ex}  % Reduce space between caption and listing
 
-	% Reduce spacing around listing environment
-	% \setlength{\textfloatsep}{0pt plus 1pt minus 1pt}     % Space between float and text
-	% \setlength{\floatsep}{0pt plus 1pt minus 1pt}         % Space between consecutive floats
-	% \setlength{\intextsep}{0pt plus 1pt minus 1pt}        % Space for floats in the text
+    % Reduce spacing around listing environment
+    % \setlength{\textfloatsep}{0pt plus 1pt minus 1pt}     % Space between float and text
+    % \setlength{\floatsep}{0pt plus 1pt minus 1pt}         % Space between consecutive floats
+    % \setlength{\intextsep}{0pt plus 1pt minus 1pt}        % Space for floats in the text
 
-	% Customize line numbers
-	\renewcommand{\theFancyVerbLine}{
-		\textcolor[rgb]{0.5,0.8,1.0}{
-			\smaller{\arabic{FancyVerbLine}}
-		}
-	} %
+    % Customize line numbers
+    \renewcommand{\theFancyVerbLine}{
+        \textcolor[rgb]{0.5,0.8,1.0}{
+            \smaller{\arabic{FancyVerbLine}}
+        }
+    } %
 
-	% Inline code settings
-	\setmintedinline{
-		fontsize=\smaller[1],
-		breaklines=true,
+    % Inline code settings
+    \setmintedinline{
+        fontsize=\smaller[1],
+        breaklines=true,
         breakanywhere=true,
         breakanywheresymbolpre=-,
-	} %
+    } %
 
-	% Main minted settings
-	\setminted{
-		highlightcolor=cyan!20,% color of the high light lines
-		autogobble,% automatically remove the spaces to the left of the code
-		% linenos=true,% show line numbers
-		fontsize=\smaller[1],% smaller font size
-		escapeinside=@@,% insert latex code between @ and @
-		frame=leftline,% frame styles: none or lines
-		framerule=.7pt,% frame width
-		numbers=left,% show line numbers on: left, right, both or none
-		numbersep=-.5em,% gap between numbers and start of line
-		mathescape=true,% insert math code
-		obeytabs=true,% properly handle tabs instead of showing ^^I
-		tabsize=4,% set tab size to 4 spaces
-		% resetmargins=true,
-		rulecolor=cyan,% color of frame
-		style=tango,% style sheet used by pygments
-		% baselinestretch=0.9,% reduce line spacing within code blocks
-	} %
+    % Main minted settings
+    \setminted{
+        highlightcolor=cyan!20,% color of the high light lines
+        autogobble,% automatically remove the spaces to the left of the code
+        % linenos=true,% show line numbers
+        fontsize=\smaller[1],% smaller font size
+        escapeinside=@@,% insert latex code between @ and @
+        frame=leftline,% frame styles: none or lines
+        framerule=.7pt,% frame width
+        numbers=left,% show line numbers on: left, right, both or none
+        numbersep=-.5em,% gap between numbers and start of line
+        mathescape=true,% insert math code
+        obeytabs=true,% properly handle tabs instead of showing ^^I
+        tabsize=4,% set tab size to 4 spaces
+        % resetmargins=true,
+        rulecolor=cyan,% color of frame
+        style=tango,% style sheet used by pygments
+        % baselinestretch=0.9,% reduce line spacing within code blocks
+    } %
 
-	% Define a custom environment for compact listings
-	\usepackage{etoolbox}
-	\AtBeginEnvironment{listing}{%
-		% \vspace{-1.5ex}% reduce space before listing
-	}
-	\AtEndEnvironment{listing}{%
-		\vspace{-3ex}% reduce space after listing
-	}
-	% Shortcuts to languages with compact spacing
-	\newminted[ccode]{c}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
-	\newmintinline{c}{} %
-	\newminted[cppcode]{cpp}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
-	\newmintinline{cpp}{} %
-	\newminted[cscode]{csharp}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
-	\newmintinline{cs}{} %
-	\newminted[javacode]{java}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
-	\newmintinline{java}{} %
-	\newminted[jscode]{javascript}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
-	\newmintinline{js}{} %
-	\newminted[pythoncode]{python}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
-	\newmintinline{python}{} %
-	\newminted[texcode]{tex}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
-	\newmintinline{tex}{} %
-	\newminted[mdcode]{md}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
-	\newmintinline{md}{} %
-	\newminted[xmlcode]{xml}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
-	\newmintinline{xml}{} %
+    % Define a custom environment for compact listings
+    \usepackage{etoolbox}
+    \AtBeginEnvironment{listing}{%
+        % \vspace{-1.5ex}% reduce space before listing
+    }
+    \AtEndEnvironment{listing}{%
+        \vspace{-3ex}% reduce space after listing
+    }
+    % Shortcuts to languages with compact spacing
+    \newminted[ccode]{c}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
+    \newmintinline{c}{} %
+    \newminted[cppcode]{cpp}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
+    \newmintinline{cpp}{} %
+    \newminted[cscode]{csharp}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
+    \newmintinline{cs}{} %
+    \newminted[javacode]{java}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
+    \newmintinline{java}{} %
+    \newminted[jscode]{javascript}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
+    \newmintinline{js}{} %
+    \newminted[pythoncode]{python}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
+    \newmintinline{python}{} %
+    \newminted[texcode]{tex}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
+    \newmintinline{tex}{} %
+    \newminted[mdcode]{md}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
+    \newmintinline{md}{} %
+    \newminted[xmlcode]{xml}{xleftmargin=1em, xrightmargin=1em, resetmargins=true, samepage=true} %
+    \newmintinline{xml}{} %
 \fi
 %-
 %-> Page background
 %-
 \ifartx@background%
-	\definecolor{backgroundcolor}{rgb}{0.85,0.85,0.85}%
-	\pagecolor{backgroundcolor}% background color
+    \definecolor{backgroundcolor}{rgb}{0.85,0.85,0.85}%
+    \pagecolor{backgroundcolor}% background color
 \fi
 %---------------------------------------------------------------------------%
 \endinput
